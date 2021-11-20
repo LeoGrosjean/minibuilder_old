@@ -1,0 +1,65 @@
+{
+    "SM": {
+        "desc": {
+            "display": "SM Hands",
+            "path": "file/hands/SM/"
+        },
+        "stl": {
+            "Lt. sword": {
+                "file": "lt_sword.stl",
+                "dextral": "left",
+                "hand": {
+                    "vertex": 13359 
+                },
+                "coef_merge": 0.1
+            },
+            "Imperium Banner v1": {
+                "file": "Dark_Imperium_Banner_-_Left_Hand.stl",
+                "dextral": "left",
+                "hand": {
+                    "vertex": 16496 
+                },
+                "coef_merge": 0.1
+            }
+        }
+    },
+
+    "Gue'Ron'Vesa": {
+        "desc": {
+            "display": "Gue'Ron'Vesa Hands",
+            "path": "file/hands/gueronvesa/"
+        },
+        "stl": {
+            "Gauntlet Fist": {
+                "designer":"@elmutanto",
+                "file": "GueRonVesa_Additional_Weapons_Gauntlet_fist.stl",
+                "rotate": 0,
+                "dextral": "left",
+                "hand": {
+                    "facet": 1576 
+                },
+                "coef_merge": 1.1
+            },
+            "Gauntlet Fist Handle": {
+                "designer":"@elmutanto",
+                "file": "GueRonVesa_Additional_Weapons_Gauntlet_fist_handle.stl",
+                "rotate": 0,
+                "dextral": "left",
+                "hand": {
+                    "facet": 1406 
+                },
+                "coef_merge": 1.1
+            },
+            "Thunder Hammer": {
+                "designer":"@elmutanto",
+                "file": "GueRonVesa_Additional_Weapons_Thunderhammer_2_1.stl",
+                "rotate": 0,
+                "dextral": "right",
+                "hand": {
+                    "vertex": 6646 
+                },
+                "coef_merge": 1.1
+            }
+        }
+    }
+}

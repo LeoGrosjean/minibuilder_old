@@ -1,0 +1,29 @@
+{
+    "SM": {
+        "desc": {
+            "display": "SM Heads",
+            "path": "file/heads/SM/"
+        },
+        "stl": {
+            "Firstborn Raw": {
+                "file": "helmet_fisrtborn.stl",
+                "head": {
+                    "vertex": 159
+                }
+            },
+            "Prime Raw": {
+                "file": "helmet_prime.stl",
+                "head": {
+                    "rotate": -90,
+                    "vertex": 5477
+                }
+            },
+            "MK II v1": {
+                "file": "mk2_helm_01.stl",
+                "head": {
+                    "vertex": 40851
+                }
+            }
+        }
+    }
+}

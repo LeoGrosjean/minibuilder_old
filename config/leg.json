@@ -1,0 +1,61 @@
+{
+    "SM": {    
+        "desc": {
+            "display": "SM Legs",
+            "path": "file/legs/SM/"
+        },
+        "stl": {
+            "Standard v1": {
+                "file": "1_Std.stl",
+
+                "leg": {
+                    "vertex": 70707
+                }
+            }
+        }
+    },
+    "Bionic SM": {
+        "desc": {
+            "display": "Bionic SM Legs",
+            "path": "file/legs/Bionic SM/"
+        },
+        "stl": {
+            "Bionic left 1": {
+                "file": "1_BionicLeg_Left.stl",
+                "leg": {
+                    "vertex": 101759
+                }
+            },
+            "Bionic left 2": {
+                "file": "2_BionicLeg_Left.stl",
+                "leg": {
+                    "vertex": 56347
+                }
+            },
+            "Bionic left 3": {
+                "file": "3_BionicLeg_Left.stl",
+                "leg": {
+                    "vertex": 58253
+                }
+            },
+            "Bionic left 4": {
+                "file": "4_BionicLeg_Left.stl",
+                "leg": {
+                    "vertex": 56224
+                }
+            },
+            "Bionic left 5": {
+                "file": "5_BionicLeg_Left.stl",
+                "leg": {
+                    "vertex": 53458
+                }
+            },
+            "Bionic left 6": {
+                "file": "6_BionicLeg_Left.stl",
+                "leg": {
+                    "vertex": 105723
+                }
+            }
+        }
+    }
+}

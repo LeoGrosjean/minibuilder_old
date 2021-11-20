@@ -1,0 +1,241 @@
+{
+    "SM": {
+        "desc": {
+            "display": "SM Bodies",
+            "path": "file/bodies/SM/"
+        },
+        "stl": {
+            "MK V v1": {
+                "file": "Mk_V_ver1.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 2966
+                },
+                "leg": {
+                    "vertex": 37550
+                },
+                "backpack": {
+                    "vertex": 75
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5851
+                    },
+                    "right": {
+                        "facet": 7510
+                    }
+                }
+            },
+            "MK V v2": {
+                "file": "Mk_V_ver2.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 1771
+                },
+                "leg": {
+                    "vertex": 21871
+                },
+                "backpack": {
+                    "vertex": 76
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5851
+                    },
+                    "right": {
+                        "facet": 7510
+                    }
+                }
+            },
+            "MK VI v1": {
+                "file": "Mk_VI_ver1.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 1403
+                },
+                "leg": {
+                    "vertex": 16524
+                },
+                "backpack": {
+                    "vertex": 75
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5212
+                    },
+                    "right": {
+                        "facet": 8169
+                    }
+                }
+            },
+            "MK VI v2": {
+                "file": "Mk_VI_ver2.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 1401
+                },
+                "leg": {
+                    "vertex": 16515
+                },
+                "backpack": {
+                    "vertex": 75
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5212
+                    },
+                    "right": {
+                        "facet": 8169
+                    }
+                }
+            },
+            "MK VI v3": {
+                "file": "Mk_VI_ver3.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 4731
+                },
+                "leg": {
+                    "vertex": 57651
+                },
+                "backpack": {
+                    "vertex": 84
+                },
+                "arm": {
+                    "right": {
+                        "facet": 15454
+                    },
+                    "left": {
+                        "facet": 17819
+                    }
+                }
+            },
+            "MK VII v1": {
+                "file": "Mk_VII_ver1.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 3145
+                },
+                "leg": {
+                    "vertex": 39347
+                },
+                "backpack": {
+                    "vertex": 86
+                },
+                "arm": {
+                    "right": {
+                        "facet": 14277
+                    },
+                    "left": {
+                        "facet": 16570
+                    }
+                }
+            },
+            "MK VII v2": {
+                "file": "Mk_VII_ver2.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 3133
+                },
+                "leg": {
+                    "vertex": 39764
+                },
+                "backpack": {
+                    "vertex": 86
+                },
+                "arm": {
+                    "right": {
+                        "facet": 14277
+                    },
+                    "left": {
+                        "facet": 16570
+                    }
+                }
+            },
+            "MK VII v3": {
+                "file": "Mk_VII_ver3.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 1853
+                },
+                "leg": {
+                    "vertex": 21895
+                },
+                "backpack": {
+                    "vertex": 75
+                },
+                "arm": {
+                    "right": {
+                        "facet": 8133
+                    },
+                    "left": {
+                        "facet": 10426
+                    }
+                }
+            },
+            "MK VII v4": {
+                "file": "Mk_VII_ver4.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 3357
+                },
+                "leg": {
+                    "vertex": 40785
+                },
+                "backpack": {
+                    "vertex": 86
+                },
+                "arm": {
+                    "right": {
+                        "facet": 14277
+                    },
+                    "left": {
+                        "facet": 16570
+                    }
+                }
+            },
+            "MK VII v5": {
+                "file": "Mk_VII_ver5.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 1876
+                },
+                "leg": {
+                    "vertex": 22694
+                },
+                "backpack": {
+                    "vertex": 75
+                },
+                "arm": {
+                    "right": {
+                        "facet": 8133
+                    },
+                    "left": {
+                        "facet": 10426
+                    }
+                }
+            },
+            "MK VIII": {
+                "file": "Mk_VIII.stl",
+                "thingiverse": 4248444,
+                "head": {
+                    "vertex": 2065
+                },
+                "leg": {
+                    "vertex_list": [3032, 21252]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 13145
+                    },
+                    "right": {
+                        "facet": 16107
+                    }
+                }
+            }
+        }
+    }
+}

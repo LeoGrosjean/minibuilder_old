@@ -1,0 +1,8 @@
+trimesh
+numpy
+flask
+Flask-WTF
+wtforms
+scipy
+auto-py-to-exe
+requests
