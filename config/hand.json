@@ -2,7 +2,7 @@
     "SM": {
         "desc": {
             "display": "SM Hands",
-            "path": "file/hands/SM/"
+            "path": "data/Wargame Humanoid/hand/SM/"
         },
         "stl": {
             "Lt. sword": {

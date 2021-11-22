@@ -1,0 +1,48 @@
+{% macro display_block(field_dict, value='', type='text', size=20) -%}
+<div class="container-sm" >
+    <ul class="list-group">
+        {% for k, field in field_dict.items() %}
+            <p class="list-group-item">
+                {% if k == "select" %}
+                    {{ field.label }} {{ field(**{"onchange":"this.form.submit()"}) }}
+                {% elif k == "list" %}
+                    {{ field }}
+                {% elif k == "rotate" %}
+                    -180 {{ field(type="range") }} 180
+                {% endif %}
+            </p>
+        {% endfor %}
+    </ul>
+</div>
+{% endmacro %}
+
+<link href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}" rel="stylesheet">
+
+{% extends "flash_layout.html" %}
+{% block body %}
+<form method="post">
+    <div class="container" style="position: absolute;">
+        {% for row in grid %}
+            <div class="row"">
+                    {% for block in row %}
+                        <div class="col-sm col-md">{{ display_block(block) }}</div>
+                    {% endfor %}
+            </div>
+        {% endfor %}
+        <p>Download missing files ? {{ dl_missing }}</p>
+        {{ submit }}
+    </div>
+</form>
+
+{{ scene|safe }}
+
+<style>
+    container-max-widths {
+      sm: 200px;
+      md: 200px;
+      lg: 200px;
+      xl: 200px;
+      xxl: 200px
+    }
+</style>
+{% endblock %}

@@ -6,3 +6,4 @@ wtforms
 scipy
 auto-py-to-exe
 requests
+networkx

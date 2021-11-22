@@ -1,0 +1,86 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {
+    "name": "Humanoid Wargaming"
+  },
+  "nodes": [
+    {
+      "id": "body",
+      "label": "Body",
+      "folder": "body",
+      "position": [1, 1],
+      "permissions": ["select", "list"],
+      "files": ["body.json"]
+    },
+    {
+      "id": "larm",
+      "label": "Left Arm",
+      "folder": "arm",
+      "position": [1, 2],
+      "dextral": "left",
+      "permissions": ["select", "list", "rotate"],
+      "files": ["arm.json", "arm_chaos.json"]
+    },
+    {
+      "id": "rarm",
+      "label": "Right Arm",
+      "folder": "arm",
+      "position": [1, 0],
+      "dextral": "right",
+      "permissions": ["select", "list", "rotate"],
+      "files": ["arm.json"]
+    },
+    {
+      "id": "lhand",
+      "label": "Left Hand",
+      "folder": "hand",
+      "position": [2, 2],
+      "dextral": "left",
+      "permissions": ["select", "list", "rotate"],
+      "files": ["hand.json"]
+    },
+    {
+      "id": "rhand",
+      "label": "Right Hand",
+      "folder": "hand",
+      "position": [2, 0],
+      "dextral": "right",
+      "permissions": ["select", "list", "rotate"],
+      "files": ["hand.json"]
+    },
+    {
+      "id": "leg",
+      "label": "Leg",
+      "folder": "leg",
+      "position": [2, 1],
+      "permissions": ["select", "list", "rotate"],
+      "files": ["leg.json"]
+    },
+    {
+      "id": "head",
+      "label": "Head",
+      "folder": "head",
+      "position": [0, 1],
+      "permissions": ["select", "list", "rotate"],
+      "files": ["head.json"]
+    },
+    {
+      "id": "backpack",
+      "label": "Backpack",
+      "folder": "backpack",
+      "position": [0, 0],
+      "permissions": ["select", "list", "rotate"],
+      "files": ["backpack.json"]
+    }
+  ],
+  "links": [
+    {"source": "body", "target": "larm"},
+    {"source": "body", "target": "rarm"},
+    {"source": "body", "target": "head"},
+    {"source": "body", "target": "leg"},
+    {"source": "body", "target": "backpack"},
+    {"source": "larm", "target": "lhand"},
+    {"source": "rarm", "target": "rhand"}
+  ]
+}

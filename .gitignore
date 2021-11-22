@@ -2,5 +2,8 @@
 __pycache__
 output
 file/**/*.stl
-file_config/**/*.json
+data/**/*.stl
+config
 venv
+/config/
+/.ipynb_checkpoints/

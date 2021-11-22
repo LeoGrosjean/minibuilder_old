@@ -1,0 +1,284 @@
+{
+
+    "SM": {
+
+        "desc": {
+            "display": "SM Backpacks",
+            "path": "data/Wargame Humanoid/backpack/SM/"
+        },
+        "stl": {
+            "Rivet 28mm": {
+                "file": "rivet_backpack.stl",
+
+                "backpack": {
+                    "vertex": 22576
+                }
+            },
+            "Standard": {
+                "file": "standard_backpack.stl",
+                "backpack": {
+                    "vertex": 14
+                }
+            },
+            "Prime": {
+                "file": "prime.stl",
+                "backpack": {
+                    "vertex": 15217
+                }
+            }
+        }
+    },
+    "Gloomy Angel SM": {
+        "desc": {
+            "display": "Gloomy Angel SM",
+            "path": "file/backpacks/Gloomy Angel SM/"
+        },
+        "stl": {
+            "Veteran 01": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_01.stl",
+                "backpack": {
+                    "vertex": 33146
+                }
+            },
+            "Veteran 02": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_02.stl",
+                "backpack": {
+                    "vertex": 35584
+                }
+            },
+            "Veteran 03": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_03.stl",
+                "backpack": {
+                    "vertex": 38737
+                }
+            },
+            "Veteran 04": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_04.stl",
+                "backpack": {
+                    "vertex": 31998
+                }
+            },
+            "Veteran 05": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_05.stl",
+                "backpack": {
+                    "vertex": 39260
+                }
+            },
+            "Veteran 06": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_06.stl",
+                "backpack": {
+                    "vertex": 45039
+                }
+            },
+            "Veteran 07": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_07.stl",
+                "backpack": {
+                    "vertex": 37706
+                }
+            },
+            "Veteran 08": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_08.stl",
+                "backpack": {
+                    "vertex": 33386
+                }
+            },
+            "Veteran 09": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_09.stl",
+                "backpack": {
+                    "vertex": 35659
+                }
+            },
+            "Veteran 10": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_10.stl",
+                "backpack": {
+                    "vertex": 38878
+                }
+            },
+            "Veteran 11": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_11.stl",
+                "backpack": {
+                    "vertex": 40472
+                }
+            },
+            "Veteran 12": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_12.stl",
+                "backpack": {
+                    "vertex": 42950
+                }
+            },
+            "Veteran 13": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_13.stl",
+                "backpack": {
+                    "vertex": 46164
+                }
+            },
+            "Veteran 14": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_14.stl",
+                "backpack": {
+                    "vertex": 45750
+                }
+            },
+            "Veteran 15": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_15.stl",
+                "backpack": {
+                    "vertex": 48587
+                }
+            },
+            "Veteran 16": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_16.stl",
+                "backpack": {
+                    "vertex": 51346
+                }
+            },
+            "Veteran 17": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_17.stl",
+                "backpack": {
+                    "vertex": 38723
+                }
+            },
+            "Veteran 18": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_18.stl",
+                "backpack": {
+                    "vertex": 41290
+                }
+            },
+            "Veteran 19": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_19.stl",
+                "backpack": {
+                    "vertex": 44491
+                }
+            },
+            "Veteran 20": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_20.stl",
+                "backpack": {
+                    "vertex": 40104
+                }
+            },
+            "Veteran 21": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_21.stl",
+                "backpack": {
+                    "vertex": 47361
+                }
+            },
+            "Veteran 22": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_22.stl",
+                "backpack": {
+                    "vertex": 53138
+                }
+            },
+            "Veteran 23": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_23.stl",
+                "backpack": {
+                    "vertex": 45774
+                }
+            },
+            "Veteran 24": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_24.stl",
+                "backpack": {
+                    "vertex": 41468
+                }
+            },
+            "Veteran 25": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_25.stl",
+                "backpack": {
+                    "vertex": 43697
+                }
+            },
+            "Veteran 26": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_26.stl",
+                "backpack": {
+                    "vertex": 47084
+                }
+            },
+            "Veteran 27": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_27.stl",
+                "backpack": {
+                    "vertex": 48393
+                }
+            },
+            "Veteran 28": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_28.stl",
+                "backpack": {
+                    "vertex": 51015
+                }
+            },
+            "Veteran 29": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_29.stl",
+                "backpack": {
+                    "vertex": 54205
+                }
+            },
+            "Veteran 30": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_30.stl",
+                "backpack": {
+                    "vertex": 53852
+                }
+            },
+            "Veteran 31": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_31.stl",
+                "backpack": {
+                    "vertex": 56702
+                }
+            },
+            "Veteran 32": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_32.stl",
+                "backpack": {
+                    "vertex": 59745
+                }
+            },
+            "Veteran 33": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_33.stl",
+                "backpack": {
+                    "vertex": 46993
+                }
+            },
+            "Veteran 34": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_34.stl",
+                "backpack": {
+                    "vertex": 49596
+                }
+            },
+            "Veteran 35": {
+                "designer":"@cornivius",
+                "file": "Veteran_Backpack_35.stl",
+                "backpack": {
+                    "vertex": 52467
+                }
+            }
+        }
+    }
+}

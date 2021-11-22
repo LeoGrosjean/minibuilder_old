@@ -1,20 +1,167 @@
+import json
 import os
+from functools import reduce
 from math import radians
+from operator import add
+from pprint import pprint
+import numpy as np
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash
+from networkx import topological_sort, dfs_edges
+from networkx.readwrite import json_graph
+from trimesh import load
+from trimesh.transformations import euler_matrix
+from trimesh.viewer import scene_to_html
 
-from flask import Blueprint, render_template, request
-
-from file_config.parts import backpacks, heads, arms, bodies, hands, legs, designers
-from forms.make import GenerateMini, MissingFiles
+from builder.node import read_node_link_json
+from file_config.parts import backpacks, heads, arms, bodies, hands, legs, designers, load_json
+from forms.home import ChooseBuilderForm
+from forms.make import GenerateMini, MissingFiles, generateminidynamic_func
 from utils.dict import deep_get
 from utils.mesh import connect_mesh
 from utils.thingiverse import download_object
 
 make_bp = Blueprint('make_bp', __name__)
 
+@make_bp.context_processor
+def utility_functions():
+    def print_in_console(message):
+        print(str(message))
+
+    return dict(mdebug=print_in_console)
+
 
 @make_bp.route('/', methods=['GET', 'POST'])
+def choose_builder():
+    form = ChooseBuilderForm()
+    form.builder.choices = os.listdir('data')
+    if request.method == 'POST':
+        results = request.form.to_dict()
+        return redirect(f"/{results.get('builder')}")
+
+    return render_template("choose_builder.html", form=form)
+
+
+@make_bp.route('/<builder_name>', methods=['GET', 'POST'])
+def builder(builder_name):
+    form_result = request.form.to_dict()
+    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    infos = {}
+    for node_name in graph.nbunch_iter():
+        infos[node_name] = {}
+        for json_path in graph.nodes.get(node_name).get('files'):
+            infos[node_name].update(load_json(f"data/{builder_name}/{json_path}"))
+    di_form = {}
+    li_position = []
+    for node_name, v in graph.nodes.data():
+        choices_values = list(infos[node_name].keys())
+
+        di_form[node_name] = {
+            'label': v.get('label'),
+            'select':  infos[node_name].keys(),
+            'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys()
+        }
+        li_position.append(v.get('position'))
+
+    position_matrix = np.zeros(np.max(li_position, axis=0) + 1)
+    shape_m = position_matrix.shape
+    position_matrix = position_matrix.tolist()
+    for i in range(shape_m[0]):
+        for j in range(shape_m[1]):
+            position_matrix[i][j] = {}
+
+    form = generateminidynamic_func(**di_form)
+
+    for k, v in graph.nodes.data():
+        row_index, col_index = v.get('position')
+        di_permission = {}
+        for permission in v.get('permissions'):
+            di_permission[permission] = getattr(form, f"{k}_{permission}")
+        position_matrix[row_index][col_index] = di_permission
+    if request.method == 'POST' and 'submit_preview' in form_result:
+        di_file = {}
+        for node in topological_sort(graph):
+            select = form_result.get(f'{node}_select')
+            list_select = form_result.get(f'{node}_list')
+            folder = graph.nodes.data()[node].get('folder')
+
+            di_file[node] = {
+                'info': infos.get(node).get(select).get('stl').get(list_select),
+                'on': folder,
+                'dextral': graph.nodes.data()[node].get('dextral'),
+                'rotate': form_result.get(f'{node}_rotate')
+            }
+            di_file[node]['info']['mesh_path'] = \
+                f"data/{builder_name}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
+
+
+        # DL MISSING FILES THINGIVERSE
+        li_to_dl = []
+        for node, mesh_infos_node in di_file.items():
+            mesh_path = mesh_infos_node.get('info').get('mesh_path')
+            if not os.path.isfile(mesh_path):
+                print(f"{mesh_path} is missing")
+                flash(f"{mesh_path} is missing")
+                li_to_dl.append(mesh_infos_node.get('info'))
+
+        if li_to_dl and form_result.get('download_missing_file'):
+            for to_dl in li_to_dl:
+                if "thingiverse" in to_dl:
+                    download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
+                    flash(f"{mesh_path} has been download in Thingiverse !")
+        elif li_to_dl:
+            print("Check Download missing file BooleanField !")
+            flash("Check field : <Download missing file> !")
+            return render_template("display.html",
+                           grid=position_matrix,
+                           submit=form.submit_preview,
+                           dl_missing=form.download_missing_file)
+
+        for k, v in di_file.items():
+            di_file[k]['mesh'] = load(v.get('info').get('mesh_path'))
+
+        # MESH PROCESSING
+        for edge in dfs_edges(graph):
+            dest, source = edge
+
+            connect_mesh(di_file.get(source).get('mesh'),
+                         di_file.get(dest).get('mesh'),
+                         di_file.get(source).get('info'),
+                         di_file.get(dest).get('info'),
+                         on=di_file.get(source).get('on'),
+                         dextral=di_file.get(source).get('dextral'),
+                         rotate=int(di_file.get(source).get('rotate')),
+                         coef_merge=0)
+            """scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
+            scene.apply_transform(euler_matrix(radians(-90), 0, 0))
+
+        return render_template("display.html",
+                               grid=position_matrix,
+                               submit=form.submit_preview,
+                               dl_missing=form.download_missing_file,
+                               scene=scene_to_html(scene.scene())
+                               )"""
+        #scene = [v.get('mesh').scene() for k, v in di_file.items()]
+        scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
+        from trimesh.scene.scene import append_scenes
+        scene = append_scenes(scene)
+        return render_template("display.html",
+                               grid=position_matrix,
+                               submit=form.submit_preview,
+                               dl_missing=form.download_missing_file,
+                               scene=scene_to_html(scene)
+                               )
+
+
+    return render_template("display.html",
+                           grid=position_matrix,
+                           submit=form.submit_preview,
+                           dl_missing=form.download_missing_file)
+
+
+@make_bp.route('/old', methods=['GET', 'POST'])
 def make_nameplate():
     form = GenerateMini()
+    print(form.larm_)
     print(request.remote_addr)
     if request.method == 'POST':
         results = request.form.to_dict()

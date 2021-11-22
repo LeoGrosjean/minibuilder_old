@@ -56,9 +56,9 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
     elif "vertex_list" in mesh_info[on]:
         normal = get_mean_vertex_normal_list(mesh, mesh_info[on]["vertex_list"])
 
-    if on == 'leg' and not base:
+    """if on == 'leg' and not base:
         normal = [0, 0, 1]
-        dest_normal = np.array([0, 0, -1])
+        dest_normal = np.array([0, 0, -1])"""
     mesh.apply_transform(tm.geometry.align_vectors(normal, dest_normal * -base_coef))
 
     if "vertex" in mesh_info[on]:
