@@ -52,6 +52,7 @@ def generateminidynamic_func(*args, **kwargs):
     class GenerateMiniDynamic(FlaskForm):
         download_missing_file = BooleanField('Download missing file')
         submit_preview = SubmitField('Get a Preview !')
+        dl_zip = SubmitField('Download Zip !')
 
     for k, v in kwargs.items():
         setattr(GenerateMiniDynamic, f"{k}_select",

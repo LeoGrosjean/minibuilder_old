@@ -1,6 +1,6 @@
-import json
 import os
 from pathlib import Path
+
 import requests
 
 access_keyword = "?access_token="
@@ -33,3 +33,5 @@ def download_object(thing_id, dest_file, access_token=api_token):
             print(f"File has been downloaded from Thingiverse to {dest_file} !")
             return True
     return False
+
+

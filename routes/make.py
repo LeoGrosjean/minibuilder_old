@@ -1,11 +1,12 @@
 import json
 import os
+import shutil
 from functools import reduce
 from math import radians
 from operator import add
 from pprint import pprint
 import numpy as np
-from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file
 from networkx import topological_sort, dfs_edges
 from networkx.readwrite import json_graph
 from trimesh import load
@@ -19,6 +20,7 @@ from forms.make import GenerateMini, MissingFiles, generateminidynamic_func
 from utils.dict import deep_get
 from utils.mesh import connect_mesh
 from utils.thingiverse import download_object
+from utils.zip import write_zip
 
 make_bp = Blueprint('make_bp', __name__)
 
@@ -77,7 +79,7 @@ def builder(builder_name):
         for permission in v.get('permissions'):
             di_permission[permission] = getattr(form, f"{k}_{permission}")
         position_matrix[row_index][col_index] = di_permission
-    if request.method == 'POST' and 'submit_preview' in form_result:
+    if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result):
         di_file = {}
         for node in topological_sort(graph):
             select = form_result.get(f'{node}_select')
@@ -103,23 +105,34 @@ def builder(builder_name):
                 flash(f"{mesh_path} is missing")
                 li_to_dl.append(mesh_infos_node.get('info'))
 
+        cant_dl = False
         if li_to_dl and form_result.get('download_missing_file'):
             for to_dl in li_to_dl:
                 if "thingiverse" in to_dl:
                     download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
                     flash(f"{mesh_path} has been download in Thingiverse !")
+                else:
+                    flash(f"{mesh_path} don't exist and have no web references !")
+                    cant_dl = True
+        if cant_dl:
+            return render_template("display.html",
+                                    grid=position_matrix,
+                                    submit=form.submit_preview,
+                                    dl_missing=form.download_missing_file,
+                                    dl_zip=form.dl_zip)
+
         elif li_to_dl:
             print("Check Download missing file BooleanField !")
             flash("Check field : <Download missing file> !")
             return render_template("display.html",
-                           grid=position_matrix,
-                           submit=form.submit_preview,
-                           dl_missing=form.download_missing_file)
-
+                                   grid=position_matrix,
+                                   submit=form.submit_preview,
+                                   dl_missing=form.download_missing_file,
+                                   dl_zip=form.dl_zip)
+        # MESH PROCESSING
         for k, v in di_file.items():
             di_file[k]['mesh'] = load(v.get('info').get('mesh_path'))
 
-        # MESH PROCESSING
         for edge in dfs_edges(graph):
             dest, source = edge
 
@@ -131,31 +144,57 @@ def builder(builder_name):
                          dextral=di_file.get(source).get('dextral'),
                          rotate=int(di_file.get(source).get('rotate')),
                          coef_merge=0)
-            """scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
-            scene.apply_transform(euler_matrix(radians(-90), 0, 0))
+
+            # MERGE
+            if 'dl_zip' in form_result:
+                for k, v in graph.get_edge_data(dest, source).items():
+                    if v.get('merge'):
+                        di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
+                        tmp_path = f'tmp/merged_{dest}_{source}.stl'
+                        di_file[dest]['mesh'].export(tmp_path)
+                        di_file[dest]['info']['mesh_path'] = tmp_path
+                        del di_file[source]
+
+        scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
+        scene.apply_transform(euler_matrix(radians(-90), 0, 0))
+
+        if 'dl_zip' in form_result:
+            li_file_path = [(v.get('info').get('mesh_path'), k) for k, v in di_file.items()]
+            scene.export("tmp/merged.stl")
+            li_file_path.append(('tmp/merged.stl', 'merged'))
+            data = write_zip(li_file_path)
+
+            # CLEAN
+            for file in os.listdir('tmp'):
+                os.remove(f"tmp/{file}")
+            return send_file(data,
+                             mimetype='application/zip',
+                             as_attachment=True,
+                             attachment_filename='data.zip')
 
         return render_template("display.html",
                                grid=position_matrix,
                                submit=form.submit_preview,
                                dl_missing=form.download_missing_file,
+                               dl_zip=form.dl_zip,
                                scene=scene_to_html(scene.scene())
-                               )"""
-        #scene = [v.get('mesh').scene() for k, v in di_file.items()]
-        scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
-        from trimesh.scene.scene import append_scenes
-        scene = append_scenes(scene)
-        return render_template("display.html",
-                               grid=position_matrix,
-                               submit=form.submit_preview,
-                               dl_missing=form.download_missing_file,
-                               scene=scene_to_html(scene)
                                )
-
+        #scene = [v.get('mesh').scene() for k, v in di_file.items()]
+        #scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
+        #from trimesh.scene.scene import append_scenes
+        #scene = append_scenes(scene)
+        #return render_template("display.html",
+        #                       grid=position_matrix,
+        #                       submit=form.submit_preview,
+        #                       dl_missing=form.download_missing_file,
+        #                       scene=scene_to_html(scene)
+        #                       )
 
     return render_template("display.html",
                            grid=position_matrix,
                            submit=form.submit_preview,
-                           dl_missing=form.download_missing_file)
+                           dl_missing=form.download_missing_file,
+                           dl_zip=form.dl_zip)
 
 
 @make_bp.route('/old', methods=['GET', 'POST'])

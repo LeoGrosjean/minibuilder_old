@@ -80,7 +80,7 @@
     {"source": "body", "target": "head"},
     {"source": "body", "target": "leg"},
     {"source": "body", "target": "backpack"},
-    {"source": "larm", "target": "lhand"},
-    {"source": "rarm", "target": "rhand"}
+    {"source": "larm", "target": "lhand", "merge":  true},
+    {"source": "rarm", "target": "rhand", "merge":  true}
   ]
 }
