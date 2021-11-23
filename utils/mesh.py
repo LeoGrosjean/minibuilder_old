@@ -38,7 +38,8 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         elif "vertex_list" in dest_mesh_info[on][dextral]:
             dest_normal = get_mean_vertex_normal_list(dest_mesh, dest_mesh_info[on][dextral]["vertex_list"])
             dest_vertice = get_mean_vertex_list(dest_mesh, dest_mesh_info[on][dextral]["vertex_list"])
-    except:
+    except Exception as e:
+        print(e)
         if "vertex" in dest_mesh_info[on]:
             dest_normal = dest_mesh.vertex_normals[dest_mesh_info[on]["vertex"]]
             dest_vertice = dest_mesh.vertices[dest_mesh_info[on]["vertex"]]
@@ -83,7 +84,6 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
     mesh.apply_translation(normal * mesh_info.get('coef_merge', coef_merge))
 
     if "rotate" in mesh_info:
-        print(mesh_info['rotate'] * rotate_neg)
         mesh.apply_transform(
             tm.transformations.rotation_matrix(radians(mesh_info['rotate'] * rotate_neg), normal, vertice))
 

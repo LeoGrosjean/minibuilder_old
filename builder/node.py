@@ -3,6 +3,7 @@ import json
 import networkx as nx
 from networkx.readwrite import json_graph
 
+
 def read_node_link_json(filename):
     with open(filename) as f:
         js_graph = json.load(f)

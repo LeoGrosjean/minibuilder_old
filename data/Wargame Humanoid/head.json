@@ -1,28 +1,45 @@
 {
-    "SM": {
+    "Space Warrior": {
         "desc": {
-            "display": "SM Heads",
-            "path": "data/Wargame Humanoid/head/SM/"
+            "display": "Space Warrior Heads",
+            "path": "data/Wargame Humanoid/head/Space Warrior/"
         },
         "stl": {
-            "Firstborn Raw": {
-                "file": "helmet_fisrtborn.stl",
+            "Helm 01": {
+                "file": "Space_Knight_Helm_01.stl",
+                "thingiverse": 4393029,
+                "designer": "jorgengorgen",
                 "head": {
-                    "vertex": 159
-                }
+                    "vertex": 6
+                },
+                "coef_merge": -0.3
             },
-            "Prime Raw": {
-                "file": "helmet_prime.stl",
+            "Helm 02": {
+                "file": "Space_Knight_Helm_02.stl",
+                "thingiverse": 4393029,
+                "designer": "jorgengorgen",
                 "head": {
-                    "rotate": -90,
-                    "vertex": 5477
-                }
+                    "vertex": 6
+                },
+                "coef_merge": -0.3
             },
-            "MK II v1": {
-                "file": "mk2_helm_01.stl",
+            "Helm 03": {
+                "file": "Space_Knight_Helm_03.stl",
+                "thingiverse": 4393029,
+                "designer": "jorgengorgen",
                 "head": {
-                    "vertex": 40851
-                }
+                    "vertex": 7
+                },
+                "coef_merge": -0.3
+            },
+            "Helm 04": {
+                "file": "Space_Knight_Helm_CUSTOM.stl",
+                "thingiverse": 4393029,
+                "designer": "jorgengorgen",
+                "head": {
+                    "vertex": 6
+                },
+                "coef_merge": -0.3
             }
         }
     }

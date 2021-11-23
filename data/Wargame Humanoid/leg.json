@@ -6,55 +6,61 @@
         },
         "stl": {
             "Standard v1": {
-                "file": "1_Std.stl",
+                "file": "legs_2.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 87420}
 
-                "leg": {
-                    "vertex": 70707
-                }
-            }
-        }
-    },
-    "Bionic SM": {
-        "desc": {
-            "display": "Bionic SM Legs",
-            "path": "file/legs/Bionic SM/"
-        },
-        "stl": {
-            "Bionic left 1": {
-                "file": "1_BionicLeg_Left.stl",
-                "leg": {
-                    "vertex": 101759
-                }
             },
-            "Bionic left 2": {
-                "file": "2_BionicLeg_Left.stl",
-                "leg": {
-                    "vertex": 56347
-                }
+            "Standard v2": {
+                "file": "legs_5_m.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 78131}
+
             },
-            "Bionic left 3": {
-                "file": "3_BionicLeg_Left.stl",
-                "leg": {
-                    "vertex": 58253
-                }
+            "Standard v3": {
+                "file": "legs_3.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 18292}
             },
-            "Bionic left 4": {
-                "file": "4_BionicLeg_Left.stl",
-                "leg": {
-                    "vertex": 56224
-                }
+            "Standard v4": {
+                "file": "legs_2_m.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 6837}
+
             },
-            "Bionic left 5": {
-                "file": "5_BionicLeg_Left.stl",
-                "leg": {
-                    "vertex": 53458
-                }
+            "Standard v5": {
+                "file": "legs_4_m.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 83447}
             },
-            "Bionic left 6": {
-                "file": "6_BionicLeg_Left.stl",
-                "leg": {
-                    "vertex": 105723
-                }
+            "Standard v6": {
+                "file": "default_legs.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 10108}
+            },
+            "Standard v7": {
+                "file": "legs_5.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 20248}
+            },
+            "Standard v8": {
+                "file": "legs_3_m.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 78740}
+            },
+            "Standard v9": {
+                "file": "legs_4.stl",
+                "thingiverse": 4460813,
+                "designer": "chunky111",
+                "leg": {"vertex": 14096}
             }
         }
     }

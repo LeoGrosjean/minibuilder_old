@@ -6,18 +6,21 @@
         },
         "stl": {
             "MK II v1": {
-                "file": "mk_ii_v1.stl",
+                "file": "arm_1.stl",
+                "thingiverse": 3760127,
+                "designer":"karnageking",
                 "rotate": -30,
                 "dextral": "right",
                 "arm": {
                     "facet": 30
                 },
-                "hand": {
-                    "vertex": 33223 
-                }
+                "hand": {"vertex": 30407}
+
             },
             "MK II v2": {
-                "file": "mk_ii_v2.stl",
+                "file": "arm_2.stl",
+                "thingiverse": 3760127,
+                "designer":"karnageking",
                 "rotate": -20,
                 "dextral": "right",
                 "arm": {

@@ -11,7 +11,7 @@
       "folder": "body",
       "position": [1, 1],
       "permissions": ["select", "list"],
-      "files": ["body.json"]
+      "files": ["body.json", "body_jump.json"]
     },
     {
       "id": "larm",

@@ -1,28 +1,27 @@
-import json
 import os
-import shutil
 from functools import reduce
 from math import radians
 from operator import add
 from pprint import pprint
 import numpy as np
 from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file
+from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
-from networkx.readwrite import json_graph
 from trimesh import load
 from trimesh.transformations import euler_matrix
 from trimesh.viewer import scene_to_html
 
 from builder.node import read_node_link_json
-from file_config.parts import backpacks, heads, arms, bodies, hands, legs, designers, load_json
+from file_config.parts import load_json
 from forms.home import ChooseBuilderForm
-from forms.make import GenerateMini, MissingFiles, generateminidynamic_func
+from forms.make import generateminidynamic_func
 from utils.dict import deep_get
 from utils.mesh import connect_mesh
 from utils.thingiverse import download_object
 from utils.zip import write_zip
 
 make_bp = Blueprint('make_bp', __name__)
+
 
 @make_bp.context_processor
 def utility_functions():
@@ -101,7 +100,6 @@ def builder(builder_name):
         for node, mesh_infos_node in di_file.items():
             mesh_path = mesh_infos_node.get('info').get('mesh_path')
             if not os.path.isfile(mesh_path):
-                print(f"{mesh_path} is missing")
                 flash(f"{mesh_path} is missing")
                 li_to_dl.append(mesh_infos_node.get('info'))
 
@@ -110,9 +108,9 @@ def builder(builder_name):
             for to_dl in li_to_dl:
                 if "thingiverse" in to_dl:
                     download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
-                    flash(f"{mesh_path} has been download in Thingiverse !")
+                    flash(f"{to_dl.get('mesh_path')} has been download in Thingiverse !")
                 else:
-                    flash(f"{mesh_path} don't exist and have no web references !")
+                    flash(f"{to_dl.get('mesh_path')} don't exist and have no web references !")
                     cant_dl = True
         if cant_dl:
             return render_template("display.html",
@@ -122,7 +120,6 @@ def builder(builder_name):
                                     dl_zip=form.dl_zip)
 
         elif li_to_dl:
-            print("Check Download missing file BooleanField !")
             flash("Check field : <Download missing file> !")
             return render_template("display.html",
                                    grid=position_matrix,
@@ -135,16 +132,35 @@ def builder(builder_name):
 
         for edge in dfs_edges(graph):
             dest, source = edge
+            try:
+                connect_mesh(di_file.get(source).get('mesh'),
+                             di_file.get(dest).get('mesh'),
+                             di_file.get(source).get('info'),
+                             di_file.get(dest).get('info'),
+                             on=di_file.get(source).get('on'),
+                             dextral=di_file.get(source).get('dextral'),
+                             rotate=int(di_file.get(source).get('rotate')),
+                             coef_merge=0)
+            except Exception as e:
+                meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
+                                        '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'
+                                        'How to fix'
+                                        '</a>')
+                if "dest" in str(e):
+                    flash(f"an error occured on file: {di_file.get(dest).get('info').get('mesh_path')}")
+                    flash(e)
+                    flash(meshconfhelper)
+                else:
+                    flash(f"an error occured on file: {di_file.get(source).get('info').get('mesh_path')}")
+                    flash(e)
+                    flash(meshconfhelper)
 
-            connect_mesh(di_file.get(source).get('mesh'),
-                         di_file.get(dest).get('mesh'),
-                         di_file.get(source).get('info'),
-                         di_file.get(dest).get('info'),
-                         on=di_file.get(source).get('on'),
-                         dextral=di_file.get(source).get('dextral'),
-                         rotate=int(di_file.get(source).get('rotate')),
-                         coef_merge=0)
-
+                return render_template("display.html",
+                                       grid=position_matrix,
+                                       submit=form.submit_preview,
+                                       dl_missing=form.download_missing_file,
+                                       dl_zip=form.dl_zip,
+                                       )
             # MERGE
             if 'dl_zip' in form_result:
                 for k, v in graph.get_edge_data(dest, source).items():
@@ -197,8 +213,7 @@ def builder(builder_name):
                            dl_zip=form.dl_zip)
 
 
-@make_bp.route('/old', methods=['GET', 'POST'])
-def make_nameplate():
+def remove_me_soon():
     form = GenerateMini()
     print(form.larm_)
     print(request.remote_addr)

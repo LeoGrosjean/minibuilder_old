@@ -1,33 +1,4 @@
 {
-
-    "SM": {
-
-        "desc": {
-            "display": "SM Backpacks",
-            "path": "file/backpacks/SM/"
-        },
-        "stl": {
-            "Rivet 28mm": {
-                "file": "rivet_backpack.stl",
-
-                "backpack": {
-                    "vertex": 22576
-                }
-            },
-            "Standard": {
-                "file": "standard_backpack.stl",
-                "backpack": {
-                    "vertex": 14
-                }
-            },
-            "Prime": {
-                "file": "prime.stl",
-                "backpack": {
-                    "vertex": 15217
-                }
-            }
-        }
-    },
     "Gloomy Angel SM": {
         "desc": {
             "display": "Gloomy Angel SM",

@@ -1,0 +1,146 @@
+{
+    "JumpTroop": {
+        "desc": {
+            "display": "SM Bodies",
+            "path": "data/Wargame Humanoid/body/JumpTroop/"
+        },
+        "stl": {
+            "Torso A": {
+                "file": "Torso_A.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {"vertex_list": [2276, 14486]},
+                "backpack": {
+                    "vertex": 14
+                },
+                "arm": {
+                    "left": {"facet": 6429},
+                    "right": {"facet": 9404}
+                }
+            },
+            "Torso B": {
+                "file": "Torso_B.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 74},
+                "leg": {"vertex_list": [2551, 18110]},
+                "backpack": {"vertex": 14},
+                "arm": {
+                    "left": {"facet": 9926},
+                    "right": {"facet": 12907}
+                }
+            },
+            "Torso C": {
+                "file": "Torso_C.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 3313},
+                "leg": {"vertex_list": [4913, 34129]},
+                "backpack": {"vertex": 10},
+                "arm": {
+                    "left": {"facet": 16362},
+                    "right": {"facet": 19328}
+                }
+            },
+            "Torso D": {
+                "file": "Torso_D.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 2916},
+                "leg": {"vertex_list": [4391, 30371]},
+                "backpack": {"vertex": 10},
+                "arm": {
+                    "left": {"facet": 14584},
+                    "right": {"facet": 17562}
+                }
+            },
+            "Torso E": {
+                "file": "Torso_E.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 4372},
+                "leg": {"vertex_list": [6714, 47256]},
+                "backpack": {"vertex": 10},
+                "arm": {
+                    "left": {"facet": 18605},
+                    "right": {"facet": 21547}
+                }
+            },
+            "Torso F": {
+                "file": "Torso_F.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 7630},
+                "leg": {"vertex_list": [11727, 83776]},
+                "backpack": {"vertex": 8},
+                "arm": {
+                    "left": {"facet": 28616},
+                    "right": {"facet": 31591}
+                }
+            },
+            "Torso Harness A": {
+                "file": "Torso_G_With_harness.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 74},
+                "leg": {"vertex_list": [3273, 23255]},
+                "backpack": {"vertex": 163},
+                "arm": {
+                    "left": {"facet": 8765},
+                    "right": {"facet": 11740}
+                }
+            },
+            "Torso Harness B": {
+                "file": "Torso_H_With_harness.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 74},
+                "leg": {"vertex_list": [2732, 19125]},
+                "backpack": {"vertex": 164},
+                "arm": {
+                    "left": {"facet": 7484},
+                    "right": {"facet": 10459}
+                }
+            },
+            "Torso Harness C": {
+                "file": "Torso_I_With_harness.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 74},
+                "leg": {"vertex_list": [2680, 18923]},
+                "backpack": {"vertex": 163},
+                "arm": {
+                    "left": {"facet": 5298},
+                    "right": {"facet": 8273}
+                }
+            },
+            "Torso Harness D": {
+                "file": "Torso_J_With_harness.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 78},
+                "leg": {"vertex_list": [4602, 32804]},
+                "backpack": {"vertex": 169},
+                "arm": {
+                    "left": {"facet": 13231},
+                    "right": {"facet": 16206}
+                }
+            },
+            "Torso Harness E": {
+                "file": "Torso_K_With_harness.stl",
+                "thingiverse": 4257394,
+                "designer": "cornivius",
+                "head": {"vertex": 74},
+                "leg": {"vertex_list": [4453, 29933]},
+                "backpack": {"vertex": 164},
+                "arm": {
+                    "left": {"facet": 9097},
+                    "right": {"facet": 12072}
+                }
+            }
+        }
+    }
+}

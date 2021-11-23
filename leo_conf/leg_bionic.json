@@ -1,19 +1,4 @@
 {
-    "SM": {    
-        "desc": {
-            "display": "SM Legs",
-            "path": "file/legs/SM/"
-        },
-        "stl": {
-            "Standard v1": {
-                "file": "1_Std.stl",
-
-                "leg": {
-                    "vertex": 70707
-                }
-            }
-        }
-    },
     "Bionic SM": {
         "desc": {
             "display": "Bionic SM Legs",
