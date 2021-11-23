@@ -133,14 +133,16 @@ def builder(builder_name):
         for edge in dfs_edges(graph):
             dest, source = edge
             try:
+                print(di_file.get(source))
+                print(di_file.get(dest))
                 connect_mesh(di_file.get(source).get('mesh'),
                              di_file.get(dest).get('mesh'),
                              di_file.get(source).get('info'),
                              di_file.get(dest).get('info'),
                              on=di_file.get(source).get('on'),
                              dextral=di_file.get(source).get('dextral'),
-                             rotate=int(di_file.get(source).get('rotate')),
-                             coef_merge=0)
+                             rotate=int(di_file.get(source).get('rotate') or 0),
+                             coef_merge=int(di_file.get(source).get('coef_merge') or 0))
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
                                         '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'

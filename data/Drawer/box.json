@@ -1,0 +1,18 @@
+{
+  "Box": {
+    "desc": {
+      "display": "Box for Drawer",
+      "path": "data/Drawer/box/Box/"
+    },
+    "stl": {
+      "Interlocking Box v1": {
+        "file": "Interlocking_Module_V3.stl",
+        "thingiverse": 2539830,
+        "designer": "O3D",
+        "drawer": {
+          "facet": 2801
+        }
+      }
+    }
+  }
+}

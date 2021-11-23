@@ -1,0 +1,26 @@
+{
+  "Knob": {
+    "desc": {
+      "display": "Knob",
+      "path": "data/Drawer/knob/Knob/"
+    },
+    "stl": {
+      "Knob": {
+        "file": "Knob.stl",
+        "thingiverse": 2539830,
+        "designer": "O3D",
+        "knob": {
+          "facet": 402
+        }
+      },
+      "Round Knob": {
+        "file": "Modular_Drawer_Round_Knob.stl",
+        "thingiverse": 4943917,
+        "designer": "pytheas2",
+        "knob": {
+          "facet": 82
+        }
+      }
+    }
+  }
+}
