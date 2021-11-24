@@ -1,8 +1,8 @@
 {% macro display_block(field_dict, value='', type='text', size=20) -%}
-<div class="container-sm" >
+<div class="container-sm"  style="z-index:1;" >
     <ul class="list-group">
         {% for k, field in field_dict.items() %}
-            <p class="list-group-item">
+            <p class="list-group-item" style="z-index:1;">
                 {% if k == "select" %}
                     {{ field.label }} {{ field(**{"onchange":"this.form.submit()"}) }}
                 {% elif k == "list" %}
@@ -20,10 +20,23 @@
 
 {% extends "flash_layout.html" %}
 {% block body %}
+
+<script>
+function show_hide() {
+  var x = document.getElementById("hide");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "None";
+  }
+}
+</script>
+
+<button onclick="show_hide()">Hide / Show</button>
 <form method="post">
-    <div class="container" style="position: absolute;">
+    <div id="hide" class="container" style="position: absolute; z-index:0;">
         {% for row in grid %}
-            <div class="row"">
+            <div class="row">
                     {% for block in row %}
                         <div class="col-sm col-md">{{ display_block(block) }}</div>
                     {% endfor %}
@@ -57,3 +70,5 @@
     }
 </style>
 {% endblock %}
+
+
