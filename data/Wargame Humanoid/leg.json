@@ -1,8 +1,8 @@
 {
-    "SM": {    
+    "Space Warrior": {
         "desc": {
-            "display": "SM Legs",
-            "path": "data/Wargame Humanoid/leg/SM/"
+            "display": "Space Warrior Legs",
+            "path": "data/Wargame Humanoid/leg/Space Warrior/"
         },
         "stl": {
             "Standard v1": {

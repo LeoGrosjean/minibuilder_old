@@ -1,8 +1,8 @@
 {
-    "SM": {
+    "Space Warrior": {
         "desc": {
-            "display": "SM Arms",
-            "path": "data/Wargame Humanoid/arm/SM/"
+            "display": "Space Warrior Arms",
+            "path": "data/Wargame Humanoid/arm/Space Warrior/"
         },
         "stl": {
             "MK II v1": {
@@ -30,16 +30,15 @@
                     "vertex": 35238 
                 }
             },
-            "MK X Banner": {
-                "file": "mk_x_banner_arm.stl",
-                "dextral": "left",
-                "hole": false,
-                "arm": {
-                    "vertex": 4148
-                },
-                "hand": {
-                    "vertex": 4183 
-                }
+            "Heavy 2hand": {
+                "file": "heavy_weapons_-_arms.stl",
+                "thingiverse": 4263725,
+                "designer":"graudnov",
+                "rotate": 14,
+                "dextral": "right",
+                "arm": {"vertex_list": [39835, 135905]},
+                "hand": {"vertex_list": [67049, 113572, 128118]},
+                "coef_merge": -0.08
             }
         }
     }

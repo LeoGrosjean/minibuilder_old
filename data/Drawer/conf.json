@@ -17,7 +17,7 @@
       "id": "drawer",
       "label": "Drawer",
       "folder": "drawer",
-      "position": [1, 0],
+      "position": [0, 1],
       "permissions": ["select", "list", "rotate"],
       "files": ["drawer.json"]
     },
@@ -25,7 +25,7 @@
       "id": "knob",
       "label": "Knob",
       "folder": "knob",
-      "position": [2, 0],
+      "position": [0, 2],
       "permissions": ["select", "list", "rotate"],
       "files": ["knob.json"]
     }

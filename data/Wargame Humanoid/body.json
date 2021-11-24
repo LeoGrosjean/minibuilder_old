@@ -1,8 +1,8 @@
 {
-    "SM": {
+    "Space Warrior": {
         "desc": {
             "display": "SM Bodies",
-            "path": "data/Wargame Humanoid/body/SM/"
+            "path": "data/Wargame Humanoid/body/Space Warrior/"
         },
         "stl": {
             "MK V v1": {

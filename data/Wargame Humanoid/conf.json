@@ -20,7 +20,7 @@
       "position": [1, 2],
       "dextral": "left",
       "permissions": ["select", "list", "rotate"],
-      "files": ["arm.json", "arm_chaos.json"]
+      "files": ["arm.json", "arm_chaos.json", "empty.json"]
     },
     {
       "id": "rarm",
@@ -29,7 +29,7 @@
       "position": [1, 0],
       "dextral": "right",
       "permissions": ["select", "list", "rotate"],
-      "files": ["arm.json"]
+      "files": ["arm.json", "empty.json"]
     },
     {
       "id": "lhand",
@@ -38,7 +38,7 @@
       "position": [2, 2],
       "dextral": "left",
       "permissions": ["select", "list", "rotate"],
-      "files": ["hand.json"]
+      "files": ["hand.json", "empty.json"]
     },
     {
       "id": "rhand",
@@ -47,7 +47,7 @@
       "position": [2, 0],
       "dextral": "right",
       "permissions": ["select", "list", "rotate"],
-      "files": ["hand.json"]
+      "files": ["hand.json", "empty.json"]
     },
     {
       "id": "leg",
@@ -55,7 +55,7 @@
       "folder": "leg",
       "position": [2, 1],
       "permissions": ["select", "list", "rotate"],
-      "files": ["leg.json"]
+      "files": ["leg.json", "empty.json"]
     },
     {
       "id": "head",
@@ -63,7 +63,7 @@
       "folder": "head",
       "position": [0, 1],
       "permissions": ["select", "list", "rotate"],
-      "files": ["head.json"]
+      "files": ["head.json", "empty.json"]
     },
     {
       "id": "backpack",
@@ -71,7 +71,7 @@
       "folder": "backpack",
       "position": [0, 0],
       "permissions": ["select", "list", "rotate"],
-      "files": ["backpack.json"]
+      "files": ["backpack.json", "empty.json"]
     }
   ],
   "links": [

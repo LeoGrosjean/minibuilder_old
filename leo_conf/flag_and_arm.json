@@ -1,0 +1,21 @@
+
+            "MK X Banner": {
+                "file": "mk_x_banner_arm.stl",
+                "dextral": "left",
+                "hole": false,
+                "arm": {
+                    "vertex": 4148
+                },
+                "hand": {
+                    "vertex": 4183
+                }
+            }
+            ,
+            "Imperium Banner v1": {
+                "file": "Dark_Imperium_Banner_-_Left_Hand.stl",
+                "dextral": "left",
+                "hand": {
+                    "vertex": 16496
+                },
+                "coef_merge": 0.1
+            }

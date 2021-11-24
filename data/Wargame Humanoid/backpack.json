@@ -1,20 +1,4 @@
 {
-
-    "Space Warrior Jetpack": {
-
-        "desc": {
-            "display": "Space Warrior Jetpack",
-            "path": "data/Wargame Humanoid/backpack/Space Warrior Jetpack/"
-        },
-        "stl": {
-            "Jetpack": {
-                "file": "Jet_pack_with_mounting_hole.stl",
-                "thingiverse": 4337116,
-                "designer": "BaconZeke",
-                "backpack": {"vertex": 19779}
-            }
-        }
-    },
     "Space Warrior Vanilla": {
 
         "desc": {
@@ -177,6 +161,21 @@
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
                 "backpack": {"vertex_list": [2592, 17459, 17459]}
+            }
+        }
+    },
+    "Space Warrior Jetpack": {
+
+        "desc": {
+            "display": "Space Warrior Jetpack",
+            "path": "data/Wargame Humanoid/backpack/Space Warrior Jetpack/"
+        },
+        "stl": {
+            "Jetpack": {
+                "file": "Jet_pack_with_mounting_hole.stl",
+                "thingiverse": 4337116,
+                "designer": "BaconZeke",
+                "backpack": {"vertex": 19779}
             }
         }
     }

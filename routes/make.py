@@ -45,6 +45,7 @@ def choose_builder():
 @make_bp.route('/<builder_name>', methods=['GET', 'POST'])
 def builder(builder_name):
     form_result = request.form.to_dict()
+    pprint(form_result)
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
     infos = {}
     for node_name in graph.nbunch_iter():
@@ -85,6 +86,9 @@ def builder(builder_name):
             list_select = form_result.get(f'{node}_list')
             folder = graph.nodes.data()[node].get('folder')
 
+            if select == 'Empty':
+                continue
+
             di_file[node] = {
                 'info': infos.get(node).get(select).get('stl').get(list_select),
                 'on': folder,
@@ -103,23 +107,27 @@ def builder(builder_name):
                 flash(f"{mesh_path} is missing")
                 li_to_dl.append(mesh_infos_node.get('info'))
 
-        cant_dl = False
+        check_dl_li = []
         if li_to_dl and form_result.get('download_missing_file'):
             for to_dl in li_to_dl:
                 if "thingiverse" in to_dl:
-                    download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
-                    flash(f"{to_dl.get('mesh_path')} has been download in Thingiverse !")
+                    dl_good = download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
+                    if dl_good:
+                        flash(f"{to_dl.get('mesh_path')} has been download in Thingiverse !")
+                    else:
+                        flash(f"{to_dl.get('mesh_path')} has not been download in Thingiverse ! (something went wrong)")
+                    check_dl_li.append(dl_good)
                 else:
                     flash(f"{to_dl.get('mesh_path')} don't exist and have no web references !")
-                    cant_dl = True
-        if cant_dl:
+                    check_dl_li.append(False)
+        if all(check_dl_li) and check_dl_li:
             return render_template("display.html",
                                     grid=position_matrix,
                                     submit=form.submit_preview,
                                     dl_missing=form.download_missing_file,
                                     dl_zip=form.dl_zip)
 
-        elif li_to_dl:
+        elif li_to_dl and not form_result.get('download_missing_file'):
             flash("Check field : <Download missing file> !")
             return render_template("display.html",
                                    grid=position_matrix,
@@ -133,8 +141,9 @@ def builder(builder_name):
         for edge in dfs_edges(graph):
             dest, source = edge
             try:
-                print(di_file.get(source))
-                print(di_file.get(dest))
+                if not (di_file.get(dest) and di_file.get(source)):
+                    continue
+
                 connect_mesh(di_file.get(source).get('mesh'),
                              di_file.get(dest).get('mesh'),
                              di_file.get(source).get('info'),
