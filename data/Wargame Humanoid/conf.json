@@ -2,7 +2,8 @@
   "directed": true,
   "multigraph": true,
   "graph": {
-    "name": "Humanoid Wargaming"
+    "name": "Humanoid Wargaming",
+    "designer_files": ["designer.json"]
   },
   "nodes": [
     {

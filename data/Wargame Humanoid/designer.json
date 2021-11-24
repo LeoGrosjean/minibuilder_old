@@ -1,0 +1,39 @@
+{
+    "cornivius":{
+        "name": "@cornivius",
+        "donation": "https://www.paypal.com/paypalme/cornivius",
+        "web":{
+            "cults3d": "https://cults3d.com/en/users/Red-warden-miniatures/creations",
+            "thingiverse": "https://www.thingiverse.com/cornivius/designs"
+        }
+    },
+    "elmutanto":{
+        "name":"@elmutanto",
+        "donation": "https://www.paypal.com/paypalme/elmutanto",
+        "web": {
+            "thingiverse": "https://www.thingiverse.com/el_mutanto/designs"
+        }
+    },
+    "karnageking": {
+        "name": "@karnageking",
+        "donation": "https://www.paypal.com/paypalme/KarnageKing"
+    },
+    "graudnov": {
+        "name": "@graudnov"
+    },
+    "tired_models": {
+        "name": "@tired_models"
+    },
+    "chunky111": {
+        "name": "@chunky111"
+    },
+    "jorgengorgen": {
+        "name": "@jorgengorgen"
+    },
+    "KEKSIMUS_MAXIMUS": {
+        "name": "@KEKSIMUS_MAXIMUS"
+    },
+    "BaconZeke": {
+        "name": "@BaconZeke"
+    }
+}

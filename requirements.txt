@@ -4,6 +4,6 @@ flask
 Flask-WTF
 wtforms
 scipy
-auto-py-to-exe
 requests
 networkx
+pyinstaller==4.5
