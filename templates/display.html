@@ -17,39 +17,7 @@
     }
 </style>
 
-{% macro display_block(field_dict, value='', type='text', size=20) %}
-<div class="container-sm"  style="z-index:1;" >
-    <ul class="list-group">
-        {% for k, field in field_dict.items() %}
-            <p class="list-group-item" style="z-index:1;">
-                {% if k == "select" %}
-                    {{ field.label }} {{ field(**{"onchange":"this.form.submit()"}) }}
-                {% elif k == "list" %}
-                    {{ field }}
-                {% elif k == "rotate" %}
-                    -180 {{ field(type="range") }} 180
-                {% endif %}
-            </p>
-        {% endfor %}
-    </ul>
-</div>
-{% endmacro %}
 
-{% macro display_designers(designers) %}
-    <div class="row">
-        <div class="col">
-            <div class="list-group" id="list-tab" role="tablist">
-                {% for d_id, designer in designers.items() %}
-                    <p>Made by {{ designer.get('name') }}
-                        {% if designer.get('donation') %}
-                            <a href="{{designer.get('donation')}}" type="button" class="btn btn-warning">Tip designer</a>
-                        {% endif %}
-                    </p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-{% endmacro %}
 
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <link href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}" rel="stylesheet">
@@ -69,26 +37,12 @@ function show_hide() {
 </script>
 
 <button onclick="show_hide()">Hide / Show</button>
-<form method="post">
-    <div id="hide" class="container" style="position: absolute; z-index:0;">
-        {% for row in grid %}
-            <div class="row">
-                    {% for block in row %}
-                        <div class="col-sm col-md">{{ display_block(block) }}</div>
-                    {% endfor %}
-            </div>
-        {% endfor %}
-        <p>Download missing files ? {{ dl_missing }}</p>
-        <p>{{ submit }}</p>
-        <p>{{ dl_zip }}</p>
-    </div>
-</form>
+<div id="hide">
+    {% include "grid_box.html" %}
 
-<div class="box_top_right">
-    {% if designers %}
-        {{display_designers(designers)}}
-    {% endif %}
 </div>
+
+{% include "designers_box.html" %}
 
 <div class="box">
     <a class="patron" href="https://www.patreon.com/bePatron?u=20077721" data-patreon-widget-type="become-patron-button">Become a
@@ -96,9 +50,7 @@ function show_hide() {
     <script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
 </div>
 
+<div>
 {{ scene|safe }}
-
-
+</div>
 {% endblock %}
-
-

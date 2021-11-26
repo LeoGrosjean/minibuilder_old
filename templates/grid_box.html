@@ -1,0 +1,33 @@
+{% macro display_block(field_dict, value='', type='text', size=20) %}
+<div class="container-sm"  style="z-index:1;" >
+    <ul class="list-group">
+        {% for k, field in field_dict.items() %}
+            <p class="list-group-item" style="z-index:1;">
+                {% if k == "select" %}
+                    {{ field.label }} {{ field(**{"onchange":"this.form.submit()"}) }}
+                {% elif k == "list" %}
+                    {{ field }}
+                {% elif k == "rotate" %}
+                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>0</output>
+                {% endif %}
+            </p>
+        {% endfor %}
+    </ul>
+</div>
+{% endmacro %}
+
+<form method="post">
+    <div class="container" style="position: absolute; z-index:0;">
+        {% for row in grid %}
+            <div class="row">
+                    {% for block in row %}
+                        <div class="col-sm-2 col-md-2">{{ display_block(block) }}</div>
+                    {% endfor %}
+            </div>
+        {% endfor %}
+        <p>Download missing files ? {{ dl_missing }}</p>
+        <p>{{ submit }}</p>
+        <p>{{ dl_zip }}</p>
+        <p>{{ live_edit }}</p>
+    </div>
+</form>

@@ -1,0 +1,21 @@
+{% macro display_designers(designers) %}
+    <div class="row">
+        <div class="col">
+            <div class="list-group" id="list-tab" role="tablist">
+                {% for d_id, designer in designers.items() %}
+                    <p>Made by {{ designer.get('name') }}
+                        {% if designer.get('donation') %}
+                            <a href="{{designer.get('donation')}}" type="button" class="btn btn-warning">Tip designer</a>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+<div class="box_top_right">
+    {% if designers %}
+        {{display_designers(designers)}}
+    {% endif %}
+</div>

@@ -9,14 +9,14 @@ from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.transformations import euler_matrix
-from trimesh.viewer import scene_to_html
+from utils.render import scene_to_html
 
 from builder.node import read_node_link_json
 from file_config.parts import load_json
 from forms.home import ChooseBuilderForm
 from forms.make import generateminidynamic_func
 from utils.dict import deep_get
-from utils.mesh import connect_mesh
+from utils.mesh import connect_mesh, get_mesh_normal_position
 from utils.thingiverse import download_object
 from utils.zip import write_zip
 
@@ -82,7 +82,7 @@ def builder(builder_name):
         for permission in v.get('permissions'):
             di_permission[permission] = getattr(form, f"{k}_{permission}")
         position_matrix[row_index][col_index] = di_permission
-    if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result):
+    if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result or 'live_edit' in form_result):
         di_file = {}
         for node in topological_sort(graph):
             select = form_result.get(f'{node}_select')
@@ -128,7 +128,8 @@ def builder(builder_name):
                                     grid=position_matrix,
                                     submit=form.submit_preview,
                                     dl_missing=form.download_missing_file,
-                                    dl_zip=form.dl_zip)
+                                    dl_zip=form.dl_zip,
+                                    live_edit=form.live_edit,)
 
         elif li_to_dl and not form_result.get('download_missing_file'):
             flash("Check field : <Download missing file> !")
@@ -136,12 +137,15 @@ def builder(builder_name):
                                    grid=position_matrix,
                                    submit=form.submit_preview,
                                    dl_missing=form.download_missing_file,
-                                   dl_zip=form.dl_zip)
+                                   dl_zip=form.dl_zip,
+                                   live_edit=form.live_edit,)
         # MESH PROCESSING
         li_designer = []
         designer_display = {}
         for k, v in di_file.items():
-            di_file[k]['mesh'] = load(v.get('info').get('mesh_path'))
+            mesh = load(v.get('info').get('mesh_path'))
+            mesh.metadata['file_name'] = k
+            di_file[k]['mesh'] = mesh
             if 'designer' in v.get('info'):
                 designer_id = v.get('info').get('designer')
                 li_designer.append(designer_id)
@@ -181,6 +185,7 @@ def builder(builder_name):
                                        submit=form.submit_preview,
                                        dl_missing=form.download_missing_file,
                                        dl_zip=form.dl_zip,
+                                       live_edit=form.live_edit,
                                        )
             # MERGE
             if 'dl_zip' in form_result:
@@ -191,6 +196,44 @@ def builder(builder_name):
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
                         del di_file[source]
+
+        if 'live_edit' in form_result:
+            node_dict_rotate = {}
+            for node_rotate in [k for k, v in graph.nodes.data() if 'rotate' in v.get('permissions')]:
+                successors = list(graph.successors(node_rotate))
+                if successors:
+                    normal, vertice = get_mesh_normal_position(
+                        di_file.get(node_rotate).get('mesh'),
+                        di_file.get(node_rotate).get('info'),
+                        di_file.get(node_rotate).get('on'))
+                else:
+                    predecessor = list(graph.predecessors(node_rotate))[0]
+                    normal, vertice = get_mesh_normal_position(
+                        di_file.get(predecessor).get('mesh'),
+                        di_file.get(predecessor).get('info'),
+                        di_file.get(node_rotate).get('on'), inverse_norm=True)
+                node_dict_rotate[node_rotate] = {
+                    'child_nodes': successors,
+                    'normal': normal,
+                    'vertice': vertice
+                }
+                print(vertice)
+                print(normal)
+
+
+            scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
+            from trimesh.scene.scene import append_scenes
+            scene = append_scenes(scene)
+            return render_template("display.html",
+                                   grid=position_matrix,
+                                   submit=form.submit_preview,
+                                   dl_missing=form.download_missing_file,
+                                   dl_zip=form.dl_zip,
+                                   live_edit=form.live_edit,
+                                   designers=designer_display,
+                                   scene=scene_to_html(scene, node_dict_rotate),
+                                   node_list=node_dict_rotate
+                                   )
 
         scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
         scene.apply_transform(euler_matrix(radians(-90), 0, 0))
@@ -213,22 +256,15 @@ def builder(builder_name):
                                submit=form.submit_preview,
                                dl_missing=form.download_missing_file,
                                dl_zip=form.dl_zip,
+                               live_edit=form.live_edit,
                                designers=designer_display,
                                scene=scene_to_html(scene.scene())
                                )
-        #scene = [v.get('mesh').scene() for k, v in di_file.items()]
-        #scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
-        #from trimesh.scene.scene import append_scenes
-        #scene = append_scenes(scene)
-        #return render_template("display.html",
-        #                       grid=position_matrix,
-        #                       submit=form.submit_preview,
-        #                       dl_missing=form.download_missing_file,
-        #                       scene=scene_to_html(scene)
-        #                       )
+
 
     return render_template("display.html",
                            grid=position_matrix,
                            submit=form.submit_preview,
                            dl_missing=form.download_missing_file,
-                           dl_zip=form.dl_zip)
+                           dl_zip=form.dl_zip,
+                           live_edit=form.live_edit)

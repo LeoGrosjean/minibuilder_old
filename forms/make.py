@@ -11,6 +11,7 @@ def generateminidynamic_func(*args, **kwargs):
         download_missing_file = BooleanField('Download missing file')
         submit_preview = SubmitField('Get a Preview !')
         dl_zip = SubmitField('Download Zip !')
+        live_edit = SubmitField('Live edit !')
 
     for k, v in kwargs.items():
         setattr(GenerateMiniDynamic, f"{k}_select",

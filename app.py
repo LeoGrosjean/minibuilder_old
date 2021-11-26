@@ -19,7 +19,7 @@ def main():
         webbrowser.open_new('http://127.0.0.1:2000/')
 
     # Otherwise, continue as normal
-    app.run(host="127.0.0.1", port=2000, debug=False)
+    app.run(host="127.0.0.1", port=2000, debug=True)
 
 
 if __name__ == '__main__':

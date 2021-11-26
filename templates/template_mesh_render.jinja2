@@ -20297,6 +20297,20 @@ function init() {
         controls.staticMoving = true;
         controls.dynamicDampingFactor = 0.3;
         controls.keys = [65, 83, 68];
+        {% for node, child_nodes in node_dict_rotate.items() %}
+            window.{{ node }}= window.scene.getObjectByName("{{ node }}")
+            window.{{ node }}_rotate_old = 0
+            {{ node }}_slider = window.document.getElementById("{{node}}_rotate")
+            {{ node }}_slider.addEventListener('input', function () {
+                {{node}}_rotate = window.document.getElementById("{{node}}_rotate").value - window.{{ node }}_rotate_old;
+                rotateAboutPoint({{ node }}, new THREE.Vector3({{child_nodes.get('vertice') }}), new THREE.Vector3({{child_nodes.get('normal') }}), THREE.Math.degToRad({{node}}_rotate))
+                {%  for child_node in child_nodes.get('child_nodes') %}
+                    rotateAboutPoint({{ child_node }}, new THREE.Vector3({{child_nodes.get('vertice') }}), new THREE.Vector3({{child_nodes.get('normal') }}), THREE.Math.degToRad({{node}}_rotate))
+                {% endfor %}
+                window.{{ node }}_rotate_old = window.document.getElementById("{{node}}_rotate").value;
+                render()
+            });
+        {% endfor %}
         controls.addEventListener("change", render);
         centerControls(scene, camera, controls);
         render();
@@ -20304,6 +20318,8 @@ function init() {
         animate();
         onWindowResize();
     });
+
+
 }
 
 function onWindowResize() {
@@ -20322,6 +20338,28 @@ function animate() {
 function render() {
     tracklight.position.copy(camera.position);
     renderer.render(scene, camera);
+}
+
+function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
+    /*pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld;
+
+    if(pointIsWorld){
+        obj.parent.localToWorld(obj.position); // compensate for world coordinate
+    }
+
+    obj.position.sub(point); // remove the offset
+    obj.position.applyAxisAngle(axis, theta); // rotate the POSITION
+    obj.position.add(point); // re-add the offset
+
+    if(pointIsWorld){
+        obj.parent.worldToLocal(obj.position); // undo world coordinates compensation
+    }
+
+    obj.rotateOnAxis(axis, theta); // rotate the OBJECT
+    */
+    rotation = new THREE.Matrix4().makeRotationAxis(axis, theta);
+    transformation = new THREE.Matrix4().makeTranslation(point[0], point[1], point[2]);
+    obj.applyMatrix4(rotation.multiply(transformation));
 }
 
 init();</script>
