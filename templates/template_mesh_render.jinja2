@@ -20298,15 +20298,32 @@ function init() {
         controls.dynamicDampingFactor = 0.3;
         controls.keys = [65, 83, 68];
         {% for node, child_nodes in node_dict_rotate.items() %}
+            window.{{ node }}_normal = new THREE.Vector3({{child_nodes.get('normal') }})
+            window.{{ node }}_vertice = new THREE.Vector3({{child_nodes.get('vertice') }})
+        {% endfor %}
+
+        {% for node, child_nodes in node_dict_rotate.items() %}
             window.{{ node }}= window.scene.getObjectByName("{{ node }}")
-            window.{{ node }}_rotate_old = 0
+
             {{ node }}_slider = window.document.getElementById("{{node}}_rotate")
+            window.{{ node }}_rotate_old = {{ node }}_slider.valueAsNumber
             {{ node }}_slider.addEventListener('input', function () {
                 {{node}}_rotate = window.document.getElementById("{{node}}_rotate").value - window.{{ node }}_rotate_old;
-                rotateAboutPoint({{ node }}, new THREE.Vector3({{child_nodes.get('vertice') }}), new THREE.Vector3({{child_nodes.get('normal') }}), THREE.Math.degToRad({{node}}_rotate))
+
+                rotateAboutPoint({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal, THREE.Math.degToRad({{node}}_rotate))
+
                 {%  for child_node in child_nodes.get('child_nodes') %}
-                    rotateAboutPoint({{ child_node }}, new THREE.Vector3({{child_nodes.get('vertice') }}), new THREE.Vector3({{child_nodes.get('normal') }}), THREE.Math.degToRad({{node}}_rotate))
+                rotateAboutPoint({{ child_node }}, window.{{ node }}_vertice, window.{{ node }}_normal, THREE.Math.degToRad({{node}}_rotate))
+                window.{{ child_node }}_normal.applyAxisAngle(window.{{ node }}_normal, THREE.Math.degToRad({{node}}_rotate));  //ok
+                geometry_{{ child_node }} = new THREE.BufferGeometry();
+                geometry_{{ child_node }}.setAttribute( 'position', new THREE.BufferAttribute(new Float32Array(  [window.{{ child_node }}_vertice.x, window.{{ child_node }}_vertice.y, window.{{ child_node }}_vertice.z]), 3 ) );
+                material_{{ child_node }} = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+                mesh_{{ child_node }} = new THREE.Mesh( geometry_{{ child_node }}, material_{{ child_node }} );
+                rotateAboutPoint(mesh_{{ child_node }}, window.{{ node }}_vertice, window.{{ node }}_normal, THREE.Math.degToRad({{node}}_rotate))
+                array_{{ child_node }} = mesh_{{ child_node }}.geometry.attributes.position.array
+                window.{{ child_node }}_vertice = new THREE.Vector3(array_{{ child_node }}[0], array_{{ child_node }}[1], array_{{ child_node }}[2])
                 {% endfor %}
+
                 window.{{ node }}_rotate_old = window.document.getElementById("{{node}}_rotate").value;
                 render()
             });
@@ -20341,7 +20358,7 @@ function render() {
 }
 
 function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
-    /*pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld;
+    pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld;
 
     if(pointIsWorld){
         obj.parent.localToWorld(obj.position); // compensate for world coordinate
@@ -20356,10 +20373,18 @@ function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
     }
 
     obj.rotateOnAxis(axis, theta); // rotate the OBJECT
-    */
-    rotation = new THREE.Matrix4().makeRotationAxis(axis, theta);
-    transformation = new THREE.Matrix4().makeTranslation(point[0], point[1], point[2]);
-    obj.applyMatrix4(rotation.multiply(transformation));
+
+    //rotation = new THREE.Matrix4().makeRotationAxis(axis, theta);
+    //transformation = new THREE.Matrix4().makeTranslation(point[0], point[1], point[2]);
+    //obj.applyMatrix4(rotation.multiply(transformation));
+
+    obj.updateMatrix();
+    obj.geometry.applyMatrix4( obj.matrix );
+    obj.matrix.identity();
+
+    obj.position.set( 0, 0, 0 );
+    obj.rotation.set( 0, 0, 0 );
+    obj.scale.set( 1, 1, 1 );
 }
 
 init();</script>

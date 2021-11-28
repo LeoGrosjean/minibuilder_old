@@ -157,7 +157,7 @@ def builder(builder_name):
             try:
                 if not (di_file.get(dest) and di_file.get(source)):
                     continue
-
+                print(edge, di_file.get(source).get('rotate'), di_file.get(source)['info'], di_form)
                 connect_mesh(di_file.get(source).get('mesh'),
                              di_file.get(dest).get('mesh'),
                              di_file.get(source).get('info'),
@@ -165,7 +165,8 @@ def builder(builder_name):
                              on=di_file.get(source).get('on'),
                              dextral=di_file.get(source).get('dextral'),
                              rotate=int(di_file.get(source).get('rotate') or 0),
-                             coef_merge=int(di_file.get(source).get('coef_merge') or 0))
+                             coef_merge=int(di_file.get(source).get('coef_merge') or 0),
+                             monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0))
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
                                         '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'
@@ -219,7 +220,6 @@ def builder(builder_name):
                 }
                 print(vertice)
                 print(normal)
-
 
             scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
             from trimesh.scene.scene import append_scenes

@@ -8,7 +8,7 @@
                 {% elif k == "list" %}
                     {{ field }}
                 {% elif k == "rotate" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>0</output>
+                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° rotation
                 {% endif %}
             </p>
         {% endfor %}

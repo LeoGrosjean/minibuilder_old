@@ -21,7 +21,7 @@ def get_mean_vertex_normal_list(mesh_, list_index):
 
 
 def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, dextral=None, rotate=None, base_coef=1,
-                 base=False):
+                 base=False, monkey_rotate_child_fix=0):
     rotate_neg = 1
     if dextral:
         if mesh_info['dextral'] != dextral:
@@ -89,6 +89,9 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
 
     if rotate:
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
+
+
+    mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))
 
 
 def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
