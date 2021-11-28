@@ -157,7 +157,6 @@ def builder(builder_name):
             try:
                 if not (di_file.get(dest) and di_file.get(source)):
                     continue
-                print(edge, di_file.get(source).get('rotate'), di_file.get(source)['info'], di_form)
                 connect_mesh(di_file.get(source).get('mesh'),
                              di_file.get(dest).get('mesh'),
                              di_file.get(source).get('info'),
@@ -202,24 +201,32 @@ def builder(builder_name):
             node_dict_rotate = {}
             for node_rotate in [k for k, v in graph.nodes.data() if 'rotate' in v.get('permissions')]:
                 successors = list(graph.successors(node_rotate))
+                predecessor = list(graph.predecessors(node_rotate))[0]
+                if not di_file.get(node_rotate) or not di_file.get(predecessor):
+                    continue
                 if successors:
                     normal, vertice = get_mesh_normal_position(
                         di_file.get(node_rotate).get('mesh'),
                         di_file.get(node_rotate).get('info'),
                         di_file.get(node_rotate).get('on'))
+
                 else:
-                    predecessor = list(graph.predecessors(node_rotate))[0]
                     normal, vertice = get_mesh_normal_position(
                         di_file.get(predecessor).get('mesh'),
                         di_file.get(predecessor).get('info'),
                         di_file.get(node_rotate).get('on'), inverse_norm=True)
+
+                if successors:
+                    for successor in successors:
+                        if not di_file.get(successor):
+                            successors.remove(successor)
+
                 node_dict_rotate[node_rotate] = {
                     'child_nodes': successors,
                     'normal': normal,
                     'vertice': vertice
                 }
-                print(vertice)
-                print(normal)
+
 
             scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
             from trimesh.scene.scene import append_scenes
