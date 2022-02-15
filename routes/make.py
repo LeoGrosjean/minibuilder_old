@@ -1,14 +1,18 @@
+import json
 import os
 from functools import reduce
 from math import radians
 from operator import add
 from pprint import pprint
 import numpy as np
-from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.transformations import euler_matrix
+
+from utils.cults import download_cults_file
+from utils.graph import get_successors
 from utils.render import scene_to_html
 
 from builder.node import read_node_link_json
@@ -16,7 +20,7 @@ from file_config.parts import load_json
 from forms.home import ChooseBuilderForm
 from forms.make import generateminidynamic_func
 from utils.dict import deep_get
-from utils.mesh import connect_mesh, get_mesh_normal_position
+from utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh
 from utils.thingiverse import download_object
 from utils.zip import write_zip
 
@@ -67,21 +71,23 @@ def builder(builder_name):
         }
         li_position.append(v.get('position'))
 
-    position_matrix = np.zeros(np.max(li_position, axis=0) + 1)
+    position_matrix = []
+    """position_matrix = np.zeros(np.max(li_position, axis=0) + 1)
     shape_m = position_matrix.shape
     position_matrix = position_matrix.tolist()
     for i in range(shape_m[0]):
         for j in range(shape_m[1]):
-            position_matrix[i][j] = {}
+            position_matrix[i][j] = {}"""
 
     form = generateminidynamic_func(**di_form)
 
-    for k, v in graph.nodes.data():
-        row_index, col_index = v.get('position')
+    for node in topological_sort(graph):
+        #row_index, col_index = graph.nodes.data[node].get('position')
         di_permission = {}
-        for permission in v.get('permissions'):
-            di_permission[permission] = getattr(form, f"{k}_{permission}")
-        position_matrix[row_index][col_index] = di_permission
+        for permission in graph.nodes[node].get('permissions'):
+            di_permission[permission] = getattr(form, f"{node}_{permission}")
+        #position_matrix[row_index][col_index] = di_permission
+        position_matrix.append(di_permission)
     if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result or 'live_edit' in form_result):
         di_file = {}
         for node in topological_sort(graph):
@@ -96,7 +102,10 @@ def builder(builder_name):
                 'info': infos.get(node).get(select).get('stl').get(list_select),
                 'on': folder,
                 'dextral': graph.nodes.data()[node].get('dextral'),
-                'rotate': form_result.get(f'{node}_rotate')
+                'rotate': form_result.get(f'{node}_rotate'),
+                'shake': form_result.get(f'{node}_shake'),
+                'scale': form_result.get(f'{node}_scale'),
+                'merge': form_result.get(f'{node}_merge')
             }
             di_file[node]['info']['mesh_path'] = \
                 f"data/{builder_name}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
@@ -120,6 +129,8 @@ def builder(builder_name):
                     else:
                         flash(f"{to_dl.get('mesh_path')} has not been download in Thingiverse ! (something went wrong)")
                     check_dl_li.append(dl_good)
+                elif "cults3d" in to_dl:
+                    dl_good = download_cults_file(to_dl.get('cults3d'), to_dl.get('mesh_path'))
                 else:
                     flash(f"{to_dl.get('mesh_path')} don't exist and have no web references !")
                     check_dl_li.append(False)
@@ -152,6 +163,10 @@ def builder(builder_name):
         for designer_id in set(li_designer):
             designer_display[designer_id] = designers.get(designer_id, {"name": f"@{designer_id}"})
 
+        for node in di_file.keys():
+            scale_mesh(di_file.get(node).get('mesh'),
+                       (di_file.get(node).get('info').get('scale') or 1 )* (float(di_file.get(node).get('scale') or 1)))
+
         for edge in dfs_edges(graph):
             dest, source = edge
             try:
@@ -164,8 +179,10 @@ def builder(builder_name):
                              on=di_file.get(source).get('on'),
                              dextral=di_file.get(source).get('dextral'),
                              rotate=int(di_file.get(source).get('rotate') or 0),
-                             coef_merge=int(di_file.get(source).get('coef_merge') or 0),
-                             monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0))
+                             coef_merge=float(di_file.get(source).get('merge')),
+                             monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
+                             shake_rotate=int(di_file.get(source).get('shake') or 0),
+                             scale=di_file.get(source).get('info').get('scale'))
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
                                         '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'
@@ -188,6 +205,27 @@ def builder(builder_name):
                                        live_edit=form.live_edit,
                                        )
             # MERGE
+
+        for edge in list(dfs_edges(graph))[::-1]:
+            dest, source = edge
+            child_to_rotate = []
+            if not di_file.get(source):
+                continue
+            for child in get_successors(graph, source):
+                if not di_file.get(child):
+                    continue
+                child_to_rotate.append(child)
+
+            rotate_mesh(di_file.get(source).get('mesh'),
+                        di_file.get(source).get('info'),
+                        on=di_file.get(source).get('on'),
+                        #monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
+                        #shake_rotate=int(di_file.get(source).get('shake') or 0),
+                        rotate=int(di_file.get(source).get('rotate') or 0),
+                        child_rotate=child_to_rotate,
+                        info=di_file
+                        )
+
             if 'dl_zip' in form_result:
                 for k, v in graph.get_edge_data(dest, source).items():
                     if v.get('merge'):
@@ -197,20 +235,25 @@ def builder(builder_name):
                         di_file[dest]['info']['mesh_path'] = tmp_path
                         del di_file[source]
 
+        for k, v in di_file.items():
+            v.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
+
         if 'live_edit' in form_result:
             node_dict_rotate = {}
-            for node_rotate in [k for k, v in graph.nodes.data() if 'rotate' in v.get('permissions')]:
+            for node_rotate in [k for k, v in graph.nodes.data()]:
                 successors = list(graph.successors(node_rotate))
-                predecessor = list(graph.predecessors(node_rotate))[0]
-                if not di_file.get(node_rotate) or not di_file.get(predecessor):
+                predecessor = list(graph.predecessors(node_rotate))[0] if list(graph.predecessors(node_rotate)) else None
+
+                if not di_file.get(node_rotate):
                     continue
-                if successors:
+
+                if successors and predecessor:
                     normal, vertice = get_mesh_normal_position(
                         di_file.get(node_rotate).get('mesh'),
                         di_file.get(node_rotate).get('info'),
                         di_file.get(node_rotate).get('on'))
 
-                else:
+                elif predecessor:
                     normal, vertice = get_mesh_normal_position(
                         di_file.get(predecessor).get('mesh'),
                         di_file.get(predecessor).get('info'),
@@ -220,17 +263,30 @@ def builder(builder_name):
                     for successor in successors:
                         if not di_file.get(successor):
                             successors.remove(successor)
+                if predecessor:
+                    node_dict_rotate[node_rotate] = {
+                        'child_nodes': successors,
+                        'normal': normal,
+                        'vertice': vertice
+                    }
+                else:
+                    node_dict_rotate[node_rotate] = {
+                        'child_nodes': successors,
+                    }
 
-                node_dict_rotate[node_rotate] = {
-                    'child_nodes': successors,
-                    'normal': normal,
-                    'vertice': vertice
-                }
+            #scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
+            from trimesh import Scene
 
+            scene = Scene()
+            for k, v in di_file.items():
+                if list(graph.predecessors(k)):
+                    parent_node = list(graph.predecessors(k))[0]
+                else:
+                    parent_node = None
+                scene.add_geometry(v.get('mesh'), k, parent_node_name=parent_node)
 
-            scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
-            from trimesh.scene.scene import append_scenes
-            scene = append_scenes(scene)
+            #from trimesh.scene.scene import append_scenes
+            #scene = append_scenes(scene)
             return render_template("display.html",
                                    grid=position_matrix,
                                    submit=form.submit_preview,
@@ -243,7 +299,6 @@ def builder(builder_name):
                                    )
 
         scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
-        scene.apply_transform(euler_matrix(radians(-90), 0, 0))
 
         if 'dl_zip' in form_result:
             li_file_path = [(v.get('info').get('mesh_path'), k) for k, v in di_file.items()]
@@ -275,3 +330,23 @@ def builder(builder_name):
                            dl_missing=form.download_missing_file,
                            dl_zip=form.dl_zip,
                            live_edit=form.live_edit)
+
+@make_bp.route('/selectform/<node>/<selection>/<builder>')
+def updateselect(node, selection, builder):
+    builder_name = builder
+    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    infos = {}
+    for node_name in graph.nbunch_iter():
+        infos[node_name] = {}
+        for json_path in graph.nodes.get(node_name).get('files'):
+            infos[node_name].update(load_json(f"data/{builder_name}/{json_path}"))
+    designers = {}
+    for file in graph.graph.get('designer_files', []):
+        designers.update(load_json(f"data/{builder_name}/{file}"))
+
+
+    choices = list(infos[node.split('_')[0]][selection]['stl'].keys())
+    choices = list(zip(choices, choices))
+    response = make_response(json.dumps(choices))
+    response.content_type = 'application/jsons'
+    return response

@@ -1,6 +1,8 @@
 
             "MK X Banner": {
-                "file": "mk_x_banner_arm.stl",
+                "file": "Banner_Arm.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner",
+                "designer": "cornivius",
                 "dextral": "left",
                 "hole": false,
                 "arm": {
@@ -13,6 +15,8 @@
             ,
             "Imperium Banner v1": {
                 "file": "Dark_Imperium_Banner_-_Left_Hand.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner",
+                "designer": "cornivius",
                 "dextral": "left",
                 "hand": {
                     "vertex": 16496

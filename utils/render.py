@@ -21,7 +21,7 @@ def scene_to_html(scene, node_dict_rotate={}):
     # fetch HTML template from ZIP archive
     # it is bundling all of three.js so compression is nice
     from jinja2 import Template
-    with open('templates/template_mesh_render.jinja2') as file_:
+    with open('templates/template_mesh_render_v2.jinja2') as file_:
         base = Template(file_.read())
     base = base.render(node_dict_rotate=node_dict_rotate)
     scene.camera

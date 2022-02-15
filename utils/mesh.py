@@ -20,13 +20,45 @@ def get_mean_vertex_normal_list(mesh_, list_index):
     return np.mean(mesh_.vertex_normals[list_index], axis=0)
 
 
+def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=None, rotate=None, child_rotate=[], info=None):
+    if "vertex" in mesh_info[on]:
+        normal = mesh.vertex_normals[mesh_info[on]["vertex"]]
+        vertice = mesh.vertices[mesh_info[on]["vertex"]]
+    elif "facet" in mesh_info[on]:
+        normal = mesh.facets_normal[mesh_info[on]["facet"]]
+        vertice = get_center_facet_index(mesh, mesh_info[on]["facet"])
+    elif "vertex_list" in mesh_info[on]:
+        normal = get_mean_vertex_normal_list(mesh, mesh_info[on]["vertex_list"])
+        vertice = get_mean_vertex_list(mesh, mesh_info[on]["vertex_list"])
+
+    if shake_rotate:
+        normal_vec = [normal[0], normal[2], normal[1]]
+        mesh.apply_transform(tm.transformations.rotation_matrix(radians(shake_rotate),
+                                                                    normal_vec,
+                                                                    vertice))
+    if rotate:
+        mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
+        for child in child_rotate:
+            info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
+
+    mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))
+
+
+def scale_mesh(mesh, scale):
+    if scale:
+        mesh.apply_scale(scale)
+
+
 def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, dextral=None, rotate=None, base_coef=1,
-                 base=False, monkey_rotate_child_fix=0):
+                 base=False, monkey_rotate_child_fix=0, shake_rotate=None, scale=None):
     rotate_neg = 1
     if dextral:
         if mesh_info['dextral'] != dextral:
             rotate_neg = -1
             mesh.apply_transform(tm.transformations.reflection_matrix([0, 0, 0], [0, 0, 1]))
+
+    if scale:
+        mesh.apply_scale(scale)
 
     try:
         if "vertex" in dest_mesh_info[on][dextral]:
@@ -81,21 +113,27 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         normal = get_mean_vertex_normal_list(mesh, mesh_info[on]["vertex_list"])
         vertice = get_mean_vertex_list(mesh, mesh_info[on]["vertex_list"])
 
-    mesh.apply_translation(normal * mesh_info.get('coef_merge', coef_merge))
+    mesh.apply_translation(normal * mesh_info.get('coef_merge', 0) + normal * coef_merge)
 
     if "rotate" in mesh_info:
         mesh.apply_transform(
             tm.transformations.rotation_matrix(radians(mesh_info['rotate'] * rotate_neg), normal, vertice))
 
+    """if shake_rotate:
+        normal_vec = [normal[0], normal[2], normal[1]]
+        mesh.apply_transform(tm.transformations.rotation_matrix(radians(shake_rotate),
+                                                                    normal_vec,
+                                                                    vertice))
+
     if rotate:
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
-
-    mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))
+    mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))"""
 
 
 def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
     dextral = info.get(on).get('dextral')
+    print(f'normal part {on} {info.get("dextral")}')
     if dextral:
         if "vertex" in info[on][dextral]:
             normal = mesh.vertex_normals[info[on][dextral]["vertex"]]
@@ -103,9 +141,21 @@ def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
         elif "facet" in info[on][dextral]:
             normal = mesh.facets_normal[info[on][dextral]["facet"]]
             vertice = get_center_facet_index(mesh, info[on][dextral]["facet"])
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
         elif "vertex_list" in mesh[on][dextral]:
             normal = get_mean_vertex_normal_list(mesh, info[on][dextral]["vertex_list"])
             vertice = get_mean_vertex_list(mesh, info[on][dextral]["vertex_list"])
+            print(f'before {normal}')
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
+            print(f'after {normal}')
     else:
         if "vertex" in info[on]:
             normal = mesh.vertex_normals[info[on]["vertex"]]
@@ -113,14 +163,30 @@ def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
         elif "facet" in info[on]:
             normal = mesh.facets_normal[info[on]["facet"]]
             vertice = get_center_facet_index(mesh, info[on]["facet"])
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
         elif "vertex_list" in info[on]:
             normal = get_mean_vertex_normal_list(mesh, info[on]["vertex_list"])
             vertice = get_mean_vertex_list(mesh, info[on]["vertex_list"])
+            print(f'before {normal}')
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
+            print(f'after {normal}')
 
     if inverse_norm:
         normal = normal * -1
 
+
+
+
     normal = ','.join([str(x) for x in normal.tolist()])
     vertice = ','.join([str(x) for x in vertice.tolist()])
-
+    print(f'vertice : {vertice}')
+    print(f'normal : {normal}')
     return normal, vertice

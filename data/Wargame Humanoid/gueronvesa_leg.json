@@ -1,0 +1,89 @@
+{
+    "Gueronvesa": {
+
+        "desc": {
+            "display": "Gue'ron'vesa Leg",
+            "path": "data/Wargame Humanoid/leg/Gueronvesa/"
+        },
+        "stl": {
+            "Standing": {
+                "file": "Standing.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 12874}
+            },
+            "Battle pose 1B": {
+                "file": "GueRonVesa_Legs_battle_pose_b.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 11172}
+            },
+            "Battle pose 1A": {
+                "file": "GueRonVesa_Legs_battle_pose_a.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 24648}
+            },
+            "Battle pose 2A": {
+                "file": "GueRonVesa_Legs_battle_pose_2_a.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 15737}
+            },
+            "Battle pose 2B": {
+                "file": "GueRonVesa_Legs_battle_pose_2_b.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 3937}
+            },
+            "Battle pose 3A": {
+                "file": "GueRonVesa_Legs_battle_pose_3_a.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 1589}
+            },
+            "Battle pose 3B": {
+                "file": "GueRonVesa_Legs_battle_pose_3_b.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 14705}
+            },
+            "Running A": {
+                "file": "GueRonVesa_Legs_running_a.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 20684}
+            },
+            "Running B": {
+                "file": "GueRonVesa_Legs_running_b.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 2249}
+            },
+            "Kneel B": {
+                "file": "GueRonVesa_Legs_Kneel_b.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 12264}
+            },
+            "Kneel A": {
+                "file": "GueRonVesa_Legs_Kneel_a.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 7232}
+            },
+            "Squat B": {
+                "file": "GueRonVesa_Legs_squat_b.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 17326}
+            },
+            "Squat A": {
+                "file": "GueRonVesa_Legs_squat_a.stl",
+                "thingiverse": 4216370,
+                "designer": "El_Mutanto",
+                "leg": {"vertex": 11929}
+            }
+        }
+    }
+}

@@ -20298,7 +20298,7 @@ function init() {
         controls.dynamicDampingFactor = 0.3;
         controls.keys = [65, 83, 68];
         {% for node, child_nodes in node_dict_rotate.items() %}
-            window.{{ node }}_normal = new THREE.Vector3({{child_nodes.get('normal') }})
+            window.{{ node }}_normal = new THREE.Vector3({{child_nodes.get('normal') }}).normalize()
             window.{{ node }}_vertice = new THREE.Vector3({{child_nodes.get('vertice') }})
         {% endfor %}
 

@@ -5,7 +5,7 @@
                 {% for d_id, designer in designers.items() %}
                     <p>Made by {{ designer.get('name') }}
                         {% if designer.get('donation') %}
-                            <a href="{{designer.get('donation')}}" type="button" class="btn btn-warning">Tip designer</a>
+                            <a href="{{designer.get('donation')}}" type="button" class="btn btn-warning" target="_blank">Tip designer</a>
                         {% endif %}
                     </p>
                 {% endfor %}

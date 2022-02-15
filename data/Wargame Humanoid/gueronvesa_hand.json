@@ -1,0 +1,341 @@
+{
+    "Gueronvesa": {
+
+        "desc": {
+            "display": "Gue'ron'vesa Hand",
+            "path": "data/Wargame Humanoid/hand/Gueronvesa/"
+        },
+        "stl": {
+            "Empty for weapon": {
+                "file": "GueRonVesa_Additional_Weapons_Gauntlet_fist.stl",
+                "thingiverse": 4243545,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1576},
+                "weapon": {"facet": 449},
+                "coef_merge": 0.2
+            },
+            "Empty handle for weapon": {
+                "file": "GueRonVesa_Additional_Weapons_Gauntlet_fist_handle.stl",
+                "thingiverse": 4243545,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1406},
+                "weapon": {"vertex": 424},
+                "coef_merge": 0.2
+            },
+            "Bolter Drum E G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_e_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"vertex_list": [14725, 17164]},
+                "coef_merge": 0.2
+            },
+            "Bolter Drum F G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_f_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Drum B G 1": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_b_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Drum H G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_h_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short A G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_a_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short C G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_c_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short H G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_h_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Medium B G": {
+                "file": "GueROnVesa_Weapons_Bolter_Medium_b_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Sniper D G": {
+                "file": "GueROnVesa_Weapons_Sniper_d_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long A G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_a_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Medium F G": {
+                "file": "GueROnVesa_Weapons_Bolter_Medium_f_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Medium A G": {
+                "file": "GueROnVesa_Weapons_Bolter_Medium_a_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long H G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_h_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Drum A G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_a_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Sniper A G": {
+                "file": "GueROnVesa_Weapons_Sniper_a_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long NG A": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_ng_a.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short G G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_g_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short F G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_f_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Drum C G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_c_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short I G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_i_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Drum G G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_g_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short J G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_j_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Drum D G": {
+                "file": "GueROnVesa_Weapons_Bolter_Drum_d_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long G G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_g_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long C G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_c_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long B G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_b_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long D G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_d_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long F G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_f_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Medium C G": {
+                "file": "GueROnVesa_Weapons_Bolter_Medium_c_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Long E G": {
+                "file": "GueROnVesa_Weapons_Bolter_Long_e_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Medium E G": {
+                "file": "GueROnVesa_Weapons_Bolter_Medium_e_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Mediul D G": {
+                "file": "GueROnVesa_Weapons_Bolter_Medium_d_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short D G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_d_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short K G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_k_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Bolter Short E G": {
+                "file": "GueROnVesa_Weapons_Bolter_short_e_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Sniper C G": {
+                "file": "GueROnVesa_Weapons_Sniper_c_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Sword B": {
+                "file": "GueROnVesa_Weapons_Sword_b.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"vertex_list": [6034, 7062]},
+                "coef_merge": 0.05
+            },
+            "Sword A": {
+                "file": "GueROnVesa_Weapons_Sword_a.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            },
+            "Sniper B G": {
+                "file": "GueROnVesa_Weapons_Sniper_b_g.stl",
+                "thingiverse": 4222540,
+                "designer": "El_Mutanto",
+                "dextral": "left",
+                "hand": {"facet": 1782},
+                "coef_merge": -1.1
+            }
+        }
+    }
+}

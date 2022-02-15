@@ -1,0 +1,180 @@
+{
+    "Sword": {
+        "desc": {
+            "display": "Sword",
+            "path": "data/Wargame Humanoid/hand/Sword/"
+        },
+        "stl": {
+            "Lt. sword": {
+                "file": "LT_Sword_w__Hand.stl",
+                "thingiverse": 4606349,
+                "designer": "cornivius",
+                "dextral": "left",
+                "hand": {"vertex_list": [2342, 9145]},
+                "coef_merge": 0.1
+            }
+        }
+    },
+    "Rivet Gun": {
+        "desc": {
+            "display": "Rivet Gun",
+            "path": "data/Wargame Humanoid/hand/Rivet Gun/"
+        },
+        "stl": {
+            "Gun 01": {
+                "file": "_79_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [5049, 20270]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 02": {
+                "file": "_80_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [4166, 16750]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 03": {
+                "file": "_81_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [2417, 9840]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 04": {
+                "file": "_82_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [5201, 20855]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 05": {
+                "file": "_83_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [6747, 26875]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 06": {
+                "file": "_84_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [2573, 10408]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 07": {
+                "file": "_85_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [5124, 20568]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 08": {
+                "file": "_86_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [4013, 16184]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Gun 09": {
+                "file": "_87_with_hand.stl",
+                "thingiverse": 4304344,
+                "designer": "cornivius",
+                "dextral": "right",
+                "hand": {"vertex_list": [5106, 20587]},
+                "rotate": 180,
+                "coef_merge": 0.1
+            }
+        }
+    },
+    "Two hands Range": {
+        "desc": {
+            "display": "Two Hands",
+            "path": "data/Wargame Humanoid/hand/Two hands Range/"
+        },
+        "stl": {
+            "Laser cannon": {
+                "file": "heavy_weapons_-_laser_cannon.stl",
+                "thingiverse": 4263725,
+                "designer": "graudnov",
+                "dextral": "right",
+                "hand": {
+                    "vertex": 25067
+                },
+                "coef_merge": -0.35,
+                "rotate": -12
+            },
+            "Plasma ball Launcher": {
+                "file": "heavy_weapons_-_plasma_ball_launcher.stl",
+                "thingiverse": 4263725,
+                "designer": "graudnov",
+                "dextral": "right",
+                "hand": {
+                    "vertex": 85302
+                },
+                "coef_merge": -0.35,
+                "rotate": -12
+            },
+            "Heavy slug cannon": {
+                "file": "heavy_weapons_-_heavy_slug_cannon.stl",
+                "thingiverse": 4263725,
+                "designer": "graudnov",
+                "dextral": "right",
+                "hand": {
+                    "vertex": 42572
+                },
+                "coef_merge": -0.35,
+                "rotate": -25
+            },
+            "Heavy melter": {
+                "file": "heavy_weapons_-_heavy_melter.stl",
+                "thingiverse": 4263725,
+                "designer": "graudnov",
+                "dextral": "right",
+                "hand": {
+                    "vertex_list": [
+                        13167,
+                        19769,
+                        21320
+                    ]
+                },
+                "coef_merge": 0.1,
+                "rotate": -25
+            }
+        }
+    },
+
+    "Banner": {
+        "desc": {
+            "display": "Banner",
+            "path": "data/Wargame Humanoid/hand/Banner/"
+        },
+        "stl": {
+            "BlackWing": {
+                "file": "Blackwings_banner_Sm_hand.stl",
+                "thingiverse": 4116219,
+                "designer": "tired_models",
+                "dextral": "left",
+                "hand": {"vertex_list": [89915, 99780]},
+                "coef_merge": 0.1
+            }
+        }
+    }
+}

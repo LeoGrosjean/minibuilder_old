@@ -1,0 +1,42 @@
+{
+  "Hands": {
+    "desc": {
+      "display": "Hand",
+      "path": "data/Wargame Humanoid/hand/Sword/"
+    },
+    "stl": {
+      "Hand 1": {
+        "file": "R1.stl",
+        "thingiverse": 4246414,
+        "designer": "Monsieur_JD",
+        "dextral": "right",
+        "hand": {"vertex_list": [213, 453]},
+        "coef_merge": 0.1
+      },
+      "Hand 2": {
+        "file": "R2.stl",
+        "thingiverse": 4246414,
+        "designer": "Monsieur_JD",
+        "dextral": "right",
+        "hand": {"vertex_list": [995, 2061]},
+        "coef_merge": 0.1
+      },
+      "Hand 3": {
+        "file": "R3.stl",
+        "thingiverse": 4246414,
+        "designer": "Monsieur_JD",
+        "dextral": "right",
+        "hand": {"vertex_list": [5, 263]},
+        "coef_merge": 0.1
+      },
+      "Hand 4": {
+        "file": "R4.stl",
+        "thingiverse": 4246414,
+        "designer": "Monsieur_JD",
+        "dextral": "right",
+        "hand": {"vertex_list": [857, 1084]},
+        "coef_merge": 0.1
+      }
+    }
+  }
+}

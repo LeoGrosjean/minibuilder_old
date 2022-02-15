@@ -161,6 +161,7 @@
         }
     },
 
+
     "Banner": {
         "desc": {
             "display": "Banner",
@@ -172,7 +173,52 @@
                 "thingiverse": 4116219,
                 "designer": "tired_models",
                 "dextral": "left",
-                "hand": {"vertex_list": [89915, 99780]},
+                "hand": {
+                    "vertex_list": [
+                        89915,
+                        99780
+                    ]
+                },
+                "coef_merge": 0.1
+            },
+            "Imperium Banner v1": {
+                "file": "Dark_Imperium_Banner_-_Left_Hand.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner",
+                "designer": "cornivius",
+                "dextral": "left",
+                "hand": {"vertex_list": [2673, 30323]},
+                "coef_merge": 0.1
+            }
+        }
+    },
+       "Rivetgun 2hands": {
+        "desc": {
+            "display": "Banner",
+            "path": "data/Wargame Humanoid/hand/Rivet2hand/"
+        },
+        "stl": {
+            "Phobos": {
+                "file": "phobos_2-hands.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
+                "designer": "Fummelfinger",
+                "dextral": "left",
+                "hand": {"vertex_list": [34994, 69311]},
+                "coef_merge": 0.1
+            },
+            "Phobos drum mag": {
+                "file": "phobos_drum-mag_2-hands.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
+                "designer": "Fummelfinger",
+                "dextral": "left",
+                "hand": {"vertex_list": [31674, 62493]},
+                "coef_merge": 0.1
+            },
+            "Umbra": {
+                "file": "umbra_2-hands.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
+                "designer": "Fummelfinger",
+                "dextral": "left",
+                "hand": {"vertex_list": [4680, 47701]},
                 "coef_merge": 0.1
             }
         }
