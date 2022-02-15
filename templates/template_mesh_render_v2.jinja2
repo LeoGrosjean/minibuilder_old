@@ -20319,7 +20319,9 @@ function init() {
                 render()
             });
 
+
             //merge
+            if (window.document.getElementById("{{ node }}_merge") != null){
             {{ node }}_slider_merge = window.document.getElementById("{{node}}_merge")
             window.{{ node }}_merge_old = {{ node }}_slider_merge.valueAsNumber
 
@@ -20330,8 +20332,10 @@ function init() {
                 window.{{ node }}_merge_old = window.document.getElementById("{{node}}_merge").value;
                 render()
             });
+            }
             {% endif %}
             //scale
+            if (window.document.getElementById("{{ node }}_scale") != null){
             {{ node }}_slider_scale = window.document.getElementById("{{node}}_scale")
             {{ node }}_scale_base = {{ node }}_slider_scale.valueAsNumber
             {{ node }}_slider_scale.addEventListener('input', function () {
@@ -20340,6 +20344,7 @@ function init() {
                 scale_mesh({{ node }}, {{node}}_scale, {{ node }}_scale_base, {{ node }}_normal, {{ node }}_vertice)
                 render()
             });
+            }
 
         {% endfor %}
         controls.addEventListener("change", render);

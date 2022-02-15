@@ -179,7 +179,7 @@ def builder(builder_name):
                              on=di_file.get(source).get('on'),
                              dextral=di_file.get(source).get('dextral'),
                              rotate=int(di_file.get(source).get('rotate') or 0),
-                             coef_merge=float(di_file.get(source).get('merge')),
+                             coef_merge=float(di_file.get(source).get('merge') or 0),
                              monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
                              shake_rotate=int(di_file.get(source).get('shake') or 0),
                              scale=di_file.get(source).get('info').get('scale'))
