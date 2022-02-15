@@ -6,7 +6,6 @@ from routes.make import make_bp as make_blueprint
 from routes.thingidl import thingidl_bp
 
 # blueprint for make parts of app
-from utils.cults import chr_driver
 
 app = Flask(__name__)
 app.register_blueprint(make_blueprint)

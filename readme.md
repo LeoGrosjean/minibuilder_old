@@ -36,10 +36,12 @@ Thingiverse has an API and user dont need to be authentificated
 
 ## Configuration file
 Each mesh is a node
+
 Each node has different rules (rotate, merge, scale...)
 
 Configuration file allow user to make a miniBuilder about everything !
 
+check ````data/<builder>/conf.json```` file
 WIP
 
 ## Technical Stack
@@ -48,9 +50,18 @@ Back (python):
 - Flask (framework web)
 - Trimesh (edit mesh)
 - networkx (graph)
+Software Back:
+- blender (optional, for boolean dif, not used in prod but works in dev ex: hole for magnet)
 
 Front :
 - native JS
 - bootstrap
 - THREE.JS (live edit)
    
+## License
+
+Working on it, but in the futur I want to monetize my work on the project. However dunno how yet !
+
+So you can't copy my work without asking me, the code of miniBuilder is the propriety of Leopold Grosjean (lol) !
+
+The configuration files can be shared and are not included in the license (all the data folder)
