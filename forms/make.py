@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, SelectMultipleField, SubmitField, IntegerField, BooleanField
+from wtforms import SelectField, SelectMultipleField, SubmitField, IntegerField, BooleanField, FloatField
 from wtforms.validators import InputRequired
 
 from wtforms.widgets import NumberInput
@@ -20,15 +20,28 @@ def generateminidynamic_func(*args, **kwargs):
                 SelectField(label=v.get("label"), choices=list(zip(v.get('choices'), v.get('choices'))), validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_rotate",
                 IntegerField(f'{v.get("label")} Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1), validators=[InputRequired()]))
+        setattr(GenerateMiniDynamic, f"{k}_anklex",
+                FloatField(f'{v.get("label")} Rotation AnkleX', default=0, widget=NumberInput(min=-15, max=15, step=0.1),
+                             validators=[InputRequired()]))
+        setattr(GenerateMiniDynamic, f"{k}_ankley",
+                FloatField(f'{v.get("label")} Rotation AnkleY', default=0,
+                             widget=NumberInput(min=-15, max=15, step=0.1),
+                             validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_shake",
                 IntegerField(f'{v.get("label")} Shake', default=0, widget=NumberInput(min=-180, max=180, step=1),
                              validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_scale",
-                IntegerField(f'{v.get("label")} Scale', default=1, widget=NumberInput(min=0.8, max=1.2, step=0.01),
+                FloatField(f'{v.get("label")} Scale', default=1, widget=NumberInput(min=0.8, max=1.2, step=0.01),
                              validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_merge",
-                IntegerField(f'{v.get("label")} Merge', default=0, widget=NumberInput(min=-1, max=2, step=0.01),
+                FloatField(f'{v.get("label")} Merge', default=0, widget=NumberInput(min=-1, max=2, step=0.01),
                              validators=[InputRequired()]))
+        setattr(GenerateMiniDynamic, f"{k}_movex",
+                FloatField(f'{v.get("label")} MoveX', default=0, widget=NumberInput(min=-2, max=2, step=0.01),
+                           validators=[InputRequired()]))
+        setattr(GenerateMiniDynamic, f"{k}_movey",
+                FloatField(f'{v.get("label")} MoveY', default=0, widget=NumberInput(min=-2, max=2, step=0.01),
+                           validators=[InputRequired()]))
     return GenerateMiniDynamic()
 
 

@@ -11,7 +11,7 @@ from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.transformations import euler_matrix
 
-from utils.cults import download_cults_file
+#from utils.cults import download_cults_file
 from utils.graph import get_successors
 from utils.render import scene_to_html
 
@@ -105,7 +105,11 @@ def builder(builder_name):
                 'rotate': form_result.get(f'{node}_rotate'),
                 'shake': form_result.get(f'{node}_shake'),
                 'scale': form_result.get(f'{node}_scale'),
-                'merge': form_result.get(f'{node}_merge')
+                'merge': form_result.get(f'{node}_merge'),
+                'anklex': form_result.get(f'{node}_anklex'),
+                'ankley': form_result.get(f'{node}_ankley'),
+                'movex': form_result.get(f'{node}_movex'),
+                'movey': form_result.get(f'{node}_movey'),
             }
             di_file[node]['info']['mesh_path'] = \
                 f"data/{builder_name}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
@@ -182,7 +186,9 @@ def builder(builder_name):
                              coef_merge=float(di_file.get(source).get('merge') or 0),
                              monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
                              shake_rotate=int(di_file.get(source).get('shake') or 0),
-                             scale=di_file.get(source).get('info').get('scale'))
+                             scale=di_file.get(source).get('info').get('scale'),
+                             move_x=float(di_file.get(source).get('movex') or 0),
+                             move_y=float(di_file.get(source).get('movey') or 0),)
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
                                         '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'
@@ -223,7 +229,9 @@ def builder(builder_name):
                         #shake_rotate=int(di_file.get(source).get('shake') or 0),
                         rotate=int(di_file.get(source).get('rotate') or 0),
                         child_rotate=child_to_rotate,
-                        info=di_file
+                        info=di_file,
+                        anklex=float(di_file.get(source).get('anklex') or 0),
+                        ankley=float(di_file.get(source).get('ankley') or 0),
                         )
 
             if 'dl_zip' in form_result:

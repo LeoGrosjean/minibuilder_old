@@ -70,6 +70,33 @@
                 "hole": false,
                 "arm": {"vertex_list": [2065, 6267]},
                 "hand": {"vertex_list": [126, 1720]}
+            },
+            "MK IV Tactical 01": {
+                "file": "tac_arms_01.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "designer": "LoggyK",
+                "dextral": "right",
+                "hole": false,
+                "arm": {"vertex": 111406},
+                "hand": {"vertex": 75984}
+            },
+            "MK IV Tactical 02": {
+                "file": "tac_arms_02.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "designer": "LoggyK",
+                "dextral": "right",
+                "hole": false,
+                "arm": {"vertex": 107831},
+                "hand": {"vertex": 119215}
+            },
+            "MK IV Tactical 03": {
+                "file": "tac_arms_03.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "designer": "LoggyK",
+                "dextral": "right",
+                "hole": false,
+                "arm": {"vertex": 119319},
+                "hand": {"vertex": 66719}
             }
         }
     }

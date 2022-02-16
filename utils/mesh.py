@@ -20,7 +20,8 @@ def get_mean_vertex_normal_list(mesh_, list_index):
     return np.mean(mesh_.vertex_normals[list_index], axis=0)
 
 
-def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=None, rotate=None, child_rotate=[], info=None):
+def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=None, rotate=None, child_rotate=[],
+                info=None, anklex=None, ankley=None):
     if "vertex" in mesh_info[on]:
         normal = mesh.vertex_normals[mesh_info[on]["vertex"]]
         vertice = mesh.vertices[mesh_info[on]["vertex"]]
@@ -31,17 +32,22 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
         normal = get_mean_vertex_normal_list(mesh, mesh_info[on]["vertex_list"])
         vertice = get_mean_vertex_list(mesh, mesh_info[on]["vertex_list"])
 
-    if shake_rotate:
-        normal_vec = [normal[0], normal[2], normal[1]]
-        mesh.apply_transform(tm.transformations.rotation_matrix(radians(shake_rotate),
-                                                                    normal_vec,
-                                                                    vertice))
     if rotate:
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
-    mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))
+    if anklex:
+        normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+        mesh.apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
+        for child in child_rotate:
+            info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
+
+    if ankley:
+        normal_y = np.cross(normal, [0, -1, 0]) / np.linalg.norm(np.cross(normal, [0, -1, 0]))
+        mesh.apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
+        for child in child_rotate:
+            info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
 
 
 def scale_mesh(mesh, scale):
@@ -50,7 +56,7 @@ def scale_mesh(mesh, scale):
 
 
 def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, dextral=None, rotate=None, base_coef=1,
-                 base=False, monkey_rotate_child_fix=0, shake_rotate=None, scale=None):
+                 base=False, monkey_rotate_child_fix=0, shake_rotate=None, scale=None, move_x=0, move_y=0):
     rotate_neg = 1
     if dextral:
         if mesh_info['dextral'] != dextral:
@@ -129,6 +135,16 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
     mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))"""
+
+    normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+    normal_y = np.cross(normal, [0, -1, 0]) / np.linalg.norm(np.cross(normal, [0, -1, 0]))
+
+    mesh.apply_translation(normal_x * mesh_info.get('movex', 0) + normal_x * move_x +
+                           normal_y * mesh_info.get('movey', 0) + normal_y * move_y)
+    if move_x != 0 or move_y != 0:
+        print(normal)
+        print(normal_x)
+        print(normal_y)
 
 
 def get_mesh_normal_position(mesh, info, on, inverse_norm=False):

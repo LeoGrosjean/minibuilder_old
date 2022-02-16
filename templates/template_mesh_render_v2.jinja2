@@ -20301,10 +20301,19 @@ function init() {
         controls.keys = [65, 83, 68];
         {% for node, child_nodes in node_dict_rotate.items() %}
             window.{{ node }}_normal = new THREE.Vector3({{child_nodes.get('normal', "0, 0 ,0") }}).normalize()
+            window.{{ node }}_normal_anklex = new THREE.Vector3({{child_nodes.get('normal', "0, 0 ,0") }}).normalize().cross(new THREE.Vector3(1,0,0)).normalize()
+            window.{{ node }}_normal_ankley = new THREE.Vector3({{child_nodes.get('normal', "0, 0 ,0") }}).normalize().cross(new THREE.Vector3(0,0,1)).normalize()
             window.{{ node }}_vertice = new THREE.Vector3({{child_nodes.get('vertice', "0, 0 ,0") }})
         {% endfor %}
 
+
         {% for node, child_nodes in node_dict_rotate.items() %}
+            window.{{ node }}_pos_x = 0
+            window.{{ node }}_pos_y = 0
+            window.{{ node }}_pos_z = 0
+            window.{{ node }}_rot_x = 0
+            window.{{ node }}_rot_y = 0
+            window.{{ node }}_rot_z = 0
             //rotate
             window.{{ node }}= window.scene.getObjectByName("{{ node }}")
             {% if child_nodes.get('normal') %}
@@ -20315,10 +20324,29 @@ function init() {
                 {{node}}_rotate = window.document.getElementById("{{node}}_rotate").value - window.{{ node }}_rotate_old;
 
                 rotateObject3dAroundPivotOnAxis({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal, {{node}}_rotate)
-                window.{{ node }}_rotate_old = window.document.getElementById("{{node}}_rotate").value;
                 render()
             });
 
+            //rotate ankle
+
+
+            {{ node }}_slider_anklex = window.document.getElementById("{{node}}_anklex")
+            window.{{ node }}_rotate_old_anklex = {{ node }}_slider_anklex.valueAsNumber
+            {{ node }}_slider_anklex.addEventListener('input', function () {
+                {{node}}_rotate_anklex = window.document.getElementById("{{node}}_anklex").value - window.{{ node }}_rotate_old_anklex;
+
+                rotateObject3dAroundPivotOnAxis({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal_anklex, {{node}}_rotate_anklex)
+                render()
+            });
+
+            {{ node }}_slider_ankley = window.document.getElementById("{{node}}_ankley")
+            window.{{ node }}_rotate_old_ankley = {{ node }}_slider_ankley.valueAsNumber
+            {{ node }}_slider_ankley.addEventListener('input', function () {
+                {{node}}_rotate_ankley = window.document.getElementById("{{node}}_ankley").value - window.{{ node }}_rotate_old_ankley;
+
+                rotateObject3dAroundPivotOnAxis({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal_ankley, {{node}}_rotate_ankley)
+                render()
+            });
 
             //merge
             if (window.document.getElementById("{{ node }}_merge") != null){
@@ -20326,10 +20354,43 @@ function init() {
             window.{{ node }}_merge_old = {{ node }}_slider_merge.valueAsNumber
 
             {{ node }}_slider_merge.addEventListener('input', function () {
-                {{node}}_merge = window.document.getElementById("{{node}}_merge").value - window.{{ node }}_merge_old;
+                old_rotation = {{ node }}.rotation.clone()
+                {{ node }}.rotation.set(0,0,0)
+                {{node}}_merge = window.document.getElementById("{{node}}_merge").valueAsNumber - window.{{ node }}_merge_old;
 
-                transpose_mesh({{ node }}, window.{{ node }}_normal, {{node}}_merge)
-                window.{{ node }}_merge_old = window.document.getElementById("{{node}}_merge").value;
+                transpose_mesh({{ node }}, window.{{ node }}_normal, {{node}}_merge, window.{{ node }}_vertice, window.{{ node }}_movex_old)
+                window.{{ node }}_merge_old = window.document.getElementById("{{node}}_merge").valueAsNumber;
+                {{ node }}.rotation.set(old_rotation.x,old_rotation.y,old_rotation.z)
+                render()
+            });}
+
+            if (window.document.getElementById("{{ node }}_movex") != null){
+            {{ node }}_slider_movex = window.document.getElementById("{{node}}_movex")
+            window.{{ node }}_movex_old = {{ node }}_slider_movex.valueAsNumber
+
+            {{ node }}_slider_movex.addEventListener('input', function () {
+                old_rotation = {{ node }}.rotation.clone()
+                {{ node }}.rotation.set(0,0,0)
+                {{node}}_movex = window.document.getElementById("{{node}}_movex").valueAsNumber - window.{{ node }}_movex_old;
+
+                transpose_mesh({{ node }}, window.{{ node }}_normal_anklex, {{node}}_movex, window.{{ node }}_vertice, window.{{ node }}_movex_old)
+                window.{{ node }}_movex_old = window.document.getElementById("{{node}}_movex").valueAsNumber;
+                {{ node }}.rotation.set(old_rotation.x,old_rotation.y,old_rotation.z)
+                render()
+            });}
+
+            if (window.document.getElementById("{{ node }}_movey") != null){
+            {{ node }}_slider_movey = window.document.getElementById("{{node}}_movey")
+            window.{{ node }}_movey_old = {{ node }}_slider_movey.valueAsNumber
+
+            {{ node }}_slider_movey.addEventListener('input', function () {
+                old_rotation = {{ node }}.rotation.clone()
+                {{ node }}.rotation.set(0,0,0)
+                {{node}}_movey = window.document.getElementById("{{node}}_movey").valueAsNumber - window.{{ node }}_movey_old;
+
+                transpose_mesh({{ node }}, window.{{ node }}_normal_ankley, {{node}}_movey, window.{{ node }}_vertice, window.{{ node }}_movey_old)
+                window.{{ node }}_movey_old = window.document.getElementById("{{node}}_movey").value;
+                {{ node }}.rotation.set(old_rotation.x,old_rotation.y,old_rotation.z)
                 render()
             });
             }
@@ -20353,6 +20414,22 @@ function init() {
         window.addEventListener("resize", onWindowResize, true);
         animate();
         onWindowResize();
+        /*{% for node, child_nodes in node_dict_rotate.items() %}
+            {% if child_nodes.get('normal') %}
+                rotateInit({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal, window.{{node}}_rotate_old)
+                rotateInit({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal_anklex, window.{{node}}_rotate_old_anklex)
+                rotateInit({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal_ankley, window.{{node}}_rotate_old_ankley)
+                window.{{ node }}_pos_x = {{ node }}.position.x
+                window.{{ node }}_pos_y = {{ node }}.position.y
+                window.{{ node }}_pos_z = {{ node }}.position.z
+                window.{{ node }}_rot_x = {{ node }}.rotation.x
+                window.{{ node }}_rot_y = {{ node }}.rotation.y
+                window.{{ node }}_rot_z = {{ node }}.rotation.z
+                {{ node }}.position.set(0,0,0)
+            {{ node }}.rotation.set(0,0,0)
+            {% endif %}
+        {% endfor %}*/
+
     });
 
 
@@ -20415,15 +20492,82 @@ function createPivotMatrix(position, scale=new THREE.Vector3(1,1,1)) {
     }
 
 function rotateObject3dAroundPivotOnAxis(object3d, position, axis, deg) {
-        var radians = THREE.Math.degToRad(deg)
-        var pivotMatrix = createPivotMatrix(position)
-        object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix, false));
-        object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(axis, radians));
-        object3d.applyMatrix4(pivotMatrix);
+        if (window.document.getElementById(object3d.name + "_movex") != null){
+            coef = window[object3d.name + '_movex_old']
+            position = position.clone().addVectors(position, window[object3d.name +"_normal_anklex"].clone().multiplyScalar(coef))
+        }
+        if (window.document.getElementById(object3d.name + "_movey") != null){
+            coef = window[object3d.name + '_movey_old']
+            position = position.clone().addVectors(position, window[object3d.name +"_normal_ankley"].clone().multiplyScalar(coef))
+        }
+
+        object3d.rotation.set(window[object3d.name + '_rot_x'],window[object3d.name + '_rot_y'],window[object3d.name + '_rot_z'])
+        object3d.position.set(window[object3d.name + '_pos_x'],window[object3d.name + '_pos_y'],window[object3d.name + '_pos_z'])
+
+        if (window.document.getElementById(object3d.name + "_rotate") != null){
+            var radians = THREE.Math.degToRad(window.document.getElementById(object3d.name + "_rotate").valueAsNumber - window[object3d.name +"_rotate_old"])
+            var pivotMatrix = createPivotMatrix(position)
+            object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
+            object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name + "_normal"], radians));
+            object3d.applyMatrix4(pivotMatrix);
+        }
+        if (window.document.getElementById(object3d.name + "_anklex") != null){
+            var radians = THREE.Math.degToRad(window.document.getElementById(object3d.name + "_anklex").valueAsNumber - window[object3d.name +"_rotate_old_anklex"])
+            var pivotMatrix = createPivotMatrix(position)
+            object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
+            object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name + "_normal_anklex"], radians));
+            object3d.applyMatrix4(pivotMatrix);
+        }
+        if (window.document.getElementById(object3d.name + "_ankley") != null){
+            var radians = THREE.Math.degToRad(window.document.getElementById(object3d.name + "_ankley").valueAsNumber - window[object3d.name +"_rotate_old_ankley"])
+            var pivotMatrix = createPivotMatrix(position)
+            object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
+            object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name + "_normal_ankley"], radians));
+            object3d.applyMatrix4(pivotMatrix);
+        }
+
     }
 
-function transpose_mesh(object3d, vector, coef) {
-        object3d.translateOnAxis(vector, coef)
+function rotateInit(object3d, position, axis, deg) {
+        if (window.document.getElementById(object3d.name + "_movex") != null){
+            coef = window[object3d.name + '_movex_old']
+            position = position.clone().addVectors(position, window[object3d.name +"_normal_anklex"].clone().multiplyScalar(coef))
+        }
+        if (window.document.getElementById(object3d.name + "_movey") != null){
+            coef = window[object3d.name + '_movey_old']
+            position = position.clone().addVectors(position, window[object3d.name +"_normal_ankley"].clone().multiplyScalar(coef))
+        }
+
+        object3d.rotation.set(window[object3d.name + '_rot_x'],window[object3d.name + '_rot_y'],window[object3d.name + '_rot_z'])
+        object3d.position.set(window[object3d.name + '_pos_x'],window[object3d.name + '_pos_y'],window[object3d.name + '_pos_z'])
+
+        if (window.document.getElementById(object3d.name + "_rotate") != null){
+            var radians = THREE.Math.degToRad(-window.document.getElementById(object3d.name + "_rotate").valueAsNumber)
+            var pivotMatrix = createPivotMatrix(position)
+            object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
+            object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name + "_normal"], radians));
+            object3d.applyMatrix4(pivotMatrix);
+        }
+        if (window.document.getElementById(object3d.name + "_anklex") != null){
+            var radians = THREE.Math.degToRad(-window.document.getElementById(object3d.name + "_anklex").valueAsNumber)
+            var pivotMatrix = createPivotMatrix(position)
+            object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
+            object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name + "_normal_anklex"], radians));
+            object3d.applyMatrix4(pivotMatrix);
+        }
+        if (window.document.getElementById(object3d.name + "_ankley") != null){
+            var radians = THREE.Math.degToRad(-window.document.getElementById(object3d.name + "_ankley").valueAsNumber)
+            var pivotMatrix = createPivotMatrix(position)
+            object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
+            object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name + "_normal_ankley"], radians));
+            object3d.applyMatrix4(pivotMatrix);
+        }
+
+    }
+
+
+function transpose_mesh(object3d, normal, coef, vertice, old_coef) {
+        object3d.translateOnAxis(normal, coef)
     }
 
 function scale_mesh_old(object3d, scale, old_scale, normal, vertice) {
@@ -20456,7 +20600,8 @@ function scale_mesh(object3d, scale, old_scale, normal, vertice) {
         child.position.set(window[child.name + "_vertice"].x - vertice_new_child.x,window[child.name + "_vertice"].x -vertice_new_child.y,window[child.name + "_vertice"].x - vertice_new_child.z)
     }*/
 }
-
-init();</script>
+function init2(){
+}
+init();init2();</script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 {% macro display_block(field_dict, value='', type='text', size=20) %}
-<button type="button" class="btn btn-toggle align-items-center rounded" data-toggle="collapse" data-target="#{{ field_dict['select'].label.text.replace(' ', '-') }}-collapse" aria-controls="{{ field_dict['select'].label.text.replace(' ', '-') }}-collapse" style="z-index:1;">
+<button type="button" id="{{field_dict['select'].id}}-button" class="btn btn-toggle align-items-center rounded" data-toggle="collapse" data-target="#{{ field_dict['select'].id}}-collapse" aria-controls="{{ field_dict['select'].id}}-collapse" style="z-index:1;">
 {{ field_dict['select'].label }} ↓
 </button>
 {{ field_dict['select']() }}
-    <div class="collapse" id="{{ field_dict['select'].label.text.replace(' ', '-') }}-collapse">
+    <div class="collapse" id="{{ field_dict['select'].id }}-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
         {% for k, field in field_dict.items() %}
             <p class="bg-light" style="z-index:1;">
@@ -13,10 +13,18 @@
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° rotation
                 {% elif k == "shake" %}
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° rotation
+                {% elif k == "anklex" %}
+                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° ankleX
+                {% elif k == "ankley" %}
+                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° ankleY
                 {% elif k == "scale" %}
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x scale
                 {% elif k == "merge" %}
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x merge
+                {% elif k == "movex" %}
+                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveX
+                {% elif k == "movey" %}
+                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveY
                 {% endif %}
             </p>
         {% endfor %}
@@ -62,4 +70,17 @@
         }
 
     </script>
+    <script>
+        button_{{ row['select'].id }} = window.document.getElementById("{{ row['select'].id }}-button")
+        collapse_{{ row['select'].id }} = window.document.getElementById("{{ row['select'].id }}-collapse")
+        button_{{ row['select'].id }}.onclick = function(){
+            if (collapse_{{ row['select'].id }}.className == 'collapse') {
+                localStorage["{{ row['select'].id }}-collapse"] = 'collapse show'
+            } else {
+                localStorage["{{ row['select'].id }}-collapse"] = 'collapse'
+            }
+        }
+        collapse_{{ row['select'].id }}.className = localStorage["{{ row['select'].id }}-collapse"]
+    </script>
+
 {% endfor %}

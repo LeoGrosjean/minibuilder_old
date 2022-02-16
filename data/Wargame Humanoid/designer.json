@@ -35,5 +35,13 @@
     },
     "BaconZeke": {
         "name": "@BaconZeke"
+    },
+    "LoggyK":{
+        "name": "@LoggyK",
+        "donation": "https://www.paypal.me/LoggyK",
+        "web":{
+            "cults3d": "https://cults3d.com/en/users/LoggyK/creations",
+            "thingiverse": "https://www.thingiverse.com/LoggyK/about"
+        }
     }
 }
