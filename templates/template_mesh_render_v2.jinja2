@@ -20317,7 +20317,7 @@ function init() {
             //rotate
             window.{{ node }}= window.scene.getObjectByName("{{ node }}")
             {% if child_nodes.get('normal') %}
-
+            if (window.document.getElementById("{{node}}_rotate") != null){
             {{ node }}_slider = window.document.getElementById("{{node}}_rotate")
             window.{{ node }}_rotate_old = {{ node }}_slider.valueAsNumber
             {{ node }}_slider.addEventListener('input', function () {
@@ -20325,11 +20325,11 @@ function init() {
 
                 rotateObject3dAroundPivotOnAxis({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal, {{node}}_rotate)
                 render()
-            });
+            });}
 
             //rotate ankle
 
-
+            if (window.document.getElementById("{{node}}_anklex") != null){
             {{ node }}_slider_anklex = window.document.getElementById("{{node}}_anklex")
             window.{{ node }}_rotate_old_anklex = {{ node }}_slider_anklex.valueAsNumber
             {{ node }}_slider_anklex.addEventListener('input', function () {
@@ -20337,8 +20337,9 @@ function init() {
 
                 rotateObject3dAroundPivotOnAxis({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal_anklex, {{node}}_rotate_anklex)
                 render()
-            });
+            });}
 
+            if (window.document.getElementById("{{node}}_ankley") != null){
             {{ node }}_slider_ankley = window.document.getElementById("{{node}}_ankley")
             window.{{ node }}_rotate_old_ankley = {{ node }}_slider_ankley.valueAsNumber
             {{ node }}_slider_ankley.addEventListener('input', function () {
@@ -20346,7 +20347,7 @@ function init() {
 
                 rotateObject3dAroundPivotOnAxis({{ node }}, window.{{ node }}_vertice, window.{{ node }}_normal_ankley, {{node}}_rotate_ankley)
                 render()
-            });
+            });}
 
             //merge
             if (window.document.getElementById("{{ node }}_merge") != null){

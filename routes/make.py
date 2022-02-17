@@ -11,7 +11,7 @@ from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.transformations import euler_matrix
 
-#from utils.cults import download_cults_file
+from utils.cults import download_cults_file
 from utils.graph import get_successors
 from utils.render import scene_to_html
 

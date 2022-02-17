@@ -12,6 +12,22 @@
                 "dextral": "left",
                 "hand": {"vertex_list": [2342, 9145]},
                 "coef_merge": 0.1
+            },
+            "Power Sword": {
+                "file": "power_sword_01.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "designer": "LoggyK",
+                "dextral": "left",
+                "hand": {"vertex": 6459},
+                "coef_merge": 0.1
+            },
+            "Chainsword": {
+                "file": "chainsword_01.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "designer": "LoggyK",
+                "dextral": "left",
+                "hand": {"vertex": 68244},
+                "coef_merge": 0.1
             }
         }
     },
@@ -100,6 +116,14 @@
                 "dextral": "right",
                 "hand": {"vertex_list": [5106, 20587]},
                 "rotate": 180,
+                "coef_merge": 0.1
+            },
+            "Classic 01": {
+                "file": "tac_bolter_01.stl",
+                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "designer": "LoggyK",
+                "dextral": "right",
+                "hand": {"vertex": 93714},
                 "coef_merge": 0.1
             }
         }
