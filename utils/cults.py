@@ -10,6 +10,7 @@ def browser_function():
     chr_driver = webdriver.Chrome(driver_path, options=chr_options)
     return chr_driver
 
+print("cults3d")
 chr_driver = browser_function()
 chr_driver.get('https://cults3d.com/en/users/sign-in')
 
