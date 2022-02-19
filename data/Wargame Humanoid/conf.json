@@ -11,7 +11,7 @@
       "label": "Body",
       "folder": "body",
       "permissions": ["select", "list", "scale"],
-      "files": ["body.json", "body_jump.json", "gueronvesa_body.json"]
+      "files": ["body.json", "body_jump.json", "gueronvesa_body.json", "onos_industries_body.json"]
     },
     {
       "id": "larm",
@@ -19,7 +19,7 @@
       "folder": "arm",
       "dextral": "left",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["arm.json", "arm_chaos.json", "empty.json"]
+      "files": ["arm.json", "arm_chaos.json", "empty.json", "onos_industries_arm.json"]
     },
     {
       "id": "rarm",
@@ -27,7 +27,7 @@
       "folder": "arm",
       "dextral": "right",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["arm.json", "empty.json"]
+      "files": ["arm.json", "empty.json", "onos_industries_arm.json"]
     },
     {
       "id": "lhand",
@@ -35,7 +35,7 @@
       "folder": "hand",
       "dextral": "left",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["hand.json", "empty.json", "hand_empty.json", "gueronvesa_hand.json"]
+      "files": ["hand.json", "empty.json", "hand_empty.json", "gueronvesa_hand.json", "onos_industries_weapon.json"]
     },
     {
       "id": "rhand",
@@ -43,7 +43,7 @@
       "folder": "hand",
       "dextral": "right",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["hand.json", "empty.json", "hand_empty.json", "gueronvesa_hand.json"]
+      "files": ["hand.json", "empty.json", "hand_empty.json", "gueronvesa_hand.json", "onos_industries_weapon.json"]
     },
     {
       "id": "rweapon",
@@ -66,21 +66,21 @@
       "label": "Leg",
       "folder": "leg",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["leg.json", "empty.json", "gueronvesa_leg.json"]
+      "files": ["leg.json", "empty.json", "gueronvesa_leg.json", "onos_industries_leg.json"]
     },
     {
       "id": "head",
       "label": "Head",
       "folder": "head",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["head.json", "empty.json", "gueronvesa_head.json"]
+      "files": ["head.json", "empty.json", "gueronvesa_head.json", "onos_industries_head.json"]
     },
     {
       "id": "backpack",
       "label": "Backpack",
       "folder": "backpack",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
-      "files": ["backpack.json", "empty.json", "gueronvesa_backpack.json"]
+      "files": ["backpack.json", "empty.json", "gueronvesa_backpack.json", "onos_industries_backpack.json"]
     }
   ],
   "links": [

@@ -17,7 +17,7 @@ def get_mean_vertex_list(mesh_, list_index):
 
 
 def get_mean_vertex_normal_list(mesh_, list_index):
-    return np.mean(mesh_.vertex_normals[list_index], axis=0)
+    return np.mean(mesh_.vertex_normals[list_index], axis=0) / np.linalg.norm(np.mean(mesh_.vertex_normals[list_index], axis=0))
 
 
 def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=None, rotate=None, child_rotate=[],
@@ -37,14 +37,18 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
+    normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+    if np.isnan(normal_x[0]):
+        normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
+    normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+
     if anklex:
-        normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
 
     if ankley:
-        normal_y = np.cross(normal, [0, -1, 0]) / np.linalg.norm(np.cross(normal, [0, -1, 0]))
+
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
@@ -135,21 +139,24 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
     mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))"""
-
+    print(mesh.metadata.get('file_name'))
     normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
-    normal_y = np.cross(normal, [0, -1, 0]) / np.linalg.norm(np.cross(normal, [0, -1, 0]))
+    if np.isnan(normal_x[0]):
+        print('x is nan')
+        normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
+
+    normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+
+    print(normal)
+    print(normal_x)
+    print(normal_y)
 
     mesh.apply_translation(normal_x * mesh_info.get('movex', 0) + normal_x * move_x +
                            normal_y * mesh_info.get('movey', 0) + normal_y * move_y)
-    if move_x != 0 or move_y != 0:
-        print(normal)
-        print(normal_x)
-        print(normal_y)
 
 
 def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
     dextral = info.get(on).get('dextral')
-    print(f'normal part {on} {info.get("dextral")}')
     if dextral:
         if "vertex" in info[on][dextral]:
             normal = mesh.vertex_normals[info[on][dextral]["vertex"]]
@@ -165,13 +172,11 @@ def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
         elif "vertex_list" in mesh[on][dextral]:
             normal = get_mean_vertex_normal_list(mesh, info[on][dextral]["vertex_list"])
             vertice = get_mean_vertex_list(mesh, info[on][dextral]["vertex_list"])
-            print(f'before {normal}')
             try:
                 if np.abs(sum(normal)) != 1:
                     normal /= np.abs(sum(normal))
             except Exception as e:
                 print(e)
-            print(f'after {normal}')
     else:
         if "vertex" in info[on]:
             normal = mesh.vertex_normals[info[on]["vertex"]]
@@ -187,22 +192,25 @@ def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
         elif "vertex_list" in info[on]:
             normal = get_mean_vertex_normal_list(mesh, info[on]["vertex_list"])
             vertice = get_mean_vertex_list(mesh, info[on]["vertex_list"])
-            print(f'before {normal}')
             try:
                 if np.abs(sum(normal)) != 1:
                     normal /= np.abs(sum(normal))
             except Exception as e:
                 print(e)
-            print(f'after {normal}')
 
     if inverse_norm:
         normal = normal * -1
 
+    normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+    if np.isnan(normal_x[0]):
+        normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
 
+    normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
 
 
     normal = ','.join([str(x) for x in normal.tolist()])
     vertice = ','.join([str(x) for x in vertice.tolist()])
-    print(f'vertice : {vertice}')
-    print(f'normal : {normal}')
-    return normal, vertice
+    normal_x = ','.join([str(x) for x in normal_x.tolist()])
+    normal_y = ','.join([str(x) for x in normal_y.tolist()])
+
+    return normal, vertice, normal_x, normal_y

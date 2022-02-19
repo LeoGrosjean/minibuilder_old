@@ -1,0 +1,70 @@
+{
+    "Onos Industries (weapon)": {
+        "desc": {
+            "display": "Onos Industries Arms",
+            "path": "data/Wargame Humanoid/hand/Onos Industries/"
+        },
+        "stl": {
+            "Enclave Carbine": {
+                "file": "weapon enclave carbine.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "dextral": "right",
+                "hand": {"facet": 2829},
+                "scale": 1.1
+            },
+            "Ion Rifle": {
+                "file": "weapon ion rifle.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "dextral": "right",
+                "hand": {"facet": 1997},
+                "scale": 1.1
+            },
+            "Pulse Cannon": {
+                "file": "weapon pulse cannon.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "dextral": "right",
+                "hand": {"facet": 504},
+                "scale": 1.1
+            },
+            "Railgun": {
+                "file": "weapon railgun.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "dextral": "right",
+                "hand": {"facet": 520},
+                "scale": 1.1
+            },
+            "Shotgun": {
+                "file": "weapon shotgun.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "dextral": "right",
+                "hand": {"facet": 718},
+                "scale": 1.1
+            }
+        }
+    }
+}

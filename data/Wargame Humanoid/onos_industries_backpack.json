@@ -1,0 +1,21 @@
+{
+    "Onos Industries": {
+        "desc": {
+            "display": "Onos Industries Arms",
+            "path": "data/Wargame Humanoid/backpack/Onos Industries/"
+        },
+        "stl": {
+            "Enclave Trooper": {
+                "file": "backpack.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "backpack": {"vertex_list": [3608, 5530]},
+                "scale": 1.06
+            }
+        }
+    }
+}

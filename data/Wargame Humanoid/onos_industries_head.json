@@ -1,0 +1,32 @@
+{
+    "Onos Industries": {
+        "desc": {
+            "display": "Onos Industries Heads",
+            "path": "data/Wargame Humanoid/head/Onos Industries/"
+        },
+        "stl": {
+            "Enclave Trooper": {
+                "file": "helmet.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "head": {"vertex": 140420},
+                "scale": 1.1
+            },
+            "Enclave Trooper Antenna": {
+                "file": "helmet with antenna.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "head": {"vertex": 555995},
+                "scale": 1.1
+            }
+        }
+    }
+}

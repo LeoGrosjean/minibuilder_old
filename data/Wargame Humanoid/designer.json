@@ -43,5 +43,12 @@
             "cults3d": "https://cults3d.com/en/users/LoggyK/creations",
             "thingiverse": "https://www.thingiverse.com/LoggyK/about"
         }
+    },
+    "onosindustries":{
+        "name": "@onosindustries",
+        "donation": "https://www.cgtrader.com/onosindustries",
+        "web":{
+            "cgtrader": "https://www.cgtrader.com/onosindustries"
+        }
     }
 }

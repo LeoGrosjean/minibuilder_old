@@ -11,6 +11,7 @@ from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.transformations import euler_matrix
 
+from utils.cgtrader import download_cgt_file
 from utils.cults import download_cults_file
 from utils.graph import get_successors
 from utils.render import scene_to_html
@@ -135,6 +136,12 @@ def builder(builder_name):
                     check_dl_li.append(dl_good)
                 elif "cults3d" in to_dl:
                     dl_good = download_cults_file(to_dl.get('cults3d'), to_dl.get('mesh_path'))
+                elif "cgtrader" in to_dl:
+                    dl_good = download_cgt_file(product_id=to_dl.get('cgtrader').get('product_id'),
+                                                product_name=to_dl.get('cgtrader').get('product_name'),
+                                                file_id=to_dl.get('cgtrader').get('file_id'),
+                                                dest_file=to_dl.get('mesh_path')
+                        , )
                 else:
                     flash(f"{to_dl.get('mesh_path')} don't exist and have no web references !")
                     check_dl_li.append(False)
@@ -238,7 +245,7 @@ def builder(builder_name):
                 for k, v in graph.get_edge_data(dest, source).items():
                     if v.get('merge'):
                         di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
-                        tmp_path = f'tmp/merged_{dest}_{source}.stl'
+                        tmp_path = f'tmp/dl/merged_{dest}_{source}.stl'
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
                         del di_file[source]
@@ -256,13 +263,13 @@ def builder(builder_name):
                     continue
 
                 if successors and predecessor:
-                    normal, vertice = get_mesh_normal_position(
+                    normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                         di_file.get(node_rotate).get('mesh'),
                         di_file.get(node_rotate).get('info'),
                         di_file.get(node_rotate).get('on'))
 
                 elif predecessor:
-                    normal, vertice = get_mesh_normal_position(
+                    normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                         di_file.get(predecessor).get('mesh'),
                         di_file.get(predecessor).get('info'),
                         di_file.get(node_rotate).get('on'), inverse_norm=True)
@@ -275,7 +282,9 @@ def builder(builder_name):
                     node_dict_rotate[node_rotate] = {
                         'child_nodes': successors,
                         'normal': normal,
-                        'vertice': vertice
+                        'vertice': vertice,
+                        "normal_x": normal_x,
+                        "normal_y": normal_y
                     }
                 else:
                     node_dict_rotate[node_rotate] = {
@@ -310,13 +319,13 @@ def builder(builder_name):
 
         if 'dl_zip' in form_result:
             li_file_path = [(v.get('info').get('mesh_path'), k) for k, v in di_file.items()]
-            scene.export("tmp/merged.stl")
-            li_file_path.append(('tmp/merged.stl', 'merged'))
+            scene.export("tmp/dl/merged.stl")
+            li_file_path.append(('tmp/dl/merged.stl', 'merged'))
             data = write_zip(li_file_path)
 
             # CLEAN
-            for file in os.listdir('tmp'):
-                os.remove(f"tmp/{file}")
+            for file in os.listdir('tmp/dl'):
+                os.remove(f"tmp/dl/{file}")
             return send_file(data,
                              mimetype='application/zip',
                              as_attachment=True,

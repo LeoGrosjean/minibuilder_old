@@ -1,0 +1,120 @@
+{
+    "Onos Industries": {
+        "desc": {
+            "display": "Onos Industries Legs",
+            "path": "data/Wargame Humanoid/leg/Onos Industries/"
+        },
+        "stl": {
+            "Enclave Trooper 01": {
+                "file": "legs 1.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 1034367},
+                "scale": 1.06
+            },
+            "Enclave Trooper 02": {
+                "file": "legs 2.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 12751},
+                "scale": 1.06
+            },
+            "Enclave Trooper 03": {
+                "file": "legs 3.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 265931},
+                "scale": 1.06
+            },
+            "Enclave Trooper 04": {
+                "file": "legs 4.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 55995},
+                "scale": 1.06
+            },
+            "Enclave Trooper 05": {
+                "file": "legs 5.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 166103},
+                "scale": 1.06
+            },
+            "Enclave Trooper Armour 01": {
+                "file": "legs armour 1.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 772099},
+                "scale": 1.06
+            },
+            "Enclave Trooper Armour 02": {
+                "file": "legs armour 2.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 324475},
+                "scale": 1.06
+            },
+            "Enclave Trooper Armour 03": {
+                "file": "legs armour 3.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 495149},
+                "scale": 1.06
+            },
+            "Enclave Trooper Armour 04": {
+                "file": "legs armour 4.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 199210},
+                "scale": 1.06
+            },
+            "Enclave Trooper Armour 05": {
+                "file": "legs armour 5.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer":"onosindustries",
+                "leg": {"vertex": 112642},
+                "scale": 1.06
+            }
+        }
+    }
+}

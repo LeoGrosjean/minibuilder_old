@@ -1,14 +1,7 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from pathlib import Path
 import zipfile, io
 
-def browser_function():
-    driver_path = "chromedriver"
-    chr_options = Options()
-    chr_options.add_experimental_option("detach", True)
-    chr_driver = webdriver.Chrome(driver_path, options=chr_options)
-    return chr_driver
+from utils.download import browser_function
 
 print("cults3d")
 chr_driver = browser_function()
