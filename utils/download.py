@@ -16,10 +16,11 @@ def every_downloads_chrome(driver):
 
 
 def browser_function():
-    driver_path = "chromedriver"
+    driver_path = "./chromedriver"
     chr_options = Options()
     prefs = {"download.default_directory": os.getcwd() + "\\tmp"}
     chr_options.add_experimental_option("prefs", prefs)
     chr_options.add_experimental_option("detach", True)
+    chr_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     chr_driver = webdriver.Chrome(driver_path, options=chr_options)
     return chr_driver

@@ -11,7 +11,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from utils.download import browser_function, every_downloads_chrome
 
-print("cgtrader")
 chr_driver = browser_function()
 chr_driver.get('https://www.cgtrader.com/')
 

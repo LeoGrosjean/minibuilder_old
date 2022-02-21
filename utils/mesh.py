@@ -139,17 +139,12 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
     mesh.apply_transform(tm.transformations.rotation_matrix(radians(-monkey_rotate_child_fix), normal, vertice))"""
-    print(mesh.metadata.get('file_name'))
     normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
     if np.isnan(normal_x[0]):
         print('x is nan')
         normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
 
     normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
-
-    print(normal)
-    print(normal_x)
-    print(normal_y)
 
     mesh.apply_translation(normal_x * mesh_info.get('movex', 0) + normal_x * move_x +
                            normal_y * mesh_info.get('movey', 0) + normal_y * move_y)

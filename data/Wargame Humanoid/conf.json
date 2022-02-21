@@ -84,14 +84,14 @@
     }
   ],
   "links": [
-    {"source": "body", "target": "larm"},
-    {"source": "body", "target": "rarm"},
     {"source": "body", "target": "head"},
-    {"source": "body", "target": "leg"},
-    {"source": "body", "target": "backpack"},
-    {"source": "larm", "target": "lhand", "merge":  true},
+    {"source": "body", "target": "rarm"},
     {"source": "rarm", "target": "rhand", "merge":  true},
+    {"source": "rhand", "target": "rweapon", "merge":  true},
+    {"source": "body", "target": "larm"},
+    {"source": "larm", "target": "lhand", "merge":  true},
     {"source": "lhand", "target": "lweapon", "merge":  true},
-    {"source": "rhand", "target": "rweapon", "merge":  true}
+    {"source": "body", "target": "leg"},
+    {"source": "body", "target": "backpack"}
   ]
 }
