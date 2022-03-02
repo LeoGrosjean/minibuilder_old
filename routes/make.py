@@ -73,22 +73,13 @@ def builder(builder_name):
         li_position.append(v.get('position'))
 
     position_matrix = []
-    """position_matrix = np.zeros(np.max(li_position, axis=0) + 1)
-    shape_m = position_matrix.shape
-    position_matrix = position_matrix.tolist()
-    for i in range(shape_m[0]):
-        for j in range(shape_m[1]):
-            position_matrix[i][j] = {}"""
-
     form = generateminidynamic_func(**di_form)
-
     for node in topological_sort(graph):
-        #row_index, col_index = graph.nodes.data[node].get('position')
         di_permission = {}
         for permission in graph.nodes[node].get('permissions'):
             di_permission[permission] = getattr(form, f"{node}_{permission}")
-        #position_matrix[row_index][col_index] = di_permission
         position_matrix.append(di_permission)
+
     if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result or 'live_edit' in form_result):
         di_file = {}
         for node in topological_sort(graph):
