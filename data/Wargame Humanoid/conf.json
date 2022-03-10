@@ -2,7 +2,7 @@
   "directed": true,
   "multigraph": true,
   "graph": {
-    "name": "Humanoid Wargaming",
+    "name": "Wargame Humanoid",
     "designer_files": ["designer.json"]
   },
   "nodes": [
@@ -57,7 +57,7 @@
       "id": "lweapon",
       "label": "Left Weapon",
       "folder": "weapon",
-      "dextral": "right",
+      "dextral": "left",
       "permissions": ["select", "list", "rotate", "scale", "merge", "anklex", "ankley", "movex", "movey"],
       "files": ["empty.json", "gueronvesa_weapon.json"]
     },

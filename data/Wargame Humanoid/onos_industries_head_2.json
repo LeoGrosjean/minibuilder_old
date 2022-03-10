@@ -1,0 +1,84 @@
+{
+  "tetete": {
+    "desc": {
+      "display": "tetete",
+      "path": "data/Wargame Humanoid/body/tetete/"
+    },
+    "stl": {
+      "Popy": {
+        "file": "torso farsight.stl",
+        "designer": "cornivius",
+        "md5": "ed551855b1636c4e36afabac7d010b3a",
+        "head": {
+          "vertex": "742262"
+        },
+        "backpack": {
+          "vertex": "272773"
+        },
+        "leg": {
+          "vertex": "346754"
+        },
+        "arm": {
+          "right": {
+            "vertex": "274063"
+          },
+          "left": {
+            "vertex": "511036"
+          }
+        }
+      },
+      "Popy2": {
+        "file": "torso farsight.stl",
+        "designer": "cornivius",
+        "md5": "ed551855b1636c4e36afabac7d010b3a",
+        "head": {
+          "vertex": "742262"
+        },
+        "backpack": {
+          "vertex": "272773"
+        },
+        "leg": {
+          "vertex": "346754"
+        },
+        "arm": {
+          "right": {
+            "vertex": "274063"
+          },
+          "left": {
+            "vertex": "511036"
+          }
+        }
+      }
+    }
+  },
+  "tet": {
+    "desc": {
+      "display": "tet",
+      "path": "data/Wargame Humanoid/body/tet/"
+    },
+    "stl": {
+      "Popy2": {
+        "file": "torso farsight.stl",
+        "designer": "cornivius",
+        "md5": "ed551855b1636c4e36afabac7d010b3a",
+        "arm": {
+          "left": {
+            "vertex": "511036"
+          },
+          "right": {
+            "vertex": "274063"
+          }
+        },
+        "backpack": {
+          "vertex": "272773"
+        },
+        "leg": {
+          "vertex": "346754"
+        },
+        "head": {
+          "vertex": "742262"
+        }
+      }
+    }
+  }
+}

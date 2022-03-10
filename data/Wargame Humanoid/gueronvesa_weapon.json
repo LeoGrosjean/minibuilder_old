@@ -1,6 +1,5 @@
 {
     "Gueronvesa": {
-
         "desc": {
             "display": "Gue'ron'vesa Weapon",
             "path": "data/Wargame Humanoid/weapon/Gueronvesa/"
@@ -11,39 +10,57 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 835},
+                "weapon": {
+                    "facet": 835
+                },
                 "coef_merge": 0.2
             },
             "Bolter Drum NG C": {
                 "file": "GueROnVesa_Weapons_Bolter_drum_ng_c.stl",
                 "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 1},
-                "coef_merge": 0.2
+                "designer": "elmutanto",
+                "dextral": "right",
+                "weapon": {
+                    "vertex_list": [
+                        449,
+                        4448
+                    ]
+                },
+                "coef_merge": 0.2,
+                "md5": "4c5bb7ccea4d131be526388ed213e926"
             },
             "Bolter Drum NG E": {
                 "file": "GueROnVesa_Weapons_Bolter_drum_ng_e.stl",
-                "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 1782},
-                "coef_merge": 0.2
+                "designer": "elmutanto",
+                "md5": "0d656d29d4d897ad7020cc0ebcad8ea1",
+                "dextral": "right",
+                "weapon": {
+                    "vertex": 8933
+                }
             },
             "Bolter Drum NG D": {
                 "file": "GueROnVesa_Weapons_Bolter_drum_ng_d.stl",
                 "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 1782},
-                "coef_merge": 0.2
+                "designer": "elmutanto",
+                "dextral": "right",
+                "weapon": {
+                    "vertex_list": [
+                        4109,
+                        4119,
+                        5444,
+                        12894
+                    ]
+                },
+                "md5": "e54e990e6d30d35036461f30f2f178b7"
             },
             "Bolter Long NG B": {
                 "file": "GueROnVesa_Weapons_Bolter_Long_ng_b.stl",
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Medium NG C": {
@@ -51,7 +68,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Medium NG A": {
@@ -59,7 +78,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Long NG A": {
@@ -67,7 +88,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Long NG C": {
@@ -75,7 +98,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Long NG G": {
@@ -83,7 +108,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Long NG D": {
@@ -91,7 +118,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG B": {
@@ -99,31 +128,40 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Drum NG B": {
                 "file": "GueROnVesa_Weapons_Bolter_drum_ng_b.stl",
-                "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 1782},
-                "coef_merge": 0.2
+                "designer": "elmutanto",
+                "md5": "5a54ee554742fb34e7793e7e58a92c3a",
+                "dextral": "right",
+                "weapon": {
+                    "vertex_list": [
+                        2514,
+                        2516
+                    ]
+                }
             },
             "Bolter Drum NG A": {
                 "file": "GueROnVesa_Weapons_Bolter_drum_ng_a.stl",
-                "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 303},
-                "coef_merge": 0.2
+                "designer": "elmutanto",
+                "md5": "7f1834ee3df1d285077c3292736dcabd",
+                "dextral": "right",
+                "weapon": {
+                    "vertex": 6339
+                }
             },
             "Bolter Drum NG F": {
                 "file": "GueROnVesa_Weapons_Bolter_drum_ng_f.stl",
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Long NG E": {
@@ -131,7 +169,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Long NG H": {
@@ -139,7 +179,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Medium NG B": {
@@ -147,7 +189,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG H": {
@@ -155,7 +199,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 247},
+                "weapon": {
+                    "facet": 247
+                },
                 "coef_merge": 0.2
             },
             "Bolter Medium NG D": {
@@ -163,23 +209,33 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG A": {
                 "file": "GueROnVesa_Weapons_Bolter_short_ng_a.stl",
                 "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 1782},
-                "coef_merge": 0.2
+                "designer": "karnageking",
+                "dextral": "right",
+                "weapon": {
+                    "vertex_list": [
+                        697,
+                        699
+                    ]
+                },
+                "coef_merge": 0.2,
+                "md5": "777c501e9712b4561cc52668b867a29b"
             },
             "Bolter Long NG F": {
                 "file": "GueROnVesa_Weapons_Bolter_Long_ng_f.stl",
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG E": {
@@ -187,15 +243,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
-                "coef_merge": 0.2
-            },
-            "Bolter Short NG C": {
-                "file": "GueROnVesa_Weapons_Bolter_short_ng_c.stl",
-                "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG G": {
@@ -203,7 +253,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG D": {
@@ -211,7 +263,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             },
             "Bolter Short NG F": {
@@ -219,7 +273,9 @@
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
-                "weapon": {"facet": 1782},
+                "weapon": {
+                    "facet": 1782
+                },
                 "coef_merge": 0.2
             }
         }

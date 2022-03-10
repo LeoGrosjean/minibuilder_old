@@ -6,3 +6,4 @@ def get_successors(graph, node):
         for child in children:
             result.extend(get_successors(graph, child))
     return result
+

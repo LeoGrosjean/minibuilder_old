@@ -9,6 +9,15 @@ class SceneGraphInfo:
         self.scene = {}
         self.meshes = {}
 
+    def form_configure_display(self, form):
+        nodes = set()
+        fields = {}
+        for node, attr in self.graph.nodes.items():
+            nodes.add(attr.get('folder'))
+        fields['node'] = nodes
+
+        return form
+
     def form_display(self, form):
         display = []
         for node in topological_sort(self.graph):

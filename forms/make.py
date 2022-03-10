@@ -21,11 +21,11 @@ def generateminidynamic_func(*args, **kwargs):
         setattr(GenerateMiniDynamic, f"{k}_rotate",
                 IntegerField(f'{v.get("label")} Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1), validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_anklex",
-                FloatField(f'{v.get("label")} Rotation AnkleX', default=0, widget=NumberInput(min=-15, max=15, step=0.1),
+                FloatField(f'{v.get("label")} Rotation AnkleX', default=0, widget=NumberInput(min=-90, max=90, step=0.1),
                              validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_ankley",
                 FloatField(f'{v.get("label")} Rotation AnkleY', default=0,
-                             widget=NumberInput(min=-15, max=15, step=0.1),
+                             widget=NumberInput(min=-90, max=90, step=0.1),
                              validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_shake",
                 IntegerField(f'{v.get("label")} Shake', default=0, widget=NumberInput(min=-180, max=180, step=1),

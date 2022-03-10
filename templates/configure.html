@@ -1,0 +1,146 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', False) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="control-group {% if field.errors %}error{% endif %}">
+        <div class="controls" >
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_, **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+            {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                {% set class_ = class_ + ' input-xlarge' %}
+            {% elif field.type == 'FileField' %}
+                {% set class_ = class_ + ' input-file' %}
+            {% endif %}
+            {% if field.render_kw %}
+                {% if not field.render_kw.get('hidden') %}
+                    <p id="text_{{ field.id }}">{{ field.label.text|safe }}</p>
+                {% endif %}
+                {% if field.render_kw.get('hidden') %}
+                    <p id="text_{{ field.id }}" hidden>{{ field.label.text|safe }}</p>
+                {% endif %}
+            {% endif %}
+                {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.render_kw %}
+                {% if field.render_kw.get('list') %}
+                    <datalist id="id_list_{{ field.id }}">
+                        {% for entry in field.choices %}
+                        <option value={{ entry }}>
+                        {% endfor %}
+                    </datalist>
+                {% endif %}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+
+<form method="post" id="configure" style="position: absolute; z-index:1; color:green">
+    {% for field in form %}
+        {{ form_field(field) }}
+    {% endfor %}
+</form>
+
+<body>
+
+{% block body %}
+
+
+
+{% include "makeconf.html" %}
+
+
+{% endblock %}
+
+
+</body>
+
+<script>
+    let node = document.getElementById("node")
+    let file = document.getElementById("id_list_file")
+    let category = document.getElementById("id_list_category")
+
+    let file_field = document.getElementById("file")
+    let category_field = document.getElementById("category")
+
+    builder = window.location.href.split('/')
+    builder = builder[builder.length -2]
+
+    node.onchange = function () {
+        node_value = node.value;
+        file_value = file_field.value;
+
+        file_field.value = "";
+        category_field.value = "";
+
+        fetch("/configureformnode/" + builder + "/" + node_value + "/").then(function (response) {
+            response.json().then(function (data) {
+                let optionHTML_file = '';
+                for (choice in data["file"]) {
+                    optionHTML_file += '<option value="' + data["file"][choice][0] + '">' + data["file"][choice][1] + '</option>';
+                }
+                file.innerHTML = optionHTML_file
+                let optionHTML_category = '';
+                for (choice in data["category"]) {
+                    optionHTML_category += '<option value="' + data["category"][choice][0] + '">' + data["category"][choice][1] + '</option>';
+                }
+                category.innerHTML = optionHTML_category
+
+                for (choice in data["all_connections"]) {
+                    field = document.getElementById('marker_' + data["all_connections"][choice])
+                    field.value = ""
+                    field.hidden = true
+                    console.log('text_marker_' + data["all_connections"][choice])
+                    text = document.getElementById('text_marker_' + data["all_connections"][choice])
+                    text.hidden = true
+                }
+
+                for (choice in data["connection"]) {
+                    field = document.getElementById('marker_' + data["connection"][choice])
+                    field.hidden = false
+                    text = document.getElementById('text_marker_' + data["connection"][choice])
+                    text.hidden = false
+
+                }
+            })
+        })
+    }
+
+    file_field.onchange = function () {
+        node_value = node.value;
+        file_value = file_field.value;
+
+        category_field.value = "";
+
+        fetch("/configureformfile/" + builder + "/" + node_value + "/" + file_value).then(function (response) {
+            response.json().then(function (data) {
+                let optionHTML_category = '';
+
+                for (choice in data["category"]) {
+                    optionHTML_category += '<option value="' + data["category"][choice][0] + '">' + data["category"][choice][1] + '</option>';
+                }
+                category.innerHTML = optionHTML_category
+            })
+        })
+    }
+
+</script>
+
+<script>
+</script>

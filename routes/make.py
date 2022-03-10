@@ -11,8 +11,8 @@ from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.transformations import euler_matrix
 
-from utils.cgtrader import download_cgt_file
-from utils.cults import download_cults_file
+#from utils.cgtrader import download_cgt_file
+#from utils.cults import download_cults_file
 from utils.graph import get_successors
 from utils.render import scene_to_html
 
@@ -351,7 +351,6 @@ def updateselect(node, selection, builder):
     designers = {}
     for file in graph.graph.get('designer_files', []):
         designers.update(load_json(f"data/{builder_name}/{file}"))
-
 
     choices = list(infos[node.split('_')[0]][selection]['stl'].keys())
     choices = list(zip(choices, choices))
