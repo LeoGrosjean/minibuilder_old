@@ -33,7 +33,7 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
             self.category.default = kwargs.get('category', self.category.choices[0])
 
             self.designer.choices = self.get_designer_from_file()
-            self.designer.default = kwargs.get('category', self.designer.choices[0])
+            self.designer.default = kwargs.get('category', self.designer.choices[0] if self.designer.choices else [])
 
         def get_node_choices(self):
             nodes = set()
@@ -48,7 +48,12 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
             return list(load_json(f"data/{self.graph.name}/{file}").keys())
 
         def get_designer_from_file(self, file="designer.json"):
-            return list(load_json(f"data/{self.graph.name}/{file}").keys())
+            try:
+                designers = list(load_json(f"data/{self.graph.name}/{file}").keys())
+            except Exception as e:
+                print(e)
+                designers = []
+            return designers
 
     node = kwargs.get('node', list(graph.nodes)[0])
 

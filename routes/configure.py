@@ -19,6 +19,10 @@ configure_bp = Blueprint('configure_bp', __name__)
 @configure_bp.route('/builder/<builder_name>/configure', methods=['GET'])
 def builder(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
+
+    if not os.path.exists(f'data/{builder_name}/uploaded/'):
+        os.mkdir(f'data/{builder_name}/uploaded/')
+
     form = DynamicFormMakeMeshConf(graph)
 
     return render_template("configure.html", form=form, nodes=list(graph.nodes))
