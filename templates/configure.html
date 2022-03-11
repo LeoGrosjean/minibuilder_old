@@ -57,6 +57,17 @@
     {% endfor %}
 </form>
 
+<form method=post enctype="multipart/form-data" style="position: absolute; z-index:1; bottom: 90%; right: 5%;">
+    <table>
+    {{ form_upload.hidden_tag() }}
+    {% for field in form_upload %}
+    <tr>
+        <td>{% if field.widget.input_type != 'hidden' %} {{ field.label }} {% endif %}</td><td>{{ field }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</form>
+
 <body>
 
 {% block body %}

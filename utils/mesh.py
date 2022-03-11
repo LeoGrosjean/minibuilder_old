@@ -40,6 +40,7 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
     normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
     if np.isnan(normal_x[0]):
         normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
+    normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
     normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
 
     if anklex:
@@ -143,7 +144,7 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
     if np.isnan(normal_x[0]):
         print('x is nan')
         normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
-
+    normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
     normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
 
     mesh.apply_translation(normal_x * mesh_info.get('movex', 0) + normal_x * move_x +
@@ -199,9 +200,8 @@ def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
     normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
     if np.isnan(normal_x[0]):
         normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
-
+    normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
     normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
-
 
     normal = ','.join([str(x) for x in normal.tolist()])
     vertice = ','.join([str(x) for x in vertice.tolist()])

@@ -1,10 +1,13 @@
 import os
 
+import wtforms
 from flask_wtf import FlaskForm
+from werkzeug.datastructures import FileStorage
 from wtforms import SubmitField, SelectField, HiddenField, StringField
 from wtforms.validators import InputRequired
 
 from file_config.parts import load_json
+from wtforms import MultipleFileField
 
 
 def DynamicFormMakeMeshConf(graph, *args, **kwargs):
@@ -75,3 +78,28 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
 
 class FormCreateJson(FlaskForm):
     x = StringField("Marker", render_kw={'readonly': True})
+
+
+class FilesRequired(wtforms.validators.DataRequired):
+    """Validates that all entries are Werkzeug
+    :class:`~werkzeug.datastructures.FileStorage` objects.
+    :param message: error message
+    """
+
+    def __call__(self, form, field):
+        if not (
+            field.data and all(
+                (isinstance(entry, FileStorage) and entry)
+                for entry in field.data
+            )
+        ):
+            raise wtforms.validators.StopValidation(
+                self.message or field.gettext('This field is required.'),
+            )
+
+
+class FormUploadFile(FlaskForm):
+    files = MultipleFileField('File(s) Upload', validators=[FilesRequired()])
+    submit = SubmitField('Upload files !')
+
+

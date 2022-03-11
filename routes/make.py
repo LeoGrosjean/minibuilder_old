@@ -167,7 +167,7 @@ def builder(builder_name):
 
         for node in di_file.keys():
             scale_mesh(di_file.get(node).get('mesh'),
-                       (di_file.get(node).get('info').get('scale') or 1 )* (float(di_file.get(node).get('scale') or 1)))
+                       (di_file.get(node).get('info').get('scale') or 1) * (float(di_file.get(node).get('scale') or 1)))
 
         for edge in dfs_edges(graph):
             dest, source = edge

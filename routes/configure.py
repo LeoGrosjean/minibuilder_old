@@ -4,12 +4,16 @@ import shutil
 from ast import literal_eval
 from io import BytesIO
 import hashlib
+
+import patoolib
 from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
 import trimesh as tm
+from werkzeug.utils import secure_filename
+
 from builder.node import read_node_link_json
 from builder.scene import SceneGraphInfo
 from file_config.parts import load_json
-from forms.configure import DynamicFormMakeMeshConf
+from forms.configure import DynamicFormMakeMeshConf, FormUploadFile
 from utils.mesh_config import find_vertices
 from utils.render import scene_to_html
 
@@ -19,17 +23,34 @@ configure_bp = Blueprint('configure_bp', __name__)
 @configure_bp.route('/builder/<builder_name>/configure', methods=['GET'])
 def builder(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
-
     if not os.path.exists(f'data/{builder_name}/uploaded/'):
         os.mkdir(f'data/{builder_name}/uploaded/')
 
     form = DynamicFormMakeMeshConf(graph)
 
-    return render_template("configure.html", form=form, nodes=list(graph.nodes))
+    form_upload = FormUploadFile()
+
+    return render_template("configure.html", form=form, nodes=list(graph.nodes), form_upload=form_upload)
 
 
 @configure_bp.route('/builder/<builder_name>/configure', methods=['POST'])
 def builder_post(builder_name):
+    form_upload = FormUploadFile()
+    if form_upload.validate_on_submit():
+        files_filenames = []
+        for file in form_upload.files.data:
+            file_filename = secure_filename(file.filename)
+            file.save(f"data/{builder_name}/uploaded/{file_filename}")
+            # TODO check if compress and flatten them in uploaded
+            try:
+                patoolib.extract_archive(f"data/{builder_name}/uploaded/{file_filename}", outdir=f"data/{builder_name}/uploaded/")
+                os.remove(f"data/{builder_name}/uploaded/{file_filename}")
+                print(f"all files has been extracted from data/{builder_name}/uploaded/{file_filename}")
+            except Exception as e:
+                print(f'{file_filename} has been added to data/{builder_name}/uploaded/')
+
+        return redirect(url_for("configure_bp.builder", builder_name=builder_name))
+
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
     form_result = request.form.to_dict()
 
@@ -43,6 +64,7 @@ def builder_post(builder_name):
             "md5": hashlib.md5(open(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}", 'rb').read()).hexdigest()
         }
     }
+
     for k, v in form_result.items():
         if k.startswith('marker_') and v:
             node = graph.nodes[k.replace('marker_', '')]
@@ -60,7 +82,7 @@ def builder_post(builder_name):
                     mesh_info[form_result.get('file_name')][folder].update({ node.get('dextral'): find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]")) })
                 else:
                     mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
-
+    del mesh
     try:
         conf = load_json(f"data/{builder_name}/{conf_json}")
         if conf.get(form_result.get('category')):
@@ -97,6 +119,7 @@ def builder_post(builder_name):
             for i, node in enumerate(data['nodes']):
                 if node.get('id') == form_result.get('node'):
                     data['nodes'][i]['files'].append(conf_json)
+                    node_file.seek(0)
                     json.dump(data, node_file, indent=4)
                     print(f"{conf_json} added to files of {form_result.get('node')}!")
                     break
@@ -105,6 +128,8 @@ def builder_post(builder_name):
         json.dump(conf, outfile, indent=4)
 
     try:
+        if not os.path.exists(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"):
+            os.mkdir(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/")
         shutil.move(
             f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
             f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/")
@@ -115,7 +140,7 @@ def builder_post(builder_name):
 
     form = DynamicFormMakeMeshConf(graph, **form_result)
 
-    return render_template("configure.html", form=form, nodes=list(graph.nodes))
+    return render_template("configure.html", form=form, nodes=list(graph.nodes), form_upload=form_upload)
 
 
 @configure_bp.route('/send/<builder>/<file>/', methods=['GET', 'POST'])
