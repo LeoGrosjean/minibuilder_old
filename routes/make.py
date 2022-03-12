@@ -39,16 +39,20 @@ def utility_functions():
 @make_bp.route('/', methods=['GET', 'POST'])
 def choose_builder():
     form = ChooseBuilderForm()
-    form.builder.choices = os.listdir('data')
     if request.method == 'POST':
         results = request.form.to_dict()
-        return redirect(f"/builder/{results.get('builder')}")
+        if results.get('submit'):
+            return redirect(f"/builder/{results.get('builder')}")
+        elif results.get('add_files'):
+            return redirect(f"/builder/{results.get('builder')}/configure")
 
-    return render_template("choose_builder.html", form=form)
+    return render_template("choose_builder.html", form_header=form)
 
 
 @make_bp.route('/builder/<builder_name>', methods=['GET', 'POST'])
 def builder(builder_name):
+    form_header = ChooseBuilderForm()
+    form_header.builder.data = builder_name
     form_result = request.form.to_dict()
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
     infos = {}
@@ -142,7 +146,8 @@ def builder(builder_name):
                                     submit=form.submit_preview,
                                     dl_missing=form.download_missing_file,
                                     dl_zip=form.dl_zip,
-                                    live_edit=form.live_edit,)
+                                    live_edit=form.live_edit,
+                                    form_header=form_header)
 
         elif li_to_dl and not form_result.get('download_missing_file'):
             flash("Check field : <Download missing file> !")
@@ -151,7 +156,8 @@ def builder(builder_name):
                                    submit=form.submit_preview,
                                    dl_missing=form.download_missing_file,
                                    dl_zip=form.dl_zip,
-                                   live_edit=form.live_edit,)
+                                   live_edit=form.live_edit,
+                                   form_header=form_header)
         # MESH PROCESSING
         li_designer = []
         designer_display = {}
@@ -207,6 +213,7 @@ def builder(builder_name):
                                        dl_missing=form.download_missing_file,
                                        dl_zip=form.dl_zip,
                                        live_edit=form.live_edit,
+                                       form_header=form_header
                                        )
             # MERGE
 
@@ -303,7 +310,8 @@ def builder(builder_name):
                                    live_edit=form.live_edit,
                                    designers=designer_display,
                                    scene=scene_to_html(scene, node_dict_rotate),
-                                   node_list=node_dict_rotate
+                                   node_list=node_dict_rotate,
+                                   form_header=form_header
                                    )
 
         scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
@@ -328,7 +336,8 @@ def builder(builder_name):
                                dl_zip=form.dl_zip,
                                live_edit=form.live_edit,
                                designers=designer_display,
-                               scene=scene_to_html(scene.scene())
+                               scene=scene_to_html(scene.scene()),
+                               form_header=form_header
                                )
 
 
@@ -337,7 +346,8 @@ def builder(builder_name):
                            submit=form.submit_preview,
                            dl_missing=form.download_missing_file,
                            dl_zip=form.dl_zip,
-                           live_edit=form.live_edit)
+                           live_edit=form.live_edit,
+                           form_header=form_header)
 
 @make_bp.route('/selectform/<node>/<selection>/<builder>')
 def updateselect(node, selection, builder):

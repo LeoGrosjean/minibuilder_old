@@ -14,6 +14,8 @@ from builder.node import read_node_link_json
 from builder.scene import SceneGraphInfo
 from file_config.parts import load_json
 from forms.configure import DynamicFormMakeMeshConf, FormUploadFile
+from forms.home import ChooseBuilderForm
+from utils.compressed import extract_nested_compress
 from utils.mesh_config import find_vertices
 from utils.render import scene_to_html
 
@@ -25,30 +27,32 @@ def builder(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
     if not os.path.exists(f'data/{builder_name}/uploaded/'):
         os.mkdir(f'data/{builder_name}/uploaded/')
-
+    form_header = ChooseBuilderForm()
+    form_header.builder.data = builder_name
     form = DynamicFormMakeMeshConf(graph)
 
     form_upload = FormUploadFile()
 
-    return render_template("configure.html", form=form, nodes=list(graph.nodes), form_upload=form_upload)
+    return render_template("configure.html",
+                           form=form,
+                           nodes=list(graph.nodes),
+                           form_upload=form_upload,
+                           builder=builder_name,
+                           form_header=form_header)
 
 
 @configure_bp.route('/builder/<builder_name>/configure', methods=['POST'])
 def builder_post(builder_name):
     form_upload = FormUploadFile()
+    form_header = ChooseBuilderForm()
+    form_header.builder.data = builder_name
     if form_upload.validate_on_submit():
         files_filenames = []
         for file in form_upload.files.data:
             file_filename = secure_filename(file.filename)
             file.save(f"data/{builder_name}/uploaded/{file_filename}")
             # TODO check if compress and flatten them in uploaded
-            try:
-                patoolib.extract_archive(f"data/{builder_name}/uploaded/{file_filename}", outdir=f"data/{builder_name}/uploaded/")
-                os.remove(f"data/{builder_name}/uploaded/{file_filename}")
-                print(f"all files has been extracted from data/{builder_name}/uploaded/{file_filename}")
-            except Exception as e:
-                print(f'{file_filename} has been added to data/{builder_name}/uploaded/')
-
+            extract_nested_compress(builder_name, file_filename)
         return redirect(url_for("configure_bp.builder", builder_name=builder_name))
 
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
@@ -118,11 +122,16 @@ def builder_post(builder_name):
             data = json.load(node_file)
             for i, node in enumerate(data['nodes']):
                 if node.get('id') == form_result.get('node'):
-                    data['nodes'][i]['files'].append(conf_json)
-                    node_file.seek(0)
-                    json.dump(data, node_file, indent=4)
-                    print(f"{conf_json} added to files of {form_result.get('node')}!")
+                    folder = node.get('folder')
                     break
+
+            for i, node in enumerate(data['nodes']):
+                if node.get('folder') == folder:
+                    data['nodes'][i]['files'].append(conf_json)
+                    print(f"{conf_json} added to files of {form_result.get('node')}!")
+
+            node_file.seek(0)
+            json.dump(data, node_file, indent=4)
 
     with open(f"data/{builder_name}/{conf_json}", "w") as outfile:
         json.dump(conf, outfile, indent=4)
@@ -140,12 +149,22 @@ def builder_post(builder_name):
 
     form = DynamicFormMakeMeshConf(graph, **form_result)
 
-    return render_template("configure.html", form=form, nodes=list(graph.nodes), form_upload=form_upload)
+    return render_template("configure.html",
+                           form=form,
+                           nodes=list(graph.nodes),
+                           form_upload=form_upload,
+                           builder=builder_name,
+                           form_header=form_header
+                           )
 
 
 @configure_bp.route('/send/<builder>/<file>/', methods=['GET', 'POST'])
 def send(builder, file):
-    mesh = tm.load(f"data/{builder}/uploaded/{file}")
+    try:
+        mesh = tm.load(f"data/{builder}/uploaded/{file}")
+    except Exception as e:
+        print(e)
+        return ""
     return mesh.export(file_type='stl')
 
 

@@ -100,6 +100,6 @@ class FilesRequired(wtforms.validators.DataRequired):
 
 class FormUploadFile(FlaskForm):
     files = MultipleFileField('File(s) Upload', validators=[FilesRequired()])
-    submit = SubmitField('Upload files !')
+    submit_upload = SubmitField('Upload files !')
 
 

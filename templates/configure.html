@@ -50,14 +50,20 @@
     </div>
 {%- endmacro %}
 
+{% include "choose_builder.html" %}
 
-<form method="post" id="configure" style="position: absolute; z-index:1; color:green">
+<div style="z-index: 1; bottom: 5%; right: 5%; position: absolute">
+    <button id="vertice">select vertice</button>
+    <button id="face">select face</button>
+</div>
+
+<form method="post" id="configure" style="position: absolute; z-index:1; color:green; padding: 1%">
     {% for field in form %}
         {{ form_field(field) }}
     {% endfor %}
 </form>
 
-<form method=post enctype="multipart/form-data" style="position: absolute; z-index:1; bottom: 90%; right: 5%;">
+<form method=post enctype="multipart/form-data" style="position: absolute; z-index:1; right: 5%; padding: 1%">
     <table>
     {{ form_upload.hidden_tag() }}
     {% for field in form_upload %}

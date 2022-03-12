@@ -7,7 +7,7 @@
     }
     .box_top_right {
         position: absolute;
-        top: 4%;
+        top: 8%;
         right: 4%;
         z-index: 1;
     }
@@ -41,6 +41,7 @@
 <!--<link href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}" rel="stylesheet">-->
 
 <body>
+{% include "choose_builder.html" %}
     {% extends "flash_layout.html" %}
 {% block body %}
 
