@@ -277,6 +277,15 @@
                     "facet": 1782
                 },
                 "coef_merge": 0.2
+            },
+            "Gueronvesa Weapons Bolter Drum Ng F": {
+                "file": "GueROnVesa_Weapons_Bolter_drum_ng_f.stl",
+                "designer": "elmutanto",
+                "md5": "f2afa66cd21f3d2ebd3717ce9417b975",
+                "dextral": "right",
+                "weapon": {
+                    "facet": 531
+                }
             }
         }
     }

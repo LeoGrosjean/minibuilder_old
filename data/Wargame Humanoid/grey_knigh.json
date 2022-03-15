@@ -1,0 +1,69 @@
+{
+    "greyknight": {
+        "desc": {
+            "display": "greyknight",
+            "path": "data/Wargame Humanoid/body/greyknight/"
+        },
+        "stl": {
+            "Grey Knight Paladin Base 2": {
+                "file": "Grey Knight Paladin Base 2.stl",
+                "designer": "cornivius",
+                "md5": "21213b1a5737638e19c2963639753f5d",
+                "arm": {
+                    "left": {
+                        "vertex_list": [
+                            94430,
+                            117719
+                        ]
+                    },
+                    "right": {
+                        "vertex_list": [
+                            19285,
+                            182932
+                        ]
+                    }
+                }
+            },
+            "Grey Knight Paladin Base 1": {
+                "file": "Grey Knight Paladin Base 1.stl",
+                "designer": "cornivius",
+                "md5": "84ff6716332181466cc79ab7b2fd15eb",
+                "arm": {
+                    "left": {
+                        "vertex_list": [
+                            465,
+                            103115
+                        ]
+                    },
+                    "right": {
+                        "vertex_list": [
+                            62770,
+                            163992
+                        ]
+                    }
+                }
+            },
+            "Paladin 4": {
+                "file": "Grey Knight Paladin Base 4.stl",
+                "designer": "cornivius",
+                "md5": "a6d38dd85dba053e83147ce3a893a13d",
+                "arm": {
+                    "right": {
+                        "vertex_list": [
+                            5299,
+                            110733,
+                            111863
+                        ]
+                    },
+                    "left": {
+                        "vertex_list": [
+                            84484,
+                            127987,
+                            185537
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

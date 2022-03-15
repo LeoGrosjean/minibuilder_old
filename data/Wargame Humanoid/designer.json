@@ -1,14 +1,14 @@
 {
-    "cornivius":{
+    "cornivius": {
         "name": "@cornivius",
         "donation": "https://www.paypal.com/paypalme/cornivius",
-        "web":{
+        "web": {
             "cults3d": "https://cults3d.com/en/users/Red-warden-miniatures/creations",
             "thingiverse": "https://www.thingiverse.com/cornivius/designs"
         }
     },
-    "elmutanto":{
-        "name":"@elmutanto",
+    "elmutanto": {
+        "name": "@elmutanto",
         "donation": "https://www.paypal.com/paypalme/elmutanto",
         "web": {
             "thingiverse": "https://www.thingiverse.com/el_mutanto/designs"
@@ -36,19 +36,36 @@
     "BaconZeke": {
         "name": "@BaconZeke"
     },
-    "LoggyK":{
+    "LoggyK": {
         "name": "@LoggyK",
         "donation": "https://www.paypal.me/LoggyK",
-        "web":{
+        "web": {
             "cults3d": "https://cults3d.com/en/users/LoggyK/creations",
             "thingiverse": "https://www.thingiverse.com/LoggyK/about"
         }
     },
-    "onosindustries":{
+    "onosindustries": {
         "name": "@onosindustries",
         "donation": "https://www.cgtrader.com/onosindustries",
-        "web":{
+        "web": {
             "cgtrader": "https://www.cgtrader.com/onosindustries"
+        }
+    },
+    "Garin": {
+        "name": "@Garin",
+        "donation": "https://www.patreon.com/themakerscult/posts",
+        "web": {
+            "cgtrader": "https://www.cgtrader.com/onosindustries"
+        }
+    },
+    "Marta_PunkGirl": {
+        "name": "@Marta_PunkGirl",
+        "donation": "https://www.paypal.com/paypalme/martapolanska",
+        "web": {
+            "cgtrader": "https://www.cgtrader.com/marta-punkgirl",
+            "cults3d": "https://cults3d.com/en/users/marta_PunkGirl/creations",
+            "patreon": "https://www.patreon.com/Marta_PunkGirl",
+            "MMF": "https://www.myminifactory.com/users/Marta_PunkGirl"
         }
     }
 }

@@ -9,6 +9,7 @@
             "Backpack 1": {
                 "file": "gue_ron_vesa_backpacks1.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 1782},
                 "coef_merge": -1.1
@@ -16,6 +17,7 @@
             "Backpack Straight 2": {
                 "file": "gue_ron_vesa_backpacks_straight2.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 2304},
                 "coef_merge": -1.1
@@ -23,6 +25,7 @@
             "Backpack Straight 4": {
                 "file": "gue_ron_vesa_backpacks_straight4.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 5534},
                 "coef_merge": -1.1
@@ -30,6 +33,7 @@
             "Backpack 3": {
                 "file": "gue_ron_vesa_backpacks3.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 7020},
                 "coef_merge": -1.1
@@ -37,6 +41,7 @@
             "Backpack Straight 3": {
                 "file": "gue_ron_vesa_backpacks_straight3.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 4108},
                 "coef_merge": -1.1
@@ -44,6 +49,7 @@
             "Backpack Straight 5": {
                 "file": "gue_ron_vesa_backpacks_straight5.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 1817},
                 "coef_merge": -1.1
@@ -51,6 +57,7 @@
             "Backpack 2": {
                 "file": "gue_ron_vesa_backpacks2.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 1637},
                 "coef_merge": -1.1
@@ -58,6 +65,7 @@
             "Backpack Straight 1": {
                 "file": "gue_ron_vesa_backpacks_straight1.stl",
                 "thingiverse": 4210465,
+                "urls": ["https://www.thingiverse.com/thing:4210465"],
                 "designer": "El_Mutanto",
                 "backpack": {"facet": 1307},
                 "coef_merge": -1.1

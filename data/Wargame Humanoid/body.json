@@ -8,6 +8,7 @@
             "MK V v1": {
                 "file": "Mk_V_ver1.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 2809},
                 "leg": {"vertex_list": [4208, 30674]},
@@ -24,6 +25,7 @@
             "MK V v2": {
                 "file": "Mk_V_ver2.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 1705},
                 "leg": {"vertex_list": [2500, 17938]},
@@ -40,6 +42,7 @@
             "MK VI v1": {
                 "file": "Mk_VI_ver1.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 1516},
                 "leg": {"vertex_list": [2179, 13848]},
@@ -56,6 +59,7 @@
             "MK VI v2": {
                 "file": "Mk_VI_ver2.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 1514},
                 "leg": {"vertex_list": [2179, 13842]},
@@ -72,6 +76,7 @@
             "MK VI v3": {
                 "file": "Mk_VI_ver3.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 4424},
                 "leg": {"vertex_list": [6752, 47293]},
@@ -88,6 +93,7 @@
             "MK VII v1": {
                 "file": "Mk_VII_ver1.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 3088},
                 "leg": {"vertex_list": [4597, 32268]},
@@ -104,6 +110,7 @@
             "MK VII v2": {
                 "file": "Mk_VII_ver2.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 3102},
                 "leg": {"vertex_list": [4690, 32597]},
@@ -120,6 +127,7 @@
             "MK VII v3": {
                 "file": "Mk_VII_ver3.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 1756},
                 "leg": {"vertex_list": [2558, 18067]},
@@ -136,6 +144,7 @@
             "MK VII v4": {
                 "file": "Mk_VII_ver4.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 3251},
                 "leg": {"vertex_list": [4818, 33450]},
@@ -152,6 +161,7 @@
             "MK VII v5": {
                 "file": "Mk_VII_ver5.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 1806},
                 "leg": {"vertex_list": [2723, 18671]},
@@ -168,6 +178,7 @@
             "MK VIII": {
                 "file": "Mk_VIII.stl",
                 "thingiverse": 4248444,
+                "urls": ["https://www.thingiverse.com/thing:4248444"],
                 "designer": "cornivius",
                 "head": {"vertex": 2065},
                 "leg": {"vertex_list": [3032, 21252]},

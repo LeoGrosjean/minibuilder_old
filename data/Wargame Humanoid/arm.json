@@ -8,6 +8,7 @@
             "MK II v1": {
                 "file": "arm_1.stl",
                 "thingiverse": 3760127,
+                "urls": ["https://www.thingiverse.com/thing:3760127"],
                 "designer":"karnageking",
                 "rotate": -30,
                 "dextral": "right",
@@ -15,12 +16,13 @@
                     "facet": 30
                 },
                 "hand": {"vertex": 30407},
-                "scale": 1.14285714286
+                "scale": 1
 
             },
             "MK II v2": {
                 "file": "arm_2.stl",
                 "thingiverse": 3760127,
+                "urls": ["https://www.thingiverse.com/thing:3760127"],
                 "designer":"karnageking",
                 "rotate": -20,
                 "dextral": "right",
@@ -30,11 +32,11 @@
                 "hand": {
                     "vertex": 35238 
                 },
-                "scale": 1.14285714286
+                "scale": 1
             },
             "MK III hold a": {
                 "file": "MKIII_arm_4-a.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample",
+                "urls": ["https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"],
                 "designer":"fummelfinger",
                 "rotate": -15,
                 "dextral": "right",
@@ -44,7 +46,7 @@
             },
             "MK III hold b": {
                 "file": "MKIII_arm_4-b.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample",
+                "urls": ["https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"],
                 "designer":"fummelfinger",
                 "rotate": 20,
                 "dextral": "left",
@@ -55,6 +57,7 @@
             "Heavy 2hand": {
                 "file": "heavy_weapons_-_arms.stl",
                 "thingiverse": 4263725,
+                "urls": ["https://www.thingiverse.com/thing:4263725"],
                 "designer":"graudnov",
                 "rotate": 14,
                 "dextral": "right",
@@ -64,7 +67,7 @@
             },
             "MK X Banner": {
                 "file": "Banner_Arm.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner",
+                "urls": ["https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner"],
                 "designer": "cornivius",
                 "dextral": "left",
                 "hole": false,
@@ -73,7 +76,7 @@
             },
             "MK IV Tactical 01": {
                 "file": "tac_arms_01.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "urls": ["https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"],
                 "designer": "LoggyK",
                 "dextral": "right",
                 "hole": false,
@@ -82,7 +85,7 @@
             },
             "MK IV Tactical 02": {
                 "file": "tac_arms_02.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "urls": ["https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"],
                 "designer": "LoggyK",
                 "dextral": "right",
                 "hole": false,
@@ -91,7 +94,7 @@
             },
             "MK IV Tactical 03": {
                 "file": "tac_arms_03.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
+                "urls": ["https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"],
                 "designer": "LoggyK",
                 "dextral": "right",
                 "hole": false,

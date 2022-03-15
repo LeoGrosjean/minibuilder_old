@@ -7,6 +7,6 @@ def write_zip(file_paths):
     with ZipFile(data, 'w') as zip:
         # writing each file one by one
         for file, name in file_paths:
-            zip.write(file, name + ".stl")
+            zip.write(file, name + '.' + file.split('.')[-1])
     data.seek(0)
     return data

@@ -1,9 +1,11 @@
 import json
 import os
+import pathlib
 import shutil
 from ast import literal_eval
 from io import BytesIO
 import hashlib
+from uuid import uuid4
 
 import patoolib
 from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
@@ -26,7 +28,7 @@ configure_bp = Blueprint('configure_bp', __name__)
 def builder(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
     if not os.path.exists(f'data/{builder_name}/uploaded/'):
-        os.mkdir(f'data/{builder_name}/uploaded/')
+        pathlib.Path(f'data/{builder_name}/uploaded/').mkdir(parents=True)
     form_header = ChooseBuilderForm()
     form_header.builder.data = builder_name
     form = DynamicFormMakeMeshConf(graph)
@@ -65,9 +67,15 @@ def builder_post(builder_name):
         form_result.get('file_name'): {
             "file": form_result.get("mesh_file"),
             "designer": form_result.get('designer'),
-            "md5": hashlib.md5(open(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}", 'rb').read()).hexdigest()
+            "md5": tm.load(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}").identifier_md5,
+            "urls": [form_result.get('url')]
         }
     }
+    if form_result.get('support'):
+        mesh_info[form_result.get('file_name')]['support'] = {
+            "file": form_result.get('support'),
+            "md5": tm.load(f"data/{builder_name}/uploaded/{form_result.get('support')}").identifier_md5
+        }
 
     for k, v in form_result.items():
         if k.startswith('marker_') and v:
@@ -99,7 +107,7 @@ def builder_post(builder_name):
             conf[form_result.get('category')] = {
                 "desc": {
                     "display": form_result.get('category'),
-                    "path": f"data/{builder_name}/{form_result.get('node')}/{form_result.get('category')}/"
+                    "path": f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"
                 },
                 "stl": mesh_info
                 }
@@ -111,7 +119,7 @@ def builder_post(builder_name):
             form_result.get('category'): {
                 "desc": {
                     "display": form_result.get('category'),
-                    "path": f"data/{builder_name}/{form_result.get('node')}/{form_result.get('category')}/"
+                    "path": f"data/{builder_name}/{graph.nodes[form_result.get('node')].get('folder')}/{form_result.get('category')}/"
                 },
                 "stl": mesh_info
                 }
@@ -136,16 +144,50 @@ def builder_post(builder_name):
     with open(f"data/{builder_name}/{conf_json}", "w") as outfile:
         json.dump(conf, outfile, indent=4)
 
+    # file:
+    # TODO if file_name already exist (and is different assuming check md5 has been done) it will add uuid in file_name not in conf
     try:
         if not os.path.exists(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"):
-            os.mkdir(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/")
-        shutil.move(
-            f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
-            f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/")
-        print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
-              f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')} !")
+            pathlib.Path(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/").mkdir(
+                parents=True)
+        if form_result.get('mesh_file') in os.listdir(
+                f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"):
+            shutil.move(
+                f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
+                f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"
+                f"{uuid4()}_{form_result.get('mesh_file')}")
+            print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
+                  f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')} !")
+        else:
+            shutil.move(
+                f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
+                f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/")
+            print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
+                  f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')} !")
     except FileExistsError as e:
         print(e)
+    # support
+    if form_result.get('support'):
+        try:
+            if not os.path.exists(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/"):
+                pathlib.Path(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/").mkdir(parents=True)
+            if form_result.get('support') in os.listdir(
+                    f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/"):
+                shutil.move(
+                    f"data/{builder_name}/uploaded/{form_result.get('support')}",
+                    f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/"
+                    f"{uuid4()}_{form_result.get('support')}")
+                print(f"data/{builder_name}/uploaded/{form_result.get('support')} moved to "
+                      f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support !")
+            else:
+                shutil.move(
+                    f"data/{builder_name}/uploaded/{form_result.get('support')}",
+                    f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/")
+                print(f"data/{builder_name}/uploaded/{form_result.get('support')} moved to "
+                      f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support !")
+        except Exception as e:
+            print(e)
+
 
     form = DynamicFormMakeMeshConf(graph, **form_result)
 
@@ -208,6 +250,7 @@ def update_configure_file(builder, node, file):
 def check_md5(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
     monset = set()
+    id_folder = {}
     for k, v in graph.nodes.items():
         monset.update(v.get("files"))
 
@@ -217,11 +260,24 @@ def check_md5(builder_name):
             json_file = json.load(f)
             for v in json_file.values():
                 for mesh in v['stl'].values():
-                    di[mesh.get('md5')] = v.get('desc').get('path')
+                    try:
+                        di[mesh.get('md5')] = v.get('desc').get('path') + mesh.get('file')
+                    except Exception as e:
+                        pass
+                    if mesh.get('support'):
+                        di[mesh.get('support').get('md5')] = v.get('desc').get('path') + 'support/' + mesh.get('support').get('file')
+
+    # TODO file has md5 in conf, but name of file added is from another file
 
     for file in os.listdir(f'data/{builder_name}/uploaded'):
-        hash = hashlib.md5(open(f"data/{builder_name}/uploaded/{file}", 'rb').read()).hexdigest()
+        try:
+            hash = tm.load(f"data/{builder_name}/uploaded/{file}").identifier_md5
+        except Exception as e:
+            print(e)
+            continue
         if di.get(hash):
+            if not os.path.exists(pathlib.Path(di.get(hash)).parent):
+                pathlib.Path(di.get(hash)).parent.mkdir(parents=True)
             print(f"{file} already have a configuration ! {hash}")
             try:
                 shutil.move(

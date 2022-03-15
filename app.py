@@ -4,6 +4,7 @@ import os
 from flask import Flask
 
 from routes.configure import configure_bp
+from routes.designers import designer_bp
 from routes.make import make_bp as make_blueprint
 from routes.thingidl import thingidl_bp
 
@@ -13,6 +14,7 @@ app = Flask(__name__)
 app.register_blueprint(make_blueprint)
 app.register_blueprint(thingidl_bp)
 app.register_blueprint(configure_bp)
+app.register_blueprint(designer_bp)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_FLASK') or 'coucou_c_moi_leo'
 
@@ -23,7 +25,7 @@ def main():
         webbrowser.open_new('http://127.0.0.1:2000/')
 
     # Otherwise, continue as normal
-    app.run(host="127.0.0.1", port=2000, debug=True)
+    app.run(host="127.0.0.1", port=2000, debug=False)
 
 
 if __name__ == '__main__':

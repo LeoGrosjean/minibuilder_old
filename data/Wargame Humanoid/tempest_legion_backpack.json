@@ -1,0 +1,54 @@
+{
+    "Tempest Legion": {
+        "desc": {
+            "display": "Tempest Legion",
+            "path": "data/Wargame Humanoid/backpack/Tempest Legion/"
+        },
+        "stl": {
+            "Default 1": {
+                "file": "TL - Backpack 1.OBJ",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "designer": "Garin",
+                "md5": "d6ee37bc62d21df5b08f3b07ee6025ae",
+                "backpack": {
+                    "facet": 100
+                }
+            },
+            "Heavy Plasma Gun Pack": {
+                "file": "TL3 - LR - Heavy Plasma Gun Pack.obj",
+                "designer": "Garin",
+                "md5": "6822b81331743ff2e47e254aa4d6e929",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-ranged-pack-1/"
+                ],
+                "backpack": {
+                    "facet": 106
+                }
+            },
+            "Mk3 - Backpack 1": {
+                "file": "TL3 - Backpack 1.obj",
+                "designer": "Garin",
+                "md5": "2c8c34945ab6c19b2235a73eedc227c9",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "backpack": {
+                    "facet": 270
+                }
+            },
+            "Champion": {
+                "file": "TL - Champion - Back.obj",
+                "designer": "Garin",
+                "md5": "0df521be501f5f4fe8f3de5d813f1873",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-champion/"
+                ],
+                "backpack": {
+                    "vertex": 529
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,96 @@
 <canvas id="artifactCanvas" myattr="myattr" style="display: block; position: absolute;top: 0%;left: 0%;z-index:0; cursor: move;">
 </canvas>
 
+<style>
+    #loading-screen {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        opacity: 1;
+        transition: 1s opacity;
+    }
+
+    #loading-screen.fade-out {
+        opacity: 0;
+    }
+
+    #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #9370DB;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #BA55D3;
+        -webkit-animation: spin 3s linear infinite;
+        animation: spin 3s linear infinite;
+    }
+    #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #FF00FF;
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
+    }
+    @-webkit-keyframes spin {
+        0%   {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes spin {
+        0%   {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+</style>
+
+<section id="loading-screen">
+
+	<div id="loader"></div>
+
+</section>
+
 <script type="module">
     import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
     import {
@@ -32,12 +122,22 @@
     let file_name_field = document.getElementById('file_name')
     let path = mesh_selector.value
 
-    var loader = new STLLoader();
+    let loadingScreen;
+    let loadingManager = new THREE.LoadingManager( () => {
+
+        loadingScreen = document.getElementById( 'loading-screen' );
+		loadingScreen.classList.add( 'fade-out' );
+
+		// optional: remove loader from DOM via event listener
+		loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+
+	} );
+
+    var loader = new STLLoader( loadingManager );
     loader.load(document.URL.split('/builder')[0] + '{{ url_for("configure_bp.send", builder=builder, file="TMP")}}/'.replace('TMP', path), function(geometry) {
       var material = new THREE.MeshBasicMaterial({
         color: "gray"
       });
-      console.log(path)
       file_name_field.value = path.split('.')[0].replaceAll('_', ' ').toProperCase()
       mesh = new THREE.Mesh(geometry, material);
       mesh.renderOrder = -1
@@ -88,7 +188,6 @@
     })
     document.getElementById("face").addEventListener("click", function (){
         type_select = "face"
-        console.log(type_select)
         scene.add( line );
         renderer.domElement.removeEventListener("dblclick", select_vertice);
         renderer.domElement.addEventListener("dblclick", selectFace);
@@ -111,7 +210,6 @@
         raycaster.setFromCamera( m, camera );
         m.x = (event.clientX / window.innerWidth) * 2 - 1;
         m.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        console.log(mesh)
         let intersects = raycaster.intersectObject( mesh );
         window.intersects = intersects
 
@@ -140,10 +238,8 @@
             mesh.updateMatrix();
 
             line.geometry.applyMatrix4( mesh.matrix );
-            console.log(line)
 
             line.visible = true;
-            console.log('true')
         } else {
 
             line.visible = false;
@@ -157,7 +253,6 @@
       intscs = rc.intersectObjects(objs, false);
       if (intscs.length > 0) {
         let o = intscs[0];
-        console.log(o)
         poi.copy(o.point);
         o.object.worldToLocal(poi);
         setPos(o.faceIndex);
@@ -168,8 +263,6 @@
 
 
     function select_vertice(event) {
-        console.log(type_select)
-        console.log(event)
         if (type_select === "vertice") {
             let field_marker = document.getElementById(window.current_marker);
             let field_value = field_marker.value
@@ -202,6 +295,22 @@
         return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
     function upload_file(){
+    	loadingScreen = document.getElementById( 'removed' );
+    	loadingScreen.id = 'loading-screen'
+		loadingScreen.hidden = false
+		loadingScreen.className = ""
+		loadingManager = new THREE.LoadingManager( () => {
+
+			loadingScreen = document.getElementById( 'loading-screen' );
+			loadingScreen.id = "removed"
+			loadingScreen.classList.add( 'fade-out' );
+
+			// optional: remove loader from DOM via event listener
+			loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+
+		} );
+
+		loader = new STLLoader( loadingManager );
         path = mesh_selector.value
         objs = [];
         while (scene.children.length)
@@ -243,6 +352,12 @@
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.render(scene, camera);
+    }
+
+    function onTransitionEnd( event ) {
+	    event.target.hidden = true
+		event.target.className = '';
+	    event.target.id = 'removed'
     }
 </script>
 

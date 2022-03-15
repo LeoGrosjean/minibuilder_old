@@ -4,6 +4,8 @@ from functools import reduce
 from math import radians
 from operator import add
 from pprint import pprint
+from urllib.parse import urlparse
+
 import numpy as np
 from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
 from markupsafe import Markup
@@ -45,6 +47,8 @@ def choose_builder():
             return redirect(f"/builder/{results.get('builder')}")
         elif results.get('add_files'):
             return redirect(f"/builder/{results.get('builder')}/configure")
+        elif results.get('add_designers'):
+            return redirect(f"/builder/{results.get('builder')}/designers")
 
     return render_template("choose_builder.html", form_header=form)
 
@@ -116,27 +120,31 @@ def builder(builder_name):
         for node, mesh_infos_node in di_file.items():
             mesh_path = mesh_infos_node.get('info').get('mesh_path')
             if not os.path.isfile(mesh_path):
-                flash(f"{mesh_path} is missing")
                 li_to_dl.append(mesh_infos_node.get('info'))
 
         check_dl_li = []
-        if li_to_dl and form_result.get('download_missing_file'):
+        if li_to_dl: #and form_result.get('download_missing_file'):
             for to_dl in li_to_dl:
-                if "thingiverse" in to_dl:
-                    dl_good = download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
-                    if dl_good:
-                        flash(f"{to_dl.get('mesh_path')} has been download in Thingiverse !")
-                    else:
-                        flash(f"{to_dl.get('mesh_path')} has not been download in Thingiverse ! (something went wrong)")
-                    check_dl_li.append(dl_good)
-                elif "cults3d" in to_dl:
-                    dl_good = download_cults_file(to_dl.get('cults3d'), to_dl.get('mesh_path'))
-                elif "cgtrader" in to_dl:
-                    dl_good = download_cgt_file(product_id=to_dl.get('cgtrader').get('product_id'),
-                                                product_name=to_dl.get('cgtrader').get('product_name'),
-                                                file_id=to_dl.get('cgtrader').get('file_id'),
-                                                dest_file=to_dl.get('mesh_path')
-                        , )
+                if to_dl.get('urls'):
+                    message = ""
+                    for url in to_dl.get('urls'):
+                        message += f'<a href="{url}" target="_blank">{urlparse(url).netloc} </a><br>'
+                    flash(Markup(f"{to_dl.get('mesh_path')} can be downloaded/buy there : <br>{message}<br>Then add them compressed or not !"))
+                #if "thingiverse" in to_dl:
+                #    dl_good = download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
+                #    if dl_good:
+                #        flash(f"{to_dl.get('mesh_path')} has been download in Thingiverse !")
+                #    else:
+                #        flash(f"{to_dl.get('mesh_path')} has not been download in Thingiverse ! (something went wrong)")
+                #    check_dl_li.append(dl_good)
+                #elif "cults3d" in to_dl:
+                #    dl_good = download_cults_file(to_dl.get('cults3d'), to_dl.get('mesh_path'))
+                #elif "cgtrader" in to_dl:
+                #    dl_good = download_cgt_file(product_id=to_dl.get('cgtrader').get('product_id'),
+                #                                product_name=to_dl.get('cgtrader').get('product_name'),
+                #                                file_id=to_dl.get('cgtrader').get('file_id'),
+                #                                dest_file=to_dl.get('mesh_path')
+                #        , )"""
                 else:
                     flash(f"{to_dl.get('mesh_path')} don't exist and have no web references !")
                     check_dl_li.append(False)
@@ -150,7 +158,7 @@ def builder(builder_name):
                                     form_header=form_header)
 
         elif li_to_dl and not form_result.get('download_missing_file'):
-            flash("Check field : <Download missing file> !")
+            #flash("Check field : <Download missing file> !")
             return render_template("display.html",
                                    grid=position_matrix,
                                    submit=form.submit_preview,
@@ -243,7 +251,7 @@ def builder(builder_name):
                 for k, v in graph.get_edge_data(dest, source).items():
                     if v.get('merge'):
                         di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
-                        tmp_path = f'tmp/dl/merged_{dest}_{source}.stl'
+                        tmp_path = f'tmp/dl/merged_{dest}_{source}.' + str((di_file[dest]['mesh']._kwargs.get('file_type') or 'stl'))
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
                         del di_file[source]
@@ -318,6 +326,15 @@ def builder(builder_name):
 
         if 'dl_zip' in form_result:
             li_file_path = [(v.get('info').get('mesh_path'), k) for k, v in di_file.items()]
+            for k, v in di_file.items():
+                # TODO what if merged, dont add merged files ? because we remove node from di_file when merge True
+                if v.get('info').get('support'):
+                    li_file_path.append(
+                        (
+                            v.get('info').get('mesh_path').replace(v.get('info').get('file'), f"support/{v.get('info').get('support').get('file')}"),
+                            k + "_support"
+                        )
+                    )
             scene.export("tmp/dl/merged.stl")
             li_file_path.append(('tmp/dl/merged.stl', 'merged'))
             data = write_zip(li_file_path)
@@ -340,7 +357,6 @@ def builder(builder_name):
                                form_header=form_header
                                )
 
-
     return render_template("display.html",
                            grid=position_matrix,
                            submit=form.submit_preview,
@@ -348,6 +364,7 @@ def builder(builder_name):
                            dl_zip=form.dl_zip,
                            live_edit=form.live_edit,
                            form_header=form_header)
+
 
 @make_bp.route('/selectform/<node>/<selection>/<builder>')
 def updateselect(node, selection, builder):

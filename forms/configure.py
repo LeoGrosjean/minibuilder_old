@@ -13,8 +13,12 @@ from wtforms import MultipleFileField
 def DynamicFormMakeMeshConf(graph, *args, **kwargs):
     class FormMakeMeshConf(FlaskForm):
         add = SubmitField('add mesh !')
-        mesh_file = SelectField(label='Mesh File', choices=os.listdir(f"data/{graph.name}/uploaded/"), validators=[InputRequired()], render_kw={'hidden': False})
+        mesh_file = SelectField(label='Mesh File', choices=os.listdir(f"data/{graph.name}/uploaded/"),
+                                validators=[InputRequired()], render_kw={'hidden': False, 'style': 'width: 181'})
         file_name = StringField(label='File Name', validators=[InputRequired()], render_kw={'hidden': False})
+        support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"data/{graph.name}/uploaded/"),
+                                validators=[], render_kw={'hidden': False, 'style': 'width: 181'})
+        url = StringField(label='Url to download/buy', validators=[InputRequired()], render_kw={'hidden': False})
         node = SelectField(label=f'Node', validators=[InputRequired()], render_kw={'hidden': False})
         file = StringField(label=f'Json File', validators=[InputRequired()], render_kw={'hidden': False,
                                                                                         "list": "id_list_file"})
