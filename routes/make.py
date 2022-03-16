@@ -114,6 +114,28 @@ def builder(builder_name):
             di_file[node]['info']['mesh_path'] = \
                 f"data/{builder_name}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
 
+        # remove mesh that has no parent connector
+        li_removed = []
+        for node_rotate in [k for k, v in graph.nodes.data()]:
+            successors = list(graph.successors(node_rotate))
+            predecessor = list(graph.predecessors(node_rotate))[0] if list(graph.predecessors(node_rotate)) else None
+
+            if not di_file.get(node_rotate):
+                continue
+
+            if di_file.get(predecessor):
+                if not di_file.get(predecessor).get('info').get(di_file.get(node_rotate).get('on')):
+                    flash(
+                        f"{node_rotate} wont be display because {predecessor} don't have {di_file.get(node_rotate).get('on')} in his configuration, set it to Empty !")
+                    di_file.pop(node_rotate)
+                    li_removed.append(node_rotate)
+                    continue
+            elif predecessor in li_removed:
+                flash(
+                    f"{node_rotate} wont be display because {predecessor} don't have {di_file.get(node_rotate).get('on')} in his configuration, set it to Empty !")
+                di_file.pop(node_rotate)
+                li_removed.append(node_rotate)
+                continue
 
         # DL MISSING FILES THINGIVERSE
         li_to_dl = []
@@ -188,19 +210,21 @@ def builder(builder_name):
             try:
                 if not (di_file.get(dest) and di_file.get(source)):
                     continue
-                connect_mesh(di_file.get(source).get('mesh'),
-                             di_file.get(dest).get('mesh'),
-                             di_file.get(source).get('info'),
-                             di_file.get(dest).get('info'),
-                             on=di_file.get(source).get('on'),
-                             dextral=di_file.get(source).get('dextral'),
-                             rotate=int(di_file.get(source).get('rotate') or 0),
-                             coef_merge=float(di_file.get(source).get('merge') or 0),
-                             monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
-                             shake_rotate=int(di_file.get(source).get('shake') or 0),
-                             scale=di_file.get(source).get('info').get('scale'),
-                             move_x=float(di_file.get(source).get('movex') or 0),
-                             move_y=float(di_file.get(source).get('movey') or 0),)
+
+                if di_file.get(dest).get('info').get(graph.nodes[source].get('folder')):
+                    connect_mesh(di_file.get(source).get('mesh'),
+                                 di_file.get(dest).get('mesh'),
+                                 di_file.get(source).get('info'),
+                                 di_file.get(dest).get('info'),
+                                 on=di_file.get(source).get('on'),
+                                 dextral=di_file.get(source).get('dextral'),
+                                 rotate=int(di_file.get(source).get('rotate') or 0),
+                                 coef_merge=float(di_file.get(source).get('merge') or 0),
+                                 monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
+                                 shake_rotate=int(di_file.get(source).get('shake') or 0),
+                                 scale=di_file.get(source).get('info').get('scale'),
+                                 move_x=float(di_file.get(source).get('movex') or 0),
+                                 move_y=float(di_file.get(source).get('movey') or 0),)
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
                                         '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'

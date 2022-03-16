@@ -22,7 +22,6 @@
                 "body_jump.json",
                 "gueronvesa_body.json",
                 "onos_industries_body.json",
-                "grey_knigh.json",
                 "tempest_legion_body.json"
             ]
         },
@@ -47,8 +46,6 @@
                 "arm_chaos.json",
                 "empty.json",
                 "onos_industries_arm.json",
-                "grey_knigh_arm.json",
-                "test.json",
                 "tempest_legion_arm.json"
             ]
         },
@@ -72,8 +69,6 @@
                 "arm.json",
                 "empty.json",
                 "onos_industries_arm.json",
-                "grey_knigh_arm.json",
-                "test.json",
                 "tempest_legion_arm.json"
             ]
         },
@@ -98,8 +93,7 @@
                 "empty.json",
                 "hand_empty.json",
                 "gueronvesa_hand.json",
-                "onos_industries_weapon.json",
-                "test.json"
+                "onos_industries_weapon.json"
             ]
         },
         {
@@ -123,8 +117,7 @@
                 "empty.json",
                 "hand_empty.json",
                 "gueronvesa_hand.json",
-                "onos_industries_weapon.json",
-                "test.json"
+                "onos_industries_weapon.json"
             ]
         },
         {

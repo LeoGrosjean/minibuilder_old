@@ -1,10 +1,18 @@
+
+
+<div style="position: absolute; left: 390px">
 {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes style="z-index: 1;left: 1%; margin-top:1%; position: relative">
+  <a class="btn btn-primary" data-toggle="collapse"
+   href="#collapseFlash" role="button" aria-expanded="false" aria-controls="collapseExample" style="z-index: 1; position: relative">
+    Warning
+  </a>
+    <ul id="collapseFlash" class="flashes collapse" style="z-index: 1;left: 1%; margin-top:1%; position: relative">
     {% for message in messages %}
       <li>{{ message }}</li>
     {% endfor %}
     </ul>
   {% endif %}
 {% endwith %}
+</div>
 {% block body %}{% endblock %}
