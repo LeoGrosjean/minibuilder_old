@@ -3,7 +3,7 @@ from trimesh import util, resources
 import codecs
 
 
-def scene_to_html(scene, node_dict_rotate={}, mode='live_edit'):
+def scene_to_html(scene, node_dict_rotate={}, config_live_edit={}, mode='live_edit'):
     """
     Return HTML that will render the scene using
     GLTF/GLB encoded to base64 loaded by three.js
@@ -27,7 +27,7 @@ def scene_to_html(scene, node_dict_rotate={}, mode='live_edit'):
     elif mode == 'make_conf':
         with open('templates/template_mesh_render.jinja2') as file_:
             base = Template(file_.read())
-    base = base.render(node_dict_rotate=node_dict_rotate)
+    base = base.render(node_dict_rotate=node_dict_rotate, config_live_edit=config_live_edit)
     scene.camera
     # get export as bytes
     data = scene.export(file_type='glb')

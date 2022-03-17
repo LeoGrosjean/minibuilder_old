@@ -17,6 +17,7 @@ app.register_blueprint(configure_bp)
 app.register_blueprint(designer_bp)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_FLASK') or 'coucou_c_moi_leo'
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 def main():

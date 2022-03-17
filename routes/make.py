@@ -80,6 +80,8 @@ def builder(builder_name):
         }
         li_position.append(v.get('position'))
 
+    config_live_edit = {}
+
     position_matrix = []
     form = generateminidynamic_func(**di_form)
     for node in topological_sort(graph):
@@ -212,19 +214,35 @@ def builder(builder_name):
                     continue
 
                 if di_file.get(dest).get('info').get(graph.nodes[source].get('folder')):
-                    connect_mesh(di_file.get(source).get('mesh'),
-                                 di_file.get(dest).get('mesh'),
-                                 di_file.get(source).get('info'),
-                                 di_file.get(dest).get('info'),
-                                 on=di_file.get(source).get('on'),
-                                 dextral=di_file.get(source).get('dextral'),
-                                 rotate=int(di_file.get(source).get('rotate') or 0),
-                                 coef_merge=float(di_file.get(source).get('merge') or 0),
-                                 monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
-                                 shake_rotate=int(di_file.get(source).get('shake') or 0),
-                                 scale=di_file.get(source).get('info').get('scale'),
-                                 move_x=float(di_file.get(source).get('movex') or 0),
-                                 move_y=float(di_file.get(source).get('movey') or 0),)
+
+                    if 'submit_preview' in form_result or 'dl_zip' in form_result:
+                        connect_mesh(di_file.get(source).get('mesh'),
+                                     di_file.get(dest).get('mesh'),
+                                     di_file.get(source).get('info'),
+                                     di_file.get(dest).get('info'),
+                                     on=di_file.get(source).get('on'),
+                                     dextral=di_file.get(source).get('dextral'),
+                                     rotate=int(di_file.get(source).get('rotate') or 0),
+                                     coef_merge=float(di_file.get(source).get('merge') or 0),
+                                     monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
+                                     shake_rotate=int(di_file.get(source).get('shake') or 0),
+                                     scale=di_file.get(source).get('info').get('scale'),
+                                     move_x=float(di_file.get(source).get('movex') or 0),
+                                     move_y=float(di_file.get(source).get('movey') or 0),)
+                    elif 'live_edit' in form_result:
+                        connect_mesh(di_file.get(source).get('mesh'),
+                                     di_file.get(dest).get('mesh'),
+                                     di_file.get(source).get('info'),
+                                     di_file.get(dest).get('info'),
+                                     on=di_file.get(source).get('on'),
+                                     dextral=di_file.get(source).get('dextral'),
+                                     rotate=0,
+                                     coef_merge=0,
+                                     scale=di_file.get(source).get('info').get('scale'),
+                                     move_x=0,
+                                     move_y=0)
+
+
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
                                         '<a href="https://github.com/LeoGrosjean/MeshConfHelper" class="alert-link" target="_blank">'
@@ -259,17 +277,27 @@ def builder(builder_name):
                     continue
                 child_to_rotate.append(child)
 
-            rotate_mesh(di_file.get(source).get('mesh'),
-                        di_file.get(source).get('info'),
-                        on=di_file.get(source).get('on'),
-                        #monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
-                        #shake_rotate=int(di_file.get(source).get('shake') or 0),
-                        rotate=int(di_file.get(source).get('rotate') or 0),
-                        child_rotate=child_to_rotate,
-                        info=di_file,
-                        anklex=float(di_file.get(source).get('anklex') or 0),
-                        ankley=float(di_file.get(source).get('ankley') or 0),
-                        )
+            if 'submit_preview' in form_result or 'dl_zip' in form_result:
+                rotate_mesh(di_file.get(source).get('mesh'),
+                            di_file.get(source).get('info'),
+                            on=di_file.get(source).get('on'),
+                            #monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
+                            #shake_rotate=int(di_file.get(source).get('shake') or 0),
+                            rotate=float(di_file.get(source).get('rotate') or 0),
+                            child_rotate=child_to_rotate,
+                            info=di_file,
+                            anklex=float(di_file.get(source).get('anklex') or 0),
+                            ankley=float(di_file.get(source).get('ankley') or 0),
+                            )
+            elif 'live_edit' in form_result:
+                config_live_edit[source] = {
+                    "rotate": int(di_file.get(source).get('rotate') or 0),
+                    "merge": float(di_file.get(source).get('merge') or 0),
+                    "move_x": float(di_file.get(source).get('movex') or 0),
+                    "move_y": float(di_file.get(source).get('movey') or 0),
+                    "anklex": float(di_file.get(source).get('anklex') or 0),
+                    "ankley": float(di_file.get(source).get('ankley') or 0)
+                }
 
             if 'dl_zip' in form_result:
                 for k, v in graph.get_edge_data(dest, source).items():
@@ -341,9 +369,9 @@ def builder(builder_name):
                                    dl_zip=form.dl_zip,
                                    live_edit=form.live_edit,
                                    designers=designer_display,
-                                   scene=scene_to_html(scene, node_dict_rotate),
+                                   scene=scene_to_html(scene, node_dict_rotate, config_live_edit),
                                    node_list=node_dict_rotate,
-                                   form_header=form_header
+                                   form_header=form_header,
                                    )
 
         scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
