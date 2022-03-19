@@ -55,13 +55,15 @@
                 {% elif k == "movey" %}
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveY
                 {% elif k == "bitz" %}
-                    {% for bitz_form in field %}
-                        {{ bitz_form.bitz_label }}
-                        <p class="bg-light" style="z-index:1;">
-                            {{ bitz_form.bitz_label.data }} {{ bitz_form.bitz_select }} {{ bitz_form.bitz_list }}
-                            {{change_bitz_choice(bitz_form.bitz_select)}}
-                        </p>
-                    {% endfor %}
+                    <div id="{{field.id}}">
+                        {% for bitz_form in field %}
+                            {{ bitz_form.bitz_label }}
+                            <p class="bg-light" style="z-index:1;">
+                                {{ bitz_form.bitz_label.data }} {{ bitz_form.bitz_select }} {{ bitz_form.bitz_list }}
+                                {{change_bitz_choice(bitz_form.bitz_select)}}
+                            </p>
+                        {% endfor %}
+                     </div>
                 {% endif %}
             </p>
         {% endfor %}
@@ -105,9 +107,21 @@
                     }
                     choice_field_{{row['select'].id}}.innerHTML = optionHTML
                     link_edit_{{row['select'].id}}.href = "/edit/" + builder + "/" + choice_field_{{row['select'].id}}.id.replace('_list', '') + '/' + select_field_{{row['select'].id}}.value + '/' + choice_field_{{row['select'].id}}.value + '/'
+
+                    fetch("/selectformbitz/bitz/" + builder + "/" + "{{ row['select'].id.replace('_select', '') }}/" + selection + "/" + data[0][0]).then(function (response) {
+                        response.text().then(function (form_data) {
+
+                            document.getElementById("{{ row['select'].id.replace('_select', '') }}_bitz").innerHTML = form_data;
+                            var parser = new DOMParser();
+                            var doc = parser.parseFromString(form_data, "text/html");
+                            var scripts_ = doc.getElementsByTagName('script')
+                            for (let i = 0; i < scripts_.length; i++) {
+                                eval(scripts_[i].innerHTML)
+                            }
+                        })
+                    })
                 })
             })
-
         }
 
         choice_field_{{row['select'].id}}.onchange = function () {
@@ -127,5 +141,4 @@
         }
         collapse_{{ row['select'].id }}.className = localStorage["{{ row['select'].id }}-collapse"]
     </script>
-
 {% endfor %}

@@ -34,9 +34,21 @@
                 },
                 "bitzs": [
                     {
-                        "name": "socle",
+                        "name": "right belt",
                         "bitz": {
-                            "vertex": 36983
+                            "vertex_list": [
+                                3295,
+                                24768
+                            ]
+                        }
+                    },
+                    {
+                        "name": "left belt",
+                        "bitz": {
+                            "vertex_list": [
+                                18098,
+                                18099
+                            ]
                         }
                     }
                 ]

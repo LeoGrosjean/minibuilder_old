@@ -1,0 +1,21 @@
+{
+    "test": {
+        "desc": {
+            "display": "test",
+            "path": "data/Wargame Humanoid/bitz/test/"
+        },
+        "stl": {
+            "32mm Round Base": {
+                "file": "32mm Round Base.obj",
+                "designer": "Garin",
+                "md5": "6dc639da1fe853d2720a3e86bbd2c87d",
+                "urls": [
+                    "test"
+                ],
+                "bitz": {
+                    "facet": 161
+                }
+            }
+        }
+    }
+}

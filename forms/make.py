@@ -69,3 +69,18 @@ def dynamic_BitzDisplay(*args, **kwargs):
                                   default=list(kwargs.get('bitz_choices'))[0], choices=kwargs.get('bitz_choices'))
     return BitzDisplay
 
+
+def dynamic_FieldBitz(*args, **kwargs):
+    class FieldBitz(FlaskForm):
+        hide = HiddenField()
+    setattr(FieldBitz, f"{kwargs.get('node')}_bitz",
+            FieldList(
+                FormField(dynamic_BitzDisplay(
+                    bitz_select=kwargs.get('bitzs').keys(),
+                    bitz_choices=kwargs.get('bitzs')[list(kwargs.get('bitzs').keys())[0]]['stl'].keys())
+                ),
+                min_entries=0,
+                max_entries=8,
+                validators=[InputRequired()]
+            ))
+    return FieldBitz

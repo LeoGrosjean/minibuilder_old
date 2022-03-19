@@ -5,7 +5,8 @@
         "name": "Wargame Humanoid",
         "designer_files": [
             "designer.json"
-        ]
+        ],
+        "bitz_files": ["empty.json", "test.json"]
     },
     "nodes": [
         {
@@ -15,7 +16,8 @@
             "permissions": [
                 "select",
                 "list",
-                "scale"
+                "scale",
+                "bitz"
             ],
             "files": [
                 "body.json",
@@ -39,7 +41,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "arm.json",
@@ -63,7 +66,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "arm.json",
@@ -86,7 +90,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "hand.json",
@@ -110,7 +115,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "hand.json",
@@ -134,7 +140,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "empty.json",
@@ -155,7 +162,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "empty.json",
@@ -175,7 +183,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "leg.json",
@@ -198,7 +207,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "head.json",
@@ -221,7 +231,8 @@
                 "anklex",
                 "ankley",
                 "movex",
-                "movey"
+                "movey",
+                "bitz"
             ],
             "files": [
                 "backpack.json",

@@ -7,7 +7,8 @@ from pprint import pprint
 from urllib.parse import urlparse
 
 import numpy as np
-from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response, \
+    render_template_string
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
@@ -15,13 +16,16 @@ from trimesh.transformations import euler_matrix
 
 #from utils.cgtrader import download_cgt_file
 #from utils.cults import download_cults_file
+from wtforms import FieldList, FormField
+from wtforms.validators import InputRequired
+
 from utils.graph import get_successors
 from utils.render import scene_to_html
 
 from builder.node import read_node_link_json
 from file_config.parts import load_json
 from forms.home import ChooseBuilderForm
-from forms.make import generateminidynamic_func
+from forms.make import generateminidynamic_func, dynamic_BitzDisplay, dynamic_FieldBitz
 from utils.dict import deep_get
 from utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh
 from utils.thingiverse import download_object
@@ -114,6 +118,7 @@ def builder(builder_name):
         position_matrix.append(di_permission)
 
     if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result or 'live_edit' in form_result):
+        li_removed = []
         di_file = {}
         for node in topological_sort(graph):
             select = form_result.get(f'{node}_select')
@@ -121,6 +126,7 @@ def builder(builder_name):
             folder = graph.nodes.data()[node].get('folder')
 
             if select == 'Empty':
+                li_removed.append(node)
                 continue
 
             di_file[node] = {
@@ -140,12 +146,19 @@ def builder(builder_name):
                 f"data/{builder_name}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
 
         # remove mesh that has no parent connector
-        li_removed = []
+
         for node_rotate in [k for k, v in graph.nodes.data()]:
             successors = list(graph.successors(node_rotate))
             predecessor = list(graph.predecessors(node_rotate))[0] if list(graph.predecessors(node_rotate)) else None
 
             if not di_file.get(node_rotate):
+                continue
+
+            if predecessor in li_removed:
+                flash(
+                    f"{node_rotate} wont be display because predecessor {predecessor} is set to Empty !")
+                di_file.pop(node_rotate)
+                li_removed.append(node_rotate)
                 continue
 
             if di_file.get(predecessor):
@@ -474,3 +487,63 @@ def updateselectbitz(selection, builder):
     response = make_response(json.dumps(choices))
     response.content_type = 'application/jsons'
     return response
+
+
+jinja_string = """
+{% macro change_bitz_choice(bitz_field) %}
+<script>
+    let select_field_{{bitz_field.id.replace('-', '_')}} = document.getElementById("{{bitz_field.id}}")
+    let choice_field_{{bitz_field.id.replace('-', '_')}} = document.getElementById("{{bitz_field.id.replace('-bitz_select', '-bitz_list')}}")
+
+    select_field_{{bitz_field.id.replace('-', '_')}}.onchange = function () {
+        selection = select_field_{{bitz_field.id.replace('-', '_')}}.value;
+
+        fetch("/selectformbitz/bitz/" + selection + "/" + "{{builder}}").then(function (response) {
+            response.json().then(function (data) {
+                let optionHTML = '';
+                for (choice in data) {
+                    optionHTML += '<option value="' + data[choice][0] + '">' + data[choice][1] + '</option>';
+                }
+                choice_field_{{bitz_field.id.replace('-', '_')}}.innerHTML = optionHTML
+            })
+        })
+
+    }
+</script>
+
+{% endmacro %}
+<div id="{{form.id}}">
+    {% for bitz_form in form %}
+        
+        {{ bitz_form.bitz_label }}
+        <p class="bg-light" style="z-index:1;">
+            {{ bitz_form.bitz_label.data }} {{ bitz_form.bitz_select }} {{ bitz_form.bitz_list }}
+            {{change_bitz_choice(bitz_form.bitz_select)}}
+        </p>
+    {% endfor %}
+ </div>
+"""
+
+
+@make_bp.route('/selectformbitz/bitz/<builder>/<node>/<category>/<selection>/')
+def updatebitz(builder, node, category, selection):
+    builder_name = builder
+    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    infos = {}
+    for json_file in graph.nodes[node].get('files'):
+        infos.update(load_json(f"data/{builder_name}/{json_file}"))
+
+    bitzs = {}
+    for bitz_json_file in graph.graph.get('bitz_files', []):
+        bitzs.update(load_json(f"data/{builder_name}/{bitz_json_file}"))
+
+    form = dynamic_FieldBitz(node=node, bitzs=bitzs)()
+
+    curr_file = infos[category]['stl'][selection]
+    if curr_file.get('bitzs'):
+        for i, bitz in enumerate(curr_file.get('bitzs')):
+            bitz_form = getattr(form, f"{node}_bitz")
+            bitz_form.append_entry()
+            bitz_form.entries[-1].bitz_label.data = bitz.get('name')
+
+    return render_template_string(jinja_string, form=getattr(form, f"{node}_bitz"), builder=builder)
