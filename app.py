@@ -5,6 +5,7 @@ from flask import Flask
 
 from routes.configure import configure_bp
 from routes.designers import designer_bp
+from routes.edit_file import edit_file_bp
 from routes.make import make_bp as make_blueprint
 from routes.thingidl import thingidl_bp
 
@@ -15,6 +16,7 @@ app.register_blueprint(make_blueprint)
 app.register_blueprint(thingidl_bp)
 app.register_blueprint(configure_bp)
 app.register_blueprint(designer_bp)
+app.register_blueprint(edit_file_bp)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_FLASK') or 'coucou_c_moi_leo'
 app.config["TEMPLATES_AUTO_RELOAD"] = True

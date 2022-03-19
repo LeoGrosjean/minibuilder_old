@@ -8,11 +8,22 @@
             "MK V v1": {
                 "file": "Mk_V_ver1.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 2809},
-                "leg": {"vertex_list": [4208, 30674]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 2809
+                },
+                "leg": {
+                    "vertex_list": [
+                        4208,
+                        30674
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 8653
@@ -20,16 +31,35 @@
                     "right": {
                         "facet": 11628
                     }
-                }
+                },
+                "bitzs": [
+                    {
+                        "name": "socle",
+                        "bitz": {
+                            "vertex": 36983
+                        }
+                    }
+                ]
             },
             "MK V v2": {
                 "file": "Mk_V_ver2.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 1705},
-                "leg": {"vertex_list": [2500, 17938]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 1705
+                },
+                "leg": {
+                    "vertex_list": [
+                        2500,
+                        17938
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 8653
@@ -42,11 +72,22 @@
             "MK VI v1": {
                 "file": "Mk_VI_ver1.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 1516},
-                "leg": {"vertex_list": [2179, 13848]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 1516
+                },
+                "leg": {
+                    "vertex_list": [
+                        2179,
+                        13848
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 5212
@@ -59,11 +100,22 @@
             "MK VI v2": {
                 "file": "Mk_VI_ver2.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 1514},
-                "leg": {"vertex_list": [2179, 13842]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 1514
+                },
+                "leg": {
+                    "vertex_list": [
+                        2179,
+                        13842
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 5212
@@ -76,11 +128,22 @@
             "MK VI v3": {
                 "file": "Mk_VI_ver3.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 4424},
-                "leg": {"vertex_list": [6752, 47293]},
-                "backpack": {"vertex": 10},
+                "head": {
+                    "vertex": 4424
+                },
+                "leg": {
+                    "vertex_list": [
+                        6752,
+                        47293
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
                 "arm": {
                     "left": {
                         "facet": 17673
@@ -93,11 +156,22 @@
             "MK VII v1": {
                 "file": "Mk_VII_ver1.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 3088},
-                "leg": {"vertex_list": [4597, 32268]},
-                "backpack": {"vertex": 10},
+                "head": {
+                    "vertex": 3088
+                },
+                "leg": {
+                    "vertex_list": [
+                        4597,
+                        32268
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
                 "arm": {
                     "left": {
                         "facet": 15920
@@ -110,11 +184,22 @@
             "MK VII v2": {
                 "file": "Mk_VII_ver2.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 3102},
-                "leg": {"vertex_list": [4690, 32597]},
-                "backpack": {"vertex": 10},
+                "head": {
+                    "vertex": 3102
+                },
+                "leg": {
+                    "vertex_list": [
+                        4690,
+                        32597
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
                 "arm": {
                     "left": {
                         "facet": 15920
@@ -127,11 +212,22 @@
             "MK VII v3": {
                 "file": "Mk_VII_ver3.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 1756},
-                "leg": {"vertex_list": [2558, 18067]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 1756
+                },
+                "leg": {
+                    "vertex_list": [
+                        2558,
+                        18067
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 9785
@@ -144,11 +240,22 @@
             "MK VII v4": {
                 "file": "Mk_VII_ver4.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 3251},
-                "leg": {"vertex_list": [4818, 33450]},
-                "backpack": {"vertex": 10},
+                "head": {
+                    "vertex": 3251
+                },
+                "leg": {
+                    "vertex_list": [
+                        4818,
+                        33450
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
                 "arm": {
                     "left": {
                         "facet": 15920
@@ -161,11 +268,22 @@
             "MK VII v5": {
                 "file": "Mk_VII_ver5.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 1806},
-                "leg": {"vertex_list": [2723, 18671]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 1806
+                },
+                "leg": {
+                    "vertex_list": [
+                        2723,
+                        18671
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 9785
@@ -178,11 +296,22 @@
             "MK VIII": {
                 "file": "Mk_VIII.stl",
                 "thingiverse": 4248444,
-                "urls": ["https://www.thingiverse.com/thing:4248444"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444"
+                ],
                 "designer": "cornivius",
-                "head": {"vertex": 2065},
-                "leg": {"vertex_list": [3032, 21252]},
-                "backpack": {"vertex": 8},
+                "head": {
+                    "vertex": 2065
+                },
+                "leg": {
+                    "vertex_list": [
+                        3032,
+                        21252
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
                 "arm": {
                     "left": {
                         "facet": 13145

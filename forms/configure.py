@@ -40,7 +40,7 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
             self.category.default = kwargs.get('category', self.category.choices[0])
 
             self.designer.choices = self.get_designer_from_file()
-            self.designer.default = kwargs.get('category', self.designer.choices[0] if self.designer.choices else [])
+            self.designer.default = kwargs.get('designer', self.designer.choices[0] if self.designer.choices else [])
 
         def get_node_choices(self):
             nodes = set()

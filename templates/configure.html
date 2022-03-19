@@ -56,15 +56,25 @@
     <button id="check_md5">Auto add files with MD5 !</button>
 </div>
 
-<div style="z-index: 2; bottom: 5%; right: 5%; position: absolute">
-    <button id="vertice">select vertice</button>
-    <button id="face">select face</button>
-</div>
 
-<form method="post" id="configure" style="position: absolute; z-index:2; color:green; padding: 1%">
-    {% for field in form %}
-        {{ form_field(field) }}
-    {% endfor %}
+
+<form method="post" id="configure" >
+    <div style="position: absolute; z-index:2; padding: 1%">
+        {% for field in form %}
+            {% if not field.id.startswith('marker') %}
+                {{ form_field(field) }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div style="z-index: 2; top: 35%; right: 5%; position: absolute;">
+        {% for field in form %}
+            {% if field.id.startswith('marker') %}
+                {{ form_field(field) }}
+            {% endif %}
+        {% endfor %}
+        <button onclick="return false;" id="vertice">select vertice</button>
+        <button onclick="return false;" id="face">select face</button>
+    </div>
 </form>
 
 <form method=post enctype="multipart/form-data" style="position: absolute; z-index:2; right: 5%; padding: 1%">

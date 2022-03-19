@@ -6,7 +6,7 @@
         },
         "stl": {
             "Bolter Drum NG G": {
-                "file": "GueROnVesa_Weapons_Bolter_drum_ng_g.stl",
+                "files_conf.get(category).get('stl')": "GueROnVesa_Weapons_Bolter_drum_ng_g.stl",
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",

@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, SelectMultipleField, SubmitField, IntegerField, BooleanField, FloatField
+from wtforms import SelectField, SelectMultipleField, SubmitField, IntegerField, BooleanField, FloatField, FieldList, \
+    FormField
 from wtforms.validators import InputRequired
 
 from wtforms.widgets import NumberInput
@@ -15,9 +16,9 @@ def generateminidynamic_func(*args, **kwargs):
 
     for k, v in kwargs.items():
         setattr(GenerateMiniDynamic, f"{k}_select",
-                SelectField(label=f'{v.get("label")}', choices=v.get('select'), validators=[InputRequired()]))
+                SelectField(label=f'{v.get("label")}', default=list(v.get('select'))[0], choices=v.get('select'), validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_list",
-                SelectField(label=v.get("label"), choices=list(zip(v.get('choices'), v.get('choices'))), validators=[InputRequired()]))
+                SelectField(label=v.get("label"), default=list(v.get('choices'))[0], choices=list(zip(v.get('choices'), v.get('choices'))), validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_rotate",
                 IntegerField(f'{v.get("label")} Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1), validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_anklex",
@@ -42,6 +43,13 @@ def generateminidynamic_func(*args, **kwargs):
         setattr(GenerateMiniDynamic, f"{k}_movey",
                 FloatField(f'{v.get("label")} MoveY', default=0, widget=NumberInput(min=-4, max=4, step=0.01),
                            validators=[InputRequired()]))
+        setattr(GenerateMiniDynamic, f"{k}_bitz",
+                FieldList(
+                    FormField(BitzDisplay),
+                    min_entries=0,
+                    max_entries=8, validators=[InputRequired()]
+                )
+                )
     return GenerateMiniDynamic()
 
 
@@ -49,3 +57,8 @@ class MissingFiles(FlaskForm):
     missing_list = SelectMultipleField(label='Missing Files')
     yes = SubmitField('Yay, download them !')
     no = SubmitField("I don't want to download them.")
+
+
+class BitzDisplay(FlaskForm):
+    bitz_select = SelectField(label=f'Category', validators=[InputRequired()])
+    bitz_list = SelectField(label='File', validators=[InputRequired()])

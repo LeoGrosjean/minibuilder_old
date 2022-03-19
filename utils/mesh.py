@@ -209,3 +209,62 @@ def get_mesh_normal_position(mesh, info, on, inverse_norm=False):
     normal_y = ','.join([str(x) for x in normal_y.tolist()])
 
     return normal, vertice, normal_x, normal_y
+
+
+def get_mesh_normal_position_edit(mesh, info, on, dextral=None, inverse_norm=False):
+    if dextral:
+        if "vertex" in info[on][dextral]:
+            normal = mesh.vertex_normals[info[on][dextral]["vertex"]]
+            vertice = mesh.vertices[info[on][dextral]["vertex"]]
+        elif "facet" in info[on][dextral]:
+            normal = mesh.facets_normal[info[on][dextral]["facet"]]
+            vertice = get_center_facet_index(mesh, info[on][dextral]["facet"])
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
+        elif "vertex_list" in info[on][dextral]:
+            normal = get_mean_vertex_normal_list(mesh, info[on][dextral]["vertex_list"])
+            vertice = get_mean_vertex_list(mesh, info[on][dextral]["vertex_list"])
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
+    else:
+        if "vertex" in info[on]:
+            normal = mesh.vertex_normals[info[on]["vertex"]]
+            vertice = mesh.vertices[info[on]["vertex"]]
+        elif "facet" in info[on]:
+            normal = mesh.facets_normal[info[on]["facet"]]
+            vertice = get_center_facet_index(mesh, info[on]["facet"])
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
+        elif "vertex_list" in info[on]:
+            normal = get_mean_vertex_normal_list(mesh, info[on]["vertex_list"])
+            vertice = get_mean_vertex_list(mesh, info[on]["vertex_list"])
+            try:
+                if np.abs(sum(normal)) != 1:
+                    normal /= np.abs(sum(normal))
+            except Exception as e:
+                print(e)
+
+    if inverse_norm:
+        normal = normal * -1
+
+    normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+    if np.isnan(normal_x[0]):
+        normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
+    normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+    normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+
+    normal = ','.join([str(x) for x in normal.tolist()])
+    vertice = ','.join([str(x) for x in vertice.tolist()])
+    normal_x = ','.join([str(x) for x in normal_x.tolist()])
+    normal_y = ','.join([str(x) for x in normal_y.tolist()])
+
+    return normal, vertice, normal_x, normal_y

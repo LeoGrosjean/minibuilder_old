@@ -59,6 +59,7 @@ def builder(builder_name):
     form_header.builder.data = builder_name
     form_result = request.form.to_dict()
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
+
     infos = {}
     for node_name in graph.nbunch_iter():
         infos[node_name] = {}
@@ -78,6 +79,7 @@ def builder(builder_name):
             'select':  infos[node_name].keys(),
             'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys()
         }
+
         li_position.append(v.get('position'))
 
     config_live_edit = {}
@@ -88,6 +90,8 @@ def builder(builder_name):
         di_permission = {}
         for permission in graph.nodes[node].get('permissions'):
             di_permission[permission] = getattr(form, f"{node}_{permission}")
+
+        di_permission['builder_name'] = builder_name
         position_matrix.append(di_permission)
 
     if request.method == 'POST' and ('submit_preview' in form_result or 'dl_zip' in form_result or 'live_edit' in form_result):

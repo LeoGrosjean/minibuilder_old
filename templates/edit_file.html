@@ -1,0 +1,88 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', False) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="control-group {% if field.errors %}error{% endif %}">
+        <div class="controls" >
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_, **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+            {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                {% set class_ = class_ + ' input-xlarge' %}
+            {% elif field.type == 'FileField' %}
+                {% set class_ = class_ + ' input-file' %}
+            {% endif %}
+            {% if field.render_kw %}
+                {% if not field.render_kw.get('hidden') %}
+                    <p id="text_{{ field.id }}">{{ field.label.text|safe }}</p>
+                {% endif %}
+                {% if field.render_kw.get('hidden') %}
+                    <p id="text_{{ field.id }}" hidden>{{ field.label.text|safe }}</p>
+                {% endif %}
+            {% endif %}
+                {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.render_kw %}
+                {% if field.render_kw.get('list') %}
+                    <datalist id="id_list_{{ field.id }}">
+                        {% for entry in field.choices %}
+                        <option value={{ entry }}>
+                        {% endfor %}
+                    </datalist>
+                {% endif %}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% include "choose_builder.html" %}
+
+<form method="post" id="configure" >
+    <div style="position: absolute; z-index:2; padding: 1%">
+        {% for field in form %}
+            {% if not (field.id.endswith('marker') or field.id.startswith('marker')) %}
+                {{ form_field(field) }}
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    <div style="z-index: 2; top: 10%; right: 5%; position: absolute;">
+        {% for field in form %}
+            {% if field.id.endswith('marker') or field.id.startswith('marker') %}
+                {{ form_field(field) }}
+            {% endif %}
+        {% endfor %}
+        <button onclick="return false;" id="vertice" style="margin-top: 10%">select vertice</button>
+        <button onclick="return false;" id="face" style="margin-top: 10%">select face</button>
+    </div>
+</form>
+
+<body>
+
+{% block body %}
+
+
+
+{% include "edit_file_canvas.html" %}
+{% include "form.html" %}
+
+{% endblock %}
+
+
+
+</body>

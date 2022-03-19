@@ -48,6 +48,21 @@
                 "backpack": {
                     "vertex": 529
                 }
+            },
+            "Sniper - Radio": {
+                "file": "TL - Backpack 2 - Radio.obj",
+                "designer": "Garin",
+                "md5": "b73019e21adaa5c807c6df12093f9fad",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-heavy-snipers/"
+                ],
+                "support": {
+                    "file": "TL - Backpack 2 - Radio - Supported.obj",
+                    "md5": "3faf0cad34057903910f67803d74436b"
+                },
+                "backpack": {
+                    "vertex": 1617
+                }
             }
         }
     }

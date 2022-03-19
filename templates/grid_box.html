@@ -11,6 +11,8 @@
             <p class="bg-light" style="z-index:1;">
                 {% if k == "list" %}
                     {{ field }}
+                    <a id="{{field.id[:-5]}}_edit" target="_blank" href="/edit/{{field_dict.get('builder_name')}}/{{field.id[:-5]}}/{{field_dict['select'].default}}/{{field.default}}/">Edit</a>
+
                 {% elif k == "rotate" %}
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° rotation
                 {% elif k == "shake" %}
@@ -52,10 +54,12 @@
 
 {% for row in grid %}
     <script>
+        let link_edit_{{row['select'].id}} = document.getElementById("{{row['list'].id[:-5]}}_edit")
         let select_field_{{row['select'].id}} = document.getElementById("{{row['select'].id}}")
         let choice_field_{{row['select'].id}} = document.getElementById("{{row['list'].id}}")
         builder = window.location.href.split('/')
         builder = builder[builder.length -1]
+
 
         select_field_{{row['select'].id}}.onchange = function () {
             selection = select_field_{{row['select'].id}}.value;
@@ -67,8 +71,14 @@
                         optionHTML += '<option value="' + data[choice][0] + '">' + data[choice][1] + '</option>';
                     }
                     choice_field_{{row['select'].id}}.innerHTML = optionHTML
+                    link_edit_{{row['select'].id}}.href = "/edit/" + builder + "/" + choice_field_{{row['select'].id}}.id.replace('_list', '') + '/' + select_field_{{row['select'].id}}.value + '/' + choice_field_{{row['select'].id}}.value + '/'
                 })
             })
+
+        }
+
+        choice_field_{{row['select'].id}}.onchange = function () {
+            link_edit_{{row['select'].id}}.href = "/edit/" + builder + "/" + choice_field_{{row['select'].id}}.id.replace('_list', '') + '/' + select_field_{{row['select'].id}}.value + '/' + choice_field_{{row['select'].id}}.value + '/'
         }
 
     </script>

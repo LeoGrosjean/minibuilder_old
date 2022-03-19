@@ -859,6 +859,22 @@
                 "arm": {
                     "vertex": 48106
                 }
+            },
+            "Sniper - Heavy Rifle 1": {
+                "file": "TL - Heavy Sniper Rifle - L1.obj",
+                "designer": "Garin",
+                "md5": "2d1500c86f52f7da11a034bd3dd9dfc6",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-heavy-snipers/"
+                ],
+                "support": {
+                    "file": "TL - Heavy Sniper Rifle - L1 - Supported.obj",
+                    "md5": "8f720324f2bba0fb810aa9283e61b171"
+                },
+                "dextral": "left",
+                "arm": {
+                    "facet": 28
+                }
             }
         }
     }
