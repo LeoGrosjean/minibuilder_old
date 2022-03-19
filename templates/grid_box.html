@@ -1,3 +1,28 @@
+{% macro change_bitz_choice(bitz_field) %}
+    <script>
+        let select_field_{{bitz_field.id.replace('-', '_')}} = document.getElementById("{{bitz_field.id}}")
+        let choice_field_{{bitz_field.id.replace('-', '_')}} = document.getElementById("{{bitz_field.id.replace('-bitz_select', '-bitz_list')}}")
+        builder = window.location.href.split('/')
+        builder = builder[builder.length -1]
+
+
+        select_field_{{bitz_field.id.replace('-', '_')}}.onchange = function () {
+            selection = select_field_{{bitz_field.id.replace('-', '_')}}.value;
+
+            fetch("/selectformbitz/bitz/" + selection + "/" + builder).then(function (response) {
+                response.json().then(function (data) {
+                    let optionHTML = '';
+                    for (choice in data) {
+                        optionHTML += '<option value="' + data[choice][0] + '">' + data[choice][1] + '</option>';
+                    }
+                    choice_field_{{bitz_field.id.replace('-', '_')}}.innerHTML = optionHTML
+                })
+            })
+
+        }
+    </script>
+
+{% endmacro %}
 {% macro display_block(field_dict, value='', type='text', size=20) %}
 <button type="button" id="{{field_dict['select'].id}}-button" class="btn btn-toggle align-items-center rounded" data-toggle="collapse" data-target="#{{ field_dict['select'].id}}-collapse" aria-controls="{{ field_dict['select'].id}}-collapse" style="z-index:1;">
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
@@ -29,6 +54,14 @@
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveX
                 {% elif k == "movey" %}
                     {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveY
+                {% elif k == "bitz" %}
+                    {% for bitz_form in field %}
+                        {{ bitz_form.bitz_label }}
+                        <p class="bg-light" style="z-index:1;">
+                            {{ bitz_form.bitz_label.data }} {{ bitz_form.bitz_select }} {{ bitz_form.bitz_list }}
+                            {{change_bitz_choice(bitz_form.bitz_select)}}
+                        </p>
+                    {% endfor %}
                 {% endif %}
             </p>
         {% endfor %}

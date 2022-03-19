@@ -69,6 +69,10 @@ def builder(builder_name):
     for file in graph.graph.get('designer_files', []):
         designers.update(load_json(f"data/{builder_name}/{file}"))
 
+    bitzs = {}
+    for file in graph.graph.get('bitz_files', []):
+        bitzs.update(load_json(f"data/{builder_name}/{file}"))
+
     di_form = {}
     li_position = []
     for node_name, v in graph.nodes.data():
@@ -77,7 +81,9 @@ def builder(builder_name):
         di_form[node_name] = {
             'label': v.get('label'),
             'select':  infos[node_name].keys(),
-            'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys()
+            'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys(),
+            'bitz_select': bitzs.keys(),
+            'bitz_choices': bitzs[list(bitzs.keys())[0]]['stl'].keys()
         }
 
         li_position.append(v.get('position'))
@@ -86,6 +92,19 @@ def builder(builder_name):
 
     position_matrix = []
     form = generateminidynamic_func(**di_form)
+
+    if request.method == 'GET':
+        for node_name, v in graph.nodes.data():
+            choices_values = list(infos[node_name].keys())
+            cur_cat = choices_values[0]
+            curr_file_label = list(infos[node_name][cur_cat]['stl'].keys())[0]
+            curr_file = infos[node_name][cur_cat]['stl'][curr_file_label]
+            if curr_file.get('bitzs'):
+                for i, bitz in enumerate(curr_file.get('bitzs')):
+                    bitz_form = getattr(form, f"{node_name}_bitz")
+                    bitz_form.append_entry()
+                    bitz_form.entries[-1].bitz_label.data = bitz.get('name')
+
     for node in topological_sort(graph):
         di_permission = {}
         for permission in graph.nodes[node].get('permissions'):
@@ -436,6 +455,21 @@ def updateselect(node, selection, builder):
         designers.update(load_json(f"data/{builder_name}/{file}"))
 
     choices = list(infos[node.split('_')[0]][selection]['stl'].keys())
+    choices = list(zip(choices, choices))
+    response = make_response(json.dumps(choices))
+    response.content_type = 'application/jsons'
+    return response
+
+
+@make_bp.route('/selectformbitz/bitz/<selection>/<builder>')
+def updateselectbitz(selection, builder):
+    builder_name = builder
+    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    bitz_infos = {}
+    for bitz_file in graph.graph.get('bitz_files', []):
+        bitz_infos.update(load_json(f"data/{builder_name}/{bitz_file}"))
+
+    choices = list(bitz_infos[selection]['stl'].keys())
     choices = list(zip(choices, choices))
     response = make_response(json.dumps(choices))
     response.content_type = 'application/jsons'

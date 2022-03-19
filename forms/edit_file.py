@@ -84,7 +84,7 @@ class BitzForm(FlaskForm):
         'Label',
         validators=[InputRequired(), validators.Length(max=100)]
     )
-    marker = StringField(f"Marker", render_kw={'readonly': False}, validators=[InputRequired()])
+    marker = StringField(f"Marker", render_kw={'readonly': True}, validators=[InputRequired()])
 
 
 class BitzsForm(FlaskForm):

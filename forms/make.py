@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, SelectMultipleField, SubmitField, IntegerField, BooleanField, FloatField, FieldList, \
-    FormField
+    FormField, HiddenField, StringField
 from wtforms.validators import InputRequired
 
 from wtforms.widgets import NumberInput
@@ -45,7 +45,7 @@ def generateminidynamic_func(*args, **kwargs):
                            validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_bitz",
                 FieldList(
-                    FormField(BitzDisplay),
+                    FormField(dynamic_BitzDisplay(**v)),
                     min_entries=0,
                     max_entries=8, validators=[InputRequired()]
                 )
@@ -59,6 +59,13 @@ class MissingFiles(FlaskForm):
     no = SubmitField("I don't want to download them.")
 
 
-class BitzDisplay(FlaskForm):
-    bitz_select = SelectField(label=f'Category', validators=[InputRequired()])
-    bitz_list = SelectField(label='File', validators=[InputRequired()])
+def dynamic_BitzDisplay(*args, **kwargs):
+
+    class BitzDisplay(FlaskForm):
+        bitz_label = StringField(label='placeholder_bitzname', render_kw={'hidden': True})
+        bitz_select = SelectField(label=f'Category', validators=[InputRequired()],
+                                  default=list(kwargs.get('bitz_select'))[0], choices=kwargs.get('bitz_select'))
+        bitz_list = SelectField(label='File', validators=[InputRequired()],
+                                  default=list(kwargs.get('bitz_choices'))[0], choices=kwargs.get('bitz_choices'))
+    return BitzDisplay
+

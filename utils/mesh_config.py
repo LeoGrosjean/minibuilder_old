@@ -1,4 +1,11 @@
+import json
+from ast import literal_eval
+
 import numpy as np
+
+from file_config.parts import load_json
+
+
 def find_vertices(mesh, *args):
     li = []
     # TODO do something omg
@@ -21,3 +28,88 @@ def find_vertices(mesh, *args):
     else:
         return {"vertex_list": li}
 
+
+def find_mesh_connector(mesh, graph, form_result, mesh_info):
+    if form_result.get('marker_bitz'):
+        mesh_info[form_result.get('file_name')]['bitz'] = find_vertices(mesh, *literal_eval(f"[[{form_result.get('marker_bitz')}]]"))
+    else:
+        for k, v in form_result.items():
+            if k.startswith('marker_') and v:
+                node = graph.nodes[k.replace('marker_', '')]
+                if k.replace('marker_', '') in list(graph.predecessors(form_result.get('node'))):
+                    node = graph.nodes[form_result.get('node')]
+                    folder = node['folder']
+                    if node.get('dextral'):
+                        mesh_info[form_result.get('file_name')]['dextral'] = node.get('dextral')
+                    mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
+                else:
+                    folder = node['folder']
+                    if node.get('dextral'):
+                        if not mesh_info[form_result.get('file_name')].get(folder):
+                            mesh_info[form_result.get('file_name')][folder] = {}
+                        mesh_info[form_result.get('file_name')][folder].update({ node.get('dextral'): find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]")) })
+                    else:
+                        mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
+
+    return mesh_info
+
+
+def save_file_config_json(graph, builder_name, conf_json, form_result, mesh_info):
+    if form_result.get('marker_bitz'):
+        folder = 'bitz'
+    else:
+        folder = graph.nodes[form_result.get('node')]['folder']
+
+    try:
+        conf = load_json(f"data/{builder_name}/{conf_json}")
+        if conf.get(form_result.get('category')):
+            if conf[form_result.get('category')]['stl'].get(form_result.get('file_name')):
+                conf[form_result.get('category')]['stl'][form_result.get('file_name')].update(mesh_info[form_result.get('file_name')])
+            else:
+                conf[form_result.get('category')]['stl'].update(mesh_info)
+            print(f"data/{builder_name}/{conf_json} has been updated !")
+        else:
+            conf[form_result.get('category')] = {
+                "desc": {
+                    "display": form_result.get('category'),
+                    "path": f"data/{builder_name}/{folder}/{form_result.get('category')}/"
+                },
+                "stl": mesh_info
+                }
+            print(f"data/{builder_name}/{conf_json} has been updated with {form_result.get('category')}!")
+
+    except Exception as e:
+        print(e)
+        conf = {
+            form_result.get('category'): {
+                "desc": {
+                    "display": form_result.get('category'),
+                    "path": f"data/{builder_name}/{folder}/{form_result.get('category')}/"
+                },
+                "stl": mesh_info
+                }
+            }
+        print(f"data/{builder_name}/{conf_json} has been created with {form_result.get('category')}!")
+
+        with open(f"data/{builder_name}/conf.json", "r+") as node_file:
+
+            data = json.load(node_file)
+            if folder == 'bitz':
+                data['graph']['bitz_files'].append(conf_json)
+                print(f"{conf_json} added to bitz_files !")
+            else:
+                for i, node in enumerate(data['nodes']):
+                    if node.get('id') == form_result.get('node'):
+                        folder = node.get('folder')
+                        break
+
+                for i, node in enumerate(data['nodes']):
+                    if node.get('folder') == folder:
+                        data['nodes'][i]['files'].append(conf_json)
+                        print(f"{conf_json} added to files of {form_result.get('node')}!")
+
+            node_file.seek(0)
+            json.dump(data, node_file, indent=4)
+
+    with open(f"data/{builder_name}/{conf_json}", "w") as outfile:
+        json.dump(conf, outfile, indent=4)

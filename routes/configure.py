@@ -18,7 +18,7 @@ from file_config.parts import load_json
 from forms.configure import DynamicFormMakeMeshConf, FormUploadFile
 from forms.home import ChooseBuilderForm
 from utils.compressed import extract_nested_compress
-from utils.mesh_config import find_vertices
+from utils.mesh_config import find_vertices, find_mesh_connector, save_file_config_json
 from utils.render import scene_to_html
 
 configure_bp = Blueprint('configure_bp', __name__)
@@ -37,7 +37,7 @@ def builder(builder_name):
 
     return render_template("configure.html",
                            form=form,
-                           nodes=list(graph.nodes),
+                           nodes=list(graph.nodes) + ['bitz'] if graph.graph.get('bitz_files') else [],
                            form_upload=form_upload,
                            builder=builder_name,
                            form_header=form_header)
@@ -77,123 +77,66 @@ def builder_post(builder_name):
             "md5": tm.load(f"data/{builder_name}/uploaded/{form_result.get('support')}").identifier_md5
         }
 
-    for k, v in form_result.items():
-        if k.startswith('marker_') and v:
-            node = graph.nodes[k.replace('marker_', '')]
-            if k.replace('marker_', '') in list(graph.predecessors(form_result.get('node'))):
-                node = graph.nodes[form_result.get('node')]
-                folder = node['folder']
-                if node.get('dextral'):
-                    mesh_info[form_result.get('file_name')]['dextral'] = node.get('dextral')
-                mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
-            else:
-                folder = node['folder']
-                if node.get('dextral'):
-                    if not mesh_info[form_result.get('file_name')].get(folder):
-                        mesh_info[form_result.get('file_name')][folder] = {}
-                    mesh_info[form_result.get('file_name')][folder].update({ node.get('dextral'): find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]")) })
-                else:
-                    mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
+    mesh_info = find_mesh_connector(mesh, graph, form_result, mesh_info)
     del mesh
-    try:
-        conf = load_json(f"data/{builder_name}/{conf_json}")
-        if conf.get(form_result.get('category')):
-            if conf[form_result.get('category')]['stl'].get(form_result.get('file_name')):
-                conf[form_result.get('category')]['stl'][form_result.get('file_name')].update(mesh_info[form_result.get('file_name')])
-            else:
-                conf[form_result.get('category')]['stl'].update(mesh_info)
-            print(f"data/{builder_name}/{conf_json} has been updated !")
-        else:
-            conf[form_result.get('category')] = {
-                "desc": {
-                    "display": form_result.get('category'),
-                    "path": f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"
-                },
-                "stl": mesh_info
-                }
-            print(f"data/{builder_name}/{conf_json} has been updated with {form_result.get('category')}!")
 
-    except Exception as e:
-        print(e)
-        conf = {
-            form_result.get('category'): {
-                "desc": {
-                    "display": form_result.get('category'),
-                    "path": f"data/{builder_name}/{graph.nodes[form_result.get('node')].get('folder')}/{form_result.get('category')}/"
-                },
-                "stl": mesh_info
-                }
-            }
-        print(f"data/{builder_name}/{conf_json} has been created with {form_result.get('category')}!")
-
-        with open(f"data/{builder_name}/conf.json", "r+") as node_file:
-            data = json.load(node_file)
-            for i, node in enumerate(data['nodes']):
-                if node.get('id') == form_result.get('node'):
-                    folder = node.get('folder')
-                    break
-
-            for i, node in enumerate(data['nodes']):
-                if node.get('folder') == folder:
-                    data['nodes'][i]['files'].append(conf_json)
-                    print(f"{conf_json} added to files of {form_result.get('node')}!")
-
-            node_file.seek(0)
-            json.dump(data, node_file, indent=4)
-
-    with open(f"data/{builder_name}/{conf_json}", "w") as outfile:
-        json.dump(conf, outfile, indent=4)
+    save_file_config_json(graph, builder_name, conf_json, form_result, mesh_info)
 
     # file:
-    # TODO if file_name already exist (and is different assuming check md5 has been done) it will add uuid in file_name not in conf
+    # TODO if file_name already exist (and is different assuming check md5 has been done) it will add uuid in file_name not in file conf
+
+    if form_result.get('marker_bitz'):
+        folder = 'bitz'
+    else:
+        folder = graph.nodes[form_result.get('node')]['folder']
+
     try:
-        if not os.path.exists(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"):
-            pathlib.Path(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/").mkdir(
+        if not os.path.exists(f"data/{builder_name}/{folder}/{form_result.get('category')}/"):
+            pathlib.Path(f"data/{builder_name}/{folder}/{form_result.get('category')}/").mkdir(
                 parents=True)
         if form_result.get('mesh_file') in os.listdir(
-                f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"):
+                f"data/{builder_name}/{folder}/{form_result.get('category')}/"):
             shutil.move(
                 f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
-                f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/"
+                f"data/{builder_name}/{folder}/{form_result.get('category')}/"
                 f"{uuid4()}_{form_result.get('mesh_file')}")
             print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
-                  f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')} !")
+                  f"data/{builder_name}/{folder}/{form_result.get('category')} !")
         else:
             shutil.move(
                 f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
-                f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/")
+                f"data/{builder_name}/{folder}/{form_result.get('category')}/")
             print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
-                  f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')} !")
+                  f"data/{builder_name}/{folder}/{form_result.get('category')} !")
     except FileExistsError as e:
         print(e)
     # support
     if form_result.get('support'):
         try:
-            if not os.path.exists(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/"):
-                pathlib.Path(f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/").mkdir(parents=True)
+            if not os.path.exists(f"data/{builder_name}/{folder}/{form_result.get('category')}/support/"):
+                pathlib.Path(f"data/{builder_name}/{folder}/{form_result.get('category')}/support/").mkdir(parents=True)
             if form_result.get('support') in os.listdir(
-                    f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/"):
+                    f"data/{builder_name}/{folder}/{form_result.get('category')}/support/"):
                 shutil.move(
                     f"data/{builder_name}/uploaded/{form_result.get('support')}",
-                    f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/"
+                    f"data/{builder_name}/{folder}/{form_result.get('category')}/support/"
                     f"{uuid4()}_{form_result.get('support')}")
                 print(f"data/{builder_name}/uploaded/{form_result.get('support')} moved to "
-                      f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support !")
+                      f"data/{builder_name}/{folder}/{form_result.get('category')}/support !")
             else:
                 shutil.move(
                     f"data/{builder_name}/uploaded/{form_result.get('support')}",
-                    f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support/")
+                    f"data/{builder_name}/{folder}/{form_result.get('category')}/support/")
                 print(f"data/{builder_name}/uploaded/{form_result.get('support')} moved to "
-                      f"data/{builder_name}/{graph.nodes[form_result.get('node')]['folder']}/{form_result.get('category')}/support !")
+                      f"data/{builder_name}/{folder}/{form_result.get('category')}/support !")
         except Exception as e:
             print(e)
-
 
     form = DynamicFormMakeMeshConf(graph, **form_result)
 
     return render_template("configure.html",
                            form=form,
-                           nodes=list(graph.nodes),
+                           nodes=list(graph.nodes) + ['bitz'] if graph.graph.get('bitz_files') else [],
                            form_upload=form_upload,
                            builder=builder_name,
                            form_header=form_header
@@ -218,7 +161,7 @@ def update_configure_node(builder, node):
     choices = {
         "file": list(zip(form.file.choices, form.file.choices)),
         "category": list(zip(form.category.choices, form.category.choices)),
-        "all_connections": list(graph.nodes),
+        "all_connections": list(graph.nodes) + ['bitz'] if graph.graph.get('bitz_files') else [],
         "connection": list(form.connectors)
     }
 
