@@ -18,50 +18,72 @@
                     choice_field_{{bitz_field.id.replace('-', '_')}}.innerHTML = optionHTML
                 })
             })
-
         }
     </script>
 
 {% endmacro %}
 {% macro display_block(field_dict, value='', type='text', size=20) %}
-<button type="button" id="{{field_dict['select'].id}}-button" class="btn btn-toggle align-items-center rounded" data-toggle="collapse" data-target="#{{ field_dict['select'].id}}-collapse" aria-controls="{{ field_dict['select'].id}}-collapse" style="z-index:1;">
+<button type="button" id="{{field_dict['select'].id}}-button" class="btn btn-toggle align-items-center rounded" data-toggle="collapse" data-target="#{{ field_dict['select'].id}}-collapse" aria-controls="{{ field_dict['select'].id}}-collapse">
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
 </svg>   {{ field_dict['select'].label }}
 </button>
 {{ field_dict['select']() }}
-    <div class="collapse" id="{{ field_dict['select'].id }}-collapse">
+    <div class="container collapse" id="{{ field_dict['select'].id }}-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
         {% for k, field in field_dict.items() %}
-            <p class="bg-light" style="z-index:1;">
-                {% if k == "list" %}
-                    {{ field }}
-                    <a id="{{field.id[:-5]}}_edit" target="_blank" href="/edit/{{field_dict.get('builder_name')}}/{{field.id[:-5]}}/{{field_dict['select'].default}}/{{field.default}}/">Edit</a>
+            <p class="row bg-light" style="margin: 0">
 
+                {% if k == "list" %}
+                    <div class="col">
+                        {{ field }}
+
+                    <a class="col" id="{{field.id[:-5]}}_edit" target="_blank" href="/edit/{{field_dict.get('builder_name')}}/{{field.id[:-5]}}/{{field_dict['select'].default}}/{{field.default}}/">Edit</a>
+                    </div>
                 {% elif k == "rotate" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° rotation
-                {% elif k == "shake" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° rotation
+                    Rotation {{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "anklex" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° ankleX
+                    Ankle X {{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "ankley" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>° ankleY
+                    Ankle Y {{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "scale" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x scale
+                    Scale {{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "merge" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x merge
+                    Merge {{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "movex" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveX
+                    Move X{{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "movey" %}
-                    {{ field(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{field.data}}</output>x moveY
+                    Move Y{{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>
                 {% elif k == "bitz" %}
                     <div id="{{field.id}}">
                         {% for bitz_form in field %}
-                            {{ bitz_form.bitz_label }}
-                            <p class="bg-light" style="z-index:1;">
-                                {{ bitz_form.bitz_label.data }} {{ bitz_form.bitz_select }} {{ bitz_form.bitz_list }}
+                            <div class="row">
+                                <div class="col-6 col-sm-auto">
+                                    <button type="button" class="btn-light btn-sm collapsed" data-toggle="collapse"
+                                            href="#{{ bitz_form.bitz_label.id }}" role="button" aria-expanded="false"
+                                            aria-controls="{{ bitz_form.bitz_label.id }}">
+                                        {{ bitz_form.bitz_label.data }}
+                                    </button>
+                                </div>
+                                <div class="col-6 col-sm-auto">
+                                        {{ bitz_form.bitz_select }}
+                                </div>
+                                <div class="col-6 col-sm-auto">
+                                    {{ bitz_form.bitz_list }}
+                                </div>
+                            </div>
+                            <div class="bg-light collapse" id="{{ bitz_form.bitz_label.id }}">
+                                <div class="card card-body">
+                                    <div>
+                                        {{ bitz_form.bitz_rotate(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_rotate.data}}</output>° rotation
+                                    </div>
+                                    <div>
+                                        {{ bitz_form.bitz_scale(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_scale.data}}</output>x scale
+                                    </div>
+                                </div>
                                 {{change_bitz_choice(bitz_form.bitz_select)}}
-                            </p>
+                            </div>
+                            </br>
                         {% endfor %}
                      </div>
                 {% endif %}
@@ -70,21 +92,21 @@
             </ul>
     </div>
 {% endmacro %}
-    <form method="post" id="builder">
-        <div class="list-group list-group-flush overflow-auto h-100" style="position: absolute; z-index:1;">
-            {% for row in grid %}
-                <div class="list-group-item list-group-item-action bg-light">
-                    {{ display_block(row) }}
-                </div>
-            {% endfor %}
+<form method="post" id="builder">
+    <div class="overflow-auto h-100" style="position: absolute; z-index:2; top:0%">
+        {% for row in grid %}
+            <div class="list-group-item list-group-item-action bg-light">
+                {{ display_block(row) }}
+            </div>
+        {% endfor %}
 
-        </div>
+    </div>
 
-        <div style="display: block; left: 40%; bottom:5%; position: absolute; z-index:1;">
-            <p>{{ submit }} {{ dl_zip }} {{ live_edit }}</p>
-            <p>Download missing files ? {{ dl_missing }}</p>
-        </div>
-    </form>
+    <div style="display: block; left: 40%; bottom:5%; position: absolute; z-index:1;">
+        <p>{{ submit }} {{ dl_zip }} {{ live_edit }}</p>
+        <p>Download missing files ? {{ dl_missing }}</p>
+    </div>
+</form>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 {% for row in grid %}
@@ -126,6 +148,20 @@
 
         choice_field_{{row['select'].id}}.onchange = function () {
             link_edit_{{row['select'].id}}.href = "/edit/" + builder + "/" + choice_field_{{row['select'].id}}.id.replace('_list', '') + '/' + select_field_{{row['select'].id}}.value + '/' + choice_field_{{row['select'].id}}.value + '/'
+            selection = select_field_{{row['select'].id}}.value;
+            file_name = choice_field_{{row['select'].id}}.value
+            fetch("/selectformbitz/bitz/" + builder + "/" + "{{ row['select'].id.replace('_select', '') }}/" + selection + "/" + file_name).then(function (response) {
+                        response.text().then(function (form_data) {
+
+                            document.getElementById("{{ row['select'].id.replace('_select', '') }}_bitz").innerHTML = form_data;
+                            var parser = new DOMParser();
+                            var doc = parser.parseFromString(form_data, "text/html");
+                            var scripts_ = doc.getElementsByTagName('script')
+                            for (let i = 0; i < scripts_.length; i++) {
+                                eval(scripts_[i].innerHTML)
+                            }
+                        })
+                    })
         }
 
     </script>

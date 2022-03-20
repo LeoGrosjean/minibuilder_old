@@ -34,10 +34,10 @@ def builder(builder_name):
     form = DynamicFormMakeMeshConf(graph)
 
     form_upload = FormUploadFile()
-
+    is_bitz = ['bitz'] if graph.graph.get('bitz_files') else []
     return render_template("configure.html",
                            form=form,
-                           nodes=list(graph.nodes) + ['bitz'] if graph.graph.get('bitz_files') else [],
+                           nodes=list(graph.nodes) + is_bitz,
                            form_upload=form_upload,
                            builder=builder_name,
                            form_header=form_header)
@@ -63,12 +63,17 @@ def builder_post(builder_name):
     conf_json = form_result.get('file')
     mesh = tm.load(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}")
 
+    if form_result.get('url').startswith('http'):
+        url = form_result.get('url')
+    else:
+        url = "https://" + form_result.get('url')
+
     mesh_info = {
         form_result.get('file_name'): {
             "file": form_result.get("mesh_file"),
             "designer": form_result.get('designer'),
             "md5": tm.load(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}").identifier_md5,
-            "urls": [form_result.get('url')]
+            "urls": [url]
         }
     }
     if form_result.get('support'):
@@ -133,10 +138,10 @@ def builder_post(builder_name):
             print(e)
 
     form = DynamicFormMakeMeshConf(graph, **form_result)
-
+    is_bitz = ['bitz'] if graph.graph.get('bitz_files') else []
     return render_template("configure.html",
                            form=form,
-                           nodes=list(graph.nodes) + ['bitz'] if graph.graph.get('bitz_files') else [],
+                           nodes=list(graph.nodes) + is_bitz,
                            form_upload=form_upload,
                            builder=builder_name,
                            form_header=form_header
@@ -157,11 +162,11 @@ def send(builder, file):
 def update_configure_node(builder, node):
     graph = read_node_link_json(f'data/{builder}/conf.json')
     form = DynamicFormMakeMeshConf(graph, node=node)
-
+    is_bitz = ['bitz'] if graph.graph.get('bitz_files') else []
     choices = {
         "file": list(zip(form.file.choices, form.file.choices)),
         "category": list(zip(form.category.choices, form.category.choices)),
-        "all_connections": list(graph.nodes) + ['bitz'] if graph.graph.get('bitz_files') else [],
+        "all_connections": list(graph.nodes) + is_bitz,
         "connection": list(form.connectors)
     }
 

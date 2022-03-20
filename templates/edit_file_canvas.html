@@ -219,7 +219,13 @@
         renderer.domElement.removeEventListener("dblclick", selectFace);
         renderer.domElement.addEventListener("dblclick", select_vertice);
     })
-    document.getElementById("face").addEventListener("click", function (){
+    document.getElementById("plan").addEventListener("click", function (){
+        type_select = "plan"
+        scene.add( line );
+        renderer.domElement.removeEventListener("dblclick", select_vertice);
+        renderer.domElement.addEventListener("dblclick", selectFace);
+    })
+	document.getElementById("face").addEventListener("click", function (){
         type_select = "face"
         scene.add( line );
         renderer.domElement.removeEventListener("dblclick", select_vertice);
@@ -239,19 +245,17 @@
     scene.add( line );
     raycaster = new THREE.Raycaster();
 
-    function selectFace(event) {
+        function selectFace(event) {
         raycaster.setFromCamera( m, camera );
         m.x = (event.clientX / window.innerWidth) * 2 - 1;
         m.y = -(event.clientY / window.innerHeight) * 2 + 1;
         let intersects = raycaster.intersectObject( mesh );
-        window.intersects = intersects
 
         for (var i = 0; i < intersects.length; i++) {
             if (intersects[i].faceIndex){
-            	intersect = intersects[i]
-                window.intersect = intersect
+                intersect = intersects[i]
                 let field_marker = document.getElementById(window.current_marker);
-                field_marker.value = "'face: " + intersect.faceIndex.toString() + "'"
+                field_marker.value = '"' + "'" + type_select + "':" + intersect.faceIndex.toString() + '"'
                 break
             }
         }
@@ -280,6 +284,7 @@
 
         }
     }
+
     function onMouseMove(event) {
       m.x = (event.clientX / window.innerWidth) * 2 - 1;
       m.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -301,7 +306,11 @@
         if (type_select === "vertice") {
             let field_marker = document.getElementById(window.current_marker);
             let field_value = field_marker.value
-            if (field_value === ''){
+			if (field_value.startsWith("'")){
+                field_marker.value = ''
+				field_value = ''
+            }
+            if (field_value === ""){
                 field_marker.value = marker.position.toArray().toString()
             }
             else {

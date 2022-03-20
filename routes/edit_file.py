@@ -5,14 +5,13 @@ from ast import literal_eval
 from urllib.parse import urlparse
 
 import trimesh as tm
-from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
-from jinja2 import Markup
+from flask import Blueprint, render_template, request, jsonify, flash
 
 from builder.node import read_node_link_json
 from file_config.parts import load_json
-from forms.edit_file import DynamicFormEditMeshConf, BitzForm, BitzsForm
+from forms.edit_file import DynamicFormEditMeshConf, BitzsForm
 from forms.home import ChooseBuilderForm
-from utils.mesh import get_mesh_normal_position, get_mesh_normal_position_edit
+from utils.mesh import get_mesh_normal_position_edit
 from utils.mesh_config import find_vertices
 
 edit_file_bp = Blueprint('edit_file_bp', __name__)
@@ -102,8 +101,8 @@ def edit(builder, node, category, file):
             }
 
     form_bitz = BitzsForm()
-    for bitz in infos.get(category).get('stl').get(file).get("bitzs", []):
-        form_bitz.bitzs.append_entry(bitz)
+    for bitz_name, bitz_marker in infos.get(category).get('stl').get(file).get("bitzs", {}).items():
+        form_bitz.bitzs.append_entry({"name": bitz_name, "marker": bitz_marker})
     else:
         form_bitz.bitzs.append_entry()
 

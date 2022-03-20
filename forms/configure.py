@@ -30,7 +30,8 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
             super(FormMakeMeshConf, self).__init__(*args, **kwargs)
             self.graph = graph
 
-            self.node.choices = list(self.graph.nodes) + ['bitz'] if self.graph.graph.get('bitz_files') else []
+            is_bitz = ['bitz'] if self.graph.graph.get('bitz_files') else []
+            self.node.choices = list(self.graph.nodes) + is_bitz
             self.node.default = kwargs.get('node', self.node.choices[0])
 
             self.file.choices = self.get_file_from_node(self.node.default)

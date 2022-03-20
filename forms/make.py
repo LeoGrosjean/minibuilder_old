@@ -16,9 +16,11 @@ def generateminidynamic_func(*args, **kwargs):
 
     for k, v in kwargs.items():
         setattr(GenerateMiniDynamic, f"{k}_select",
-                SelectField(label=f'{v.get("label")}', default=list(v.get('select'))[0], choices=v.get('select'), validators=[InputRequired()]))
+                SelectField(label=f'{v.get("label")}', default=list(v.get('select'))[0],
+                            choices=v.get('select'), validators=[InputRequired()], render_kw={'hidden': False, 'style': 'max-width: 181'}))
         setattr(GenerateMiniDynamic, f"{k}_list",
-                SelectField(label=v.get("label"), default=list(v.get('choices'))[0], choices=list(zip(v.get('choices'), v.get('choices'))), validators=[InputRequired()]))
+                SelectField(label=v.get("label"), default=list(v.get('choices'))[0], choices=list(zip(v.get('choices'), v.get('choices'))), validators=[InputRequired()],
+                render_kw={'hidden': False, 'style': 'max-width: 181'}))
         setattr(GenerateMiniDynamic, f"{k}_rotate",
                 IntegerField(f'{v.get("label")} Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1), validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_anklex",
@@ -63,19 +65,31 @@ def dynamic_BitzDisplay(*args, **kwargs):
 
     class BitzDisplay(FlaskForm):
         bitz_label = StringField(label='placeholder_bitzname', render_kw={'hidden': True})
-        bitz_select = SelectField(label=f'Category', validators=[InputRequired()], choices=kwargs.get('bitz_select'))
-        bitz_list = SelectField(label='File', validators=[InputRequired()], choices=kwargs.get('bitz_choices'))
+        bitz_select = SelectField(label=f'Category', validators=[InputRequired()], choices=kwargs.get('bitz_select'), render_kw={'hidden': False, 'style': 'max-width: 181'})
+        bitz_list = SelectField(label='File', validators=[InputRequired()], choices=kwargs.get('bitz_choices'), render_kw={'hidden': False, 'style': 'max-width: 181'})
+        bitz_rotate = IntegerField('Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1),
+                     validators=[InputRequired()])
+        bitz_scale = FloatField('Scale', default=1, widget=NumberInput(min=0.8, max=1.2, step=0.01),
+                             validators=[InputRequired()])
     return BitzDisplay
 
 
 def dynamic_FieldBitz(*args, **kwargs):
     class FieldBitz(FlaskForm):
         hide = HiddenField()
+
+    if kwargs.get('bitzs'):
+        bitz_select = kwargs.get('bitzs').keys()
+        bitz_choices = kwargs.get('bitzs')[list(kwargs.get('bitzs').keys())[0]]['stl'].keys()
+    else:
+        bitz_select = []
+        bitz_choices = None
+
     setattr(FieldBitz, f"{kwargs.get('node')}_bitz",
             FieldList(
                 FormField(dynamic_BitzDisplay(
-                    bitz_select=kwargs.get('bitzs').keys(),
-                    bitz_choices=kwargs.get('bitzs')[list(kwargs.get('bitzs').keys())[0]]['stl'].keys())
+                    bitz_select=bitz_select,
+                    bitz_choices=bitz_choices)
                 ),
                 min_entries=0,
                 max_entries=8,

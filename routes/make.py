@@ -88,7 +88,7 @@ def builder(builder_name):
             'select':  infos[node_name].keys(),
             'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys(),
             'bitz_select': bitzs.keys(),
-            'bitz_choices': bitzs[list(bitzs.keys())[0]]['stl'].keys()
+            'bitz_choices': bitzs[list(bitzs.keys())[0]]['stl'].keys() if list(bitzs.keys()) else []
         }
 
         li_position.append(v.get('position'))
@@ -174,7 +174,8 @@ def builder(builder_name):
                             "urls": bitz_urls,
                             "designer": bitz_designer,
                             "bitz_name": bitz_file_name,
-                            "bitz_category": category
+                            "bitz_category": category,
+                            "id_web": f"{node}_bitz-{i}"
                         }
                     )
                     i += 1
@@ -291,7 +292,7 @@ def builder(builder_name):
 
             for i, bitz in enumerate(di_file[k].get('bitzs')):
                 mesh = load(bitz.get('path'))
-                mesh.metadata['file_name'] = f"{k}_bitz_{bitz.get('label')}"
+                mesh.metadata['file_name'] = bitz.get('id_web')
                 di_file[k]['bitzs'][i]['mesh'] = mesh
                 li_designer.append(bitz.get('designer'))
 
@@ -430,16 +431,18 @@ def builder(builder_name):
                     continue
 
                 if successors and predecessor:
+                    # TODO support dextral ?
+                    marker = di_file.get(node_rotate).get('info')[di_file.get(node_rotate).get('on')]
                     normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                         di_file.get(node_rotate).get('mesh'),
-                        di_file.get(node_rotate).get('info'),
-                        di_file.get(node_rotate).get('on'))
+                        marker)
 
                 elif predecessor:
+                    marker = di_file.get(predecessor).get('info')[di_file.get(node_rotate).get('on')]
                     normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                         di_file.get(predecessor).get('mesh'),
-                        di_file.get(predecessor).get('info'),
-                        di_file.get(node_rotate).get('on'), inverse_norm=True)
+                        marker,
+                        inverse_norm=True)
 
                 if successors:
                     for successor in successors:
@@ -451,12 +454,46 @@ def builder(builder_name):
                         'normal': normal,
                         'vertice': vertice,
                         "normal_x": normal_x,
-                        "normal_y": normal_y
+                        "normal_y": normal_y,
+                        "bitzs": []
                     }
+
+                    for bitz in di_file.get(node_rotate).get('bitzs', []):
+                        normal, vertice, normal_x, normal_y = get_mesh_normal_position(
+                            bitz.get('mesh'),
+                            bitz.get('bitz_marker')
+                        )
+
+                        node_dict_rotate[node_rotate]['bitzs'].append(
+                            {
+                                'id': bitz.get('id_web'),
+                                'normal': normal,
+                                'vertice': vertice,
+                                "normal_x": normal_x,
+                                "normal_y": normal_y,
+                            }
+                        )
+
                 else:
                     node_dict_rotate[node_rotate] = {
                         'child_nodes': successors,
+                        "bitzs": []
                     }
+                    for bitz in di_file.get(node_rotate).get('bitzs', []):
+                        normal, vertice, normal_x, normal_y = get_mesh_normal_position(
+                            bitz.get('mesh'),
+                            bitz.get('bitz_marker')
+                        )
+
+                        node_dict_rotate[node_rotate]['bitzs'].append(
+                            {
+                                'id': bitz.get('id_web'),
+                                'normal': normal,
+                                'vertice': vertice,
+                                "normal_x": normal_x,
+                                "normal_y": normal_y,
+                            }
+                        )
 
             #scene = reduce(add, [v.get('mesh').scene() for k, v in di_file.items()])
             from trimesh import Scene
@@ -469,7 +506,7 @@ def builder(builder_name):
                     parent_node = None
 
                 for bitz in v.get('bitzs'):
-                    scene.add_geometry(bitz.get('mesh'), bitz.get('label'), parent_node_name=k)
+                    scene.add_geometry(bitz.get('mesh'), bitz.get('id_web'), parent_node_name=k)
 
                 scene.add_geometry(v.get('mesh'), k, parent_node_name=parent_node)
 
@@ -595,16 +632,37 @@ jinja_string = """
 </script>
 
 {% endmacro %}
-<div id="{{form.id}}">
-    {% for bitz_form in form %}
-        
-        {{ bitz_form.bitz_label }}
-        <p class="bg-light" style="z-index:1;">
-            {{ bitz_form.bitz_label.data }} {{ bitz_form.bitz_select }} {{ bitz_form.bitz_list }}
-            {{change_bitz_choice(bitz_form.bitz_select)}}
-        </p>
-    {% endfor %}
- </div>
+                    <div id="{{form.id}}">
+                        {% for bitz_form in form %}
+                            <div class="row">
+                                <div class="col-6 col-sm-auto">
+                                    <button type="button" class="btn-light btn-sm collapsed" data-toggle="collapse"
+                                            href="#{{ bitz_form.bitz_label.id }}" role="button" aria-expanded="false"
+                                            aria-controls="{{ bitz_form.bitz_label.id }}">
+                                        {{ bitz_form.bitz_label.data }}
+                                    </button>
+                                </div>
+                                <div class="col-6 col-sm-auto">
+                                        {{ bitz_form.bitz_select }}
+                                </div>
+                                <div class="col-6 col-sm-auto">
+                                    {{ bitz_form.bitz_list }}
+                                </div>
+                            </div>
+                            <div class="bg-light collapse" id="{{ bitz_form.bitz_label.id }}">
+                                <div class="card card-body">
+                                    <div>
+                                        {{ bitz_form.bitz_rotate(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_rotate.data}}</output>° rotation
+                                    </div>
+                                    <div>
+                                        {{ bitz_form.bitz_scale(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_scale.data}}</output>x scale
+                                    </div>
+                                </div>
+                                {{change_bitz_choice(bitz_form.bitz_select)}}
+                            </div>
+                            </br>
+                        {% endfor %}
+                     </div>
 """
 
 
@@ -622,11 +680,15 @@ def updatebitz(builder, node, category, selection):
 
     form = dynamic_FieldBitz(node=node, bitzs=bitzs)()
 
-    curr_file = infos[category]['stl'][selection]
-    if curr_file.get('bitzs'):
-        for bitz_name in curr_file.get('bitzs'):
-            bitz_form = getattr(form, f"{node}_bitz")
-            bitz_form.append_entry()
-            bitz_form.entries[-1].bitz_label.data = bitz_name
+    try:
+        curr_file = infos[category]['stl'][selection]
+        if curr_file.get('bitzs'):
+            for bitz_name in curr_file.get('bitzs'):
+                bitz_form = getattr(form, f"{node}_bitz")
+                bitz_form.append_entry()
+                bitz_form.entries[-1].bitz_label.data = bitz_name
+    except Exception as e:
+        print(e)
+        print(f"{selection} in {category} has probably a problem in his configuration")
 
     return render_template_string(jinja_string, form=getattr(form, f"{node}_bitz"), builder=builder)

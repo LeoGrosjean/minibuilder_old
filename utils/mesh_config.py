@@ -8,25 +8,32 @@ from file_config.parts import load_json
 
 def find_vertices(mesh, *args):
     li = []
-    # TODO do something omg
-    try:
-        if "face" in args[0][0]:
-            for i, facet in enumerate(mesh.facets):
-                if int(args[0][0].split(':')[-1]) in facet:
-                    return {"facet": i}
-            return "ERROR"
-    except Exception as e:
-        print("processing vertice...")
-    for i, (x, y, z) in enumerate(mesh.vertices):
-        for value in args:
-            check = np.array(value) - np.array([x, y, z])
-            if (-10e-04 < check).all() and (check < 10e-04).all():
-                print(i)
-                li.append(i)
-    if len(li) == 1:
-        return {"vertex": li[0]}
-    else:
-        return {"vertex_list": li}
+
+    if len(args[0]) == 3:
+        for i, (x, y, z) in enumerate(mesh.vertices):
+            for value in args:
+                check = np.array(value) - np.array([x, y, z])
+                if (-10e-04 < check).all() and (check < 10e-04).all():
+                    print(i)
+                    li.append(i)
+        if len(li) == 1:
+            return {"vertex": li[0]}
+        else:
+            return {"vertex_list": li}
+
+    elif isinstance(args[0][0], dict):
+        return args[0][0]
+
+    elif args[0][0].startswith("'face'"):
+        return literal_eval("{" + args[0][0] + "}")
+
+    elif args[0][0].startswith("'plan'"):
+        for i, facet in enumerate(mesh.facets):
+            if int(args[0][0].split(':')[-1]) in facet:
+                return {"facet": i}
+        print('Marker is not on face but on facet')
+        return literal_eval("{" + args[0][0].replace('plan', 'face') + "}")
+
 
 
 def find_mesh_connector(mesh, graph, form_result, mesh_info):
