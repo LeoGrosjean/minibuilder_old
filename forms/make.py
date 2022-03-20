@@ -63,10 +63,8 @@ def dynamic_BitzDisplay(*args, **kwargs):
 
     class BitzDisplay(FlaskForm):
         bitz_label = StringField(label='placeholder_bitzname', render_kw={'hidden': True})
-        bitz_select = SelectField(label=f'Category', validators=[InputRequired()],
-                                  default=list(kwargs.get('bitz_select'))[0], choices=kwargs.get('bitz_select'))
-        bitz_list = SelectField(label='File', validators=[InputRequired()],
-                                  default=list(kwargs.get('bitz_choices'))[0], choices=kwargs.get('bitz_choices'))
+        bitz_select = SelectField(label=f'Category', validators=[InputRequired()], choices=kwargs.get('bitz_select'))
+        bitz_list = SelectField(label='File', validators=[InputRequired()], choices=kwargs.get('bitz_choices'))
     return BitzDisplay
 
 

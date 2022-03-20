@@ -15,6 +15,17 @@
                 "bitz": {
                     "facet": 161
                 }
+            },
+            "Tl - Shoulder Pad 2": {
+                "file": "TL - Shoulder Pad 2.OBJ",
+                "designer": "Garin",
+                "md5": "3a9774aa469b49316557af36e0a43d26",
+                "urls": [
+                    "test"
+                ],
+                "bitz": {
+                    "vertex": 6061
+                }
             }
         }
     }

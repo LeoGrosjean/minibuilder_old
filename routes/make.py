@@ -12,6 +12,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, jsonif
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
+from trimesh.geometry import align_vectors
 from trimesh.transformations import euler_matrix
 
 #from utils.cgtrader import download_cgt_file
@@ -27,7 +28,7 @@ from file_config.parts import load_json
 from forms.home import ChooseBuilderForm
 from forms.make import generateminidynamic_func, dynamic_BitzDisplay, dynamic_FieldBitz
 from utils.dict import deep_get
-from utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh
+from utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh, get_normal_vertice
 from utils.thingiverse import download_object
 from utils.zip import write_zip
 
@@ -95,6 +96,7 @@ def builder(builder_name):
     config_live_edit = {}
 
     position_matrix = []
+
     form = generateminidynamic_func(**di_form)
 
     if request.method == 'GET':
@@ -104,10 +106,10 @@ def builder(builder_name):
             curr_file_label = list(infos[node_name][cur_cat]['stl'].keys())[0]
             curr_file = infos[node_name][cur_cat]['stl'][curr_file_label]
             if curr_file.get('bitzs'):
-                for i, bitz in enumerate(curr_file.get('bitzs')):
+                for bitz_name in curr_file.get('bitzs'):
                     bitz_form = getattr(form, f"{node_name}_bitz")
                     bitz_form.append_entry()
-                    bitz_form.entries[-1].bitz_label.data = bitz.get('name')
+                    bitz_form.entries[-1].bitz_label.data = bitz_name
 
     for node in topological_sort(graph):
         di_permission = {}
@@ -142,8 +144,53 @@ def builder(builder_name):
                 'movex': form_result.get(f'{node}_movex'),
                 'movey': form_result.get(f'{node}_movey'),
             }
+
+            i = 0
+            di_file[node]['bitzs'] = []
+            while True:
+                if f"{node}_bitz-{i}-bitz_label" in form_result:
+                    category = form_result.get(f"{node}_bitz-{i}-bitz_select")
+                    bitz_file_name = form_result.get(f"{node}_bitz-{i}-bitz_list")
+                    if bitz_file_name == 'Empty':
+                        i += 1
+                        continue
+                    bitz_name = form_result.get(f"{node}_bitz-{i}-bitz_label")
+
+                    category_path = bitzs.get(category).get('desc').get('path')
+                    file_path = bitzs.get(category).get('stl').get(bitz_file_name).get('file')
+
+                    bitz_marker = bitzs.get(category).get('stl').get(bitz_file_name).get('bitz')
+
+                    bitz_urls = bitzs.get(category).get('stl').get(bitz_file_name).get('urls')
+
+                    bitz_designer = bitzs.get(category).get('stl').get(bitz_file_name).get('designer')
+
+                    di_file[node]['bitzs'].append(
+                        {
+                            "path": category_path + file_path,
+                            "label": bitz_name,
+                            "mesh_marker": di_file[node]['info']['bitzs'].get(bitz_name),
+                            "bitz_marker": bitz_marker,
+                            "urls": bitz_urls,
+                            "designer": bitz_designer,
+                            "bitz_name": bitz_file_name,
+                            "bitz_category": category
+                        }
+                    )
+                    i += 1
+                else:
+                    break
             di_file[node]['info']['mesh_path'] = \
                 f"data/{builder_name}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
+
+        for k, v in di_file.items():
+            if v.get('bitzs'):
+                for i, bitz in enumerate(v.get('bitzs')):
+                    bitz_form = getattr(form, f"{k}_bitz")
+                    for entrie in bitz_form.entries:
+                        if bitz.get('label') == entrie.bitz_label.data:
+                            entrie.bitz_list.data = bitz.get('bitz_name')
+                            entrie.bitz_list.choices = list(bitzs.get(bitz.get('bitz_category'))['stl'].keys())
 
         # remove mesh that has no parent connector
 
@@ -175,12 +222,16 @@ def builder(builder_name):
                 li_removed.append(node_rotate)
                 continue
 
-        # DL MISSING FILES THINGIVERSE
+        # CHECK MISSING FILES
         li_to_dl = []
         for node, mesh_infos_node in di_file.items():
             mesh_path = mesh_infos_node.get('info').get('mesh_path')
             if not os.path.isfile(mesh_path):
                 li_to_dl.append(mesh_infos_node.get('info'))
+
+            for bitz in mesh_infos_node.get('bitzs'):
+                if not os.path.isfile(bitz.get("path")):
+                    li_to_dl.append(bitz)
 
         check_dl_li = []
         if li_to_dl: #and form_result.get('download_missing_file'):
@@ -189,7 +240,8 @@ def builder(builder_name):
                     message = ""
                     for url in to_dl.get('urls'):
                         message += f'<a href="{url}" target="_blank">{urlparse(url).netloc} </a><br>'
-                    flash(Markup(f"{to_dl.get('mesh_path')} can be downloaded/buy there : <br>{message}<br>Then add them compressed or not !"))
+                    # TODO add proper file name for Bitz
+                    flash(Markup(f"{to_dl.get('mesh_path', 'Bitz')} can be downloaded/buy there : <br>{message}<br>Then add them compressed or not !"))
                 #if "thingiverse" in to_dl:
                 #    dl_good = download_object(to_dl.get('thingiverse'), to_dl.get('mesh_path'))
                 #    if dl_good:
@@ -236,9 +288,17 @@ def builder(builder_name):
             if 'designer' in v.get('info'):
                 designer_id = v.get('info').get('designer')
                 li_designer.append(designer_id)
+
+            for i, bitz in enumerate(di_file[k].get('bitzs')):
+                mesh = load(bitz.get('path'))
+                mesh.metadata['file_name'] = f"{k}_bitz_{bitz.get('label')}"
+                di_file[k]['bitzs'][i]['mesh'] = mesh
+                li_designer.append(bitz.get('designer'))
+
         for designer_id in set(li_designer):
             designer_display[designer_id] = designers.get(designer_id, {"name": f"@{designer_id}"})
 
+        # TODO scale bitz
         for node in di_file.keys():
             scale_mesh(di_file.get(node).get('mesh'),
                        (di_file.get(node).get('info').get('scale') or 1) * (float(di_file.get(node).get('scale') or 1)))
@@ -265,6 +325,7 @@ def builder(builder_name):
                                      scale=di_file.get(source).get('info').get('scale'),
                                      move_x=float(di_file.get(source).get('movex') or 0),
                                      move_y=float(di_file.get(source).get('movey') or 0),)
+
                     elif 'live_edit' in form_result:
                         connect_mesh(di_file.get(source).get('mesh'),
                                      di_file.get(dest).get('mesh'),
@@ -277,7 +338,6 @@ def builder(builder_name):
                                      scale=di_file.get(source).get('info').get('scale'),
                                      move_x=0,
                                      move_y=0)
-
 
             except Exception as e:
                 meshconfhelper = Markup('change the vertex/facet/vertex_list file conf ! '
@@ -301,7 +361,18 @@ def builder(builder_name):
                                        live_edit=form.live_edit,
                                        form_header=form_header
                                        )
-            # MERGE
+        for node, info in di_file.items():
+            for bitz in info.get('bitzs'):
+                mesh_normal, mesh_vertice = get_normal_vertice(info.get('mesh'), bitz.get('mesh_marker'))
+                bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
+                bitz.get('mesh').apply_transform(align_vectors(bitz_normal, mesh_normal * -1))
+                mesh_normal, mesh_vertice = get_normal_vertice(info.get('mesh'), bitz.get('mesh_marker'))
+                bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
+                bitz.get('mesh').apply_translation(mesh_vertice - bitz_vertice)
+                print()
+        #get_normal_vertice(mesh, marker)
+
+        # MERGE
 
         for edge in list(dfs_edges(graph))[::-1]:
             dest, source = edge
@@ -346,6 +417,8 @@ def builder(builder_name):
 
         for k, v in di_file.items():
             v.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
+            for bitz in v.get('bitzs'):
+                bitz.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
 
         if 'live_edit' in form_result:
             node_dict_rotate = {}
@@ -394,6 +467,10 @@ def builder(builder_name):
                     parent_node = list(graph.predecessors(k))[0]
                 else:
                     parent_node = None
+
+                for bitz in v.get('bitzs'):
+                    scene.add_geometry(bitz.get('mesh'), bitz.get('label'), parent_node_name=k)
+
                 scene.add_geometry(v.get('mesh'), k, parent_node_name=parent_node)
 
             #from trimesh.scene.scene import append_scenes
@@ -410,7 +487,13 @@ def builder(builder_name):
                                    form_header=form_header,
                                    )
 
-        scene = reduce(add, [v.get('mesh') for k, v in di_file.items()])
+        merge_mesh = [v.get('mesh') for k, v in di_file.items()]
+
+        for k, v in di_file.items():
+            for bitz in v.get('bitzs'):
+                merge_mesh.append([bitz.get('mesh')])
+
+        scene = reduce(add, merge_mesh)
 
         if 'dl_zip' in form_result:
             li_file_path = [(v.get('info').get('mesh_path'), k) for k, v in di_file.items()]
@@ -541,9 +624,9 @@ def updatebitz(builder, node, category, selection):
 
     curr_file = infos[category]['stl'][selection]
     if curr_file.get('bitzs'):
-        for i, bitz in enumerate(curr_file.get('bitzs')):
+        for bitz_name in curr_file.get('bitzs'):
             bitz_form = getattr(form, f"{node}_bitz")
             bitz_form.append_entry()
-            bitz_form.entries[-1].bitz_label.data = bitz.get('name')
+            bitz_form.entries[-1].bitz_label.data = bitz_name
 
     return render_template_string(jinja_string, form=getattr(form, f"{node}_bitz"), builder=builder)

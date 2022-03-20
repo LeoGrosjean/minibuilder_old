@@ -8,98 +8,169 @@
             "MK II v1": {
                 "file": "arm_1.stl",
                 "thingiverse": 3760127,
-                "urls": ["https://www.thingiverse.com/thing:3760127"],
-                "designer":"karnageking",
+                "urls": [
+                    "https://www.thingiverse.com/thing:3760127"
+                ],
+                "designer": "karnageking",
                 "rotate": -30,
                 "dextral": "right",
                 "arm": {
                     "facet": 30
                 },
-                "hand": {"vertex": 30407},
-                "scale": 1
-
+                "hand": {
+                    "vertex": 30407
+                },
+                "scale": 1,
+                "bitzs": {
+                    "shoulder": {
+                        "vertex": 42937
+                    }
+                }
             },
             "MK II v2": {
                 "file": "arm_2.stl",
                 "thingiverse": 3760127,
-                "urls": ["https://www.thingiverse.com/thing:3760127"],
-                "designer":"karnageking",
+                "urls": [
+                    "https://www.thingiverse.com/thing:3760127"
+                ],
+                "designer": "karnageking",
                 "rotate": -20,
                 "dextral": "right",
                 "arm": {
                     "facet": 106
                 },
                 "hand": {
-                    "vertex": 35238 
+                    "vertex": 35238
                 },
                 "scale": 1
             },
             "MK III hold a": {
                 "file": "MKIII_arm_4-a.stl",
-                "urls": ["https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"],
-                "designer":"fummelfinger",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"
+                ],
+                "designer": "fummelfinger",
                 "rotate": -15,
                 "dextral": "right",
-                "arm": {"vertex_list": [123146, 158588]},
-                "hand": {"vertex": 2136},
+                "arm": {
+                    "vertex_list": [
+                        123146,
+                        158588
+                    ]
+                },
+                "hand": {
+                    "vertex": 2136
+                },
                 "coef_merge": 0.3
             },
             "MK III hold b": {
                 "file": "MKIII_arm_4-b.stl",
-                "urls": ["https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"],
-                "designer":"fummelfinger",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"
+                ],
+                "designer": "fummelfinger",
                 "rotate": 20,
                 "dextral": "left",
-                "arm": {"vertex_list": [175256, 175289]},
-                "hand": {"vertex": 114200},
+                "arm": {
+                    "vertex_list": [
+                        175256,
+                        175289
+                    ]
+                },
+                "hand": {
+                    "vertex": 114200
+                },
                 "coef_merge": 0.3
             },
             "Heavy 2hand": {
                 "file": "heavy_weapons_-_arms.stl",
                 "thingiverse": 4263725,
-                "urls": ["https://www.thingiverse.com/thing:4263725"],
-                "designer":"graudnov",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4263725"
+                ],
+                "designer": "graudnov",
                 "rotate": 14,
                 "dextral": "right",
-                "arm": {"vertex_list": [39835, 135905]},
-                "hand": {"vertex_list": [67049, 113572, 128118]},
+                "arm": {
+                    "vertex_list": [
+                        39835,
+                        135905
+                    ]
+                },
+                "hand": {
+                    "vertex_list": [
+                        67049,
+                        113572,
+                        128118
+                    ]
+                },
                 "coef_merge": -0.08
             },
             "MK X Banner": {
                 "file": "Banner_Arm.stl",
-                "urls": ["https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner"],
+                "urls": [
+                    "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner"
+                ],
                 "designer": "cornivius",
                 "dextral": "left",
                 "hole": false,
-                "arm": {"vertex_list": [2065, 6267]},
-                "hand": {"vertex_list": [126, 1720]}
+                "arm": {
+                    "vertex_list": [
+                        2065,
+                        6267
+                    ]
+                },
+                "hand": {
+                    "vertex_list": [
+                        126,
+                        1720
+                    ]
+                }
             },
             "MK IV Tactical 01": {
                 "file": "tac_arms_01.stl",
-                "urls": ["https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"],
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ],
                 "designer": "LoggyK",
                 "dextral": "right",
                 "hole": false,
-                "arm": {"vertex": 111406},
-                "hand": {"vertex": 75984}
+                "arm": {
+                    "vertex": 111406
+                },
+                "hand": {
+                    "vertex": 75984
+                }
             },
             "MK IV Tactical 02": {
                 "file": "tac_arms_02.stl",
-                "urls": ["https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"],
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ],
                 "designer": "LoggyK",
                 "dextral": "right",
                 "hole": false,
-                "arm": {"vertex": 107831},
-                "hand": {"vertex": 119215}
+                "arm": {
+                    "vertex": 107831
+                },
+                "hand": {
+                    "vertex": 119215
+                }
             },
             "MK IV Tactical 03": {
                 "file": "tac_arms_03.stl",
-                "urls": ["https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"],
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ],
                 "designer": "LoggyK",
                 "dextral": "right",
                 "hole": false,
-                "arm": {"vertex": 119319},
-                "hand": {"vertex": 66719}
+                "arm": {
+                    "vertex": 119319
+                },
+                "hand": {
+                    "vertex": 66719
+                }
             }
         }
     }

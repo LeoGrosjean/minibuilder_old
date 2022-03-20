@@ -32,26 +32,14 @@
                         "facet": 11628
                     }
                 },
-                "bitzs": [
-                    {
-                        "name": "right belt",
-                        "bitz": {
-                            "vertex_list": [
-                                3295,
-                                24768
-                            ]
-                        }
+                "bitzs": {
+                    "a": {
+                        "vertex": 15787
                     },
-                    {
-                        "name": "left belt",
-                        "bitz": {
-                            "vertex_list": [
-                                18098,
-                                18099
-                            ]
-                        }
+                    "b": {
+                        "facet": 11628
                     }
-                ]
+                }
             },
             "MK V v2": {
                 "file": "Mk_V_ver2.stl",

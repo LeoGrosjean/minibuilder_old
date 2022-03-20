@@ -158,14 +158,9 @@ def addbitz(builder, node, category, file):
             folder = graph.nodes[node].get('folder')
             mesh = tm.load(f"data/{builder}/{folder}/{category}/{file_name}")
 
-            files_conf.get(category).get('stl').get(file)['bitzs'] = []
+            files_conf.get(category).get('stl').get(file)['bitzs'] = {}
             for bitz in li:
-                files_conf.get(category).get('stl').get(file)['bitzs'].append(
-                    {
-                        'name': bitz.get('name'),
-                        'bitz': find_vertices(mesh, *literal_eval(f"[[{bitz.get('marker')}]]"))
-                    }
-                )
+                files_conf.get(category).get('stl').get(file)['bitzs'][bitz.get('name')] = find_vertices(mesh, *literal_eval(f"[[{bitz.get('marker')}]]"))
 
             with open(f"data/{builder}/{conf_json}", "w") as outfile:
                 json.dump(files_conf, outfile, indent=4)

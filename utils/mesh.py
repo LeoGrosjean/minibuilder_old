@@ -268,3 +268,27 @@ def get_mesh_normal_position_edit(mesh, info, on, dextral=None, inverse_norm=Fal
     normal_y = ','.join([str(x) for x in normal_y.tolist()])
 
     return normal, vertice, normal_x, normal_y
+
+
+def get_normal_vertice(mesh, marker):
+    if "vertex" in marker:
+        normal = mesh.vertex_normals[marker["vertex"]]
+        vertice = mesh.vertices[marker["vertex"]]
+    elif "facet" in marker:
+        normal = mesh.facets_normal[marker["facet"]]
+        vertice = get_center_facet_index(mesh, marker["facet"])
+        try:
+            if np.abs(sum(normal)) != 1:
+                normal /= np.abs(sum(normal))
+        except Exception as e:
+            print(e)
+    elif "vertex_list" in marker:
+        normal = get_mean_vertex_normal_list(mesh, marker["vertex_list"])
+        vertice = get_mean_vertex_list(mesh, marker["vertex_list"])
+        try:
+            if np.abs(sum(normal)) != 1:
+                normal /= np.abs(sum(normal))
+        except Exception as e:
+            print(e)
+
+    return normal, vertice
