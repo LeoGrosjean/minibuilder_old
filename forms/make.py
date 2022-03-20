@@ -71,6 +71,19 @@ def dynamic_BitzDisplay(*args, **kwargs):
                      validators=[InputRequired()])
         bitz_scale = FloatField('Scale', default=1, widget=NumberInput(min=0.8, max=1.2, step=0.01),
                              validators=[InputRequired()])
+        bitz_merge = FloatField('Merge', default=0, widget=NumberInput(min=-4, max=3, step=0.01),
+                   validators=[InputRequired()])
+
+        bitz_anklex = FloatField('AnkleX', default=0,
+                           widget=NumberInput(min=-45, max=45, step=0.1),
+                           validators=[InputRequired()])
+        bitz_ankley = FloatField('AnkleY', default=0,
+                           widget=NumberInput(min=-45, max=45, step=0.1),
+                           validators=[InputRequired()])
+        bitz_movex = FloatField('MoveX', default=0, widget=NumberInput(min=-4, max=4, step=0.01),
+                           validators=[InputRequired()])
+        bitz_movey = FloatField('MoveY', default=0, widget=NumberInput(min=-4, max=4, step=0.01),
+                           validators=[InputRequired()])
     return BitzDisplay
 
 

@@ -64,6 +64,7 @@
                                             aria-controls="{{ bitz_form.bitz_label.id }}">
                                         {{ bitz_form.bitz_label.data }}
                                     </button>
+                                    {{bitz_form.bitz_label}}
                                 </div>
                                 <div class="col-6 col-sm-auto">
                                         {{ bitz_form.bitz_select }}
@@ -74,12 +75,27 @@
                             </div>
                             <div class="bg-light collapse" id="{{ bitz_form.bitz_label.id }}">
                                 <div class="card card-body">
-                                    <div>
-                                        {{ bitz_form.bitz_rotate(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_rotate.data}}</output>° rotation
-                                    </div>
-                                    <div>
-                                        {{ bitz_form.bitz_scale(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_scale.data}}</output>x scale
-                                    </div>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Rotation {{ bitz_form.bitz_rotate(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_rotate.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Scale {{ bitz_form.bitz_scale(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_scale.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Merge {{ bitz_form.bitz_merge(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_merge.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Ankle X {{ bitz_form.bitz_anklex(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_anklex.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Ankle Y {{ bitz_form.bitz_ankley(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_ankley.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Move X {{ bitz_form.bitz_movex(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_movex.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Move Y {{ bitz_form.bitz_movey(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_movey.data}}</output>
+                                    </p>
                                 </div>
                                 {{change_bitz_choice(bitz_form.bitz_select)}}
                             </div>

@@ -20312,26 +20312,62 @@ function init() {
                 window.{{ bitz.get('id').replace('-', '_') }}_normal_anklex = new THREE.Vector3({{bitz.get('normal_x', "0, 0 ,0") }}).normalize()
                 window.{{ bitz.get('id').replace('-', '_') }}_normal_ankley = new THREE.Vector3({{bitz.get('normal_y', "0, 0 ,0") }}).normalize()
 
-                modif_bitz({{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
                 if (window.document.getElementById("{{ bitz.get('id') }}-bitz_rotate") != null){
                     window.document.getElementById("{{ bitz.get('id') }}-bitz_rotate").addEventListener('input', function () {
-                        modif_bitz({{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+                        modif_bitz(window.{{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
                         render()
                     });
                 }
                 if (window.document.getElementById("{{ bitz.get('id') }}-bitz_scale") != null){
-                {{ bitz.get('id').replace('-', '_') }}_scale_base =  window.document.getElementById("{{ bitz.get('id') }}-bitz_scale").valueAsNumber
-                window.document.getElementById("{{ bitz.get('id') }}-bitz_scale").addEventListener('input', function () {
-                    {{bitz.get('id').replace('-', '_')}}_scale = window.document.getElementById("{{ bitz.get('id') }}-bitz_scale").value;
+                    {{ bitz.get('id').replace('-', '_') }}_scale_base =  window.document.getElementById("{{ bitz.get('id') }}-bitz_scale").valueAsNumber
+                    window.document.getElementById("{{ bitz.get('id') }}-bitz_scale").addEventListener('input', function () {
+                        {{bitz.get('id').replace('-', '_')}}_scale = window.document.getElementById("{{ bitz.get('id') }}-bitz_scale").value;
 
-                    scale_mesh_bitz({{ bitz.get('id').replace('-', '_') }}, {{bitz.get('id').replace('-', '_')}}_scale, {{ bitz.get('id').replace('-', '_') }}_scale_base, {{ bitz.get('id').replace('-', '_') }}_normal, {{ bitz.get('id').replace('-', '_') }}_vertice)
-                    render()
-                });
-            }
+                        scale_mesh_bitz(window.{{ bitz.get('id').replace('-', '_') }}, {{bitz.get('id').replace('-', '_')}}_scale, {{ bitz.get('id').replace('-', '_') }}_scale_base, {{ bitz.get('id').replace('-', '_') }}_normal, {{ bitz.get('id').replace('-', '_') }}_vertice)
+                        render()
+                    });
+                }
+                if (window.document.getElementById("{{ bitz.get('id') }}-bitz_anklex") != null){
+                    window.document.getElementById("{{ bitz.get('id') }}-bitz_anklex").addEventListener('input', function () {
+                        modif_bitz(window.{{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+                        render()
+                    });
+                }
+
+                if (window.document.getElementById("{{ bitz.get('id') }}-bitz_ankley") != null){
+                    window.document.getElementById("{{ bitz.get('id') }}-bitz_ankley").addEventListener('input', function () {
+                        modif_bitz(window.{{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+                        render()
+                    });
+                }
+
+                if (window.document.getElementById("{{ bitz.get('id') }}-bitz_merge") != null){
+                    window.document.getElementById("{{ bitz.get('id') }}-bitz_merge").addEventListener('input', function () {
+                        modif_bitz(window.{{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+                        render()
+                    });}
+
+                if (window.document.getElementById("{{ bitz.get('id') }}-bitz_movex") != null){
+                    window.document.getElementById("{{ bitz.get('id') }}-bitz_movex").addEventListener('input', function () {
+                        modif_bitz(window.{{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+                        render()
+                    });
+                }
+
+                if (window.document.getElementById("{{ bitz.get('id') }}-bitz_movey") != null){
+                    window.document.getElementById("{{ bitz.get('id') }}-bitz_movey").addEventListener('input', function () {
+                        modif_bitz(window.{{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+                        render()
+                    });
+                }
+
             {% endfor %}
         {% endfor %}
 
         {% for node, child_nodes in node_dict_rotate.items() %}
+            {% for bitz in  child_nodes.get('bitzs') %}
+                modif_bitz({{ bitz.get('id').replace('-', '_') }}, window.{{ bitz.get('id').replace('-', '_') }}_vertice)
+            {% endfor %}
             //rotate
             window.{{ node }}= window.scene.getObjectByName("{{ node }}")
             {% if child_nodes.get('normal') %}
@@ -20476,18 +20512,21 @@ function modif_bitz(object3d, position) {
         object3d.position.set(0,0,0)
         if (window.document.getElementById(object3d.name + "-bitz_movex") != null){
             coef = window.document.getElementById(object3d.name + "-bitz_movex").valueAsNumber
-            position = position.clone().addVectors(position, window[object3d.name +"_normal_anklex"].clone().multiplyScalar(coef))
-            object3d.translateOnAxis(window[object3d.name +"_normal_anklex"], coef)
+            console.log(coef)
+            console.log(object3d)
+            console.log(position)
+            position = position.clone().addVectors(position, window[object3d.name.replace('-', '_') +"_normal_anklex"].clone().multiplyScalar(coef))
+            object3d.translateOnAxis(window[object3d.name.replace('-', '_') +"_normal_anklex"], coef)
         }
         if (window.document.getElementById(object3d.name + "-bitz_movey") != null){
             coef = window.document.getElementById(object3d.name + "-bitz_movey").valueAsNumber
-            position = position.clone().addVectors(position, window[object3d.name +"_normal_ankley"].clone().multiplyScalar(coef))
-            object3d.translateOnAxis(window[object3d.name +"_normal_ankley"], coef)
+            position = position.clone().addVectors(position, window[object3d.name.replace('-', '_') +"_normal_ankley"].clone().multiplyScalar(coef))
+            object3d.translateOnAxis(window[object3d.name.replace('-', '_') +"_normal_ankley"], coef)
         }
         if (window.document.getElementById(object3d.name + "-bitz_merge") != null){
             coef = window.document.getElementById(object3d.name + "-bitz_merge").valueAsNumber
-            position = position.clone().addVectors(position, window[object3d.name +"_normal"].clone().multiplyScalar(coef))
-            object3d.translateOnAxis(window[object3d.name +"_normal"], coef)
+            position = position.clone().addVectors(position, window[object3d.name.replace('-', '_') +"_normal"].clone().multiplyScalar(coef))
+            object3d.translateOnAxis(window[object3d.name.replace('-', '_') +"_normal"], coef)
         }
 
         if (window.document.getElementById(object3d.name + "-bitz_rotate") != null){

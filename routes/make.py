@@ -175,7 +175,15 @@ def builder(builder_name):
                             "designer": bitz_designer,
                             "bitz_name": bitz_file_name,
                             "bitz_category": category,
-                            "id_web": f"{node}_bitz-{i}"
+                            "id_web": f"{node}_bitz-{i}",
+
+                            "scale": float(form_result.get(f"{node}_bitz-{i}-bitz_scale", 1)),
+                            "rotate": float(form_result.get(f"{node}_bitz-{i}-bitz_rotate", 0)),
+                            "merge": float(form_result.get(f"{node}_bitz-{i}-bitz_merge", 0)),
+                            "anklex": float(form_result.get(f"{node}_bitz-{i}-bitz_anklex", 0)),
+                            "ankley": float(form_result.get(f"{node}_bitz-{i}-bitz_ankley", 0)),
+                            "movex": float(form_result.get(f"{node}_bitz-{i}-bitz_movex", 0)),
+                            "movey": float(form_result.get(f"{node}_bitz-{i}-bitz_movey", 0)),
                         }
                     )
                     i += 1
@@ -190,6 +198,7 @@ def builder(builder_name):
                     bitz_form = getattr(form, f"{k}_bitz")
                     for entrie in bitz_form.entries:
                         if bitz.get('label') == entrie.bitz_label.data:
+                            entrie
                             entrie.bitz_list.data = bitz.get('bitz_name')
                             entrie.bitz_list.choices = list(bitzs.get(bitz.get('bitz_category'))['stl'].keys())
 
@@ -303,6 +312,9 @@ def builder(builder_name):
         for node in di_file.keys():
             scale_mesh(di_file.get(node).get('mesh'),
                        (di_file.get(node).get('info').get('scale') or 1) * (float(di_file.get(node).get('scale') or 1)))
+
+            for bitz in di_file[node].get('bitzs', []):
+                scale_mesh(bitz.get('mesh'), bitz.get('scale'))
 
         for edge in dfs_edges(graph):
             dest, source = edge
@@ -651,12 +663,27 @@ jinja_string = """
                             </div>
                             <div class="bg-light collapse" id="{{ bitz_form.bitz_label.id }}">
                                 <div class="card card-body">
-                                    <div>
-                                        {{ bitz_form.bitz_rotate(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_rotate.data}}</output>° rotation
-                                    </div>
-                                    <div>
-                                        {{ bitz_form.bitz_scale(type="range", oninput="this.nextElementSibling.value = this.value") }} <output>{{bitz_form.bitz_scale.data}}</output>x scale
-                                    </div>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Rotation {{ bitz_form.bitz_rotate(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_rotate.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Scale {{ bitz_form.bitz_scale(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_scale.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Merge {{ bitz_form.bitz_merge(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_merge.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Ankle X {{ bitz_form.bitz_anklex(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_anklex.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Ankle Y {{ bitz_form.bitz_ankley(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_ankley.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Move X {{ bitz_form.bitz_movex(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_movex.data}}</output>
+                                    </p>
+                                    <p class="row bg-light" style="margin: 0">
+                                        Move Y {{ bitz_form.bitz_movey(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_movey.data}}</output>
+                                    </p>
                                 </div>
                                 {{change_bitz_choice(bitz_form.bitz_select)}}
                             </div>
