@@ -13,7 +13,7 @@ from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
 from trimesh.geometry import align_vectors
-from trimesh.transformations import euler_matrix
+from trimesh.transformations import euler_matrix, rotation_matrix
 
 #from utils.cgtrader import download_cgt_file
 #from utils.cults import download_cults_file
@@ -379,10 +379,27 @@ def builder(builder_name):
                 mesh_normal, mesh_vertice = get_normal_vertice(info.get('mesh'), bitz.get('mesh_marker'))
                 bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                 bitz.get('mesh').apply_transform(align_vectors(bitz_normal, mesh_normal * -1))
+
                 mesh_normal, mesh_vertice = get_normal_vertice(info.get('mesh'), bitz.get('mesh_marker'))
                 bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                 bitz.get('mesh').apply_translation(mesh_vertice - bitz_vertice)
-                print()
+
+
+                if 'submit_preview' in form_result or 'dl_zip' in form_result:
+                    bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
+                    bitz.get('mesh').apply_translation(bitz_normal * bitz.get('merge', 0))
+
+                    normal_x = np.cross(bitz_normal, [1, 0, 0]) / np.linalg.norm(np.cross(bitz_normal, [1, 0, 0]))
+                    if np.isnan(normal_x[0]):
+                        print('x is nan')
+                        normal_x = np.cross(bitz_normal, [0, 0, 1]) / np.linalg.norm(np.cross(bitz_normal, [0, 0, 1]))
+                    normal_x = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
+                    normal_y = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
+
+                    bitz.get('mesh').apply_translation(normal_x * bitz.get('movex', 0) + normal_y * bitz.get('movey', 0))
+
+
+
         #get_normal_vertice(mesh, marker)
 
         # MERGE
@@ -409,6 +426,7 @@ def builder(builder_name):
                             anklex=float(di_file.get(source).get('anklex') or 0),
                             ankley=float(di_file.get(source).get('ankley') or 0),
                             )
+
             elif 'live_edit' in form_result:
                 config_live_edit[source] = {
                     "rotate": int(di_file.get(source).get('rotate') or 0),
@@ -427,6 +445,25 @@ def builder(builder_name):
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
                         del di_file[source]
+
+        if 'submit_preview' in form_result or 'dl_zip' in form_result:
+            for k, v in di_file.items():
+                for bitz in di_file.get(k).get('bitzs', []):
+                    normal, vertice = get_normal_vertice(
+                        bitz.get('mesh'),
+                        bitz.get('bitz_marker')
+                    )
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), normal, vertice))
+
+                    normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+                    if np.isnan(normal_x[0]):
+                        normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
+                    normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+                    normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('anklex')), normal_x, vertice))
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('ankley')), normal_y, vertice))
 
         for k, v in di_file.items():
             v.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
@@ -644,7 +681,6 @@ jinja_string = """
 </script>
 
 {% endmacro %}
-                    <div id="{{form.id}}">
                         {% for bitz_form in form %}
                             <div class="row">
                                 <div class="col-6 col-sm-auto">

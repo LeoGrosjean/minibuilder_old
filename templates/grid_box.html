@@ -38,7 +38,7 @@
                     <div class="col">
                         {{ field }}
 
-                    <a class="col" id="{{field.id[:-5]}}_edit" target="_blank" href="/edit/{{field_dict.get('builder_name')}}/{{field.id[:-5]}}/{{field_dict['select'].default}}/{{field.default}}/">Edit</a>
+                    <a class="col" id="{{field.id[:-5]}}_edit" target="_blank" href="/edit/{{field_dict.get('builder_name')}}/{{field.id[:-5]}}/{{field_dict['select'].data}}/{{field.default}}/">Edit</a>
                     </div>
                 {% elif k == "rotate" %}
                     Rotation {{ field(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{field.data}}</output>

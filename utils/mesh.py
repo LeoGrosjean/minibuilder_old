@@ -41,7 +41,6 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
 
     if ankley:
-
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
