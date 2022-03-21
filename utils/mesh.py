@@ -63,10 +63,9 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         mesh.apply_scale(scale)
 
     try:
-        dest_normal, dest_vertice = get_normal_vertice(dest_mesh, dest_mesh_info[on][dextral])
+        dest_normal, dest_vertice = get_normal_vertice(dest_mesh, dest_mesh_info[on][dextral], fix=True)
     except Exception as e:
-        print(e)
-        dest_normal, dest_vertice = get_normal_vertice(dest_mesh, dest_mesh_info[on])
+        dest_normal, dest_vertice = get_normal_vertice(dest_mesh, dest_mesh_info[on], fix=True)
 
     normal, vertice = get_normal_vertice(mesh, mesh_info[on])
 
@@ -75,7 +74,7 @@ def connect_mesh(mesh, dest_mesh, mesh_info, dest_mesh_info, on, coef_merge=0, d
         dest_normal = np.array([0, 0, -1])"""
     mesh.apply_transform(tm.geometry.align_vectors(normal, dest_normal * -base_coef))
 
-    normal, vertice = get_normal_vertice(mesh, mesh_info[on])
+    normal, vertice = get_normal_vertice(mesh, mesh_info[on], fix=True)
 
     mesh.apply_translation(dest_vertice - vertice)
 
@@ -152,7 +151,7 @@ def get_mesh_normal_position_edit(mesh, info, on, dextral=None, inverse_norm=Fal
     return normal, vertice, normal_x, normal_y
 
 
-def get_normal_vertice(mesh, marker):
+def get_normal_vertice(mesh, marker, fix=False):
     if "vertex" in marker:
         normal = mesh.vertex_normals[marker["vertex"]]
         vertice = mesh.vertices[marker["vertex"]]
@@ -168,11 +167,12 @@ def get_normal_vertice(mesh, marker):
     elif "vertex_list" in marker:
         normal = get_mean_vertex_normal_list(mesh, marker["vertex_list"])
         vertice = get_mean_vertex_list(mesh, marker["vertex_list"])
-
-    try:
-        if np.abs(sum(normal)) != 1:
-            normal /= np.abs(sum(normal))
-    except Exception as e:
-        print(e)
+    if fix:
+        normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
+        if np.isnan(normal_x[0]):
+            normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
+        normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+        normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
+        #vertice += normal_x * marker.get('x', 0) + normal_y * marker.get('y', 0)
 
     return normal, vertice

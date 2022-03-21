@@ -5,7 +5,7 @@
             "path": "data/Wargame Humanoid/arm/Tempest Legion/"
         },
         "stl": {
-            "Psychic - Empty Hand Arm ": {
+            "Psychic - Empty Hand Arm": {
                 "file": "TL - Right Arm - PSY 1.OBJ",
                 "designer": "Garin",
                 "md5": "add928b384b3e4809d2fb89d4963ea8d",
@@ -641,7 +641,9 @@
                 ],
                 "dextral": "right",
                 "arm": {
-                    "facet": 42
+                    "facet": 42,
+                    "x": -0.81,
+                    "y": -2.8
                 }
             },
             "Mk3 - Slug Pistol 1": {

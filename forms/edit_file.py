@@ -11,6 +11,7 @@ def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
     class FormMakeMeshConf(FlaskForm):
         add = SubmitField('Validate change !')
         file_name = StringField(label='File Name', validators=[InputRequired()], render_kw={'hidden': False})
+        hidden_file_name = HiddenField()
         support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"data/{graph.name}/uploaded/"),
                                 validators=[], render_kw={'hidden': False, 'style': 'width: 181'})
         url = StringField(label='Url to download/buy', validators=[InputRequired()], render_kw={'hidden': False})
@@ -31,6 +32,13 @@ def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
                 designers = []
             return designers
 
+
+    if graph.nodes[node].get('dextral'):
+        setattr(FormMakeMeshConf, f"dextral",
+                SelectField(label="Dextral", choices=['left', 'right'], default=graph.nodes[node].get('dextral'),
+                            validators=[InputRequired()], render_kw={'hidden': False}))
+
+
     if list(graph.successors(node)):
         connectors = []
         connectors.extend(list(graph.successors(node)))
@@ -42,26 +50,26 @@ def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
                     StringField(f"{graph.nodes[field].get('label')} Marker", render_kw={'readonly': True}))
             setattr(FormMakeMeshConf, "connectors", connectors)
 
-            setattr(FormMakeMeshConf, f"marker_{field}_movex",
-                    FloatField(f"{graph.nodes[field].get('label')} MoveX", default=0, widget=NumberInput(min=-4, max=4, step=0.01),
-                               validators=[InputRequired()], render_kw={'type': "range"}))
-            setattr(FormMakeMeshConf, f"marker_{field}_movey",
-                    FloatField(f"{graph.nodes[field].get('label')} MoveY", default=0, widget=NumberInput(min=-4, max=4, step=0.01),
-                               validators=[InputRequired()], render_kw={'type': "range"}))
+            #setattr(FormMakeMeshConf, f"marker_{field}_movex",
+            #        FloatField(f"{graph.nodes[field].get('label')} MoveX", default=0, widget=NumberInput(min=-4, max=4, step=0.01),
+            #                   validators=[InputRequired()], render_kw={'type': "range"}))
+            #setattr(FormMakeMeshConf, f"marker_{field}_movey",
+            #        FloatField(f"{graph.nodes[field].get('label')} MoveY", default=0, widget=NumberInput(min=-4, max=4, step=0.01),
+            #                   validators=[InputRequired()], render_kw={'type': "range"}))
     else:
         connectors = [node]
         setattr(FormMakeMeshConf, f"{node}_marker",
                 StringField(f"{graph.nodes[node].get('label')} Marker", render_kw={'readonly': True}))
         setattr(FormMakeMeshConf, "connectors", connectors)
 
-        setattr(FormMakeMeshConf, f"marker_{node}_movex",
-                FloatField(f"{graph.nodes[node].get('label')} MoveX", default=0,
-                           widget=NumberInput(min=-4, max=4, step=0.01),
-                           validators=[InputRequired()], render_kw={'type': "range"}))
-        setattr(FormMakeMeshConf, f"marker_{node}_movey",
-                FloatField(f"{graph.nodes[node].get('label')} MoveY", default=0,
-                           widget=NumberInput(min=-4, max=4, step=0.01),
-                           validators=[InputRequired()], render_kw={'type': "range"}))
+        #setattr(FormMakeMeshConf, f"marker_{node}_movex",
+        #        FloatField(f"{graph.nodes[node].get('label')} MoveX", default=0,
+        #                   widget=NumberInput(min=-4, max=4, step=0.01),
+        #                   validators=[InputRequired()], render_kw={'type': "range"}))
+        #setattr(FormMakeMeshConf, f"marker_{node}_movey",
+        #        FloatField(f"{graph.nodes[node].get('label')} MoveY", default=0,
+        #                   widget=NumberInput(min=-4, max=4, step=0.01),
+        #                   validators=[InputRequired()], render_kw={'type': "range"}))
 
     return FormMakeMeshConf(graph, *args, **kwargs)
 

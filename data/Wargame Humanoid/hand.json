@@ -10,7 +10,12 @@
                 "thingiverse": 4606349,
                 "designer": "cornivius",
                 "dextral": "left",
-                "hand": {"vertex_list": [2342, 9145]},
+                "hand": {
+                    "vertex_list": [
+                        2342,
+                        9145
+                    ]
+                },
                 "coef_merge": 0.1
             },
             "Power Sword": {
@@ -18,7 +23,9 @@
                 "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
                 "designer": "LoggyK",
                 "dextral": "left",
-                "hand": {"vertex": 6459},
+                "hand": {
+                    "vertex": 6459
+                },
                 "coef_merge": 0.1
             },
             "Chainsword": {
@@ -26,8 +33,15 @@
                 "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
                 "designer": "LoggyK",
                 "dextral": "left",
-                "hand": {"vertex": 68244},
-                "coef_merge": 0.1
+                "hand": {
+                    "vertex": 68244
+                },
+                "coef_merge": 0.1,
+                "bitzs": {
+                    "purity_seal": {
+                        "vertex": 46623
+                    }
+                }
             }
         }
     },
@@ -42,7 +56,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [5049, 20270]},
+                "hand": {
+                    "vertex_list": [
+                        5049,
+                        20270
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -51,7 +70,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [4166, 16750]},
+                "hand": {
+                    "vertex_list": [
+                        4166,
+                        16750
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -60,7 +84,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [2417, 9840]},
+                "hand": {
+                    "vertex_list": [
+                        2417,
+                        9840
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -69,7 +98,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [5201, 20855]},
+                "hand": {
+                    "vertex_list": [
+                        5201,
+                        20855
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -78,7 +112,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [6747, 26875]},
+                "hand": {
+                    "vertex_list": [
+                        6747,
+                        26875
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -87,7 +126,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [2573, 10408]},
+                "hand": {
+                    "vertex_list": [
+                        2573,
+                        10408
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -96,7 +140,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [5124, 20568]},
+                "hand": {
+                    "vertex_list": [
+                        5124,
+                        20568
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -105,7 +154,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [4013, 16184]},
+                "hand": {
+                    "vertex_list": [
+                        4013,
+                        16184
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -114,7 +168,12 @@
                 "thingiverse": 4304344,
                 "designer": "cornivius",
                 "dextral": "right",
-                "hand": {"vertex_list": [5106, 20587]},
+                "hand": {
+                    "vertex_list": [
+                        5106,
+                        20587
+                    ]
+                },
                 "rotate": 180,
                 "coef_merge": 0.1
             },
@@ -123,7 +182,9 @@
                 "cults3d": "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical",
                 "designer": "LoggyK",
                 "dextral": "right",
-                "hand": {"vertex": 93714},
+                "hand": {
+                    "vertex": 93714
+                },
                 "coef_merge": 0.1
             }
         }
@@ -184,8 +245,6 @@
             }
         }
     },
-
-
     "Banner": {
         "desc": {
             "display": "Banner",
@@ -210,12 +269,17 @@
                 "cults3d": "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner",
                 "designer": "cornivius",
                 "dextral": "left",
-                "hand": {"vertex_list": [2673, 30323]},
+                "hand": {
+                    "vertex_list": [
+                        2673,
+                        30323
+                    ]
+                },
                 "coef_merge": 0.1
             }
         }
     },
-       "Rivetgun 2hands": {
+    "Rivetgun 2hands": {
         "desc": {
             "display": "Banner",
             "path": "data/Wargame Humanoid/hand/Rivet2hand/"
@@ -226,7 +290,12 @@
                 "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
                 "designer": "Fummelfinger",
                 "dextral": "left",
-                "hand": {"vertex_list": [34994, 69311]},
+                "hand": {
+                    "vertex_list": [
+                        34994,
+                        69311
+                    ]
+                },
                 "coef_merge": 0.1
             },
             "Phobos drum mag": {
@@ -234,7 +303,12 @@
                 "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
                 "designer": "Fummelfinger",
                 "dextral": "left",
-                "hand": {"vertex_list": [31674, 62493]},
+                "hand": {
+                    "vertex_list": [
+                        31674,
+                        62493
+                    ]
+                },
                 "coef_merge": 0.1
             },
             "Umbra": {
@@ -242,7 +316,12 @@
                 "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
                 "designer": "Fummelfinger",
                 "dextral": "left",
-                "hand": {"vertex_list": [4680, 47701]},
+                "hand": {
+                    "vertex_list": [
+                        4680,
+                        47701
+                    ]
+                },
                 "coef_merge": 0.1
             }
         }

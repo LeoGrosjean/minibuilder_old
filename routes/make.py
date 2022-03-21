@@ -486,7 +486,7 @@ def builder(builder_name):
                     normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                         di_file.get(node_rotate).get('mesh'),
                         marker)
-
+                # TODO MOVE MARKER XY dans EDIT (soucis par ici, check aussi avant apres)
                 elif predecessor:
                     marker = di_file.get(predecessor).get('info')[di_file.get(node_rotate).get('on')]
                     normal, vertice, normal_x, normal_y = get_mesh_normal_position(

@@ -1,37 +1,70 @@
 {
-  "directed": true,
-  "multigraph": true,
-  "graph": {
-    "name": "Drawer"
-  },
-  "nodes": [
-    {
-      "id": "box",
-      "label": "Box",
-      "folder": "Box",
-      "position": [0, 0],
-      "permissions": ["select", "list"],
-      "files": ["box.json"]
+    "directed": true,
+    "multigraph": true,
+    "graph": {
+        "name": "Drawer"
     },
-    {
-      "id": "drawer",
-      "label": "Drawer",
-      "folder": "drawer",
-      "position": [0, 1],
-      "permissions": ["select", "list", "rotate"],
-      "files": ["drawer.json"]
-    },
-    {
-      "id": "knob",
-      "label": "Knob",
-      "folder": "knob",
-      "position": [0, 2],
-      "permissions": ["select", "list", "rotate"],
-      "files": ["knob.json"]
-    }
-  ],
-  "links": [
-    {"source": "box", "target": "drawer"},
-    {"source": "drawer", "target": "knob"}
-  ]
+    "nodes": [
+        {
+            "id": "box",
+            "label": "Box",
+            "folder": "Box",
+            "position": [
+                0,
+                0
+            ],
+            "permissions": [
+                "select",
+                "list"
+            ],
+            "files": [
+                "box.json"
+            ]
+        },
+        {
+            "id": "drawer",
+            "label": "Drawer",
+            "folder": "drawer",
+            "position": [
+                0,
+                1
+            ],
+            "permissions": [
+                "select",
+                "list",
+                "rotate"
+            ],
+            "files": [
+                "drawer.json"
+            ]
+        },
+        {
+            "id": "knob",
+            "label": "Knob",
+            "folder": "knob",
+            "position": [
+                0,
+                2
+            ],
+            "permissions": [
+                "select",
+                "list",
+                "rotate"
+            ],
+            "files": [
+                "knob.json",
+                "test.json"
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": "box",
+            "target": "drawer"
+        },
+        {
+            "source": "drawer",
+            "target": "knob"
+        }
+    ]
 }

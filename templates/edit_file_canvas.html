@@ -145,6 +145,7 @@
 		window["position_{{ k }}"] = {{ k }}_arrowHelper.position.clone()
 		{% if v.get('normal') %}
 			scene.add( {{ k }}_arrowHelper );
+			move_normal({{ k }}_arrowHelper, {{ k }}_vertice, {{ k }}_normal_anklex, {{ k }}_normal_ankley)
 		{% endif %}
 
 		if (window.document.getElementById("marker_{{ k }}_movex") != null){
@@ -362,12 +363,12 @@
         if (window.document.getElementById("marker_" + object3d.name + "_movex") != null){
             coef = window.document.getElementById("marker_" + object3d.name + "_movex").valueAsNumber
             position = position.clone().addVectors(position, normalx.clone().multiplyScalar(coef))
-			object3d.position.addScaledVector(normalx, coef)
+			object3d.position.addScaledVector(normalx, -coef)
         }
         if (window.document.getElementById("marker_" + object3d.name + "_movey") != null){
-            coef = window.document.getElementById("marker_" + object3d.name + "_movey").valueAsNumber
+            coef = -window.document.getElementById("marker_" + object3d.name + "_movey").valueAsNumber
             position = position.clone().addVectors(position, normaly.clone().multiplyScalar(coef))
-            object3d.position.addScaledVector(normaly, coef)
+            object3d.position.addScaledVector(normaly, -coef)
         }}
 </script>
 

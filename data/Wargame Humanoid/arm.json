@@ -22,8 +22,26 @@
                 },
                 "scale": 1,
                 "bitzs": {
-                    "shoulder": {
-                        "vertex": 42937
+                    "a": {
+                        "vertex": 16627
+                    },
+                    "b": {
+                        "vertex": 9344
+                    },
+                    "c": {
+                        "vertex": 268
+                    },
+                    "d": {
+                        "vertex": 20891
+                    },
+                    "e": {
+                        "vertex": 72255
+                    },
+                    "f": {
+                        "vertex": 9413
+                    },
+                    "g": {
+                        "vertex": 31196
                     }
                 }
             },

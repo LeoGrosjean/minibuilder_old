@@ -98,7 +98,9 @@
                     "https://comicsgamesandthings.com/shop/product/tempest-legion-heavy-infantry/"
                 ],
                 "leg": {
-                    "facet": 12
+                    "facet": 12,
+                    "x": -1.38,
+                    "y": 0.04
                 }
             },
             "Heavy Cataclysm - 2": {

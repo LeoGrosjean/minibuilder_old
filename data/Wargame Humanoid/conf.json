@@ -6,7 +6,11 @@
         "designer_files": [
             "designer.json"
         ],
-        "bitz_files": ["empty.json", "test.json"]
+        "bitz_files": [
+            "empty.json",
+            "test.json",
+            "bitz.json"
+        ]
     },
     "nodes": [
         {
@@ -32,6 +36,7 @@
             "label": "Left Arm",
             "folder": "arm",
             "dextral": "left",
+            "dex_type": "arm",
             "permissions": [
                 "select",
                 "list",
@@ -57,6 +62,7 @@
             "label": "Right Arm",
             "folder": "arm",
             "dextral": "right",
+            "dex_type": "arm",
             "permissions": [
                 "select",
                 "list",

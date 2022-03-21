@@ -1,8 +1,10 @@
 import json
 import os
 import pathlib
+import shutil
 from ast import literal_eval
 from urllib.parse import urlparse
+from uuid import uuid4
 
 import trimesh as tm
 from flask import Blueprint, render_template, request, jsonify, flash
@@ -12,7 +14,7 @@ from file_config.parts import load_json
 from forms.edit_file import DynamicFormEditMeshConf, BitzsForm
 from forms.home import ChooseBuilderForm
 from utils.mesh import get_mesh_normal_position_edit
-from utils.mesh_config import find_vertices
+from utils.mesh_config import find_vertices, find_mesh_connector
 
 edit_file_bp = Blueprint('edit_file_bp', __name__)
 
@@ -31,6 +33,7 @@ def edit(builder, node, category, file):
 
     form = DynamicFormEditMeshConf(graph, node)
     form.file_name.data = file
+    form.hidden_file_name.data = file
 
     try:
         form.support.data = infos.get(category).get('stl').get(file).get("support")
@@ -64,15 +67,19 @@ def edit(builder, node, category, file):
         folder = graph.nodes[node_].get('folder')
         dextral = graph.nodes[node_].get('dextral')
         if hasattr(form, f"{node_}_marker"):
-            if dextral:
+            if graph.nodes[node_].get('dextral'):
                 try:
                     vertice_info = infos.get(category).get('stl').get(file).get(folder)[dextral]
                 except Exception as e:
                     print(e)
-                    vertice_info = infos.get(category).get('stl').get(file).get(folder, "")
+                    vertice_info = infos.get(category).get('stl').get(file).get(folder, {})
             else:
-                vertice_info = infos.get(category).get('stl').get(file).get(folder, "")
-            getattr(form, f"{node_}_marker").data = str(vertice_info)
+                vertice_info = infos.get(category).get('stl').get(file).get(folder, {})
+
+            getattr(form, f"{node_}_marker").data = str(vertice_info if vertice_info else "")
+            # TODO MOVE MARKER XY
+            #getattr(form, f"marker_{node_}_movex").data = vertice_info.get('x', 0)
+            #getattr(form, f"marker_{node_}_movey").data = vertice_info.get('y', 0)
 
             if folder in infos.get(category).get('stl').get(file):
                 try:
@@ -119,7 +126,87 @@ def edit(builder, node, category, file):
 
 @edit_file_bp.route('/edit_post/<builder>/<node>/<category>/<file>/', methods=['POST'])
 def edit_post(builder, node, category, file):
-    return json.dumps(request.form.to_dict(), indent=4)
+    graph = read_node_link_json(f'data/{builder}/conf.json')
+    form_result = request.form.to_dict()
+    for json_path in graph.nodes.get(node).get('files'):
+        json_file = load_json(f"data/{builder}/{json_path}")
+        if category in json_file.keys():
+            break
+
+    file_name_before = form_result.pop('hidden_file_name')
+    file_name_new = form_result.pop('file_name')
+
+    mesh_info = json_file[category]['stl'][file_name_before]
+
+    conf = {
+        "urls": [form_result.pop("url")],
+        "designer": form_result.pop("designer"),
+    }
+    if form_result.get("dextral"):
+        conf['dextral'] = form_result.pop("dextral")
+
+    support = form_result.pop("support")
+    if support:
+        conf["support"] = {
+            "file": support,
+            "md5": tm.load(f"data/{builder}/uploaded/{support}").identifier_md5
+        }
+
+    mesh = tm.load(f"{json_file[category]['desc']['path']}{mesh_info['file']}")
+
+    for k, v in form_result.items():
+        if k.endswith('marker') and form_result.get(k):
+            node_ = k.replace('_marker', '')
+            folder_ = graph.nodes[node_].get('folder')
+            marker = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
+            dextral = graph.nodes[node_].get('dextral')
+            dex_type = graph.nodes[node_].get('dex_type')
+            if dex_type and node_ in list(graph.successors(node)):
+                if conf.get(folder_):
+                    conf[dex_type][dextral] = marker
+                    # TODO MOVE MARKER XY
+                    #conf[dex_type][dextral]['x'] = float(form_result.get(f"marker_{node_}_movex"))
+                    #conf[dex_type][dextral]['y'] = float(form_result.get(f"marker_{node_}_movey"))
+                else:
+                    conf[dex_type] = {dextral: marker}
+                    #conf[dex_type][dextral]['x'] = float(form_result.get(f"marker_{node_}_movex"))
+                    #conf[dex_type][dextral]['y'] = float(form_result.get(f"marker_{node_}_movey"))
+            else:
+                conf[folder_] = marker
+                #conf[folder_]['x'] = float(form_result.get(f"marker_{node_}_movex"))
+                #conf[folder_]['y'] = float(form_result.get(f"marker_{node_}_movey"))
+
+    mesh_info.update(conf)
+    new_conf = mesh_info.copy()
+
+    if file_name_before != file_name_new:
+        json_file[category]['stl'][file_name_new] = new_conf
+        del json_file[category]['stl'][file_name_before]
+
+    folder = graph.nodes[node].get('folder')
+
+    if support:
+        try:
+            if not os.path.exists(f"data/{builder}/{folder}/{category}/support/"):
+                pathlib.Path(f"data/{builder}/{folder}/{category}/support/").mkdir(parents=True)
+
+            if form_result.get('support') in os.listdir(f"data/{builder}/{folder}/{category}/support/"):
+                return f"""
+                There is an issue with the support file, he gots the same name than another file in "data/{builder}/{folder}/{category}/support/"
+                """
+            else:
+                shutil.move(
+                    f"data/{builder}/uploaded/{support}",
+                    f"data/{builder}/{folder}/{category}/support/")
+                print(f"data/{builder}/uploaded/{category} moved to "
+                      f"data/{builder}/{folder}/{category}/support !")
+        except Exception as e:
+            print(e)
+
+    with open(f"data/{builder}/{json_path}", "w") as outfile:
+        json.dump(json_file, outfile, indent=4)
+
+    return json.dumps(json_file, indent=4)
 
 
 @edit_file_bp.route('/send/<builder>/<folder>/<category>/<file_name>/', methods=['GET', 'POST'])
