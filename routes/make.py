@@ -689,6 +689,7 @@ jinja_string = """
                                             aria-controls="{{ bitz_form.bitz_label.id }}">
                                         {{ bitz_form.bitz_label.data }}
                                     </button>
+                                    {{bitz_form.bitz_label}}
                                 </div>
                                 <div class="col-6 col-sm-auto">
                                         {{ bitz_form.bitz_select }}

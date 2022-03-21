@@ -168,7 +168,7 @@
             file_name = choice_field_{{row['select'].id}}.value
             fetch("/selectformbitz/bitz/" + builder + "/" + "{{ row['select'].id.replace('_select', '') }}/" + selection + "/" + file_name).then(function (response) {
                         response.text().then(function (form_data) {
-
+                            console.log("{{ row['select'].id.replace('_select', '') }}_bitz")
                             document.getElementById("{{ row['select'].id.replace('_select', '') }}_bitz").innerHTML = form_data;
                             var parser = new DOMParser();
                             var doc = parser.parseFromString(form_data, "text/html");
