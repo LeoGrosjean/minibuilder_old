@@ -74,27 +74,27 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
     connectors = []
     # TODO maybe issue with bitz
 
-    if node != "bitz":
+    if "bitz_files" in graph.graph:
+        setattr(FormMakeMeshConf, "marker_bitz",
+                StringField(f"Bitz Marker", render_kw={'readonly': True, 'hidden': True}))
+
+    if node == "bitz":
+        connectors = ['bitz']
+        setattr(FormMakeMeshConf, "marker_bitz",
+                StringField(f"Bitz Marker", render_kw={'readonly': True, 'hidden': False}))
+    else:
         connectors.extend(list(graph.successors(node)))
         connectors.extend(list(graph.predecessors(node)))
 
-        for field in set(graph.nodes) - set(connectors):
-            setattr(FormMakeMeshConf, f"marker_{field}",
-                    StringField(f"{graph.nodes[field].get('label')} Marker", render_kw={'readonly': True, 'hidden': True}))
+    for field in set(graph.nodes) - set(connectors):
+        setattr(FormMakeMeshConf, f"marker_{field}",
+                StringField(f"{graph.nodes[field].get('label')} Marker", render_kw={'readonly': True, 'hidden': True}))
 
-        if "bitz_files" in graph.graph:
-            setattr(FormMakeMeshConf, "marker_bitz",
-                    StringField(f"Bitz Marker", render_kw={'readonly': True, 'hidden': True}))
-
+    if node != "bitz":
         for field in set(connectors):
             setattr(FormMakeMeshConf, f"marker_{field}",
                     StringField(f"{graph.nodes[field].get('label')} Marker", render_kw={'readonly': True}))
-            setattr(FormMakeMeshConf, "connectors", connectors)
-
-    else:
-        setattr(FormMakeMeshConf, "marker_bitz",
-                StringField(f"Bitz Marker", render_kw={'readonly': True}))
-        setattr(FormMakeMeshConf, "connectors", ['bitz'])
+    setattr(FormMakeMeshConf, "connectors", connectors)
 
     return FormMakeMeshConf(graph, *args, **kwargs)
 
