@@ -441,6 +441,7 @@ def builder(builder_name):
                 for k, v in graph.get_edge_data(dest, source).items():
                     if v.get('merge'):
                         di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
+                        # TODO MERGE AND BOOLEAN DIFF HERE
                         tmp_path = f'tmp/dl/merged_{dest}_{source}.' + str((di_file[dest]['mesh']._kwargs.get('file_type') or 'stl'))
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
