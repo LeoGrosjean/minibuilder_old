@@ -52,7 +52,7 @@
 
 {% include "choose_builder.html" %}
 
-<form method="post" id="configure" >
+<form method="post" id="configure" action="{{ url_for("edit_file_bp.edit_post", **mesh_info)}}">
     <div style="position: absolute; z-index:2; padding: 1%">
         {% for field in form %}
             {% if not (field.id.endswith('marker') or field.id.startswith('marker')) %}

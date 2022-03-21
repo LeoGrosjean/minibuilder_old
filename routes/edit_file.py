@@ -117,6 +117,11 @@ def edit(builder, node, category, file):
                            )
 
 
+@edit_file_bp.route('/edit_post/<builder>/<node>/<category>/<file>/', methods=['POST'])
+def edit_post(builder, node, category, file):
+    return json.dumps(request.form.to_dict(), indent=4)
+
+
 @edit_file_bp.route('/send/<builder>/<folder>/<category>/<file_name>/', methods=['GET', 'POST'])
 def send(builder, folder, category, file_name):
     try:
