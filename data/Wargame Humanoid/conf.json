@@ -8,8 +8,8 @@
         ],
         "bitz_files": [
             "empty.json",
-            "test.json",
-            "bitz.json"
+            "bitz.json",
+            "bases.json"
         ]
     },
     "nodes": [

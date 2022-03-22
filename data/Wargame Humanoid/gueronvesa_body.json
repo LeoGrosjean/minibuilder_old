@@ -1,6 +1,5 @@
 {
     "Gueronvesa": {
-
         "desc": {
             "display": "Gue'ron'vesa Body",
             "path": "data/Wargame Humanoid/body/Gueronvesa/"
@@ -9,182 +8,470 @@
             "Blank 1": {
                 "file": "gueronvesa_torso_blank_1.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 10493},
-                "arm": {"right": {"vertex": 7320}, "left": {"vertex": 5962}},
-                "leg": {"facet":  1431},
-                "backpack": {"facet": 1098}
+                "head": {
+                    "vertex": 10493
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 7320
+                    },
+                    "left": {
+                        "vertex": 5962
+                    }
+                },
+                "leg": {
+                    "facet": 1431
+                },
+                "backpack": {
+                    "facet": 1098
+                },
+                "md5": "8c33cb75439017ab2450a799655b6223"
             },
             "Blank 2": {
                 "file": "gueronvesa_torso_blank_2.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 3396},
-                "arm": {"right": {"vertex": 8856}, "left": {"vertex": 8944}},
-                "leg": {"facet":  2670},
-                "backpack": {"facet": 775}
+                "head": {
+                    "vertex": 3396
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 8856
+                    },
+                    "left": {
+                        "vertex": 8944
+                    }
+                },
+                "leg": {
+                    "facet": 2670
+                },
+                "backpack": {
+                    "facet": 775
+                },
+                "md5": "0ab50ccd0d0ac18b5d86aa56cfdd10d7"
             },
             "Blank 3": {
                 "file": "gueronvesa_torso_blank_3.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 12499},
-                "arm": {"right": {"vertex": 12450}, "left": {"vertex": 6163}},
-                "leg": {"facet":  2431},
-                "backpack": {"facet": 688}
+                "head": {
+                    "vertex": 12499
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 12450
+                    },
+                    "left": {
+                        "vertex": 6163
+                    }
+                },
+                "leg": {
+                    "facet": 2431
+                },
+                "backpack": {
+                    "facet": 688
+                },
+                "md5": "93addb58ef4e10dded8c168b47460ddb"
             },
             "Blank 4": {
                 "file": "gueronvesa_torso_blank_4.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 2418},
-                "arm": {"right": {"vertex": 8077}, "left": {"vertex": 6526}},
-                "leg": {"facet":  5147},
-                "backpack": {"facet": 758}
+                "head": {
+                    "vertex": 2418
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 8077
+                    },
+                    "left": {
+                        "vertex": 6526
+                    }
+                },
+                "leg": {
+                    "facet": 5147
+                },
+                "backpack": {
+                    "facet": 758
+                },
+                "md5": "b1d2e0d0d98b34b11699b3d3ce01ef12"
             },
             "Blank 5": {
                 "file": "gueronvesa_torso_blank_5.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 3685},
-                "arm": {"right": {"vertex": 9534}, "left": {"vertex": 9625}},
-                "leg": {"facet":  650},
-                "backpack": {"facet": 509}
+                "head": {
+                    "vertex": 3685
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 9534
+                    },
+                    "left": {
+                        "vertex": 9625
+                    }
+                },
+                "leg": {
+                    "facet": 650
+                },
+                "backpack": {
+                    "facet": 509
+                },
+                "md5": "195416ceefafb10d0173f05d52871140"
             },
             "Blank 6": {
                 "file": "gueronvesa_torso_blank_6.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 13668},
-                "arm": {"right": {"vertex": 13606}, "left": {"vertex": 6734}},
-                "leg": {"facet":  700},
-                "backpack": {"facet": 414}
+                "head": {
+                    "vertex": 13668
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 13606
+                    },
+                    "left": {
+                        "vertex": 6734
+                    }
+                },
+                "leg": {
+                    "facet": 700
+                },
+                "backpack": {
+                    "facet": 414
+                },
+                "md5": "39b3fafc64bbda353e0dc03665790644"
             },
             "Astra 1": {
                 "file": "gueronvesa_torso_Astra_1.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 10945},
-                "arm": {"right": {"vertex": 557}, "left": {"vertex": 16338}},
-                "leg": {"facet":  6147},
-                "backpack": {"facet": 426}
+                "head": {
+                    "vertex": 10945
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 557
+                    },
+                    "left": {
+                        "vertex": 16338
+                    }
+                },
+                "leg": {
+                    "facet": 6147
+                },
+                "backpack": {
+                    "facet": 426
+                },
+                "md5": "36afd7bd54e61c6ebd35de5235b8a200"
             },
             "Astra 2": {
                 "file": "gueronvesa_torso_Astra_2.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 3585},
-                "arm": {"right": {"vertex": 12618}, "left": {"vertex": 12771}},
-                "leg": {"facet":  1908},
-                "backpack": {"facet": 268}
+                "head": {
+                    "vertex": 3585
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 12618
+                    },
+                    "left": {
+                        "vertex": 12771
+                    }
+                },
+                "leg": {
+                    "facet": 1908
+                },
+                "backpack": {
+                    "facet": 268
+                },
+                "md5": "081e5258de2eb2b337d552e30b245421"
             },
             "Astra 3": {
                 "file": "gueronvesa_torso_Astra_3.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 17991},
-                "arm": {"right": {"vertex": 17871}, "left": {"vertex": 8792}},
-                "leg": {"facet":  7294},
-                "backpack": {"facet": 5}
+                "head": {
+                    "vertex": 17991
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 17871
+                    },
+                    "left": {
+                        "vertex": 8792
+                    }
+                },
+                "leg": {
+                    "facet": 7294
+                },
+                "backpack": {
+                    "facet": 5
+                },
+                "md5": "566ec6ae8195b1711d9a6102c831f7cf"
             },
             "Astra 4": {
                 "file": "gueronvesa_torso_Astra_4.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 3117},
-                "arm": {"right": {"vertex": 10396}, "left": {"vertex": 8482}},
-                "leg": {"facet":  938},
-                "backpack": {"facet": 290}
+                "head": {
+                    "vertex": 3117
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 10396
+                    },
+                    "left": {
+                        "vertex": 8482
+                    }
+                },
+                "leg": {
+                    "facet": 938
+                },
+                "backpack": {
+                    "facet": 290
+                },
+                "md5": "0516ef7cb7b9d442ee05d5b1a774703a"
             },
             "Astra 5": {
                 "file": "gueronvesa_torso_Astra_5.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 5055},
-                "arm": {"right": {"vertex": 13283}, "left": {"vertex": 13427}},
-                "leg": {"facet":  1180},
-                "backpack": {"facet": 669}
+                "head": {
+                    "vertex": 5055
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 13283
+                    },
+                    "left": {
+                        "vertex": 13427
+                    }
+                },
+                "leg": {
+                    "facet": 1180
+                },
+                "backpack": {
+                    "facet": 669
+                },
+                "md5": "432107840a5aabef828b27271ba6401a"
             },
             "Astra 6": {
                 "file": "gueronvesa_torso_Astra_6.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 11061},
-                "arm": {"right": {"vertex": 19580}, "left": {"vertex": 798}},
-                "leg": {"facet":  3378},
-                "backpack": {"facet": 993}
+                "head": {
+                    "vertex": 11061
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 19580
+                    },
+                    "left": {
+                        "vertex": 798
+                    }
+                },
+                "leg": {
+                    "facet": 3378
+                },
+                "backpack": {
+                    "facet": 993
+                },
+                "md5": "dcaed24bf80962455141d9724666085b"
             },
             "Farsight 1": {
                 "file": "gueronvesa_torso_farsight_1.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 10945},
-                "arm": {"right": {"vertex": 7583}, "left": {"vertex": 6165}},
-                "leg": {"facet":  1290},
-                "backpack": {"facet": 637}
+                "head": {
+                    "vertex": 10945
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 7583
+                    },
+                    "left": {
+                        "vertex": 6165
+                    }
+                },
+                "leg": {
+                    "facet": 1290
+                },
+                "backpack": {
+                    "facet": 637
+                },
+                "md5": "b4b6f428236eb8f8d3be96fd071e7fd6"
             },
             "Farsight 2": {
                 "file": "gueronvesa_torso_farsight_2.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 3585},
-                "arm": {"right": {"vertex": 9358}, "left": {"vertex": 9473}},
-                "leg": {"facet":  656},
-                "backpack": {"facet": 662}
+                "head": {
+                    "vertex": 3585
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 9358
+                    },
+                    "left": {
+                        "vertex": 9473
+                    }
+                },
+                "leg": {
+                    "facet": 656
+                },
+                "backpack": {
+                    "facet": 662
+                },
+                "md5": "a403db80eb0bdb921ae6e2b07f53bed0"
             },
             "Farsight 3": {
                 "file": "gueronvesa_torso_farsight_3.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 7674},
-                "arm": {"right": {"vertex": 13219}, "left": {"vertex": 6568}},
-                "leg": {"facet":  262},
-                "backpack": {"facet": 269}
+                "head": {
+                    "vertex": 7674
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 13219
+                    },
+                    "left": {
+                        "vertex": 6568
+                    }
+                },
+                "leg": {
+                    "facet": 262
+                },
+                "backpack": {
+                    "facet": 269
+                },
+                "md5": "f6297bf737db55f62ee96ba2af544f2e"
             },
             "Farsight 4": {
                 "file": "gueronvesa_torso_farsight_4.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 2567},
-                "arm": {"right": {"vertex": 8630}, "left": {"vertex": 7030}},
-                "leg": {"facet":  4254},
-                "backpack": {"facet": 55}
+                "head": {
+                    "vertex": 2567
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 8630
+                    },
+                    "left": {
+                        "vertex": 7030
+                    }
+                },
+                "leg": {
+                    "facet": 4254
+                },
+                "backpack": {
+                    "facet": 55
+                },
+                "md5": "d2a78e3b0c48f715ec5c3a23356d3e1f"
             },
             "Farsight 5": {
                 "file": "gueronvesa_torso_farsight_5.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 3938},
-                "arm": {"right": {"vertex": 10284}, "left": {"vertex": 10402}},
-                "leg": {"facet":  2002},
-                "backpack": {"facet": 275}
+                "head": {
+                    "vertex": 3938
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 10284
+                    },
+                    "left": {
+                        "vertex": 10402
+                    }
+                },
+                "leg": {
+                    "facet": 2002
+                },
+                "backpack": {
+                    "facet": 275
+                },
+                "md5": "935b49937a211d7dc147ccc8d14083a5"
             },
             "Farsight 6": {
                 "file": "gueronvesa_torso_farsight_6.stl",
                 "thingiverse": 4212401,
-                "urls": ["https://www.thingiverse.com/thing:4212401"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4212401"
+                ],
                 "designer": "El_Mutanto",
-                "head": {"vertex": 8269},
-                "arm": {"right": {"vertex": 14529}, "left": {"vertex": 580}},
-                "leg": {"facet":  1099},
-                "backpack": {"facet": 400}
+                "head": {
+                    "vertex": 8269
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 14529
+                    },
+                    "left": {
+                        "vertex": 580
+                    }
+                },
+                "leg": {
+                    "facet": 1099
+                },
+                "backpack": {
+                    "facet": 400
+                },
+                "md5": "040f4d4f754d6ddd470e2fe458422933"
             }
         }
     }

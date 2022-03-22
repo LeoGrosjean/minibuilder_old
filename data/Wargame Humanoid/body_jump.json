@@ -31,7 +31,8 @@
                     "right": {
                         "facet": 9404
                     }
-                }
+                },
+                "md5": "0285948c4023c56112ea92f162f7c4bb"
             },
             "Torso B": {
                 "file": "Torso_B.stl",
@@ -59,7 +60,8 @@
                     "right": {
                         "facet": 12907
                     }
-                }
+                },
+                "md5": "b3b295db919d4d8e0a2be2d240c26f78"
             },
             "Torso C": {
                 "file": "Torso_C.stl",
@@ -87,7 +89,8 @@
                     "right": {
                         "facet": 19328
                     }
-                }
+                },
+                "md5": "6d710f2053987748f5abaf5735354775"
             },
             "Torso D": {
                 "file": "Torso_D.stl",
@@ -199,7 +202,8 @@
                     "right": {
                         "facet": 11740
                     }
-                }
+                },
+                "md5": "6f462cbe47271af7f932dd3706f80445"
             },
             "Torso Harness B": {
                 "file": "Torso_H_With_harness.stl",
@@ -255,7 +259,8 @@
                     "right": {
                         "facet": 8273
                     }
-                }
+                },
+                "md5": "69038dfcdb959bd7198807f1a2335c92"
             },
             "Torso Harness D": {
                 "file": "Torso_J_With_harness.stl",

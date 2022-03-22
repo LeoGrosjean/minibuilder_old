@@ -12,9 +12,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 1034367},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 1034367
+                },
+                "scale": 1.06,
+                "md5": "162851f5120e5a5acba09481f2303045"
             },
             "Enclave Trooper 02": {
                 "file": "legs 2.stl",
@@ -23,9 +26,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 12751},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 12751
+                },
+                "scale": 1.06,
+                "md5": "69907c20dc04e98cdecdcadc2f935d28"
             },
             "Enclave Trooper 03": {
                 "file": "legs 3.stl",
@@ -34,9 +40,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 265931},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 265931
+                },
+                "scale": 1.06,
+                "md5": "5b8c619859550a5c3193e059ed7bd489"
             },
             "Enclave Trooper 04": {
                 "file": "legs 4.stl",
@@ -45,9 +54,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 55995},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 55995
+                },
+                "scale": 1.06,
+                "md5": "e02cb3f9984f54d2b924b2643f23a3f5"
             },
             "Enclave Trooper 05": {
                 "file": "legs 5.stl",
@@ -56,9 +68,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 166103},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 166103
+                },
+                "scale": 1.06,
+                "md5": "0d4999aa4abef21d1fc8f7a9fadac999"
             },
             "Enclave Trooper Armour 01": {
                 "file": "legs armour 1.stl",
@@ -67,9 +82,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 772099},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 772099
+                },
+                "scale": 1.06,
+                "md5": "6fa1d22ac4087dfa74c9cded5a22f74d"
             },
             "Enclave Trooper Armour 02": {
                 "file": "legs armour 2.stl",
@@ -78,9 +96,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 324475},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 324475
+                },
+                "scale": 1.06,
+                "md5": "777d594a216da39ae342289947da3b38"
             },
             "Enclave Trooper Armour 03": {
                 "file": "legs armour 3.stl",
@@ -89,9 +110,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 495149},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 495149
+                },
+                "scale": 1.06,
+                "md5": "65471dbd0f4e5ce32726e90375707892"
             },
             "Enclave Trooper Armour 04": {
                 "file": "legs armour 4.stl",
@@ -100,9 +124,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 199210},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 199210
+                },
+                "scale": 1.06,
+                "md5": "2fc8b2e861b89f2cdde0198fe124ef36"
             },
             "Enclave Trooper Armour 05": {
                 "file": "legs armour 5.stl",
@@ -111,9 +138,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "leg": {"vertex": 112642},
-                "scale": 1.06
+                "designer": "onosindustries",
+                "leg": {
+                    "vertex": 112642
+                },
+                "scale": 1.06,
+                "md5": "69842c4683a9bcd67b703b4617230e91"
             }
         }
     }

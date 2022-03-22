@@ -13,14 +13,25 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "head": {"vertex": 734604},
-                "leg": {"vertex": 507511},
-                "backpack": {"vertex": 95323},
-                "arm": {
-                    "left": {"vertex": 943562},
-                    "right": {"vertex": 735536}
+                "head": {
+                    "vertex": 734604
                 },
-                "scale": 1.06
+                "leg": {
+                    "vertex": 507511
+                },
+                "backpack": {
+                    "vertex": 95323
+                },
+                "arm": {
+                    "left": {
+                        "vertex": 943562
+                    },
+                    "right": {
+                        "vertex": 735536
+                    }
+                },
+                "scale": 1.06,
+                "md5": "c751115b11d224d04155ed599f59f8f9"
             },
             "Farsight Trooper Plain": {
                 "file": "torso farsight plain.stl",
@@ -30,14 +41,38 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "head": {"vertex": 158255},
-                "leg": {"vertex": 91943},
-                "backpack": {"vertex_list": [81745, 156179, 156224, 181839]},
-                "arm": {
-                    "left": {"vertex_list": [15435, 74250, 79930]},
-                    "right": {"vertex_list": [29704, 87671, 194318]}
+                "head": {
+                    "vertex": 158255
                 },
-                "scale": 1.06
+                "leg": {
+                    "vertex": 91943
+                },
+                "backpack": {
+                    "vertex_list": [
+                        81745,
+                        156179,
+                        156224,
+                        181839
+                    ]
+                },
+                "arm": {
+                    "left": {
+                        "vertex_list": [
+                            15435,
+                            74250,
+                            79930
+                        ]
+                    },
+                    "right": {
+                        "vertex_list": [
+                            29704,
+                            87671,
+                            194318
+                        ]
+                    }
+                },
+                "scale": 1.06,
+                "md5": "299dcd4b3544fe909c6f01e62f42b119"
             },
             "Itca Trooper": {
                 "file": "torso itca.stl",
@@ -47,14 +82,25 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "head": {"vertex": 275930},
-                "leg": {"vertex": 844774},
-                "backpack": {"vertex": 93748},
-                "arm": {
-                    "left": {"vertex": 1017816},
-                    "right": {"vertex": 1138199}
+                "head": {
+                    "vertex": 275930
                 },
-                "scale": 1.06
+                "leg": {
+                    "vertex": 844774
+                },
+                "backpack": {
+                    "vertex": 93748
+                },
+                "arm": {
+                    "left": {
+                        "vertex": 1017816
+                    },
+                    "right": {
+                        "vertex": 1138199
+                    }
+                },
+                "scale": 1.06,
+                "md5": "7ed8ead0d42acdd12860fc322e673b4d"
             },
             "Itca Trooper Plain": {
                 "file": "torso itca plain.stl",
@@ -64,14 +110,37 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "head": {"vertex": 56302},
-                "leg": {"vertex": 109907},
-                "backpack": {"vertex_list": [54252, 54280, 79824, 166977]},
-                "arm": {
-                    "left": {"vertex_list": [14777, 106891, 214083]},
-                    "right": {"vertex_list": [73651, 114583]}
+                "head": {
+                    "vertex": 56302
                 },
-                "scale": 1.06
+                "leg": {
+                    "vertex": 109907
+                },
+                "backpack": {
+                    "vertex_list": [
+                        54252,
+                        54280,
+                        79824,
+                        166977
+                    ]
+                },
+                "arm": {
+                    "left": {
+                        "vertex_list": [
+                            14777,
+                            106891,
+                            214083
+                        ]
+                    },
+                    "right": {
+                        "vertex_list": [
+                            73651,
+                            114583
+                        ]
+                    }
+                },
+                "scale": 1.06,
+                "md5": "a16e0ffa16cc94f37ea1439e63373b70"
             },
             "SpaceFish Trooper": {
                 "file": "torso tau.stl",
@@ -81,14 +150,25 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "head": {"vertex": 1046018},
-                "leg": {"vertex": 856062},
-                "backpack": {"vertex": 391724},
-                "arm": {
-                    "left": {"vertex": 980185},
-                    "right": {"vertex": 1177793}
+                "head": {
+                    "vertex": 1046018
                 },
-                "scale": 1.06
+                "leg": {
+                    "vertex": 856062
+                },
+                "backpack": {
+                    "vertex": 391724
+                },
+                "arm": {
+                    "left": {
+                        "vertex": 980185
+                    },
+                    "right": {
+                        "vertex": 1177793
+                    }
+                },
+                "scale": 1.06,
+                "md5": "2137e3f59e06783a82bafa8e02c54f63"
             },
             "SpaceFish Trooper Plain": {
                 "file": "torso tau plain.stl",
@@ -98,14 +178,34 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "head": {"vertex": 56370},
-                "leg": {"vertex": 177199},
-                "backpack": {"vertex_list": [79892, 167069]},
-                "arm": {
-                    "left": {"vertex_list": [87536, 106964]},
-                    "right": {"vertex_list": [73716, 139067]}
+                "head": {
+                    "vertex": 56370
                 },
-                "scale": 1.06
+                "leg": {
+                    "vertex": 177199
+                },
+                "backpack": {
+                    "vertex_list": [
+                        79892,
+                        167069
+                    ]
+                },
+                "arm": {
+                    "left": {
+                        "vertex_list": [
+                            87536,
+                            106964
+                        ]
+                    },
+                    "right": {
+                        "vertex_list": [
+                            73716,
+                            139067
+                        ]
+                    }
+                },
+                "scale": 1.06,
+                "md5": "788e8404258e8350fa27db3f8c63b589"
             }
         }
     }

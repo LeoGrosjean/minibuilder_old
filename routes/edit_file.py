@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from uuid import uuid4
 
 import trimesh as tm
-from flask import Blueprint, render_template, request, jsonify, flash
+from flask import Blueprint, render_template, request, jsonify, flash, url_for, redirect
 
 from builder.node import read_node_link_json
 from file_config.parts import load_json
@@ -206,7 +206,7 @@ def edit_post(builder, node, category, file):
     with open(f"data/{builder}/{json_path}", "w") as outfile:
         json.dump(json_file, outfile, indent=4)
 
-    return json.dumps(json_file, indent=4)
+    return redirect(url_for("edit_file_bp.edit", builder=builder, node=node, category=category, file=file))
 
 
 @edit_file_bp.route('/send/<builder>/<folder>/<category>/<file_name>/', methods=['GET', 'POST'])

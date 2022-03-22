@@ -6,7 +6,7 @@
         },
         "stl": {
             "Bolter Drum NG G": {
-                "files_conf.get(category).get('stl')": "GueROnVesa_Weapons_Bolter_drum_ng_g.stl",
+                "file": "GueROnVesa_Weapons_Bolter_drum_ng_g.stl",
                 "thingiverse": 4222540,
                 "designer": "El_Mutanto",
                 "dextral": "left",
@@ -162,7 +162,8 @@
                 "weapon": {
                     "facet": 1782
                 },
-                "coef_merge": 0.2
+                "coef_merge": 0.2,
+                "md5": "ebaca2e73b9a0243a805ed0c4c7e7e79"
             },
             "Bolter Long NG E": {
                 "file": "GueROnVesa_Weapons_Bolter_Long_ng_e.stl",

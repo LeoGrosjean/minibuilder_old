@@ -641,9 +641,7 @@
                 ],
                 "dextral": "right",
                 "arm": {
-                    "facet": 42,
-                    "x": -0.81,
-                    "y": -2.8
+                    "face": 733
                 }
             },
             "Mk3 - Slug Pistol 1": {

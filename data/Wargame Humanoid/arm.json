@@ -43,7 +43,8 @@
                     "g": {
                         "vertex": 31196
                     }
-                }
+                },
+                "md5": "8dec9779250d86bd80cda919b943cb41"
             },
             "MK II v2": {
                 "file": "arm_2.stl",
@@ -60,7 +61,8 @@
                 "hand": {
                     "vertex": 35238
                 },
-                "scale": 1
+                "scale": 1,
+                "md5": "2807c2d75aebb8bd46c28924e26a6107"
             },
             "MK III hold a": {
                 "file": "MKIII_arm_4-a.stl",
@@ -79,7 +81,8 @@
                 "hand": {
                     "vertex": 2136
                 },
-                "coef_merge": 0.3
+                "coef_merge": 0.3,
+                "md5": "44cbb0b31a262397e7f837456f775426"
             },
             "MK III hold b": {
                 "file": "MKIII_arm_4-b.stl",
@@ -98,7 +101,8 @@
                 "hand": {
                     "vertex": 114200
                 },
-                "coef_merge": 0.3
+                "coef_merge": 0.3,
+                "md5": "25f793f94c8f607fa59714e7b8b19225"
             },
             "Heavy 2hand": {
                 "file": "heavy_weapons_-_arms.stl",
@@ -122,7 +126,8 @@
                         128118
                     ]
                 },
-                "coef_merge": -0.08
+                "coef_merge": -0.08,
+                "md5": "06d777565d71e29ea828fcac5912c54b"
             },
             "MK X Banner": {
                 "file": "Banner_Arm.stl",
@@ -143,7 +148,8 @@
                         126,
                         1720
                     ]
-                }
+                },
+                "md5": "7df555cc94b4ef5ecd58b7c9398d4e0c"
             },
             "MK IV Tactical 01": {
                 "file": "tac_arms_01.stl",
@@ -158,7 +164,8 @@
                 },
                 "hand": {
                     "vertex": 75984
-                }
+                },
+                "md5": "fc78e3dd8414e6ac4fbab612bb1f5c65"
             },
             "MK IV Tactical 02": {
                 "file": "tac_arms_02.stl",
@@ -173,7 +180,8 @@
                 },
                 "hand": {
                     "vertex": 119215
-                }
+                },
+                "md5": "dcb64c30c8603bb882d8c19d6ed5392f"
             },
             "MK IV Tactical 03": {
                 "file": "tac_arms_03.stl",
@@ -188,7 +196,8 @@
                 },
                 "hand": {
                     "vertex": 66719
-                }
+                },
+                "md5": "46fa6ad1092b7c1180ed354e9ec89ae0"
             }
         }
     }

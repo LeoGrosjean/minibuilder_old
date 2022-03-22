@@ -33,13 +33,14 @@
                     }
                 },
                 "bitzs": {
-                    "long texte omg du cul": {
-                        "facet": 17429
+                    "a": {
+                        "face": 76963
                     },
                     "b": {
                         "face": 77004
                     }
-                }
+                },
+                "md5": "a52d51c0e5c615ea9cbe2c35edcbfe1b"
             },
             "MK V v2": {
                 "file": "Mk_V_ver2.stl",
@@ -67,7 +68,8 @@
                     "right": {
                         "facet": 11628
                     }
-                }
+                },
+                "md5": "c721648d98575fb736a8736721254693"
             },
             "MK VI v1": {
                 "file": "Mk_VI_ver1.stl",
@@ -95,7 +97,8 @@
                     "right": {
                         "facet": 8169
                     }
-                }
+                },
+                "md5": "c151c2d4127596c515cf32c08c9eb941"
             },
             "MK VI v2": {
                 "file": "Mk_VI_ver2.stl",
@@ -179,7 +182,8 @@
                     "right": {
                         "facet": 18882
                     }
-                }
+                },
+                "md5": "ea72cf261746902a2d468a3a0128280e"
             },
             "MK VII v2": {
                 "file": "Mk_VII_ver2.stl",
@@ -235,7 +239,8 @@
                     "right": {
                         "facet": 12747
                     }
-                }
+                },
+                "md5": "e8e84329b42700bdb3dba01a6f7ac032"
             },
             "MK VII v4": {
                 "file": "Mk_VII_ver4.stl",
@@ -263,7 +268,8 @@
                     "right": {
                         "facet": 18882
                     }
-                }
+                },
+                "md5": "61a86d1153861d2c2c96c72b09b08000"
             },
             "MK VII v5": {
                 "file": "Mk_VII_ver5.stl",
@@ -291,7 +297,8 @@
                     "right": {
                         "facet": 12747
                     }
-                }
+                },
+                "md5": "d1a6bcbdcf9f643d1e42f537fb129d69"
             },
             "MK VIII": {
                 "file": "Mk_VIII.stl",
@@ -319,7 +326,8 @@
                     "right": {
                         "facet": 16107
                     }
-                }
+                },
+                "md5": "9c0096249b6f5532432d7b29090ee31a"
             }
         }
     }

@@ -12,9 +12,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "head": {"vertex": 140420},
-                "scale": 1.1
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 140420
+                },
+                "scale": 1.1,
+                "md5": "65d51b643e8862de907daaa87c8cf0b7"
             },
             "Enclave Trooper Antenna": {
                 "file": "helmet with antenna.stl",
@@ -23,9 +26,12 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "head": {"vertex": 555995},
-                "scale": 1.1
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 555995
+                },
+                "scale": 1.1,
+                "md5": "f28953d0113222c371eaccb3e562d780"
             }
         }
     }

@@ -17,7 +17,8 @@
                 "coef_merge": -0.3,
                 "urls": [
                     "https://www.thingiverse.com/thing:4393029"
-                ]
+                ],
+                "md5": "c0983c542a6e2fa10092bb9b991686fd"
             },
             "Helm 02": {
                 "file": "Space_Knight_Helm_02.stl",
@@ -26,7 +27,8 @@
                 "head": {
                     "vertex": 6
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "173f95ad04aebf1487af9cf0a4817c46"
             },
             "Helm 03": {
                 "file": "Space_Knight_Helm_03.stl",
@@ -35,7 +37,8 @@
                 "head": {
                     "vertex": 7
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "f4aab3aa0c04010d84a3fea58c00cc8a"
             },
             "Helm 04": {
                 "file": "Space_Knight_Helm_CUSTOM.stl",
@@ -44,7 +47,8 @@
                 "head": {
                     "vertex": 7
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "253a87a24e7196c3ecdc28f57a499df4"
             },
             "Mk IV Tactical 01": {
                 "file": "tac_helm_01.stl",

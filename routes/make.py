@@ -12,6 +12,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, jsonif
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
+from trimesh.boolean import difference
 from trimesh.geometry import align_vectors
 from trimesh.transformations import euler_matrix, rotation_matrix
 
@@ -184,6 +185,9 @@ def builder(builder_name):
                             "ankley": float(form_result.get(f"{node}_bitz-{i}-bitz_ankley", 0)),
                             "movex": float(form_result.get(f"{node}_bitz-{i}-bitz_movex", 0)),
                             "movey": float(form_result.get(f"{node}_bitz-{i}-bitz_movey", 0)),
+
+                            "fusion": bool(form_result.get(f"{node}_bitz-{i}-bitz_fusion")),
+
                         }
                     )
                     i += 1
@@ -438,9 +442,15 @@ def builder(builder_name):
                 }
 
             if 'dl_zip' in form_result:
+                for k, v in di_file.items():
+                    for bitz in di_file[k]['bitzs']:
+                        if bitz.get('fusion'):
+                            di_file[k]['mesh'] = bitz['mesh'] + di_file[k]['mesh']
+
                 for k, v in graph.get_edge_data(dest, source).items():
                     if v.get('merge'):
                         di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
+
                         # TODO MERGE AND BOOLEAN DIFF HERE
                         tmp_path = f'tmp/dl/merged_{dest}_{source}.' + str((di_file[dest]['mesh']._kwargs.get('file_type') or 'stl'))
                         di_file[dest]['mesh'].export(tmp_path)
@@ -583,7 +593,20 @@ def builder(builder_name):
         scene = reduce(add, merge_mesh)
 
         if 'dl_zip' in form_result:
-            li_file_path = [(v.get('info').get('mesh_path'), k) for k, v in di_file.items()]
+            li_file_path = []
+            for k, v in di_file.items():
+                tmp_path = f'tmp/dl/{k}.' + str(
+                    (di_file[k]['mesh']._kwargs.get('file_type') or 'stl'))
+                di_file[k]['mesh'].export(tmp_path)
+                li_file_path.append((tmp_path, k))
+                for bitz in di_file[k]['bitzs']:
+                    if not bitz.get('fusion'):
+                        tmp_path = f'tmp/dl/{k}_{bitz.get("label")}.' + str(
+                            (bitz['mesh']._kwargs.get('file_type') or 'stl'))
+                        bitz['mesh'] = bitz['mesh'].difference(di_file[k]['mesh'])
+                        bitz['mesh'].export(tmp_path)
+                        li_file_path.append((tmp_path, f"{k}_{bitz.get('label')}"))
+
             for k, v in di_file.items():
                 # TODO what if merged, dont add merged files ? because we remove node from di_file when merge True
                 if v.get('info').get('support'):
@@ -701,6 +724,7 @@ jinja_string = """
                             </div>
                             <div class="bg-light collapse" id="{{ bitz_form.bitz_label.id }}">
                                 <div class="card card-body">
+                                    <div style="display: inline">Fusion   {{ bitz_form.bitz_fusion }}</div>
                                     <p class="row bg-light" style="margin: 0">
                                         Rotation {{ bitz_form.bitz_rotate(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_rotate.data}}</output>
                                     </p>

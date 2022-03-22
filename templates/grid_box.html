@@ -75,6 +75,7 @@
                             </div>
                             <div class="bg-light collapse" id="{{ bitz_form.bitz_label.id }}">
                                 <div class="card card-body">
+                                    <div style="display: inline">Fusion   {{ bitz_form.bitz_fusion }}</div>
                                     <p class="row bg-light" style="margin: 0">
                                         Rotation {{ bitz_form.bitz_rotate(type="range", class="form-range", oninput="this.nextElementSibling.value = this.value") }} <output style="position: absolute; left: 50%">{{bitz_form.bitz_rotate.data}}</output>
                                     </p>

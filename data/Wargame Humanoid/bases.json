@@ -1,0 +1,21 @@
+{
+    "volcanic": {
+        "desc": {
+            "display": "volcanic",
+            "path": "data/Wargame Humanoid/bitz/volcanic/"
+        },
+        "stl": {
+            "B Volcanic 60": {
+                "file": "B_Volcanic_60.stl",
+                "designer": "BREXIT",
+                "md5": "aa224f7ce55a2b2d4d9b9a2df9516b14",
+                "urls": [
+                    "https://www.test.test"
+                ],
+                "bitz": {
+                    "vertex": 67696
+                }
+            }
+        }
+    }
+}

@@ -12,9 +12,11 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "dextral": "right",
-                "hand": {"facet": 2829},
+                "hand": {
+                    "facet": 2829
+                },
                 "scale": 1.1
             },
             "Ion Rifle": {
@@ -24,9 +26,11 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "dextral": "right",
-                "hand": {"facet": 1997},
+                "hand": {
+                    "facet": 1997
+                },
                 "scale": 1.1
             },
             "Pulse Cannon": {
@@ -36,9 +40,11 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "dextral": "right",
-                "hand": {"facet": 504},
+                "hand": {
+                    "facet": 504
+                },
                 "scale": 1.1
             },
             "Railgun": {
@@ -48,9 +54,11 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "dextral": "right",
-                "hand": {"facet": 520},
+                "hand": {
+                    "facet": 520
+                },
                 "scale": 1.1
             },
             "Shotgun": {
@@ -60,9 +68,11 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "dextral": "right",
-                "hand": {"facet": 718},
+                "hand": {
+                    "facet": 718
+                },
                 "scale": 1.1
             }
         }

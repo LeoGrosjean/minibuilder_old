@@ -19,7 +19,8 @@
                     "foot 2": {
                         "facet": 2132
                     }
-                }
+                },
+                "md5": "fa76e88e52162837b56435c3d251ca32"
             },
             "Standard v2": {
                 "file": "legs_5_m.stl",
@@ -27,7 +28,8 @@
                 "designer": "chunky111",
                 "leg": {
                     "vertex": 78131
-                }
+                },
+                "md5": "5da338f122c26ab09950d30a3ac6cb99"
             },
             "Standard v3": {
                 "file": "legs_3.stl",
@@ -35,7 +37,8 @@
                 "designer": "chunky111",
                 "leg": {
                     "vertex": 18292
-                }
+                },
+                "md5": "63815a7330bf155d8f1257a71138f85c"
             },
             "Standard v4": {
                 "file": "legs_2_m.stl",
@@ -67,7 +70,8 @@
                 "designer": "chunky111",
                 "leg": {
                     "vertex": 20248
-                }
+                },
+                "md5": "5da338f122c26ab09950d30a3ac6cb99"
             },
             "Standard v8": {
                 "file": "legs_3_m.stl",
@@ -75,7 +79,8 @@
                 "designer": "chunky111",
                 "leg": {
                     "vertex": 78740
-                }
+                },
+                "md5": "63815a7330bf155d8f1257a71138f85c"
             },
             "Standard v9": {
                 "file": "legs_4.stl",
@@ -91,7 +96,8 @@
                 "designer": "LoggyK",
                 "leg": {
                     "vertex": 59530
-                }
+                },
+                "md5": "9096d3597a14df207bca9d8b467438ec"
             },
             "MK IV Tactical 02": {
                 "file": "tac_legs_02.stl",
@@ -99,7 +105,8 @@
                 "designer": "LoggyK",
                 "leg": {
                     "vertex": 9474
-                }
+                },
+                "md5": "422a66cd73f4471ba401610917dd9714"
             },
             "MK IV Tactical 03": {
                 "file": "tac_legs_03.stl",

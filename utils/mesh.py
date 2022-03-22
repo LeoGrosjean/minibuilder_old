@@ -1,5 +1,6 @@
 from math import radians
 import numpy as np
+
 import trimesh as tm
 
 
@@ -152,6 +153,7 @@ def get_mesh_normal_position_edit(mesh, info, on, dextral=None, inverse_norm=Fal
 
 
 def get_normal_vertice(mesh, marker, fix=False):
+    np.seterr(all="ignore")
     if "vertex" in marker:
         normal = mesh.vertex_normals[marker["vertex"]]
         vertice = mesh.vertices[marker["vertex"]]

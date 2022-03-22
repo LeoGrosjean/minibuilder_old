@@ -1,6 +1,5 @@
 {
     "Space Warrior Vanilla": {
-
         "desc": {
             "display": "Space Warrior Vanilla",
             "path": "data/Wargame Humanoid/backpack/Space Warrior Vanilla/"
@@ -9,189 +8,388 @@
             "Vanilla 01": {
                 "file": "vanilla-backpack-01.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [4634, 5729]}
+                "backpack": {
+                    "vertex_list": [
+                        4634,
+                        5729
+                    ]
+                },
+                "md5": "76dcd2243f792be5bb531e33f9a9e337"
             },
             "Vanilla 02": {
                 "file": "vanilla-backpack-02.stl",
                 "thingiverse": 4045613,
-                 "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [3766, 4561]}
+                "backpack": {
+                    "vertex_list": [
+                        3766,
+                        4561
+                    ]
+                },
+                "md5": "228a01adf8886f31795a88b82124936b"
             },
             "Vanilla 03": {
                 "file": "vanilla-backpack-03.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [5148, 10530]}
+                "backpack": {
+                    "vertex_list": [
+                        5148,
+                        10530
+                    ]
+                },
+                "md5": "7f33df5ac6c7ee70716a733b9132fdb9"
             },
             "Vanilla 04": {
                 "file": "vanilla-backpack-04.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [7863, 8772]}
+                "backpack": {
+                    "vertex_list": [
+                        7863,
+                        8772
+                    ]
+                }
             },
             "Vanilla 05": {
                 "file": "vanilla-backpack-05.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [4253, 17869]}
+                "backpack": {
+                    "vertex_list": [
+                        4253,
+                        17869
+                    ]
+                }
             },
             "Vanilla 06": {
                 "file": "vanilla-backpack-06.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [4696, 8683]}
+                "backpack": {
+                    "vertex_list": [
+                        4696,
+                        8683
+                    ]
+                }
             },
             "Vanilla 07": {
                 "file": "vanilla-backpack-07.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [310, 1595]}
+                "backpack": {
+                    "vertex_list": [
+                        310,
+                        1595
+                    ]
+                }
             },
             "Vanilla 08": {
                 "file": "vanilla-backpack-08.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [294, 1493]}
+                "backpack": {
+                    "vertex_list": [
+                        294,
+                        1493
+                    ]
+                }
             },
             "Vanilla 01 GK": {
                 "file": "vanilla-backpack-09-GKv1.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [10462, 10462, 17723]}
+                "backpack": {
+                    "vertex_list": [
+                        10462,
+                        10462,
+                        17723
+                    ]
+                },
+                "md5": "df2ea82686600092af6f41a2bd3519ca"
             },
             "Vanilla 02 GK": {
                 "file": "vanilla-backpack-10-GKv2.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [8038, 8038, 13505]}
+                "backpack": {
+                    "vertex_list": [
+                        8038,
+                        8038,
+                        13505
+                    ]
+                }
             },
             "Vanilla 03 GK": {
                 "file": "vanilla-backpack-11-GKv3.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [3200, 4864]}
+                "backpack": {
+                    "vertex_list": [
+                        3200,
+                        4864
+                    ]
+                }
             },
             "Vanilla 04 GK": {
                 "file": "vanilla-backpack-12-GKv4.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [2484, 3807]}
+                "backpack": {
+                    "vertex_list": [
+                        2484,
+                        3807
+                    ]
+                }
             },
             "Vanilla 05 GK": {
                 "file": "vanilla-backpack-13-GKv5.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [1250, 1250, 7145]}
+                "backpack": {
+                    "vertex_list": [
+                        1250,
+                        1250,
+                        7145
+                    ]
+                }
             },
             "Vanilla 06 GK": {
                 "file": "vanilla-backpack-14-GKv6.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [1078, 1078, 5903]}
+                "backpack": {
+                    "vertex_list": [
+                        1078,
+                        1078,
+                        5903
+                    ]
+                }
             },
             "Vanilla 07 GK": {
                 "file": "vanilla-backpack-15-GKv7.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [12594, 14316]}
+                "backpack": {
+                    "vertex_list": [
+                        12594,
+                        14316
+                    ]
+                }
             },
             "Vanilla 08 GK": {
                 "file": "vanilla-backpack-16-GKv8.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [9726, 11060]}
+                "backpack": {
+                    "vertex_list": [
+                        9726,
+                        11060
+                    ]
+                }
             },
             "Vanilla 17": {
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "file": "vanilla-backpack-17.stl",
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [2706, 2706]}
+                "backpack": {
+                    "vertex_list": [
+                        2706,
+                        2706
+                    ]
+                }
             },
             "Vanilla 18": {
                 "file": "vanilla-backpack-18.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [881, 881, 6148]}
+                "backpack": {
+                    "vertex_list": [
+                        881,
+                        881,
+                        6148
+                    ]
+                }
             },
             "Vanilla 19": {
                 "file": "vanilla-backpack-19.stl",
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "thingiverse": 4045613,
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [13080, 14812]}
+                "backpack": {
+                    "vertex_list": [
+                        13080,
+                        14812
+                    ]
+                }
             },
             "Vanilla 20": {
                 "file": "vanilla-backpack-20.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [10171, 11593]}
+                "backpack": {
+                    "vertex_list": [
+                        10171,
+                        11593
+                    ]
+                }
             },
             "Vanilla 01 Justicar": {
                 "file": "vanilla-backpack-22-justicar.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [17629, 17629, 25385]}
+                "backpack": {
+                    "vertex_list": [
+                        17629,
+                        17629,
+                        25385
+                    ]
+                }
             },
             "Vanilla 02 Justicar": {
                 "file": "vanilla-backpack-23-justicar.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [9297, 9297, 16235]}
+                "backpack": {
+                    "vertex_list": [
+                        9297,
+                        9297,
+                        16235
+                    ]
+                },
+                "md5": "18c6473f84441a0df30f5dc85e375e9d"
             },
             "Vanilla 03 Justicar": {
                 "file": "vanilla-backpack-24-justicar.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [10000, 10000, 17419]}
+                "backpack": {
+                    "vertex_list": [
+                        10000,
+                        10000,
+                        17419
+                    ]
+                }
             },
             "Vanilla 04 Justicar": {
                 "file": "vanilla-backpack-25-justicar.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [14871, 14871, 21030]}
+                "backpack": {
+                    "vertex_list": [
+                        14871,
+                        14871,
+                        21030
+                    ]
+                },
+                "md5": "8f3b0414aed541eab2fe0780aac8444e"
             },
             "Vanilla 05 Justicar": {
                 "file": "vanilla-backpack-26-justicar.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [1872, 1872, 9392]}
+                "backpack": {
+                    "vertex_list": [
+                        1872,
+                        1872,
+                        9392
+                    ]
+                },
+                "md5": "ec03063eb222fde981d70687cdc06213"
             },
             "Vanilla 06 Justicar": {
                 "file": "vanilla-backpack-27-justicar.stl",
                 "thingiverse": 4045613,
-                "urls": ["https://www.thingiverse.com/thing:4045613"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4045613"
+                ],
                 "designer": "KEKSIMUS_MAXIMUS",
-                "backpack": {"vertex_list": [2592, 17459, 17459]}
+                "backpack": {
+                    "vertex_list": [
+                        2592,
+                        17459,
+                        17459
+                    ]
+                }
             }
         }
     },
     "Space Warrior Jetpack": {
-
         "desc": {
             "display": "Space Warrior Jetpack",
             "path": "data/Wargame Humanoid/backpack/Space Warrior Jetpack/"
@@ -199,10 +397,15 @@
         "stl": {
             "Jetpack": {
                 "file": "Jet_pack_with_mounting_hole.stl",
-                "urls": ["https://www.thingiverse.com/thing:4337116"],
+                "urls": [
+                    "https://www.thingiverse.com/thing:4337116"
+                ],
                 "thingiverse": 4337116,
                 "designer": "BaconZeke",
-                "backpack": {"vertex": 19779}
+                "backpack": {
+                    "vertex": 19779
+                },
+                "md5": "780f2f9bd092ad93aeab581f7a1fb8fa"
             }
         }
     }

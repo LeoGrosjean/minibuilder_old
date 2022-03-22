@@ -12,12 +12,17 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
-                "rotate": -0,
+                "designer": "onosindustries",
+                "rotate": 0,
                 "dextral": "right",
-                "arm": {"vertex": 215671},
-                "hand": {"vertex": 124535},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 215671
+                },
+                "hand": {
+                    "vertex": 124535
+                },
+                "scale": 1.1,
+                "md5": "d5354a58441cef9b7f766f6468aff7a4"
             },
             "Enclave Trooper 02": {
                 "file": "arm dx 2.stl",
@@ -26,12 +31,17 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "right",
-                "arm": {"vertex": 229404},
-                "hand": {"vertex": 254761},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 229404
+                },
+                "hand": {
+                    "vertex": 254761
+                },
+                "scale": 1.1,
+                "md5": "da069a7f2b8562ff97d03c4b7320496d"
             },
             "Enclave Trooper 03": {
                 "file": "arm dx 3.stl",
@@ -40,12 +50,17 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "right",
-                "arm": {"vertex": 27951},
-                "hand": {"vertex": 72602},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 27951
+                },
+                "hand": {
+                    "vertex": 72602
+                },
+                "scale": 1.1,
+                "md5": "3d7180cedc25aa5d94b06b9ea32fbff9"
             },
             "Enclave Trooper 04": {
                 "file": "arm dx 4.stl",
@@ -54,26 +69,17 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "right",
-                "arm": {"vertex": 74545},
-                "hand": {"vertex": 73138},
-                "scale": 1.1
-            },
-            "Enclave Trooper 04": {
-                "file": "arm dx 4.stl",
-                "cgtrader": {
-                    "product_id": 3584352,
-                    "product_name": "enclave trooper",
-                    "file_id": 9776478
+                "arm": {
+                    "vertex": 74545
                 },
-                "designer":"onosindustries",
-                "rotate": 0,
-                "dextral": "right",
-                "arm": {"vertex": 74545},
-                "hand": {"vertex": 73138},
-                "scale": 1.1
+                "hand": {
+                    "vertex": 73138
+                },
+                "scale": 1.1,
+                "md5": "b22bb842a5f4236e083666710cde8869"
             },
             "Enclave Trooper 05": {
                 "file": "arm dx 5.stl",
@@ -82,12 +88,17 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "right",
-                "arm": {"vertex": 127491},
-                "hand": {"vertex": 141130},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 127491
+                },
+                "hand": {
+                    "vertex": 141130
+                },
+                "scale": 1.1,
+                "md5": "568d43beff0f68f1c5bdd55b8fb21748"
             },
             "Enclave Trooper 06": {
                 "file": "arm dx 6.stl",
@@ -96,12 +107,17 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "right",
-                "arm": {"vertex": 162685},
-                "hand": {"vertex": 247897},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 162685
+                },
+                "hand": {
+                    "vertex": 247897
+                },
+                "scale": 1.1,
+                "md5": "f725ded3ef89a46b82cf9d642cfca89e"
             },
             "Enclave Trooper Hand 01": {
                 "file": "arm sx 1.stl",
@@ -110,11 +126,14 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "left",
-                "arm": {"vertex": 6433},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 6433
+                },
+                "scale": 1.1,
+                "md5": "af90a03a9694af3085a7cdc7c54ef3c6"
             },
             "Enclave Trooper Hand 02": {
                 "file": "arm sx 2.stl",
@@ -123,11 +142,14 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "left",
-                "arm": {"vertex": 43929},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 43929
+                },
+                "scale": 1.1,
+                "md5": "7954cbad6fd2977d6608ef5dea62f867"
             },
             "Enclave Trooper Hand 03": {
                 "file": "arm sx 3.stl",
@@ -136,11 +158,14 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "left",
-                "arm": {"vertex": 7067},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 7067
+                },
+                "scale": 1.1,
+                "md5": "7638876935b25c156ef8edf22995a7b4"
             },
             "Enclave Trooper Hand Drone 04": {
                 "file": "arm sx 4.stl",
@@ -149,11 +174,14 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "left",
-                "arm": {"vertex": 58341},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 58341
+                },
+                "scale": 1.1,
+                "md5": "929ee6b8d5ac5deb0abf474156b21294"
             },
             "Enclave Trooper Hand 05": {
                 "file": "arm sx 5.stl",
@@ -162,11 +190,14 @@
                     "product_name": "enclave trooper",
                     "file_id": 9776478
                 },
-                "designer":"onosindustries",
+                "designer": "onosindustries",
                 "rotate": 0,
                 "dextral": "left",
-                "arm": {"vertex": 31088},
-                "scale": 1.1
+                "arm": {
+                    "vertex": 31088
+                },
+                "scale": 1.1,
+                "md5": "48f53b1cdb378b37a1be116431ea136f"
             }
         }
     }

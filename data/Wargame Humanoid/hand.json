@@ -16,7 +16,8 @@
                         9145
                     ]
                 },
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "cb3536df29acd511a848f141cb2b8b49"
             },
             "Power Sword": {
                 "file": "power_sword_01.stl",
@@ -41,7 +42,8 @@
                     "purity_seal": {
                         "vertex": 46623
                     }
-                }
+                },
+                "md5": "8284ab921701115fe6b4d005f3119ae2"
             }
         }
     },
@@ -63,7 +65,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "0ad16fedd8894f53ef8a5a0c4099976a"
             },
             "Gun 02": {
                 "file": "_80_with_hand.stl",
@@ -77,7 +80,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "421f7dc959f10ea2153abad305945432"
             },
             "Gun 03": {
                 "file": "_81_with_hand.stl",
@@ -91,7 +95,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "151cfab1e84c85b6cade60aead33f3aa"
             },
             "Gun 04": {
                 "file": "_82_with_hand.stl",
@@ -105,7 +110,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "932a42885b300c8c583c4d3d1a3ff738"
             },
             "Gun 05": {
                 "file": "_83_with_hand.stl",
@@ -133,7 +139,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "82471dc78ed28d598e10b8c5b6609dbe"
             },
             "Gun 07": {
                 "file": "_85_with_hand.stl",
@@ -147,7 +154,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "d08137f2fe64edc20859469728b07ab1"
             },
             "Gun 08": {
                 "file": "_86_with_hand.stl",
@@ -161,7 +169,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "1d5b299b75abd4ceceb68ec80666eeb3"
             },
             "Gun 09": {
                 "file": "_87_with_hand.stl",
@@ -175,7 +184,8 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "a3f8a0791626c5c7c99cba5248b2d9e6"
             },
             "Classic 01": {
                 "file": "tac_bolter_01.stl",
@@ -185,7 +195,8 @@
                 "hand": {
                     "vertex": 93714
                 },
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "10c5c610806e414f615e6d862c1b2092"
             }
         }
     },
@@ -204,7 +215,8 @@
                     "vertex": 25067
                 },
                 "coef_merge": -0.35,
-                "rotate": -12
+                "rotate": -12,
+                "md5": "39fae2474dff56a9d0ca2407526d543f"
             },
             "Plasma ball Launcher": {
                 "file": "heavy_weapons_-_plasma_ball_launcher.stl",
@@ -215,7 +227,8 @@
                     "vertex": 85302
                 },
                 "coef_merge": -0.35,
-                "rotate": -12
+                "rotate": -12,
+                "md5": "f81b583f5d6401a478cf7d50a968f32b"
             },
             "Heavy slug cannon": {
                 "file": "heavy_weapons_-_heavy_slug_cannon.stl",
@@ -226,7 +239,8 @@
                     "vertex": 42572
                 },
                 "coef_merge": -0.35,
-                "rotate": -25
+                "rotate": -25,
+                "md5": "3fc80722d31209e67e5c11edec3b2380"
             },
             "Heavy melter": {
                 "file": "heavy_weapons_-_heavy_melter.stl",
@@ -241,7 +255,8 @@
                     ]
                 },
                 "coef_merge": 0.1,
-                "rotate": -25
+                "rotate": -25,
+                "md5": "8fa321359394c4d06d49635938316a3d"
             }
         }
     },
@@ -262,7 +277,8 @@
                         99780
                     ]
                 },
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "9caab9932b95c41060f0224c9617a4e4"
             },
             "Imperium Banner v1": {
                 "file": "Dark_Imperium_Banner_-_Left_Hand.stl",
@@ -275,7 +291,8 @@
                         30323
                     ]
                 },
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "md5": "cb9449b581b63b8071964834382fca7c"
             }
         }
     },
