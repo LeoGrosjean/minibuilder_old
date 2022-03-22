@@ -6,6 +6,7 @@ from uuid import uuid4
 
 from flask import Blueprint, render_template, request, url_for, redirect, make_response
 import trimesh as tm
+from trimesh.exchange.load import mesh_formats
 from werkzeug.utils import secure_filename
 
 from minibuilder.builder.node import read_node_link_json
@@ -15,9 +16,11 @@ from minibuilder.forms.home import ChooseBuilderForm
 from minibuilder.utils.compressed import extract_nested_compress
 from minibuilder.utils.mesh_config import find_mesh_connector, save_file_config_json
 
+mesh_suffixes = mesh_formats()
+
 configure_bp = Blueprint('configure_bp', __name__)
 
-read_node_link_json
+
 @configure_bp.route('/builder/<builder_name>/configure', methods=['GET'])
 def builder(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
@@ -49,6 +52,12 @@ def builder_post(builder_name):
             file.save(f"data/{builder_name}/uploaded/{file_filename}")
             # TODO check if compress and flatten them in uploaded
             extract_nested_compress(builder_name, file_filename)
+            for file in os.listdir(f"data/{builder_name}/uploaded/"):
+                try:
+                    if not pathlib.Path(file).suffix[1:] in mesh_suffixes:
+                        os.remove(f"data/{builder_name}/uploaded/{file}")
+                except Exception as e:
+                    print(e)
         return redirect(url_for("configure_bp.builder", builder_name=builder_name))
 
     graph = read_node_link_json(f'data/{builder_name}/conf.json')
@@ -224,6 +233,7 @@ def check_md5(builder_name):
                 pathlib.Path(di.get(hash)).parent.mkdir(parents=True)
             print(f"{file} already have a configuration ! {hash}")
             try:
+
                 shutil.move(
                     f"data/{builder_name}/uploaded/{file}", di.get(hash))
                 print(f"data/{builder_name}/uploaded/{file} moved to {di.get(hash)} !")

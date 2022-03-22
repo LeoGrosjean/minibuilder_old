@@ -105,20 +105,6 @@
                     "https://www.thingiverse.com/thing:4222540/zip"
                 ]
             },
-            "Bolter Long NG A": {
-                "file": "GueROnVesa_Weapons_Bolter_Long_ng_a.stl",
-                "thingiverse": 4222540,
-                "designer": "El_Mutanto",
-                "dextral": "left",
-                "weapon": {
-                    "facet": 1782
-                },
-                "coef_merge": 0.2,
-                "md5": "05e1432214b871415526dcecacc8140f",
-                "urls": [
-                    "https://www.thingiverse.com/thing:4222540/zip"
-                ]
-            },
             "Bolter Long NG C": {
                 "file": "GueROnVesa_Weapons_Bolter_Long_ng_c.stl",
                 "thingiverse": 4222540,

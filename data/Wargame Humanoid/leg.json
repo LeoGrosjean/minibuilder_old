@@ -49,18 +49,7 @@
                     "https://www.thingiverse.com/thing:4460813/zip"
                 ]
             },
-            "Standard v4": {
-                "file": "legs_2_m.stl",
-                "thingiverse": 4460813,
-                "designer": "chunky111",
-                "leg": {
-                    "vertex": 6837
-                },
-                "urls": [
-                    "https://www.thingiverse.com/thing:4460813/zip"
-                ],
-                "md5": "fa76e88e52162837b56435c3d251ca32"
-            },
+
             "Standard v5": {
                 "file": "legs_4_m.stl",
                 "thingiverse": 4460813,

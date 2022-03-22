@@ -101,18 +101,6 @@
                     "https://www.thingiverse.com/thing:4216370/zip"
                 ]
             },
-            "Running B": {
-                "file": "GueRonVesa_Legs_running_b.stl",
-                "thingiverse": 4216370,
-                "designer": "El_Mutanto",
-                "leg": {
-                    "vertex": 2249
-                },
-                "md5": "c5a2a6b7decd685ef4fddcc66b8c09a6",
-                "urls": [
-                    "https://www.thingiverse.com/thing:4216370/zip"
-                ]
-            },
             "Kneel B": {
                 "file": "GueRonVesa_Legs_Kneel_b.stl",
                 "thingiverse": 4216370,
