@@ -2,17 +2,14 @@ import shutil
 
 
 from pathlib import Path
-import zipfile, io
-import os
 
 import patoolib
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
+#from selenium.webdriver.support.wait import WebDriverWait
 
-from utils.download import browser_function, every_downloads_chrome
+#from minibuilder.utils.download import browser_function, every_downloads_chrome
 
-chr_driver = browser_function()
-chr_driver.get('https://www.cgtrader.com/')
+#chr_driver = browser_function()
+#chr_driver.get('https://www.cgtrader.com/')
 
 
 def download_cgt_file(product_id, product_name, file_id, dest_file):

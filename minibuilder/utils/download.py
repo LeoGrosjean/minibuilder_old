@@ -1,7 +1,7 @@
 import os
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium import webdriver
+#from selenium.webdriver.chrome.options import Options
 
 
 def every_downloads_chrome(driver):

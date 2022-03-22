@@ -3,35 +3,25 @@ import os
 from functools import reduce
 from math import radians
 from operator import add
-from pprint import pprint
 from urllib.parse import urlparse
 
 import numpy as np
-from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response, \
+from flask import Blueprint, render_template, request, redirect, flash, send_file, make_response, \
     render_template_string
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
-from trimesh.boolean import difference
 from trimesh.geometry import align_vectors
 from trimesh.transformations import euler_matrix, rotation_matrix
 
-#from utils.cgtrader import download_cgt_file
-#from utils.cults import download_cults_file
-from wtforms import FieldList, FormField
-from wtforms.validators import InputRequired
-
-from utils.graph import get_successors
-from utils.render import scene_to_html
-
-from builder.node import read_node_link_json
-from file_config.parts import load_json
-from forms.home import ChooseBuilderForm
-from forms.make import generateminidynamic_func, dynamic_BitzDisplay, dynamic_FieldBitz
-from utils.dict import deep_get
-from utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh, get_normal_vertice
-from utils.thingiverse import download_object
-from utils.zip import write_zip
+from minibuilder.builder.node import read_node_link_json
+from minibuilder.file_config.parts import load_json
+from minibuilder.forms.home import ChooseBuilderForm
+from minibuilder.forms.make import generateminidynamic_func, dynamic_FieldBitz
+from minibuilder.utils.graph import get_successors
+from minibuilder.utils.render import scene_to_html
+from minibuilder.utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh, get_normal_vertice
+from minibuilder.utils.zip import write_zip
 
 make_bp = Blueprint('make_bp', __name__)
 

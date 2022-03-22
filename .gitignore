@@ -8,7 +8,6 @@ venv
 /config/
 /.ipynb_checkpoints/
 /dist/
-/miniBuilder/
 /build/
 /app.spec
 /data/Wargame Humanoid/arm/

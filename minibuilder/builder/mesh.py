@@ -3,7 +3,7 @@ from math import radians
 import numpy as np
 import trimesh as tm
 
-from utils.mesh import get_center_facet_index, get_mean_vertex_normal_list, get_mean_vertex_list
+from minibuilder.utils.mesh import get_center_facet_index, get_mean_vertex_normal_list, get_mean_vertex_list
 
 DL_WEBSITES = [
     'thingiverse',

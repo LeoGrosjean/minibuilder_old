@@ -5,7 +5,6 @@ Flask-WTF
 wtforms
 scipy
 requests
-selenium
 networkx
 pyinstaller==4.5
 patool

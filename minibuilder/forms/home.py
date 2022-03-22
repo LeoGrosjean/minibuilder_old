@@ -1,7 +1,7 @@
 import os
 
 from flask_wtf import FlaskForm
-from wtforms import SelectField, SelectMultipleField, SubmitField, IntegerField, BooleanField
+from wtforms import SelectField, SubmitField
 
 
 class ChooseBuilderForm(FlaskForm):

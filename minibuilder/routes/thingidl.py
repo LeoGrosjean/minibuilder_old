@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template
 
 
 thingidl_bp = Blueprint('thingidl_bp', __name__)

@@ -3,7 +3,7 @@ from ast import literal_eval
 
 import numpy as np
 
-from file_config.parts import load_json
+from minibuilder.file_config.parts import load_json
 
 
 def find_vertices(mesh, *args):

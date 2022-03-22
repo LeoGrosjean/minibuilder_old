@@ -3,10 +3,10 @@ import os
 import wtforms
 from flask_wtf import FlaskForm
 from werkzeug.datastructures import FileStorage
-from wtforms import SubmitField, SelectField, HiddenField, StringField
+from wtforms import SubmitField, SelectField, StringField
 from wtforms.validators import InputRequired, URL
 
-from file_config.parts import load_json
+from minibuilder.file_config.parts import load_json
 from wtforms import MultipleFileField
 
 

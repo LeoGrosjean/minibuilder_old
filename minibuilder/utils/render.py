@@ -22,10 +22,10 @@ def scene_to_html(scene, node_dict_rotate={}, config_live_edit={}, mode='live_ed
     # it is bundling all of three.js so compression is nice
     from jinja2 import Template
     if mode == 'live_edit':
-        with open('templates/template_mesh_render_v2.jinja2') as file_:
+        with open('minibuilder/templates/template_mesh_render_v2.jinja2') as file_:
             base = Template(file_.read())
     elif mode == 'make_conf':
-        with open('templates/template_mesh_render.jinja2') as file_:
+        with open('minibuilder/templates/template_mesh_render.jinja2') as file_:
             base = Template(file_.read())
     base = base.render(node_dict_rotate=node_dict_rotate, config_live_edit=config_live_edit)
     scene.camera

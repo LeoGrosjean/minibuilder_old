@@ -1,7 +1,7 @@
 from pathlib import Path
 import zipfile, io
 
-from utils.download import browser_function
+from minibuilder.utils.download import browser_function
 
 chr_driver = browser_function()
 chr_driver.get('https://cults3d.com/en/users/sign-in')

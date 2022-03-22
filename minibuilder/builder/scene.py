@@ -1,6 +1,6 @@
 from networkx import topological_sort
 
-from builder.mesh import MeshNode
+from minibuilder.builder.mesh import MeshNode
 
 
 class SceneGraphInfo:

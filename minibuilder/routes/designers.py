@@ -3,8 +3,8 @@ import os
 
 from flask import Blueprint, render_template, request
 
-from forms.designers import FormAddDesigner
-from forms.home import ChooseBuilderForm
+from minibuilder.forms.designers import FormAddDesigner
+from minibuilder.forms.home import ChooseBuilderForm
 
 designer_bp = Blueprint('designer_bp', __name__)
 

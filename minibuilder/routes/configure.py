@@ -2,28 +2,22 @@ import json
 import os
 import pathlib
 import shutil
-from ast import literal_eval
-from io import BytesIO
-import hashlib
 from uuid import uuid4
 
-import patoolib
-from flask import Blueprint, render_template, request, url_for, redirect, jsonify, flash, send_file, make_response
+from flask import Blueprint, render_template, request, url_for, redirect, make_response
 import trimesh as tm
 from werkzeug.utils import secure_filename
 
-from builder.node import read_node_link_json
-from builder.scene import SceneGraphInfo
-from file_config.parts import load_json
-from forms.configure import DynamicFormMakeMeshConf, FormUploadFile
-from forms.home import ChooseBuilderForm
-from utils.compressed import extract_nested_compress
-from utils.mesh_config import find_vertices, find_mesh_connector, save_file_config_json
-from utils.render import scene_to_html
+from minibuilder.builder.node import read_node_link_json
+from minibuilder.forms.configure import DynamicFormMakeMeshConf, FormUploadFile
+from minibuilder.forms.home import ChooseBuilderForm
+
+from minibuilder.utils.compressed import extract_nested_compress
+from minibuilder.utils.mesh_config import find_mesh_connector, save_file_config_json
 
 configure_bp = Blueprint('configure_bp', __name__)
 
-
+read_node_link_json
 @configure_bp.route('/builder/<builder_name>/configure', methods=['GET'])
 def builder(builder_name):
     graph = read_node_link_json(f'data/{builder_name}/conf.json')

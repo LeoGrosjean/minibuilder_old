@@ -1,10 +1,10 @@
 import os
 
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, HiddenField, StringField, FloatField, validators, FieldList, FormField
-from wtforms.validators import InputRequired, DataRequired
-from wtforms.widgets import NumberInput
-from file_config.parts import load_json
+from wtforms import SubmitField, SelectField, HiddenField, StringField, validators, FieldList, FormField
+from wtforms.validators import InputRequired
+
+from minibuilder.file_config.parts import load_json
 
 
 def DynamicFormEditMeshConf(graph, node, *args, **kwargs):

@@ -4,17 +4,17 @@ import pathlib
 import shutil
 from ast import literal_eval
 from urllib.parse import urlparse
-from uuid import uuid4
 
 import trimesh as tm
-from flask import Blueprint, render_template, request, jsonify, flash, url_for, redirect
+from flask import Blueprint, render_template, request, jsonify, url_for, redirect
 
-from builder.node import read_node_link_json
-from file_config.parts import load_json
-from forms.edit_file import DynamicFormEditMeshConf, BitzsForm
-from forms.home import ChooseBuilderForm
-from utils.mesh import get_mesh_normal_position_edit
-from utils.mesh_config import find_vertices, find_mesh_connector
+from minibuilder.builder.node import read_node_link_json
+from minibuilder.file_config.parts import load_json
+from minibuilder.forms.edit_file import DynamicFormEditMeshConf, BitzsForm
+from minibuilder.forms.home import ChooseBuilderForm
+
+from minibuilder.utils.mesh import get_mesh_normal_position_edit
+from minibuilder.utils.mesh_config import find_vertices
 
 edit_file_bp = Blueprint('edit_file_bp', __name__)
 
