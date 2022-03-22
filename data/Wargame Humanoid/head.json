@@ -28,7 +28,10 @@
                     "vertex": 6
                 },
                 "coef_merge": -0.3,
-                "md5": "173f95ad04aebf1487af9cf0a4817c46"
+                "md5": "173f95ad04aebf1487af9cf0a4817c46",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4393029"
+                ]
             },
             "Helm 03": {
                 "file": "Space_Knight_Helm_03.stl",
@@ -38,7 +41,10 @@
                     "vertex": 7
                 },
                 "coef_merge": -0.3,
-                "md5": "f4aab3aa0c04010d84a3fea58c00cc8a"
+                "md5": "f4aab3aa0c04010d84a3fea58c00cc8a",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4393029"
+                ]
             },
             "Helm 04": {
                 "file": "Space_Knight_Helm_CUSTOM.stl",
@@ -48,7 +54,10 @@
                     "vertex": 7
                 },
                 "coef_merge": -0.3,
-                "md5": "253a87a24e7196c3ecdc28f57a499df4"
+                "md5": "253a87a24e7196c3ecdc28f57a499df4",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4393029"
+                ]
             },
             "Mk IV Tactical 01": {
                 "file": "tac_helm_01.stl",
@@ -57,7 +66,11 @@
                 "head": {
                     "vertex": 10164
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "37c6c196ce5f341a5e783783edd25498",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 02": {
                 "file": "tac_helm_02.stl",
@@ -66,7 +79,11 @@
                 "head": {
                     "vertex": 25900
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "f35f70f46c77bc299dd3f0e46b772c30",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 03": {
                 "file": "tac_helm_03.stl",
@@ -75,7 +92,11 @@
                 "head": {
                     "vertex": 21792
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "975586a0b75ea1a93bf00f9a453e4b61",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 04": {
                 "file": "tac_helm_04.stl",
@@ -84,7 +105,11 @@
                 "head": {
                     "vertex": 13965
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "28a6664dc8464704c6346e9d616f2155",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 05": {
                 "file": "tac_helm_05.stl",
@@ -93,7 +118,11 @@
                 "head": {
                     "vertex": 3243
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "1f96c976f721afcad0c08a5d665cf7f7",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 06": {
                 "file": "tac_helm_06.stl",
@@ -102,7 +131,11 @@
                 "head": {
                     "vertex": 9912
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "2456829ce70baca57536c56f4828fa70",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 07": {
                 "file": "tac_helm_07.stl",
@@ -111,7 +144,11 @@
                 "head": {
                     "vertex": 25150
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "59983ea52d1c036f721707b04b974e8e",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 08": {
                 "file": "tac_helm_08.stl",
@@ -120,7 +157,11 @@
                 "head": {
                     "vertex": 3803
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "0104816de6af7c31a0878fd1adb16d28",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 09": {
                 "file": "tac_helm_09.stl",
@@ -129,7 +170,11 @@
                 "head": {
                     "vertex": 12914
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "a60d234b76b09744891dd7c43449e4e2",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             },
             "Mk IV Tactical 10": {
                 "file": "tac_helm_10.stl",
@@ -138,7 +183,11 @@
                 "head": {
                     "vertex": 4245
                 },
-                "coef_merge": -0.3
+                "coef_merge": -0.3,
+                "md5": "2e8b1022c2fc0f007ffb193580e44b20",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             }
         }
     }

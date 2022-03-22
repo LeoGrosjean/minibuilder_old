@@ -26,6 +26,17 @@
                 "bitz": {
                     "vertex": 1921
                 }
+            },
+            "Xs1": {
+                "file": "XS1.stl",
+                "designer": "BREXIT",
+                "md5": "be2d025149dbeddda11386c25eed79b5",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/purity-seals-brexit"
+                ],
+                "bitz": {
+                    "vertex": 9549
+                }
             }
         }
     }

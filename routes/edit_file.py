@@ -35,8 +35,11 @@ def edit(builder, node, category, file):
     form.file_name.data = file
     form.hidden_file_name.data = file
 
+
+
     try:
-        form.support.data = infos.get(category).get('stl').get(file).get("support")
+        form.support.choices = form.support.choices + [infos.get(category).get('stl').get(file).get("support", {}).get('file', '')]
+        form.support.data = infos.get(category).get('stl').get(file).get("support", {}).get('file', '')
     except Exception as e:
         print(e)
     try:
@@ -63,7 +66,6 @@ def edit(builder, node, category, file):
 
     di_normal = {}
     for node_ in form.connectors:
-        print(node_)
         folder = graph.nodes[node_].get('folder')
         dextral = graph.nodes[node_].get('dextral')
         if hasattr(form, f"{node_}_marker"):
@@ -146,7 +148,8 @@ def edit_post(builder, node, category, file):
         conf['dextral'] = form_result.pop("dextral")
 
     support = form_result.pop("support")
-    if support:
+    support_file_old = mesh_info.get('support', {}).get('file')
+    if support and support != support_file_old:
         conf["support"] = {
             "file": support,
             "md5": tm.load(f"data/{builder}/uploaded/{support}").identifier_md5
@@ -185,7 +188,7 @@ def edit_post(builder, node, category, file):
 
     folder = graph.nodes[node].get('folder')
 
-    if support:
+    if support and support != support_file_old:
         try:
             if not os.path.exists(f"data/{builder}/{folder}/{category}/support/"):
                 pathlib.Path(f"data/{builder}/{folder}/{category}/support/").mkdir(parents=True)
@@ -198,7 +201,7 @@ def edit_post(builder, node, category, file):
                 shutil.move(
                     f"data/{builder}/uploaded/{support}",
                     f"data/{builder}/{folder}/{category}/support/")
-                print(f"data/{builder}/uploaded/{category} moved to "
+                print(f"data/{builder}/uploaded/{support} moved to "
                       f"data/{builder}/{folder}/{category}/support !")
         except Exception as e:
             print(e)

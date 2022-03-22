@@ -202,6 +202,8 @@ def check_md5(builder_name):
     for k, v in graph.nodes.items():
         monset.update(v.get("files"))
 
+    monset.update(graph.graph.get('bitz_files', []))
+
     di = {}
     for json_file in list(monset):
         with open(f"data/{builder_name}/{json_file}", "r") as f:

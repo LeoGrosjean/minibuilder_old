@@ -1,0 +1,382 @@
+{% include "choose_builder.html" %}
+
+<html lang="en">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</html>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                    Infos
+                </button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <p>I'm coding miniBuilder on my own, mostly during night and weekend !</p>
+                <p>I'm not a web developper nor 3D expert, I'm learning things on the go.</p>
+                <p>
+                    If you are:
+                <li>having issue</li>
+                <li>asking for a new feature</li>
+                <li>looking for business inquiry (designer or file hosting)</li>
+                </p>
+                <p>Or just looking for new configuration's files or want to say "Hi" !</p>
+
+                <p>Please join miniBuilder <a href="https://discord.gg/ec95uCEnz9" target="_blank">Discord</a></p>
+
+                <p>Maybe you will need to have:</p>
+                <li>Blender or Scad software install to perform boolean difference on merged/fusionned files (but it
+                    should work without)
+                </li>
+                <li>7zip installed (but it should work without)</li>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSupportMe"
+                        aria-expanded="false" aria-controls="collapseSupportMe">
+                    How to support me ?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseSupportMe" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <div>
+                    <p>Every donation will be used to improve miniBuilder (hire front developper, UX designer, 3D
+                        designer)</p>
+                    <p>
+                        <a class="patron" href="https://www.patreon.com/bePatron?u=20077721"
+                           data-patreon-widget-type="become-patron-button">Become a Patron!</a>
+                    </p>
+                    <p>
+                        <a href="https://paypal.me/leogrosjean?country.x=FR&locale.x=fr_FR" target="_blank">Tip me on
+                            PayPal
+                            !</a>
+                    </p>
+                    <p>crypto donation :
+                    <li>BTC <small><code>3G45ZuZ9VdPn437TLzbQJyaqnNE6PbK8rX</code></small></li>
+                    <li>ETH <small><code>0xa58d21f60a449ca1651537e94753496588514417</code></small></li>
+                    <li>XMR <small><code>84rzPorTu219xSVD2uS9q5EWuckahqFHWcjdHxLB3EAVWENzYVqdUyx2bnYUnFWr9kLbNr2FrwNg7RUAVtZv9pWSDsWapYn</code></small>
+                    </li>
+                    <li>LTC <small><code>MCRTJMi3D7vsuqbznC4C9DFYkD1T4cu7Mg</code></small></li>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="false"
+                        aria-controls="collapseOne">
+                    How to Add Files ?
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>
+                        <p>Select a Builder in the header <select id="builder" name="builder">
+                            <option value="Drawer">Builder Name</option>
+                        </select> and click on <input id="add_files" name="add_files" type="submit"
+                                                      value="Add files !">
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Upload your file by drag and droping STL/OBJ/ZIP/TAR/RAR
+
+                            <tr>
+                                <td><input id="files" multiple="" name="files" required="" type="file"></td>
+                            </tr>
+                        </p>
+                    </li>
+                    <li>
+                        <p>And then click on
+                            <tr>
+                                <td><input id="submit_upload" name="submit_upload" type="submit"
+                                           value="Upload files !"></td>
+                            </tr>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            To automatically add files with an existing configuration clic on
+                            <button id="check_md5">Auto add files with MD5 !</button>
+                        </p>
+                    </li>
+                    <li><p>Fill information and select the right node !</p>
+                        <p>json file must end with ".json"</p>
+                        <p>You can add designer from <input id="add_designers" name="add_designers"
+                                                            type="submit"
+                                                            value="Add designers !"></p>
+                    </li>
+                    <li><p>To add a marker, you have to click on
+                        <input class="" id="marker_drawer" name="marker_drawer" placeholder="Node Marker"
+                               readonly=""
+                               type="text" value=""> and on the type of connector you want</p>
+                        <p>
+                        <div style="margin-top: 5px">
+                            <button onclick="return false;" id="vertice">select vertice(s)</button>
+                            <button onclick="return false;" id="face">select face</button>
+                            <button onclick="return false;" id="plan">select plan</button>
+                        </div>
+                        </p>
+                    </li>
+                    <li>
+                        <p>Double Click on the Mesh to add the selected connector type (a <input class=""
+                                                                                                 id="marker_drawer"
+                                                                                                 name="marker_drawer"
+                                                                                                 placeholder="Node Marker"
+                                                                                                 readonly=""
+                                                                                                 type="text"
+                                                                                                 value="">
+                            can be empty if there is no connector on the mesh)</p>
+                        <p>You can reclick on <input class=""
+                                                     id="marker_drawer"
+                                                     name="marker_drawer"
+                                                     placeholder="Node Marker"
+                                                     readonly=""
+                                                     type="text" value=""> to empty it</p>
+                    </li>
+                    <li>
+                        When your file is well configured click on <input class="" id="add" name="add"
+                                                                          placeholder="add mesh !" type="submit"
+                                                                          value="add mesh !">
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                    How to add Bitz(s) ?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>
+                        <p>Choose the right builder</p>
+                        <p><select id="builder" name="builder">
+                            <option value="Drawer">Builder Name</option>
+                        </select></p>
+                        <p>and click on <input id="submit" name="submit" type="submit" value="Let's build !">
+                        </p>
+                    </li>
+                    <p>
+                    <p>Click on edit</p>
+
+                    <div class="list-group-item list-group-item-action bg-light">
+
+                        <button type="button" id="node_select-button"
+                                class="btn btn-toggle align-items-center rounded" data-toggle="collapse"
+                                data-target="#node_select-collapse" aria-controls="node_select-collapse">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"></path>
+                            </svg>
+                            <label for="node_select">Node Label</label>
+                        </button>
+                        <select id="node_select" name="node_select" required="" style="max-width: 181">
+                            <option selected="" value="Category">Category</option>
+                        </select>
+                        <div class="collapse show" id="node_select-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+
+                                <div class="col">
+                                    <select id="node_list" name="nodelist" required="" style="max-width: 181">
+                                        <option selected="" value="MK V v1">File Name</option>
+                                    </select>
+
+                                    <a class="col" href="" id="node_edit">Edit</a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <p></p>
+                    </li>
+                    <li><p> Add a label for the bitz</p>
+                        <p> You can add multiple bitzs (Click on Add or Remove)</p>
+                        <form id="bitzform">
+
+                            <ul id="form_bitz">
+
+
+                                <ul id="bitzs">
+                                    <li><label for="bitzs-0">Bitzs-0</label>
+                                        <table id="bitzs-0">
+                                            <tbody>
+                                            <tr>
+                                                <th><label for="bitzs-0-name">Label</label></th>
+                                                <td><input id="bitzs-0-name" maxlength="100" name="bitzs-0-name"
+                                                           required="" type="text" value="Name of the bitz">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><label for="bitzs-0-marker">Marker</label></th>
+                                                <td><input id="bitzs-0-marker" name="bitzs-0-marker" readonly=""
+                                                           required="" type="text" value=""
+                                                           placeholder="Node Marker">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <button style="background-color:darkgreen; color: #fff;">Add
+                                                    </button>
+                                                </th>
+                                                <th>
+                                                    <button style="background-color:darkred; color: #fff;">
+                                                        Remove
+                                                    </button>
+                                                </th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                </ul>
+                            </ul>
+                        </form>
+                    <li><p>To add a marker, you have to click on
+                        <input class="" id="marker_drawer" name="marker_drawer" placeholder="Node Marker"
+                               readonly=""
+                               type="text" value=""> and on the type of connector you want</p>
+                        <p>
+                        <div style="margin-top: 5px">
+                            <button onclick="return false;" id="vertice">select vertice(s)</button>
+                            <button onclick="return false;" id="face">select face</button>
+                            <button onclick="return false;" id="plan">select plan</button>
+                        </div>
+                        </p>
+                    </li>
+                    <li>
+                        <p>Double Click on the Mesh to add the selected connector type (a <input class=""
+                                                                                                 id="marker_drawer"
+                                                                                                 name="marker_drawer"
+                                                                                                 placeholder="Node Marker"
+                                                                                                 readonly=""
+                                                                                                 type="text"
+                                                                                                 value="">
+                            can be empty if there is no connector on the mesh)</p>
+                        <p>You can reclick on <input class=""
+                                                     id="marker_drawer"
+                                                     name="marker_drawer"
+                                                     placeholder="Node Marker"
+                                                     readonly=""
+                                                     type="text" value=""> to empty it</p>
+                    </li>
+                    <li>
+                        <p>Click on
+                            <button type="button" id="submit">Add Bitz(s)</button>
+                            to change the file, a message should appear below when it finished.
+                        </p>
+                    </li>
+                    <li><p>Bitz will be added to file configuration only if Label and Node Marker is not Empty
+                        !</p>
+                        <p>If Bitz label have the same name, the last one will overwrite the previous one.</p>
+                    </li>
+
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headfutureFeature">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#futureFeature"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                    Future Features
+                </button>
+            </h5>
+        </div>
+        <div id="futureFeature" class="collapse" aria-labelledby="headfutureFeature" data-parent="#accordion">
+            <div class="card-body">
+                <li>
+                    auto update
+                </li>
+                <li>
+                    better front
+                </li>
+                <li>
+                    edit normal position in Edit (from two range slider XY)
+                </li>
+                <li>
+                    Improve Boolean diff
+                </li>
+                <li>
+                    Improve Performance
+                </li>
+                <li>
+                    Create/Edit your Node Configuration Menu
+                </li>
+                <li>
+                    PhotoBoot your Creation (for social network) generate rotating GIF or nice image
+                </li>
+                <li>
+                    Live Edit Async change Mesh without reloading all
+                </li>
+                <li>
+                    More Permissions (option to edit a node mesh)
+                </li>
+                <li>
+                    Better UX (more intuitive, more friendly, more sexy)
+                </li>
+                <li>
+                    Download Node configuration and Configuration File from a repository (and having an interface)
+                </li>
+                <li>
+                    Save a build and share it (from url or json file, dunno now)
+                </li>
+                <li>
+                    Improve rendering performance in live edit
+                </li>
+                <li>
+                    Better documentation
+                </li>
+                <li>
+                    Adding multiple language support
+                </li>
+                <li>
+                    Much more...
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+

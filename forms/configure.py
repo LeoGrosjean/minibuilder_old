@@ -4,7 +4,7 @@ import wtforms
 from flask_wtf import FlaskForm
 from werkzeug.datastructures import FileStorage
 from wtforms import SubmitField, SelectField, HiddenField, StringField
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, URL
 
 from file_config.parts import load_json
 from wtforms import MultipleFileField
@@ -18,7 +18,7 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
         file_name = StringField(label='File Name', validators=[InputRequired()], render_kw={'hidden': False})
         support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"data/{graph.name}/uploaded/"),
                                 validators=[], render_kw={'hidden': False, 'style': 'width: 181'})
-        url = StringField(label='Url to download/buy', validators=[InputRequired()], render_kw={'hidden': False})
+        url = StringField(label='Url to download/buy', validators=[InputRequired(), URL()], render_kw={'hidden': False})
         node = SelectField(label=f'Node', validators=[InputRequired()], render_kw={'hidden': False})
         file = StringField(label=f'Json File', validators=[InputRequired()], render_kw={'hidden': False,
                                                                                         "list": "id_list_file"})

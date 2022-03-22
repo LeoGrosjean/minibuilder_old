@@ -20,7 +20,14 @@
                     ]
                 },
                 "scale": 1.06,
-                "md5": "3ffde3df2889c1fe1c6f222fe70ea5d2"
+                "md5": "3ffde3df2889c1fe1c6f222fe70ea5d2",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "backpack.stl",
+                    "md5": "996555b4f2bdae3bf960f550721eee0b"
+                }
             }
         }
     }

@@ -17,7 +17,10 @@
                     ]
                 },
                 "coef_merge": 0.1,
-                "md5": "cb3536df29acd511a848f141cb2b8b49"
+                "md5": "cb3536df29acd511a848f141cb2b8b49",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4606349"
+                ]
             },
             "Power Sword": {
                 "file": "power_sword_01.stl",
@@ -27,7 +30,11 @@
                 "hand": {
                     "vertex": 6459
                 },
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ],
+                "md5": "88860faaf5a236a19f1851550a4a9b18"
             },
             "Chainsword": {
                 "file": "chainsword_01.stl",
@@ -43,7 +50,10 @@
                         "vertex": 46623
                     }
                 },
-                "md5": "8284ab921701115fe6b4d005f3119ae2"
+                "md5": "8284ab921701115fe6b4d005f3119ae2",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             }
         }
     },
@@ -66,7 +76,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "0ad16fedd8894f53ef8a5a0c4099976a"
+                "md5": "0ad16fedd8894f53ef8a5a0c4099976a",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 02": {
                 "file": "_80_with_hand.stl",
@@ -81,7 +94,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "421f7dc959f10ea2153abad305945432"
+                "md5": "421f7dc959f10ea2153abad305945432",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 03": {
                 "file": "_81_with_hand.stl",
@@ -96,7 +112,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "151cfab1e84c85b6cade60aead33f3aa"
+                "md5": "151cfab1e84c85b6cade60aead33f3aa",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 04": {
                 "file": "_82_with_hand.stl",
@@ -111,7 +130,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "932a42885b300c8c583c4d3d1a3ff738"
+                "md5": "932a42885b300c8c583c4d3d1a3ff738",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 05": {
                 "file": "_83_with_hand.stl",
@@ -125,7 +147,11 @@
                     ]
                 },
                 "rotate": 180,
-                "coef_merge": 0.1
+                "coef_merge": 0.1,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ],
+                "md5": "ac812e6d3510f2d46e4f1915d2877d94"
             },
             "Gun 06": {
                 "file": "_84_with_hand.stl",
@@ -140,7 +166,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "82471dc78ed28d598e10b8c5b6609dbe"
+                "md5": "82471dc78ed28d598e10b8c5b6609dbe",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 07": {
                 "file": "_85_with_hand.stl",
@@ -155,7 +184,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "d08137f2fe64edc20859469728b07ab1"
+                "md5": "d08137f2fe64edc20859469728b07ab1",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 08": {
                 "file": "_86_with_hand.stl",
@@ -170,7 +202,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "1d5b299b75abd4ceceb68ec80666eeb3"
+                "md5": "1d5b299b75abd4ceceb68ec80666eeb3",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Gun 09": {
                 "file": "_87_with_hand.stl",
@@ -185,7 +220,10 @@
                 },
                 "rotate": 180,
                 "coef_merge": 0.1,
-                "md5": "a3f8a0791626c5c7c99cba5248b2d9e6"
+                "md5": "a3f8a0791626c5c7c99cba5248b2d9e6",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4304344"
+                ]
             },
             "Classic 01": {
                 "file": "tac_bolter_01.stl",
@@ -196,14 +234,17 @@
                     "vertex": 93714
                 },
                 "coef_merge": 0.1,
-                "md5": "10c5c610806e414f615e6d862c1b2092"
+                "md5": "10c5c610806e414f615e6d862c1b2092",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
+                ]
             }
         }
     },
-    "Two hands Range": {
+    "Heavy Weapon": {
         "desc": {
             "display": "Two Hands",
-            "path": "data/Wargame Humanoid/hand/Two hands Range/"
+            "path": "data/Wargame Humanoid/hand/Heavy Weapon/"
         },
         "stl": {
             "Laser cannon": {
@@ -216,7 +257,10 @@
                 },
                 "coef_merge": -0.35,
                 "rotate": -12,
-                "md5": "39fae2474dff56a9d0ca2407526d543f"
+                "md5": "39fae2474dff56a9d0ca2407526d543f",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4263725"
+                ]
             },
             "Plasma ball Launcher": {
                 "file": "heavy_weapons_-_plasma_ball_launcher.stl",
@@ -228,7 +272,10 @@
                 },
                 "coef_merge": -0.35,
                 "rotate": -12,
-                "md5": "f81b583f5d6401a478cf7d50a968f32b"
+                "md5": "f81b583f5d6401a478cf7d50a968f32b",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4263725"
+                ]
             },
             "Heavy slug cannon": {
                 "file": "heavy_weapons_-_heavy_slug_cannon.stl",
@@ -240,7 +287,10 @@
                 },
                 "coef_merge": -0.35,
                 "rotate": -25,
-                "md5": "3fc80722d31209e67e5c11edec3b2380"
+                "md5": "3fc80722d31209e67e5c11edec3b2380",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4263725"
+                ]
             },
             "Heavy melter": {
                 "file": "heavy_weapons_-_heavy_melter.stl",
@@ -256,7 +306,10 @@
                 },
                 "coef_merge": 0.1,
                 "rotate": -25,
-                "md5": "8fa321359394c4d06d49635938316a3d"
+                "md5": "8fa321359394c4d06d49635938316a3d",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4263725"
+                ]
             }
         }
     },
@@ -278,7 +331,10 @@
                     ]
                 },
                 "coef_merge": 0.1,
-                "md5": "9caab9932b95c41060f0224c9617a4e4"
+                "md5": "9caab9932b95c41060f0224c9617a4e4",
+                "urls": [
+                    "https://www.thingiverse.com/thing:4116219"
+                ]
             },
             "Imperium Banner v1": {
                 "file": "Dark_Imperium_Banner_-_Left_Hand.stl",
@@ -292,54 +348,10 @@
                     ]
                 },
                 "coef_merge": 0.1,
-                "md5": "cb9449b581b63b8071964834382fca7c"
-            }
-        }
-    },
-    "Rivetgun 2hands": {
-        "desc": {
-            "display": "Banner",
-            "path": "data/Wargame Humanoid/hand/Rivet2hand/"
-        },
-        "stl": {
-            "Phobos": {
-                "file": "phobos_2-hands.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
-                "designer": "Fummelfinger",
-                "dextral": "left",
-                "hand": {
-                    "vertex_list": [
-                        34994,
-                        69311
-                    ]
-                },
-                "coef_merge": 0.1
-            },
-            "Phobos drum mag": {
-                "file": "phobos_drum-mag_2-hands.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
-                "designer": "Fummelfinger",
-                "dextral": "left",
-                "hand": {
-                    "vertex_list": [
-                        31674,
-                        62493
-                    ]
-                },
-                "coef_merge": 0.1
-            },
-            "Umbra": {
-                "file": "umbra_2-hands.stl",
-                "cults3d": "https://cults3d.com/en/3d-model/game/rivet-gun-variants",
-                "designer": "Fummelfinger",
-                "dextral": "left",
-                "hand": {
-                    "vertex_list": [
-                        4680,
-                        47701
-                    ]
-                },
-                "coef_merge": 0.1
+                "md5": "cb9449b581b63b8071964834382fca7c",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/game/space-imperium-dark-marines-banner"
+                ]
             }
         }
     }

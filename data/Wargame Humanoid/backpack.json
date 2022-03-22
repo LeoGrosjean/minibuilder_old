@@ -62,7 +62,8 @@
                         7863,
                         8772
                     ]
-                }
+                },
+                "md5": "3d4c3c0088486b2a1238f1444439f755"
             },
             "Vanilla 05": {
                 "file": "vanilla-backpack-05.stl",
@@ -76,7 +77,8 @@
                         4253,
                         17869
                     ]
-                }
+                },
+                "md5": "cfe8791fa3ce8a5fbb177464c6bc0fa5"
             },
             "Vanilla 06": {
                 "file": "vanilla-backpack-06.stl",
@@ -90,7 +92,8 @@
                         4696,
                         8683
                     ]
-                }
+                },
+                "md5": "1861bb98e062e53951a3f39abd6f93da"
             },
             "Vanilla 07": {
                 "file": "vanilla-backpack-07.stl",
@@ -104,7 +107,8 @@
                         310,
                         1595
                     ]
-                }
+                },
+                "md5": "5636281f9ab7c7c27fe816e0d861bc34"
             },
             "Vanilla 08": {
                 "file": "vanilla-backpack-08.stl",
@@ -118,7 +122,8 @@
                         294,
                         1493
                     ]
-                }
+                },
+                "md5": "90006c9bfe4d5bf8051bc30c8fbac686"
             },
             "Vanilla 01 GK": {
                 "file": "vanilla-backpack-09-GKv1.stl",
@@ -149,7 +154,8 @@
                         8038,
                         13505
                     ]
-                }
+                },
+                "md5": "ffe9e40b3b9adb844c2c2326e0af8d18"
             },
             "Vanilla 03 GK": {
                 "file": "vanilla-backpack-11-GKv3.stl",
@@ -163,7 +169,8 @@
                         3200,
                         4864
                     ]
-                }
+                },
+                "md5": "f2aca3430a9dcc96923b7e68a9dfe5e6"
             },
             "Vanilla 04 GK": {
                 "file": "vanilla-backpack-12-GKv4.stl",
@@ -177,7 +184,8 @@
                         2484,
                         3807
                     ]
-                }
+                },
+                "md5": "2d4414e7ae9b58264cc74b140583683f"
             },
             "Vanilla 05 GK": {
                 "file": "vanilla-backpack-13-GKv5.stl",
@@ -192,7 +200,8 @@
                         1250,
                         7145
                     ]
-                }
+                },
+                "md5": "c3be767de45b9b917f5e583a8ed85a69"
             },
             "Vanilla 06 GK": {
                 "file": "vanilla-backpack-14-GKv6.stl",
@@ -207,7 +216,8 @@
                         1078,
                         5903
                     ]
-                }
+                },
+                "md5": "2feae0e073ed911d905c1765e35a46e4"
             },
             "Vanilla 07 GK": {
                 "file": "vanilla-backpack-15-GKv7.stl",
@@ -221,7 +231,8 @@
                         12594,
                         14316
                     ]
-                }
+                },
+                "md5": "ace34659fd15b8a707eba2c13191587c"
             },
             "Vanilla 08 GK": {
                 "file": "vanilla-backpack-16-GKv8.stl",
@@ -235,7 +246,8 @@
                         9726,
                         11060
                     ]
-                }
+                },
+                "md5": "fc42392bf6f2dcd919fc066cc0e5acca"
             },
             "Vanilla 17": {
                 "urls": [
@@ -249,7 +261,8 @@
                         2706,
                         2706
                     ]
-                }
+                },
+                "md5": "fe5e4974704a9cbad8c51bac5d1b71f4"
             },
             "Vanilla 18": {
                 "file": "vanilla-backpack-18.stl",
@@ -264,7 +277,8 @@
                         881,
                         6148
                     ]
-                }
+                },
+                "md5": "a18534f8e7936129f5b53c436a37e2ab"
             },
             "Vanilla 19": {
                 "file": "vanilla-backpack-19.stl",
@@ -278,7 +292,8 @@
                         13080,
                         14812
                     ]
-                }
+                },
+                "md5": "a2764feb219b3aa18eea890c6bbd8882"
             },
             "Vanilla 20": {
                 "file": "vanilla-backpack-20.stl",
@@ -292,7 +307,8 @@
                         10171,
                         11593
                     ]
-                }
+                },
+                "md5": "28c4cdac1ccd74ed8ff3b81607e9cf8d"
             },
             "Vanilla 01 Justicar": {
                 "file": "vanilla-backpack-22-justicar.stl",
@@ -307,7 +323,8 @@
                         17629,
                         25385
                     ]
-                }
+                },
+                "md5": "c23e78576bd80cbdef267d03289fa79d"
             },
             "Vanilla 02 Justicar": {
                 "file": "vanilla-backpack-23-justicar.stl",
@@ -338,7 +355,8 @@
                         10000,
                         17419
                     ]
-                }
+                },
+                "md5": "7960c5b758d4cf2cd0ac9e617aa370b4"
             },
             "Vanilla 04 Justicar": {
                 "file": "vanilla-backpack-25-justicar.stl",
@@ -385,7 +403,8 @@
                         17459,
                         17459
                     ]
-                }
+                },
+                "md5": "8ae593e0dcf0d65ddfdfabe86dd4cfc5"
             }
         }
     },

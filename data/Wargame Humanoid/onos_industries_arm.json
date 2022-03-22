@@ -22,7 +22,14 @@
                     "vertex": 124535
                 },
                 "scale": 1.1,
-                "md5": "d5354a58441cef9b7f766f6468aff7a4"
+                "md5": "d5354a58441cef9b7f766f6468aff7a4",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm dx 1.stl",
+                    "md5": "deabc7a72ecb31a1a2b803b0dd1a5834"
+                }
             },
             "Enclave Trooper 02": {
                 "file": "arm dx 2.stl",
@@ -41,7 +48,14 @@
                     "vertex": 254761
                 },
                 "scale": 1.1,
-                "md5": "da069a7f2b8562ff97d03c4b7320496d"
+                "md5": "da069a7f2b8562ff97d03c4b7320496d",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm dx 2.stl",
+                    "md5": "46aace90a199ab0d26c6665a5bea1035"
+                }
             },
             "Enclave Trooper 03": {
                 "file": "arm dx 3.stl",
@@ -60,7 +74,14 @@
                     "vertex": 72602
                 },
                 "scale": 1.1,
-                "md5": "3d7180cedc25aa5d94b06b9ea32fbff9"
+                "md5": "3d7180cedc25aa5d94b06b9ea32fbff9",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm dx 3.stl",
+                    "md5": "c7f26bc965f4c9cb7d3dcc9e39bc1def"
+                }
             },
             "Enclave Trooper 04": {
                 "file": "arm dx 4.stl",
@@ -79,7 +100,14 @@
                     "vertex": 73138
                 },
                 "scale": 1.1,
-                "md5": "b22bb842a5f4236e083666710cde8869"
+                "md5": "b22bb842a5f4236e083666710cde8869",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm dx 4.stl",
+                    "md5": "f4f9faa97523a5578313e6dba4ed7901"
+                }
             },
             "Enclave Trooper 05": {
                 "file": "arm dx 5.stl",
@@ -98,7 +126,14 @@
                     "vertex": 141130
                 },
                 "scale": 1.1,
-                "md5": "568d43beff0f68f1c5bdd55b8fb21748"
+                "md5": "568d43beff0f68f1c5bdd55b8fb21748",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm dx 5.stl",
+                    "md5": "b7f53baaa8bb5850b05bac34040397c1"
+                }
             },
             "Enclave Trooper 06": {
                 "file": "arm dx 6.stl",
@@ -117,7 +152,14 @@
                     "vertex": 247897
                 },
                 "scale": 1.1,
-                "md5": "f725ded3ef89a46b82cf9d642cfca89e"
+                "md5": "f725ded3ef89a46b82cf9d642cfca89e",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm dx 6.stl",
+                    "md5": "9c4d894273c745d10b4c0c8c3c4692f8"
+                }
             },
             "Enclave Trooper Hand 01": {
                 "file": "arm sx 1.stl",
@@ -128,12 +170,19 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "left",
+                "dextral": "right",
                 "arm": {
                     "vertex": 6433
                 },
                 "scale": 1.1,
-                "md5": "af90a03a9694af3085a7cdc7c54ef3c6"
+                "md5": "af90a03a9694af3085a7cdc7c54ef3c6",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm sx 1.stl",
+                    "md5": "4cc1298708cec4a76dec925c9abc2df0"
+                }
             },
             "Enclave Trooper Hand 02": {
                 "file": "arm sx 2.stl",
@@ -144,12 +193,19 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "left",
+                "dextral": "right",
                 "arm": {
                     "vertex": 43929
                 },
                 "scale": 1.1,
-                "md5": "7954cbad6fd2977d6608ef5dea62f867"
+                "md5": "7954cbad6fd2977d6608ef5dea62f867",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm sx 2.stl",
+                    "md5": "38440079cf55010b0be7b0590620f68b"
+                }
             },
             "Enclave Trooper Hand 03": {
                 "file": "arm sx 3.stl",
@@ -160,12 +216,19 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "left",
+                "dextral": "right",
                 "arm": {
                     "vertex": 7067
                 },
                 "scale": 1.1,
-                "md5": "7638876935b25c156ef8edf22995a7b4"
+                "md5": "7638876935b25c156ef8edf22995a7b4",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm sx 3.stl",
+                    "md5": "5a95702c04fb15cbedd3f082e97f6dc1"
+                }
             },
             "Enclave Trooper Hand Drone 04": {
                 "file": "arm sx 4.stl",
@@ -176,12 +239,19 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "left",
+                "dextral": "right",
                 "arm": {
                     "vertex": 58341
                 },
                 "scale": 1.1,
-                "md5": "929ee6b8d5ac5deb0abf474156b21294"
+                "md5": "929ee6b8d5ac5deb0abf474156b21294",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "arm sx 4.stl",
+                    "md5": "a184d4376af7a9310fe4d111e087a5ec"
+                }
             },
             "Enclave Trooper Hand 05": {
                 "file": "arm sx 5.stl",

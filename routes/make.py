@@ -56,7 +56,7 @@ def choose_builder():
         elif results.get('add_designers'):
             return redirect(f"/builder/{results.get('builder')}/designers")
 
-    return render_template("choose_builder.html", form_header=form)
+    return render_template("about.html", form_header=form)
 
 
 @make_bp.route('/builder/<builder_name>', methods=['GET', 'POST'])

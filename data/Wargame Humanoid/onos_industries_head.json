@@ -17,7 +17,14 @@
                     "vertex": 140420
                 },
                 "scale": 1.1,
-                "md5": "65d51b643e8862de907daaa87c8cf0b7"
+                "md5": "65d51b643e8862de907daaa87c8cf0b7",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "helmet.stl",
+                    "md5": "d30b1c7ccbd05e2cddfe4b9d090a0691"
+                }
             },
             "Enclave Trooper Antenna": {
                 "file": "helmet with antenna.stl",
@@ -31,7 +38,10 @@
                     "vertex": 555995
                 },
                 "scale": 1.1,
-                "md5": "f28953d0113222c371eaccb3e562d780"
+                "md5": "f28953d0113222c371eaccb3e562d780",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ]
             }
         }
     }

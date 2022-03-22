@@ -22,26 +22,8 @@
                 },
                 "scale": 1,
                 "bitzs": {
-                    "a": {
-                        "vertex": 16627
-                    },
-                    "b": {
-                        "vertex": 9344
-                    },
-                    "c": {
-                        "vertex": 268
-                    },
-                    "d": {
-                        "vertex": 20891
-                    },
-                    "e": {
-                        "vertex": 72255
-                    },
-                    "f": {
-                        "vertex": 9413
-                    },
-                    "g": {
-                        "vertex": 31196
+                    "shoulder": {
+                        "vertex": 42937
                     }
                 },
                 "md5": "8dec9779250d86bd80cda919b943cb41"
@@ -64,7 +46,7 @@
                 "scale": 1,
                 "md5": "2807c2d75aebb8bd46c28924e26a6107"
             },
-            "MK III hold a": {
+            "MK III ": {
                 "file": "MKIII_arm_4-a.stl",
                 "urls": [
                     "https://cults3d.com/en/3d-model/game/posed-arms-truescale-rivet-armor-sample"
@@ -81,7 +63,6 @@
                 "hand": {
                     "vertex": 2136
                 },
-                "coef_merge": 0.3,
                 "md5": "44cbb0b31a262397e7f837456f775426"
             },
             "MK III hold b": {
@@ -101,10 +82,9 @@
                 "hand": {
                     "vertex": 114200
                 },
-                "coef_merge": 0.3,
                 "md5": "25f793f94c8f607fa59714e7b8b19225"
             },
-            "Heavy 2hand": {
+            "LR Heavy": {
                 "file": "heavy_weapons_-_arms.stl",
                 "thingiverse": 4263725,
                 "urls": [
@@ -151,7 +131,7 @@
                 },
                 "md5": "7df555cc94b4ef5ecd58b7c9398d4e0c"
             },
-            "MK IV Tactical 01": {
+            "LR MK IV Tactical 01": {
                 "file": "tac_arms_01.stl",
                 "urls": [
                     "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
@@ -167,7 +147,7 @@
                 },
                 "md5": "fc78e3dd8414e6ac4fbab612bb1f5c65"
             },
-            "MK IV Tactical 02": {
+            "LR MK IV Tactical 02": {
                 "file": "tac_arms_02.stl",
                 "urls": [
                     "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"
@@ -183,7 +163,7 @@
                 },
                 "md5": "dcb64c30c8603bb882d8c19d6ed5392f"
             },
-            "MK IV Tactical 03": {
+            "LR MK IV Tactical 03": {
                 "file": "tac_arms_03.stl",
                 "urls": [
                     "https://cults3d.com/en/3d-model/art/modular-marines-pt1-mark-4-tactical"

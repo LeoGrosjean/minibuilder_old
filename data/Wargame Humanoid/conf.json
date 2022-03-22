@@ -9,7 +9,8 @@
         "bitz_files": [
             "empty.json",
             "bitz.json",
-            "bases.json"
+            "bases.json",
+            "onos_industries_bitz.json"
         ]
     },
     "nodes": [
@@ -25,7 +26,6 @@
             ],
             "files": [
                 "body.json",
-                "body_jump.json",
                 "gueronvesa_body.json",
                 "onos_industries_body.json",
                 "tempest_legion_body.json"
@@ -51,7 +51,6 @@
             ],
             "files": [
                 "arm.json",
-                "arm_chaos.json",
                 "empty.json",
                 "onos_industries_arm.json",
                 "tempest_legion_arm.json"
@@ -102,7 +101,6 @@
             "files": [
                 "hand.json",
                 "empty.json",
-                "hand_empty.json",
                 "gueronvesa_hand.json",
                 "onos_industries_weapon.json"
             ]
@@ -127,7 +125,6 @@
             "files": [
                 "hand.json",
                 "empty.json",
-                "hand_empty.json",
                 "gueronvesa_hand.json",
                 "onos_industries_weapon.json"
             ]
