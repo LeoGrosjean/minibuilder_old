@@ -21,6 +21,7 @@ from minibuilder.forms.make import generateminidynamic_func, dynamic_FieldBitz
 from minibuilder.utils.graph import get_successors
 from minibuilder.utils.render import scene_to_html
 from minibuilder.utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh, get_normal_vertice
+from minibuilder.utils.thingiverse import download_object
 from minibuilder.utils.zip import write_zip
 
 make_bp = Blueprint('make_bp', __name__)
@@ -197,8 +198,36 @@ def builder(builder_name):
                             entrie.bitz_list.data = bitz.get('bitz_name')
                             entrie.bitz_list.choices = list(bitzs.get(bitz.get('bitz_category'))['stl'].keys())
 
-        # remove mesh that has no parent connector
+        # CHECK MISSING FILES and DL
+        li_to_dl = []
+        for node, v in di_file.items():
+            to_dl = False
+            mesh_path = v.get('info').get('mesh_path')
+            if not os.path.isfile(mesh_path):
+                to_dl = True
+                for url in v['info'].get('urls', []):
+                    if "www.thingiverse.com" in url:
+                        if download_object(url, mesh_path):
+                            to_dl = False
+                        break
 
+            if to_dl:
+                li_to_dl.append(v.get('info'))
+
+            bitz_to_dl = False
+            for bitz in v.get('bitzs'):
+                mesh_path = bitz.get('mesh_path')
+                if not os.path.isfile(mesh_path):
+                    bitz_to_dl = True
+                    for url in bitz.get('urls', []):
+                        if "www.thingiverse.com" in url:
+                            if download_object(url, mesh_path):
+                                bitz_to_dl = False
+                            break
+                if bitz_to_dl:
+                    li_to_dl.append(bitz)
+
+        # Check mesh with missing parents
         for node_rotate in [k for k, v in graph.nodes.data()]:
             successors = list(graph.successors(node_rotate))
             predecessor = list(graph.predecessors(node_rotate))[0] if list(graph.predecessors(node_rotate)) else None
@@ -226,17 +255,6 @@ def builder(builder_name):
                 di_file.pop(node_rotate)
                 li_removed.append(node_rotate)
                 continue
-
-        # CHECK MISSING FILES
-        li_to_dl = []
-        for node, mesh_infos_node in di_file.items():
-            mesh_path = mesh_infos_node.get('info').get('mesh_path')
-            if not os.path.isfile(mesh_path):
-                li_to_dl.append(mesh_infos_node.get('info'))
-
-            for bitz in mesh_infos_node.get('bitzs'):
-                if not os.path.isfile(bitz.get("path")):
-                    li_to_dl.append(bitz)
 
         check_dl_li = []
         if li_to_dl: #and form_result.get('download_missing_file'):

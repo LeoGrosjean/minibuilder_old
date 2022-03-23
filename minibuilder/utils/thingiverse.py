@@ -1,4 +1,5 @@
 import os
+import re
 from pathlib import Path
 
 import requests
@@ -20,18 +21,24 @@ def get_access_token_parameter(ACCESS_TOKEN):
     return "?access_token={0}".format(ACCESS_TOKEN)
 
 
-def download_object(thing_id, dest_file, access_token=api_token):
+def download_object(url, dest_file, access_token=api_token):
     s = requests.Session()
     file_name = Path(dest_file).name
-    for file in get_thing_download_files(thing_id, access_token):
-        if file_name == file.get('name'):
-            download_link = file["download_url"] + access_keyword + api_token
-            r = s.get(download_link)
-            os.makedirs(os.path.dirname(dest_file), exist_ok=True)
-            with open(dest_file, "wb") as code:
-                code.write(r.content)
-            print(f"File has been downloaded from Thingiverse to {dest_file} !")
-            return True
+    thing_id = re.findall(r"thing:(\d+)", url)[0]
+
+    try:
+        for file in get_thing_download_files(thing_id, access_token):
+            if file_name == file.get('name'):
+                download_link = file["download_url"] + access_keyword + api_token
+                r = s.get(download_link)
+                os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+                with open(dest_file, "wb") as code:
+                    code.write(r.content)
+                print(f"File has been downloaded from Thingiverse to {dest_file} !")
+                return True
+    except Exception as e:
+        print(e)
+        print(f"can't download {file_name} from {url}, add it manually")
     return False
 
 
