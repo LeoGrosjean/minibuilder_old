@@ -20501,7 +20501,8 @@ function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
 
 function createPivotMatrix(position, scale=new THREE.Vector3(1,1,1)) {
         var pivot_matrix = new THREE.Matrix4();
-        const quaternion = new THREE.Quaternion(); quaternion.setFromAxisAngle( new THREE.Vector3( 0, 0, 0 ), 0 );
+        const quaternion = new THREE.Quaternion();
+        quaternion.setFromAxisAngle( new THREE.Vector3( 0, 0, 0 ), 0 );
 
         pivot_matrix.compose(position, quaternion, scale);
         return pivot_matrix;
@@ -20512,9 +20513,7 @@ function modif_bitz(object3d, position) {
         object3d.position.set(0,0,0)
         if (window.document.getElementById(object3d.name + "-bitz_movex") != null){
             coef = window.document.getElementById(object3d.name + "-bitz_movex").valueAsNumber
-            console.log(coef)
-            console.log(object3d)
-            console.log(position)
+
             position = position.clone().addVectors(position, window[object3d.name.replace('-', '_') +"_normal_anklex"].clone().multiplyScalar(coef))
             object3d.translateOnAxis(window[object3d.name.replace('-', '_') +"_normal_anklex"], coef)
         }
@@ -20539,6 +20538,12 @@ function modif_bitz(object3d, position) {
         if (window.document.getElementById(object3d.name + "-bitz_anklex") != null){
             var radians = THREE.Math.degToRad(window.document.getElementById(object3d.name + "-bitz_anklex").valueAsNumber)
             var pivotMatrix = createPivotMatrix(position)
+            window['xmesh_'] = object3d
+            window['xposition_'] = position.clone()
+            window['xradians_'] = radians
+            window['xpivot_matrix_'] = pivotMatrix
+            window['xpivot_matrix_inverse_'] = new THREE.Matrix4().getInverse(pivotMatrix)
+            window['xrotation_matrix_'] = new THREE.Matrix4().makeRotationAxis(window[object3d.name.replace('-', '_') + "_normal_ankley"], radians)
             object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
             object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name.replace('-', '_') + "_normal_anklex"], radians));
             object3d.applyMatrix4(pivotMatrix);
@@ -20546,6 +20551,12 @@ function modif_bitz(object3d, position) {
         if (window.document.getElementById(object3d.name + "-bitz_ankley") != null){
             var radians = THREE.Math.degToRad(window.document.getElementById(object3d.name + "-bitz_ankley").valueAsNumber)
             var pivotMatrix = createPivotMatrix(position)
+            window['ymesh_'] = object3d
+            window['yposition_'] = position.clone()
+            window['yradians_'] = radians
+            window['ypivot_matrix_'] = pivotMatrix
+            window['ypivot_matrix_inverse_'] = new THREE.Matrix4().getInverse(pivotMatrix)
+            window['yrotation_matrix_'] = new THREE.Matrix4().makeRotationAxis(window[object3d.name.replace('-', '_') + "_normal_ankley"], radians)
             object3d.applyMatrix4(new THREE.Matrix4().getInverse(pivotMatrix));
             object3d.applyMatrix4(new THREE.Matrix4().makeRotationAxis(window[object3d.name.replace('-', '_') + "_normal_ankley"], radians));
             object3d.applyMatrix4(pivotMatrix);

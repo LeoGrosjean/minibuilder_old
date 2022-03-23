@@ -12,6 +12,11 @@
                 "dextral": "right",
                 "arm": {
                     "facet": 38
+                },
+                "bitzs": {
+                    "purity seal": {
+                        "vertex": 186
+                    }
                 }
             },
             "Medic - Medihand": {

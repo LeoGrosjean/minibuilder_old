@@ -44,6 +44,11 @@
                 ],
                 "leg": {
                     "vertex": 19992
+                },
+                "bitzs": {
+                    "bases": {
+                        "face": 364
+                    }
                 }
             },
             "Basic Troops- Legs 3": {

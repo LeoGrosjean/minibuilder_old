@@ -18,7 +18,12 @@
                 "urls": [
                     "https://www.thingiverse.com/thing:4393029/zip"
                 ],
-                "md5": "c0983c542a6e2fa10092bb9b991686fd"
+                "md5": "c0983c542a6e2fa10092bb9b991686fd",
+                "bitzs": {
+                    "test": {
+                        "vertex": 61
+                    }
+                }
             },
             "Helm 02": {
                 "file": "Space_Knight_Helm_02.stl",

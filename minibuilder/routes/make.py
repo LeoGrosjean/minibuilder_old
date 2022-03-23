@@ -178,6 +178,7 @@ def builder(builder_name):
 
                             "fusion": bool(form_result.get(f"{node}_bitz-{i}-bitz_fusion")),
 
+
                         }
                     )
                     i += 1
@@ -325,7 +326,6 @@ def builder(builder_name):
                                      di_file.get(dest).get('info'),
                                      on=di_file.get(source).get('on'),
                                      dextral=di_file.get(source).get('dextral'),
-                                     rotate=int(di_file.get(source).get('rotate') or 0),
                                      coef_merge=float(di_file.get(source).get('merge') or 0),
                                      monkey_rotate_child_fix=-int(di_file.get(dest).get('rotate') or 0),
                                      shake_rotate=int(di_file.get(source).get('shake') or 0),
@@ -377,10 +377,13 @@ def builder(builder_name):
                 mesh_normal, mesh_vertice = get_normal_vertice(info.get('mesh'), bitz.get('mesh_marker'))
                 bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                 bitz.get('mesh').apply_translation(mesh_vertice - bitz_vertice)
-
+                bitz['bitz_normal'] = bitz_normal
 
                 if 'submit_preview' in form_result or 'dl_zip' in form_result:
                     bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
+                    node_normal, node_vertice = get_normal_vertice(di_file[node].get('mesh'), bitz.get('mesh_marker'))
+                    print(bitz_normal)
+                    print(node_normal)
                     bitz.get('mesh').apply_translation(bitz_normal * bitz.get('merge', 0))
 
                     normal_x = np.cross(bitz_normal, [1, 0, 0]) / np.linalg.norm(np.cross(bitz_normal, [1, 0, 0]))
@@ -391,6 +394,9 @@ def builder(builder_name):
                     normal_y = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
 
                     bitz.get('mesh').apply_translation(normal_x * bitz.get('movex', 0) + normal_y * bitz.get('movey', 0))
+
+                    bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
+                    bitz['bitz_vertice'] = bitz_vertice
 
 
 
@@ -403,6 +409,7 @@ def builder(builder_name):
             child_to_rotate = []
             if not di_file.get(source):
                 continue
+
             for child in get_successors(graph, source):
                 if not di_file.get(child):
                     continue
@@ -419,6 +426,7 @@ def builder(builder_name):
                             info=di_file,
                             anklex=float(di_file.get(source).get('anklex') or 0),
                             ankley=float(di_file.get(source).get('ankley') or 0),
+                            bitzs=di_file.get(source).get('bitzs')
                             )
 
             elif 'live_edit' in form_result:
@@ -431,40 +439,66 @@ def builder(builder_name):
                     "ankley": float(di_file.get(source).get('ankley') or 0)
                 }
 
-            if 'dl_zip' in form_result:
+
+        if 'submit_preview' in form_result or 'dl_zip' in form_result:
+            for k, v in di_file.items():
+                for bitz in di_file.get(k).get('bitzs', []):
+                    normal_bitz, vertice_bitz = get_normal_vertice(
+                        bitz.get('mesh'),
+                        bitz.get('bitz_marker')
+                    )
+                    normal, vertice = get_normal_vertice(
+                        v.get('mesh'),
+                        bitz.get('mesh_marker')
+                    )
+                    normal *= -1
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), normal, vertice_bitz))
+
+                    bitz_normal = bitz['bitz_normal']
+
+                    normal_x = np.cross(bitz_normal, [1, 0, 0]) / np.linalg.norm(np.cross(bitz_normal, [1, 0, 0]))
+                    if np.isnan(normal_x[0]):
+                        normal_x = np.cross(bitz_normal, [0, 0, 1]) / np.linalg.norm(np.cross(bitz_normal, [0, 0, 1]))
+                    normal_x = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
+                    normal_y = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
+
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('anklex')), normal_x, vertice_bitz))
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('ankley')), normal_y, vertice_bitz))
+
+
+        #for k, v in di_file.items():
+        #    for bitz in di_file[k]['bitzs']:
+        #        if bitz.get('fusion'):
+        #            di_file[k]['mesh'] = bitz['mesh'] + di_file[k]['mesh']
+
+
+        if 'dl_zip' in form_result:
+            for edge in list(dfs_edges(graph))[::-1]:
+                dest, source = edge
+                child_to_rotate = []
+                if not di_file.get(source):
+                    continue
+
                 for k, v in di_file.items():
-                    for bitz in di_file[k]['bitzs']:
+                    for bitz in v.get('bitzs'):
                         if bitz.get('fusion'):
-                            di_file[k]['mesh'] = bitz['mesh'] + di_file[k]['mesh']
+                            v['mesh'] = v['mesh'] + bitz.get('mesh')
+                            v['bitzs'].remove(bitz)
+
 
                 for k, v in graph.get_edge_data(dest, source).items():
                     if v.get('merge'):
                         di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
 
                         # TODO MERGE AND BOOLEAN DIFF HERE
-                        tmp_path = f'tmp/dl/merged_{dest}_{source}.' + str((di_file[dest]['mesh']._kwargs.get('file_type') or 'stl'))
+                        tmp_path = f'tmp/dl/merged_{dest}_{source}.' + str(
+                            (di_file[dest]['mesh']._kwargs.get('file_type') or 'stl'))
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
                         del di_file[source]
-
-        if 'submit_preview' in form_result or 'dl_zip' in form_result:
-            for k, v in di_file.items():
-                for bitz in di_file.get(k).get('bitzs', []):
-                    normal, vertice = get_normal_vertice(
-                        bitz.get('mesh'),
-                        bitz.get('bitz_marker')
-                    )
-                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), normal, vertice))
-
-                    normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
-                    if np.isnan(normal_x[0]):
-                        normal_x = np.cross(normal, [0, 0, 1]) / np.linalg.norm(np.cross(normal, [0, 0, 1]))
-                    normal_x = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
-                    normal_y = np.cross(normal, normal_x) / np.linalg.norm(np.cross(normal, normal_x))
-
-                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('anklex')), normal_x, vertice))
-
-                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('ankley')), normal_y, vertice))
 
         for k, v in di_file.items():
             v.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
@@ -513,6 +547,7 @@ def builder(builder_name):
                             bitz.get('mesh'),
                             bitz.get('bitz_marker')
                         )
+                        print(normal, normal_x, normal_y)
 
                         node_dict_rotate[node_rotate]['bitzs'].append(
                             {
@@ -589,6 +624,7 @@ def builder(builder_name):
                     (di_file[k]['mesh']._kwargs.get('file_type') or 'stl'))
                 di_file[k]['mesh'].export(tmp_path)
                 li_file_path.append((tmp_path, k))
+
                 for bitz in di_file[k]['bitzs']:
                     if not bitz.get('fusion'):
                         tmp_path = f'tmp/dl/{k}_{bitz.get("label")}.' + str(
