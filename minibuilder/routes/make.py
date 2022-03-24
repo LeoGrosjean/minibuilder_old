@@ -15,6 +15,7 @@ from trimesh.geometry import align_vectors
 from trimesh.transformations import euler_matrix, rotation_matrix
 
 from minibuilder.builder.build_info import make_info
+from minibuilder.builder.designer_box import load_meshes_find_designer
 from minibuilder.builder.node import read_node_link_json
 from minibuilder.file_config.parts import load_json
 from minibuilder.forms.home import ChooseBuilderForm
@@ -149,7 +150,7 @@ def builder(builder_name):
 
             bitz_to_dl = False
             for bitz in v.get('bitzs'):
-                mesh_path = bitz.get('mesh_path')
+                mesh_path = bitz.get('path')
                 if not os.path.isfile(mesh_path):
                     bitz_to_dl = True
                     for url in bitz.get('urls', []):
@@ -234,27 +235,10 @@ def builder(builder_name):
                                    dl_zip=form.dl_zip,
                                    live_edit=form.live_edit,
                                    form_header=form_header)
-        # MESH PROCESSING
-        li_designer = []
-        designer_display = {}
-        for k, v in di_file.items():
-            mesh = load(v.get('info').get('mesh_path'))
-            mesh.metadata['file_name'] = k
-            di_file[k]['mesh'] = mesh
-            if 'designer' in v.get('info'):
-                designer_id = v.get('info').get('designer')
-                li_designer.append(designer_id)
+        # Load Meshes and
+        designer_display = load_meshes_find_designer(di_file, designers)
 
-            for i, bitz in enumerate(di_file[k].get('bitzs')):
-                mesh = load(bitz.get('path'))
-                mesh.metadata['file_name'] = bitz.get('id_web')
-                di_file[k]['bitzs'][i]['mesh'] = mesh
-                li_designer.append(bitz.get('designer'))
-
-        for designer_id in set(li_designer):
-            designer_display[designer_id] = designers.get(designer_id, {"name": f"@{designer_id}"})
-
-        # TODO scale bitz
+        # SCALE MESHES
         for node in di_file.keys():
             scale_mesh(di_file.get(node).get('mesh'),
                        (di_file.get(node).get('info').get('scale') or 1) * (float(di_file.get(node).get('scale') or 1)))
@@ -262,6 +246,7 @@ def builder(builder_name):
             for bitz in di_file[node].get('bitzs', []):
                 scale_mesh(bitz.get('mesh'), bitz.get('scale'))
 
+        # CONNECT MESHES
         for edge in dfs_edges(graph):
             dest, source = edge
             try:
