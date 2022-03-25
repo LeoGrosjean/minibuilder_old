@@ -1,0 +1,24 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+<div class="d-flex align-items-center justify-content-center" style="height: 80%; width:100%">
+    <div type="column">
+        <div class="mx-auto">
+            <h4>Welcome in miniBuilder, please choose a directory to store your 3D files.</h4>
+        </div>
+        <div class="mx-auto">
+            <h6>If you already have a data folder from a previous installation of miniBuilder, select it bellow.</h6>
+        </div>
+        <div class="mx-auto">
+            <p>You can select an external drive. With an SSD it will be faster.</p>
+        </div>
+        <form id="editconf" method="POST" action="{{ url_for('home_bp.make_folder') }}">
+            {{ form.user_data_path.label}} (copy past from your file explorer) {{form.user_data_path()}}
+            <br>
+            {{ form.port.label}} <br>{{form.port}}
+            <br>
+                {{ form.submit() }}
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,250 @@
+{
+    "Onos Industries": {
+        "desc": {
+            "display": "Onos Industries Bodies",
+            "path": "data/Wargame Humanoid/body/Onos Industries/"
+        },
+        "stl": {
+            "Farsight Trooper": {
+                "file": "torso farsight.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 734604
+                },
+                "leg": {
+                    "vertex": 507511
+                },
+                "backpack": {
+                    "vertex": 95323
+                },
+                "arm": {
+                    "left": {
+                        "vertex": 943562
+                    },
+                    "right": {
+                        "vertex": 735536
+                    }
+                },
+                "scale": 1.06,
+                "md5": "c751115b11d224d04155ed599f59f8f9",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "torso farsight.stl",
+                    "md5": "561f2bad0310bae63dee2d11e79f8543"
+                }
+            },
+            "Farsight Trooper Plain": {
+                "file": "torso farsight plain.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 158255
+                },
+                "leg": {
+                    "vertex": 91943
+                },
+                "backpack": {
+                    "vertex_list": [
+                        81745,
+                        156179,
+                        156224,
+                        181839
+                    ]
+                },
+                "arm": {
+                    "right": {
+                        "vertex_list": [
+                            29704,
+                            87671,
+                            194318
+                        ]
+                    },
+                    "left": {
+                        "vertex_list": [
+                            15435,
+                            74250,
+                            79930
+                        ]
+                    }
+                },
+                "scale": 1.06,
+                "md5": "299dcd4b3544fe909c6f01e62f42b119",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "torso farsight plain.stl",
+                    "md5": "3ccdc365dec36bf5d007a095b8238f56"
+                }
+            },
+            "Itca Trooper": {
+                "file": "torso itca.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 275930
+                },
+                "leg": {
+                    "vertex": 844774
+                },
+                "backpack": {
+                    "vertex": 93748
+                },
+                "arm": {
+                    "left": {
+                        "vertex": 1017816
+                    },
+                    "right": {
+                        "vertex": 1138199
+                    }
+                },
+                "scale": 1.06,
+                "md5": "7ed8ead0d42acdd12860fc322e673b4d",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "torso itca.stl",
+                    "md5": "b881bd813b23714f5328cbd1c9061c35"
+                }
+            },
+            "Itca Trooper Plain": {
+                "file": "torso itca plain.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 56302
+                },
+                "leg": {
+                    "vertex": 109907
+                },
+                "backpack": {
+                    "vertex_list": [
+                        54252,
+                        54280,
+                        79824,
+                        166977
+                    ]
+                },
+                "arm": {
+                    "left": {
+                        "vertex_list": [
+                            14777,
+                            106891,
+                            214083
+                        ]
+                    },
+                    "right": {
+                        "vertex_list": [
+                            73651,
+                            114583
+                        ]
+                    }
+                },
+                "scale": 1.06,
+                "md5": "a16e0ffa16cc94f37ea1439e63373b70",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ]
+            },
+            "SpaceFish Trooper": {
+                "file": "torso tau.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 1046018
+                },
+                "leg": {
+                    "vertex": 856062
+                },
+                "backpack": {
+                    "vertex": 391724
+                },
+                "arm": {
+                    "right": {
+                        "vertex": 1177793
+                    },
+                    "left": {
+                        "vertex": 980185
+                    }
+                },
+                "scale": 1.06,
+                "md5": "2137e3f59e06783a82bafa8e02c54f63",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "legs 2.stl",
+                    "md5": "f287680cb8968d3a4cb4ffc69e3bae25"
+                }
+            },
+            "SpaceFish Trooper Plain": {
+                "file": "torso tau plain.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "head": {
+                    "vertex": 56370
+                },
+                "leg": {
+                    "vertex": 177199
+                },
+                "backpack": {
+                    "vertex_list": [
+                        79892,
+                        167069
+                    ]
+                },
+                "arm": {
+                    "right": {
+                        "vertex_list": [
+                            73716,
+                            139067
+                        ]
+                    },
+                    "left": {
+                        "vertex_list": [
+                            87536,
+                            106964
+                        ]
+                    }
+                },
+                "scale": 1.06,
+                "md5": "788e8404258e8350fa27db3f8c63b589",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "torso tau plain.stl",
+                    "md5": "81c33f53175feabe6750228339d7d393"
+                }
+            }
+        }
+    }
+}

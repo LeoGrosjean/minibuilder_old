@@ -1,0 +1,291 @@
+{
+    "directed": true,
+    "multigraph": true,
+    "graph": {
+        "name": "Wargame Humanoid",
+        "designer_files": [
+            "designer.json"
+        ],
+        "bitz_files": [
+            "empty.json",
+            "bitz.json",
+            "bases.json",
+            "onos_industries_bitz.json"
+        ]
+    },
+    "nodes": [
+        {
+            "id": "body",
+            "label": "Body",
+            "folder": "body",
+            "permissions": [
+                "select",
+                "list",
+                "scale",
+                "bitz"
+            ],
+            "files": [
+                "body.json",
+                "gueronvesa_body.json",
+                "onos_industries_body.json",
+                "tempest_legion_body.json"
+            ]
+        },
+        {
+            "id": "larm",
+            "label": "Left Arm",
+            "folder": "arm",
+            "dextral": "left",
+            "dex_type": "arm",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "arm.json",
+                "empty.json",
+                "onos_industries_arm.json",
+                "tempest_legion_arm.json"
+            ]
+        },
+        {
+            "id": "rarm",
+            "label": "Right Arm",
+            "folder": "arm",
+            "dextral": "right",
+            "dex_type": "arm",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "arm.json",
+                "empty.json",
+                "onos_industries_arm.json",
+                "tempest_legion_arm.json"
+            ]
+        },
+        {
+            "id": "lhand",
+            "label": "Left Hand",
+            "folder": "hand",
+            "dextral": "left",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "hand.json",
+                "empty.json",
+                "gueronvesa_hand.json",
+                "onos_industries_weapon.json"
+            ]
+        },
+        {
+            "id": "rhand",
+            "label": "Right Hand",
+            "folder": "hand",
+            "dextral": "right",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "hand.json",
+                "empty.json",
+                "gueronvesa_hand.json",
+                "onos_industries_weapon.json"
+            ]
+        },
+        {
+            "id": "rweapon",
+            "label": "Right Weapon",
+            "folder": "weapon",
+            "dextral": "right",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json",
+                "gueronvesa_weapon.json"
+            ]
+        },
+        {
+            "id": "lweapon",
+            "label": "Left Weapon",
+            "folder": "weapon",
+            "dextral": "left",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json",
+                "gueronvesa_weapon.json"
+            ]
+        },
+        {
+            "id": "leg",
+            "label": "Leg",
+            "folder": "leg",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "leg.json",
+                "empty.json",
+                "gueronvesa_leg.json",
+                "onos_industries_leg.json",
+                "tempest_legion_leg.json"
+            ]
+        },
+        {
+            "id": "head",
+            "label": "Head",
+            "folder": "head",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "head.json",
+                "empty.json",
+                "gueronvesa_head.json",
+                "onos_industries_head.json",
+                "tempest_legion_head.json"
+            ]
+        },
+        {
+            "id": "backpack",
+            "label": "Backpack",
+            "folder": "backpack",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "backpack.json",
+                "empty.json",
+                "gueronvesa_backpack.json",
+                "onos_industries_backpack.json",
+                "tempest_legion_backpack.json"
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": "body",
+            "target": "head"
+        },
+        {
+            "source": "body",
+            "target": "rarm"
+        },
+        {
+            "source": "rarm",
+            "target": "rhand",
+            "merge": true
+        },
+        {
+            "source": "rhand",
+            "target": "rweapon",
+            "merge": true
+        },
+        {
+            "source": "body",
+            "target": "larm"
+        },
+        {
+            "source": "larm",
+            "target": "lhand",
+            "merge": true
+        },
+        {
+            "source": "lhand",
+            "target": "lweapon",
+            "merge": true
+        },
+        {
+            "source": "body",
+            "target": "leg"
+        },
+        {
+            "source": "body",
+            "target": "backpack"
+        }
+    ]
+}

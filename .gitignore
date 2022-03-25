@@ -8,6 +8,19 @@ venv
 /config/
 /.ipynb_checkpoints/
 /dist/
-/miniBuilder/
 /build/
 /app.spec
+/data/Wargame Humanoid/arm/
+/data/Wargame Humanoid/backpack/
+/data/Wargame Humanoid/bitz/
+/data/Wargame Humanoid/body/
+/data/Wargame Humanoid/hand/
+/data/Wargame Humanoid/head/
+/data/Wargame Humanoid/leg/
+/data/Wargame Humanoid/uploaded/
+/data/Wargame Humanoid/weapon/
+/tmp/
+/leo_conf/
+/leo_conf/
+/data/Drawer/
+/mbconfig.ini

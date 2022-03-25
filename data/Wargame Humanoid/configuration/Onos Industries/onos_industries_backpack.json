@@ -1,0 +1,34 @@
+{
+    "Onos Industries": {
+        "desc": {
+            "display": "Onos Industries Arms",
+            "path": "data/Wargame Humanoid/backpack/Onos Industries/"
+        },
+        "stl": {
+            "Enclave Trooper": {
+                "file": "backpack.stl",
+                "cgtrader": {
+                    "product_id": 3584352,
+                    "product_name": "enclave trooper",
+                    "file_id": 9776478
+                },
+                "designer": "onosindustries",
+                "backpack": {
+                    "vertex_list": [
+                        3608,
+                        5530
+                    ]
+                },
+                "scale": 1.06,
+                "md5": "3ffde3df2889c1fe1c6f222fe70ea5d2",
+                "urls": [
+                    "https://www.cgtrader.com/3d-print-models/miniatures/sci-fi/enclave-trooper"
+                ],
+                "support": {
+                    "file": "backpack.stl",
+                    "md5": "996555b4f2bdae3bf960f550721eee0b"
+                }
+            }
+        }
+    }
+}

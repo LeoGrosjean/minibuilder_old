@@ -1,0 +1,276 @@
+{
+    "Tempest Legion": {
+        "desc": {
+            "display": "Tempest Legion",
+            "path": "data/Wargame Humanoid/head/Tempest Legion/"
+        },
+        "stl": {
+            "Psychic 1": {
+                "file": "TL - Head Psy 1.OBJ",
+                "designer": "Garin",
+                "md5": "9ebd4d541a94dc0b11a3205ff32a6df3",
+                "head": {
+                    "vertex": 9297
+                }
+            },
+            "Medic 1": {
+                "file": "TL - Medic - Head.OBJ",
+                "designer": "Garin",
+                "md5": "86b5c992b39bc802f3f67b43f4f7a4a9",
+                "head": {
+                    "vertex": 8700
+                }
+            },
+            "Captain 1": {
+                "file": "TL - Cap 1 - Head.OBJ",
+                "designer": "Garin",
+                "md5": "e88738a38b91067627d4de8792a3180f",
+                "head": {
+                    "vertex": 9952
+                }
+            },
+            "Basic Trooper - No Topknot": {
+                "file": "TL - Head 1 - No Topknot.OBJ",
+                "designer": "Garin",
+                "md5": "24bc0d021f86a421a708288f07997217",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 181
+                }
+            },
+            "Basic Trooper - 1a": {
+                "file": "TL - Head 1a.OBJ",
+                "designer": "Garin",
+                "md5": "c47703a35cc3ead78bf583d32090848f",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 21124
+                }
+            },
+            "Basic Trooper - 1c": {
+                "file": "TL - Head 1c.OBJ",
+                "designer": "Garin",
+                "md5": "caf0d10c31ba081b7917bc71a208a798",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 6367
+                }
+            },
+            "Basic Trooper - 1d": {
+                "file": "TL - Head 1d.OBJ",
+                "designer": "Garin",
+                "md5": "68d6b2d2acde15aaf51e14b1d84e5b6e",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 13042
+                }
+            },
+            "Basic Trooper - 2b": {
+                "file": "TL - Head 2b.OBJ",
+                "designer": "Garin",
+                "md5": "29043f51f7e558ece23f1793a7d05f98",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 6285
+                }
+            },
+            "Basic Trooper - 2c": {
+                "file": "TL - Head 2c.OBJ",
+                "designer": "Garin",
+                "md5": "72e27c029a03435552016cce389cf286",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 3399
+                }
+            },
+            "Basic Trooper - 3a": {
+                "file": "TL - Head 3a.OBJ",
+                "designer": "Garin",
+                "md5": "99924e3d094674a3320d4fe34cbe876a",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "head": {
+                    "vertex": 15532
+                }
+            },
+            "Heavy Cataclysm - 1": {
+                "file": "TLHI - Head 1.OBJ",
+                "designer": "Garin",
+                "md5": "f375fc746be080b8d0e738f437840e1e",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-heavy-infantry/"
+                ],
+                "head": {
+                    "vertex": 15418
+                }
+            },
+            "Heavy Cataclysm - 2": {
+                "file": "TLHI - Head 2.OBJ",
+                "designer": "Garin",
+                "md5": "42f65ac0da3a4abfbf8270c28573f562",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-heavy-infantry/"
+                ],
+                "head": {
+                    "vertex": 19299
+                }
+            },
+            "Heavy Cataclysm - 3": {
+                "file": "TLHI - Head 3.OBJ",
+                "designer": "Garin",
+                "md5": "f97e003d6d1bc7ad2c0d75b26896a5dc",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-heavy-infantry/"
+                ],
+                "head": {
+                    "vertex": 8517
+                }
+            },
+            "Mk3 - 1a": {
+                "file": "TL3 - Head 1a.obj",
+                "designer": "Garin",
+                "md5": "10b62fcda2667a0ec8961c1104d289c8",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 16281
+                }
+            },
+            "Mk3 - 1b": {
+                "file": "TL3 - Head 1b.obj",
+                "designer": "Garin",
+                "md5": "d5143b27aebc2e89d7276024296a6c50",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 17644
+                }
+            },
+            "Mk3 - 1c": {
+                "file": "TL3 - Head 1c.obj",
+                "designer": "Garin",
+                "md5": "2be1c7c3f166952d78eb16323da90493",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 12599
+                }
+            },
+            "Mk3 - 1d": {
+                "file": "TL3 - Head 1d.obj",
+                "designer": "Garin",
+                "md5": "66b0c19b93344154a2dae9fbeb7dd9ad",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 16536
+                }
+            },
+            "Mk3 - 1e": {
+                "file": "TL3 - Head 1e.obj",
+                "designer": "Garin",
+                "md5": "53b722b924184fa927dccc5c9351f156",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 19851
+                }
+            },
+            "Mk3 - 1f": {
+                "file": "TL3 - Head 1f.obj",
+                "designer": "Garin",
+                "md5": "73436809f72adc898c93649b55fbfd88",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 13157
+                }
+            },
+            "Mk3 - 2a": {
+                "file": "TL3 - Head 2a.obj",
+                "designer": "Garin",
+                "md5": "e5d90bc3946ef0b2e8f84816626cda30",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 18168
+                }
+            },
+            "Mk3 - 2b": {
+                "file": "TL3 - Head 2b.obj",
+                "designer": "Garin",
+                "md5": "cbdbec68d9b06f0bcfe91cb1ca71995a",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 21315
+                }
+            },
+            "Mk3 - 2c": {
+                "file": "TL3 - Head 2c.obj",
+                "designer": "Garin",
+                "md5": "b2ed21939219fa0eb17f707749026196",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 26270
+                }
+            },
+            "Mk3 - 2d": {
+                "file": "TL3 - Head 2d.obj",
+                "designer": "Garin",
+                "md5": "8acba0d67d95f8b74b7e4c65c496bc00",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 4872
+                }
+            },
+            "Mk3 - 3": {
+                "file": "TL3 - Head 3.obj",
+                "designer": "Garin",
+                "md5": "63c8711ea799370a6a2eed0a9019b798",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-mk3-troops/"
+                ],
+                "head": {
+                    "vertex": 4574
+                }
+            },
+            "Champion": {
+                "file": "TL - Champion - Head.obj",
+                "designer": "Garin",
+                "md5": "3231b27b32946c19516db7e1c0b30281",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-champion/"
+                ],
+                "head": {
+                    "vertex": 5282
+                }
+            }
+        }
+    }
+}

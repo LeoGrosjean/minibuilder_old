@@ -1,0 +1,664 @@
+{
+    "Space Warrior": {
+        "desc": {
+            "display": "SM Bodies",
+            "path": "data/Wargame Humanoid/body/Space Warrior/"
+        },
+        "stl": {
+            "MK V v1": {
+                "file": "Mk_V_ver1.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 2809
+                },
+                "leg": {
+                    "vertex_list": [
+                        4208,
+                        30674
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 8653
+                    },
+                    "right": {
+                        "facet": 11628
+                    }
+                },
+                "bitzs": {
+                    "a": {
+                        "face": 76963
+                    },
+                    "b": {
+                        "face": 77004
+                    }
+                },
+                "md5": "a52d51c0e5c615ea9cbe2c35edcbfe1b"
+            },
+            "MK V v2": {
+                "file": "Mk_V_ver2.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 1705
+                },
+                "leg": {
+                    "vertex_list": [
+                        2500,
+                        17938
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 8653
+                    },
+                    "right": {
+                        "facet": 11628
+                    }
+                },
+                "md5": "c721648d98575fb736a8736721254693"
+            },
+            "MK VI v1": {
+                "file": "Mk_VI_ver1.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 1516
+                },
+                "leg": {
+                    "vertex_list": [
+                        2179,
+                        13848
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5212
+                    },
+                    "right": {
+                        "facet": 8169
+                    }
+                },
+                "md5": "c151c2d4127596c515cf32c08c9eb941"
+            },
+            "MK VI v2": {
+                "file": "Mk_VI_ver2.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 1514
+                },
+                "leg": {
+                    "vertex_list": [
+                        2179,
+                        13842
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5212
+                    },
+                    "right": {
+                        "facet": 8169
+                    }
+                },
+                "md5": "b4e06ff5acbfce2291e123d565c9058a"
+            },
+            "MK VI v3": {
+                "file": "Mk_VI_ver3.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 4424
+                },
+                "leg": {
+                    "vertex_list": [
+                        6752,
+                        47293
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 17673
+                    },
+                    "right": {
+                        "facet": 20610
+                    }
+                },
+                "md5": "2d5de45d738de27d33c4bd3f4d7a9091"
+            },
+            "MK VII v1": {
+                "file": "Mk_VII_ver1.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 3088
+                },
+                "leg": {
+                    "vertex_list": [
+                        4597,
+                        32268
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 15920
+                    },
+                    "right": {
+                        "facet": 18882
+                    }
+                },
+                "md5": "ea72cf261746902a2d468a3a0128280e"
+            },
+            "MK VII v2": {
+                "file": "Mk_VII_ver2.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 3102
+                },
+                "leg": {
+                    "vertex_list": [
+                        4690,
+                        32597
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 15920
+                    },
+                    "right": {
+                        "facet": 18882
+                    }
+                },
+                "md5": "45686a1ef35b3c51f34a87f2fdb34bfc"
+            },
+            "MK VII v3": {
+                "file": "Mk_VII_ver3.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 1756
+                },
+                "leg": {
+                    "vertex_list": [
+                        2558,
+                        18067
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 9785
+                    },
+                    "right": {
+                        "facet": 12747
+                    }
+                },
+                "md5": "e8e84329b42700bdb3dba01a6f7ac032"
+            },
+            "MK VII v4": {
+                "file": "Mk_VII_ver4.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 3251
+                },
+                "leg": {
+                    "vertex_list": [
+                        4818,
+                        33450
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 15920
+                    },
+                    "right": {
+                        "facet": 18882
+                    }
+                },
+                "md5": "61a86d1153861d2c2c96c72b09b08000"
+            },
+            "MK VII v5": {
+                "file": "Mk_VII_ver5.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 1806
+                },
+                "leg": {
+                    "vertex_list": [
+                        2723,
+                        18671
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 9785
+                    },
+                    "right": {
+                        "facet": 12747
+                    }
+                },
+                "md5": "d1a6bcbdcf9f643d1e42f537fb129d69"
+            },
+            "MK VIII": {
+                "file": "Mk_VIII.stl",
+                "thingiverse": 4248444,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4248444/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 2065
+                },
+                "leg": {
+                    "vertex_list": [
+                        3032,
+                        21252
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 13145
+                    },
+                    "right": {
+                        "facet": 16107
+                    }
+                },
+                "md5": "9c0096249b6f5532432d7b29090ee31a"
+            }
+        }
+    },
+    "JumpTroop": {
+        "desc": {
+            "display": "JumpTroop",
+            "path": "data/Wargame Humanoid/body/JumpTroop/"
+        },
+        "stl": {
+            "Torso A": {
+                "file": "Torso_A.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {
+                    "vertex_list": [
+                        2276,
+                        14486
+                    ]
+                },
+                "backpack": {
+                    "vertex": 14
+                },
+                "arm": {
+                    "left": {
+                        "facet": 6429
+                    },
+                    "right": {
+                        "facet": 9404
+                    }
+                },
+                "md5": "0285948c4023c56112ea92f162f7c4bb"
+            },
+            "Torso B": {
+                "file": "Torso_B.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {
+                    "vertex_list": [
+                        2551,
+                        18110
+                    ]
+                },
+                "backpack": {
+                    "vertex": 14
+                },
+                "arm": {
+                    "left": {
+                        "facet": 9926
+                    },
+                    "right": {
+                        "facet": 12907
+                    }
+                },
+                "md5": "b3b295db919d4d8e0a2be2d240c26f78"
+            },
+            "Torso C": {
+                "file": "Torso_C.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 3313
+                },
+                "leg": {
+                    "vertex_list": [
+                        4913,
+                        34129
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 16362
+                    },
+                    "right": {
+                        "facet": 19328
+                    }
+                },
+                "md5": "6d710f2053987748f5abaf5735354775"
+            },
+            "Torso D": {
+                "file": "Torso_D.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 2916
+                },
+                "leg": {
+                    "vertex_list": [
+                        4391,
+                        30371
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 14584
+                    },
+                    "right": {
+                        "facet": 17562
+                    }
+                },
+                "md5": "5be7e8bdfa67b8aa4c97e874b356f58a"
+            },
+            "Torso E": {
+                "file": "Torso_E.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 4372
+                },
+                "leg": {
+                    "vertex_list": [
+                        6714,
+                        47256
+                    ]
+                },
+                "backpack": {
+                    "vertex": 10
+                },
+                "arm": {
+                    "left": {
+                        "facet": 18605
+                    },
+                    "right": {
+                        "facet": 21547
+                    }
+                },
+                "md5": "6b1267231a9e3daeedfa22cf4c3e6c35"
+            },
+            "Torso F": {
+                "file": "Torso_F.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 7630
+                },
+                "leg": {
+                    "vertex_list": [
+                        11727,
+                        83776
+                    ]
+                },
+                "backpack": {
+                    "vertex": 8
+                },
+                "arm": {
+                    "left": {
+                        "facet": 28616
+                    },
+                    "right": {
+                        "facet": 31591
+                    }
+                },
+                "md5": "c63225dc9ec4f4de865959429041782d"
+            },
+            "Torso Harness A": {
+                "file": "Torso_G_With_harness.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {
+                    "vertex_list": [
+                        3273,
+                        23255
+                    ]
+                },
+                "backpack": {
+                    "vertex": 163
+                },
+                "arm": {
+                    "left": {
+                        "facet": 8765
+                    },
+                    "right": {
+                        "facet": 11740
+                    }
+                },
+                "md5": "6f462cbe47271af7f932dd3706f80445"
+            },
+            "Torso Harness B": {
+                "file": "Torso_H_With_harness.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {
+                    "vertex_list": [
+                        2732,
+                        19125
+                    ]
+                },
+                "backpack": {
+                    "vertex": 164
+                },
+                "arm": {
+                    "left": {
+                        "facet": 7484
+                    },
+                    "right": {
+                        "facet": 10459
+                    }
+                },
+                "md5": "4a5428bba03db54b49f2d45f07edc302"
+            },
+            "Torso Harness C": {
+                "file": "Torso_I_With_harness.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {
+                    "vertex_list": [
+                        2680,
+                        18923
+                    ]
+                },
+                "backpack": {
+                    "vertex": 163
+                },
+                "arm": {
+                    "left": {
+                        "facet": 5298
+                    },
+                    "right": {
+                        "facet": 8273
+                    }
+                },
+                "md5": "69038dfcdb959bd7198807f1a2335c92"
+            },
+            "Torso Harness D": {
+                "file": "Torso_J_With_harness.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 78
+                },
+                "leg": {
+                    "vertex_list": [
+                        4602,
+                        32804
+                    ]
+                },
+                "backpack": {
+                    "vertex": 169
+                },
+                "arm": {
+                    "left": {
+                        "facet": 13231
+                    },
+                    "right": {
+                        "facet": 16206
+                    }
+                },
+                "md5": "8ca5ae621f7cb183ef573f0c85461f62"
+            },
+            "Torso Harness E": {
+                "file": "Torso_K_With_harness.stl",
+                "thingiverse": 4257394,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4257394/zip"
+                ],
+                "designer": "cornivius",
+                "head": {
+                    "vertex": 74
+                },
+                "leg": {
+                    "vertex_list": [
+                        4453,
+                        29933
+                    ]
+                },
+                "backpack": {
+                    "vertex": 164
+                },
+                "arm": {
+                    "left": {
+                        "facet": 9097
+                    },
+                    "right": {
+                        "facet": 12072
+                    }
+                },
+                "md5": "99fdaffbf8f038cb49c6bfa67f64a0f7"
+            }
+        }
+    }
+}

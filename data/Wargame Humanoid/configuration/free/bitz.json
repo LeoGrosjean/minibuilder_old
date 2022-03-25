@@ -1,0 +1,43 @@
+{
+    "Purity Seals": {
+        "desc": {
+            "display": "Purity Seals",
+            "path": "data/Wargame Humanoid/bitz/Purity Seals/"
+        },
+        "stl": {
+            "L5": {
+                "file": "L5.stl",
+                "designer": "BREXIT",
+                "md5": "1c28173fc01ac3061c9e6e206b9f3c2d",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/purity-seals-brexit"
+                ],
+                "bitz": {
+                    "face": 5892
+                }
+            },
+            "Paper Extra Large 1": {
+                "file": "EL1.stl",
+                "designer": "BREXIT",
+                "md5": "8557a54aeaa0cb4881aae133f6b1325c",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/purity-seals-brexit"
+                ],
+                "bitz": {
+                    "vertex": 1921
+                }
+            },
+            "Xs1": {
+                "file": "XS1.stl",
+                "designer": "BREXIT",
+                "md5": "be2d025149dbeddda11386c25eed79b5",
+                "urls": [
+                    "https://cults3d.com/en/3d-model/art/purity-seals-brexit"
+                ],
+                "bitz": {
+                    "vertex": 9549
+                }
+            }
+        }
+    }
+}

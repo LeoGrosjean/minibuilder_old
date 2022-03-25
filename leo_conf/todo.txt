@@ -1,8 +1,0 @@
-https://www.thingiverse.com/thing:4176512/files <= très design main arme custodes
-
-
-https://www.thingiverse.com/w0nd3r8oy/collections/eldar amalyn fix + eldar
-
-
-
-pyinstaller --noconfirm --onedir --console --add-data "C:/Users/Leo/PycharmProjects/minibuilder/data;data/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/file_config;file_config/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/forms;forms/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/routes;routes/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/static;static/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/templates;templates/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/tmp;tmp/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/utils;utils/" --add-data "C:/Users/Leo/PycharmProjects/minibuilder/venv;venv/"  "C:/Users/Leo/PycharmProjects/minibuilder/app.py"

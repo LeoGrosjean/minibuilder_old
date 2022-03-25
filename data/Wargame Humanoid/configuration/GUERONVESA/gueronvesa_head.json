@@ -1,0 +1,114 @@
+{
+    "Gueronvesa": {
+        "desc": {
+            "display": "Gue'ron'vesa Head",
+            "path": "data/Wargame Humanoid/head/Gueronvesa/"
+        },
+        "stl": {
+            "Helmet 1": {
+                "file": "gueronvesa_helmet1.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 5187
+                },
+                "coef_merge": -0.5,
+                "md5": "e7ec011ed343e698093a9fa6677269d5"
+            },
+            "Helmet 2": {
+                "file": "gueronvesa_helmet2.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 3447
+                },
+                "coef_merge": -0.5,
+                "md5": "92956cc47aa29d3007486843456cdc59"
+            },
+            "Helmet 3": {
+                "file": "gueronvesa_helmet3.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 6846
+                },
+                "coef_merge": -0.5,
+                "md5": "428fe084925acef5266e345227210538"
+            },
+            "Helmet 4": {
+                "file": "gueronvesa_helmet4.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 5974
+                },
+                "coef_merge": -0.5,
+                "md5": "dce04dfc9067c7cc13de4a162c603836"
+            },
+            "Helmet 5": {
+                "file": "gueronvesa_helmet5.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 4627
+                },
+                "coef_merge": -0.5,
+                "md5": "5d0ab8cb2d75c49f6f73810c2c6cb200"
+            },
+            "Helmet 6": {
+                "file": "gueronvesa_helmet6.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 3225
+                },
+                "coef_merge": -0.5,
+                "md5": "128dc68ba392c2b95bcf0ea43afeca91"
+            },
+            "Helmet 7": {
+                "file": "gueronvesa_helmet7.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 1126
+                },
+                "coef_merge": -0.5,
+                "md5": "c1c01083b684da87bda6660bbe452bd0"
+            },
+            "Helmet 8": {
+                "file": "gueronvesa_helmet8.stl",
+                "thingiverse": 4208036,
+                "urls": [
+                    "https://www.thingiverse.com/thing:4208036/zip"
+                ],
+                "designer": "El_Mutanto",
+                "head": {
+                    "vertex": 5218
+                },
+                "coef_merge": -0.5,
+                "md5": "d903c918314f4325b5f0fd24cb7a5552"
+            }
+        }
+    }
+}
