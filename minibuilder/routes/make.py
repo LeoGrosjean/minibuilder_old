@@ -37,21 +37,6 @@ def utility_functions():
     return dict(mdebug=print_in_console)
 
 
-@make_bp.route('/', methods=['GET', 'POST'])
-def choose_builder():
-    form = ChooseBuilderForm()
-    if request.method == 'POST':
-        results = request.form.to_dict()
-        if results.get('submit'):
-            return redirect(f"/builder/{results.get('builder')}")
-        elif results.get('add_files'):
-            return redirect(f"/builder/{results.get('builder')}/configure")
-        elif results.get('add_designers'):
-            return redirect(f"/builder/{results.get('builder')}/designers")
-
-    return render_template("about.html", form_header=form)
-
-
 @make_bp.route('/builder/<builder_name>', methods=['GET', 'POST'])
 def builder(builder_name):
     form_header = ChooseBuilderForm()

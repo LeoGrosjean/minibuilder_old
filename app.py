@@ -5,6 +5,7 @@ from flask import Flask
 from minibuilder.routes.configure import configure_bp
 from minibuilder.routes.designers import designer_bp
 from minibuilder.routes.edit_file import edit_file_bp
+from minibuilder.routes.home import home_bp
 from minibuilder.routes.make import make_bp as make_blueprint
 from minibuilder.routes.thingidl import thingidl_bp
 
@@ -16,10 +17,10 @@ app.register_blueprint(thingidl_bp)
 app.register_blueprint(configure_bp)
 app.register_blueprint(designer_bp)
 app.register_blueprint(edit_file_bp)
+app.register_blueprint(home_bp)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY_FLASK') or 'coucou_c_moi_leo'
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
 
 
 def main():
