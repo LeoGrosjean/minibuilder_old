@@ -1,7 +1,10 @@
 import webbrowser
 import os
+from configparser import ConfigParser
+
 from flask import Flask
 
+from minibuilder.config import configpath
 from minibuilder.routes.configure import configure_bp
 from minibuilder.routes.designers import designer_bp
 from minibuilder.routes.edit_file import edit_file_bp
@@ -25,11 +28,18 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 def main():
     # The reloader has not yet run - open the browser
+    try:
+        config = ConfigParser()
+        config.read(f"{configpath}/mbconfig.ini")
+        port = config['SERVER']['port']
+    except Exception:
+        port = 32000
+
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
-        webbrowser.open_new('http://127.0.0.1:2000/')
+        webbrowser.open_new(f'http://127.0.0.1:{port}/')
 
     # Otherwise, continue as normal
-    app.run(host="127.0.0.1", port=2000, debug=False)
+    app.run(host="127.0.0.1", port=port, debug=False)
 
 
 if __name__ == '__main__':

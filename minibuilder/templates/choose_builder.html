@@ -2,9 +2,9 @@
 
 <nav class="navbar navbar-light bg-light" style="z-index: 1; position: relative">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{url_for('make_bp.choose_builder')}}">miniBuilder</a>
+        <a class="navbar-brand" href="{{url_for('home_bp.choose_builder')}}">miniBuilder</a>
 
-        <form action="{{ url_for('make_bp.choose_builder') }}" method="post">
+        <form action="{{ url_for('home_bp.choose_builder') }}" method="post">
             {{ form_header.add_designers }}
             {{ form_header.add_files }}
             {{ form_header.builder }}
