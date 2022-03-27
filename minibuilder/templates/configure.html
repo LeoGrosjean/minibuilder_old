@@ -35,7 +35,7 @@
                 {% if field.render_kw.get('list') %}
                     <datalist id="id_list_{{ field.id }}">
                         {% for entry in field.choices %}
-                        <option value={{ entry }}>
+                        <option value="{{ entry }}">
                         {% endfor %}
                     </datalist>
                 {% endif %}

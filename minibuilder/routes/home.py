@@ -5,7 +5,7 @@ from flask import Blueprint, render_template, request
 from github import Github
 
 from minibuilder.config import configpath
-from minibuilder.forms.home import ChooseBuilderForm, EditConfForm
+from minibuilder.forms.home import ChooseBuilderForm, EditConfForm, make_AddBuilderForm, make_AddCategoryForm
 
 home_bp = Blueprint('home_bp', __name__)
 
@@ -57,39 +57,25 @@ def make_folder():
     return render_template("make_folder_data.html", form=form)
 
 
-@home_bp.route("/list_file_config/<builder>", methods=['GET'])
+@home_bp.route("/add_builder", methods=['GET'])
+def list_builder_config():
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+
+    form = make_AddBuilderForm(data_path=data_folder)()
+
+    return render_template("git_config/add_files.html", form=form)
+
+
+@home_bp.route("/get_category/<builder>", methods=['GET'])
 def list_file_config(builder):
-    g = Github()
-    repo = g.get_repo("LeoGrosjean/minibuilder")
-    conf_category = []
-    for content in repo.get_contents(f"data/{builder}/configuration"):
-        if content.type == "dir":
-            conf_category.append(repo.get_contents(content.path))
-        else:
-            continue
-            print(file_content)
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
 
-    form = EditConfForm()
-    try:
-        config = ConfigParser()
-        config.read(configpath + "/mbconfig.ini")
-        form.user_data_path.default = config['FOLDER']['data_path']
-        form.port.data = config['SERVER']['port']
-    except Exception:
-        pass
+    form = make_AddCategoryForm(data_path=data_folder, builder=builder)()
 
-    if request.method == 'POST':
-        form_result = request.form.to_dict()
-        config = ConfigParser()
-        config['FOLDER'] = {
-            "data_path": form_result.get('user_data_path')
-        }
-        config['SERVER'] = {
-            "port": form_result.get('port')
-        }
-        Path(configpath).mkdir(parents=True, exist_ok=True)
-        with open(f'{configpath}/mbconfig.ini', 'w') as configfile:
-            config.write(configfile)
-        Path(form_result.get('user_data_path')).mkdir(parents=True, exist_ok=True)
+    return render_template("git_config/add_files.html", form=form)
 
-    return render_template("make_folder_data.html", form=form)
+

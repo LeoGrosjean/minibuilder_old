@@ -6,3 +6,5 @@ configpath = os.path.join(
     os.path.join(os.environ['HOME'], '.config'),
     "minibuilder"
 )
+
+git_public_token = "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"

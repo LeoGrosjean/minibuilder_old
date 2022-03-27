@@ -1,0 +1,37 @@
+{
+  "Wargame Humanoid": {
+    "(TMC) TEMPEST LEGION": [
+      "arm.json",
+      "backpack.json",
+      "body.json",
+      "head.json",
+      "leg.json"
+    ],
+    "free": [
+      "arm.json",
+      "backpack.json",
+      "bitz.json",
+      "body.json",
+      "hand.json",
+      "head.json",
+      "leg.json"
+    ],
+    "GUERONVESA": [
+      "backpack.json",
+      "body.json",
+      "hand.json",
+      "head.json",
+      "leg.json",
+      "weapon.json"
+    ],
+    "Onos Industries": [
+      "arm.json",
+      "backpack.json",
+      "bitz.json",
+      "body.json",
+      "head.json",
+      "leg.json",
+      "weapon.json"
+    ]
+  }
+}

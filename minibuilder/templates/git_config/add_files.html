@@ -1,0 +1,53 @@
+<html lang="en">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</html>
+
+{%  macro bs_field(field,help=False,icon=False,counter=False) %}
+{% if field.name!="csrf_token" %}
+<div class="card">
+    <div class="card-header" id="{{field.name}}_header">
+        <h5 class="mb-0">
+
+            <button class="btn btn-link" data-toggle="collapse" data-target="#{{field.name.replace(' ', '_')}}_collapse"
+                    aria-expanded="false" aria-controls="{{field.name}}_collapse">
+                {{field.name}}
+            </button>
+            {{field}}
+        </h5>
+    </div>
+    <div id="{{field.name.replace(' ', '_')}}_collapse" class="collapse" aria-labelledby="{{field.name}}_header" data-parent="#accordion">
+        <div class="card-body" id="{{field.name}}_header">
+            <p>Loading</p>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{%  endmacro %}
+
+<div id="accordion">
+
+    {% for field in form %}
+    {{ bs_field(field) }}
+    {% endfor %}
+
+</div>
