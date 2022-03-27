@@ -3,7 +3,9 @@
         "desc": {
             "display": "Tempest Legion",
             "path": "data/Wargame Humanoid/arm/Tempest Legion/",
-            "nodes": ["arm"]
+            "nodes": [
+                "arm"
+            ]
         },
         "stl": {
             "Psychic - Empty Hand Arm": {

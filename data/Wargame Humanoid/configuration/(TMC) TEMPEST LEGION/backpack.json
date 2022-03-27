@@ -3,7 +3,9 @@
         "desc": {
             "display": "Tempest Legion",
             "path": "data/Wargame Humanoid/backpack/Tempest Legion/",
-            "nodes": ["backpack"]
+            "nodes": [
+                "backpack"
+            ]
         },
         "stl": {
             "Default 1": {

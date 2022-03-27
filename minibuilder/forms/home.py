@@ -23,51 +23,34 @@ class EditConfForm(FlaskForm):
     submit = SubmitField('save configuration')
 
 
-def make_AddBuilderForm(data_path, *args, **kwargs):
+def make_AddBuilderForm(data_path, config, *args, **kwargs):
     class AddBuilderForm(FlaskForm):
         hide = HiddenField()
 
-    g = Github(git_public_token)
-    repo = g.get_repo("LeoGrosjean/minibuilder")
+    for builder, file_categories in config.items():
+        builder_id = slugify(builder, separator='_')
 
-    try:
-        builders = repo.get_contents(f"data")
-    except Exception as e:
-        print(e)
-        builders = []
-
-    for builder in builders:
-        builder_id = slugify(builder.name, separator='_')
         if not Path(f'{data_path}/{builder}').exists:
-            setattr(AddBuilderForm, f"{builder_id}_install", SubmitField('Install', name=builder.name))
+            setattr(AddBuilderForm, f"{builder_id}_install", SubmitField('Install', name=builder))
         else:
-            setattr(AddBuilderForm, f"{builder_id}_update", SubmitField('Update', name=builder.name))
+            setattr(AddBuilderForm, f"{builder_id}_update", SubmitField('Update', name=builder))
+
+        setattr(AddBuilderForm, f"{builder_id}_category",
+                FieldList(FormField(CategoryForm)),
+                )
 
     del AddBuilderForm.hide
 
     return AddBuilderForm
 
 
-def make_AddCategoryForm(data_path, builder, *args, **kwargs):
-    class AddCategoryForm(FlaskForm):
-        hide = HiddenField()
+class FileForm(FlaskForm):
+    file = StringField(render_kw={'hidden': True})
+    dl = SubmitField(label=f'DL')
 
-    g = Github(git_public_token)
-    repo = g.get_repo("LeoGrosjean/minibuilder")
 
-    try:
-        categories = [x.name for x in repo.get_contents(f"data/{builder}/configuration") if x.type == 'dir']
-    except Exception as e:
-        print(e)
-        categories = []
+class CategoryForm(FlaskForm):
+    category = FieldList(FormField(FileForm))
 
-    for category in categories:
-        category_id = slugify(category.name, separator='_')
-        if not Path(f'{data_path}/{builder}').exists:
-            setattr(AddCategoryForm, f"{category_id}_install", SubmitField('Install', name=category.name))
-        else:
-            setattr(AddCategoryForm, f"{category_id}_update", SubmitField('Update', name=category.name))
 
-    del AddCategoryForm.hide
 
-    return AddCategoryForm

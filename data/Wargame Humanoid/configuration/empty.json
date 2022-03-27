@@ -1,12 +1,11 @@
 {
-  "Empty": {
-    "desc": {
-      "display": "Empty",
-      "path": "data/empty/"
-    },
-    "stl": {
-      "Empty": {
-      }
+    "Empty": {
+        "desc": {
+            "display": "Empty",
+            "path": "data/empty/"
+        },
+        "stl": {
+            "Empty": {}
+        }
     }
-  }
 }
