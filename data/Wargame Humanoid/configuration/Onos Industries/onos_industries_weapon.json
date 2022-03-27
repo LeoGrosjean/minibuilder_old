@@ -2,7 +2,8 @@
     "Onos Industries (weapon)": {
         "desc": {
             "display": "Onos Industries Arms",
-            "path": "data/Wargame Humanoid/hand/Onos Industries (weapon)/"
+            "path": "data/Wargame Humanoid/hand/Onos Industries (weapon)/",
+            "nodes": ["hand"]
         },
         "stl": {
             "Enclave Carbine": {

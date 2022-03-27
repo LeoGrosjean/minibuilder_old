@@ -3,12 +3,14 @@ import os
 import pathlib
 import shutil
 from ast import literal_eval
+from configparser import ConfigParser
 from urllib.parse import urlparse
 
 import trimesh as tm
 from flask import Blueprint, render_template, request, jsonify, url_for, redirect
 
 from minibuilder.builder.node import read_node_link_json
+from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
 from minibuilder.forms.edit_file import DynamicFormEditMeshConf, BitzsForm
 from minibuilder.forms.home import ChooseBuilderForm
@@ -21,21 +23,27 @@ edit_file_bp = Blueprint('edit_file_bp', __name__)
 
 @edit_file_bp.route('/edit/<builder>/<node>/<category>/<file>/', methods=['GET'])
 def edit(builder, node, category, file):
-    graph = read_node_link_json(f'data/{builder}/conf.json')
-    if not os.path.exists(f'data/{builder}/uploaded/'):
-        pathlib.Path(f'data/{builder}/uploaded/').mkdir(parents=True)
+
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
+    if not os.path.exists(f'{data_folder}/{builder}/uploaded/'):
+        pathlib.Path(f'{data_folder}/{builder}/uploaded/').mkdir(parents=True)
+
     form_header = ChooseBuilderForm()
     form_header.builder.data = builder
 
     infos = {}
     for json_path in graph.nodes.get(node).get('files'):
-        infos.update(load_json(f"data/{builder}/{json_path}"))
+        infos.update(load_json(f"{configuration_folder}/{json_path}"))
 
     form = DynamicFormEditMeshConf(graph, node)
     form.file_name.data = file
     form.hidden_file_name.data = file
-
-
 
     try:
         form.support.choices = form.support.choices + [infos.get(category).get('stl').get(file).get("support", {}).get('file', '')]
@@ -54,7 +62,7 @@ def edit(builder, node, category, file):
 
     try:
         file_name = infos.get(category).get('stl').get(file).get('file')
-        mesh = tm.load(f"data/{builder}/{graph.nodes[node].get('folder')}/{category}/{file_name}")
+        mesh = tm.load(f"{data_folder}/{builder}/{graph.nodes[node].get('folder')}/{category}/{file_name}")
 
     except Exception as e:
         print(e)
@@ -128,10 +136,16 @@ def edit(builder, node, category, file):
 
 @edit_file_bp.route('/edit_post/<builder>/<node>/<category>/<file>/', methods=['POST'])
 def edit_post(builder, node, category, file):
-    graph = read_node_link_json(f'data/{builder}/conf.json')
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
     form_result = request.form.to_dict()
     for json_path in graph.nodes.get(node).get('files'):
-        json_file = load_json(f"data/{builder}/{json_path}")
+        json_file = load_json(f"{configuration_folder}/{json_path}")
         if category in json_file.keys():
             break
 
@@ -152,10 +166,11 @@ def edit_post(builder, node, category, file):
     if support and support != support_file_old:
         conf["support"] = {
             "file": support,
-            "md5": tm.load(f"data/{builder}/uploaded/{support}").identifier_md5
+            "md5": tm.load(f"{data_folder}/{builder}/uploaded/{support}").identifier_md5
         }
+    folder = graph.nodes[node].get('folder')
 
-    mesh = tm.load(f"{json_file[category]['desc']['path']}{mesh_info['file']}")
+    mesh = tm.load(f"{data_folder}/{builder}/{folder}/{category}/{mesh_info['file']}")
 
     for k, v in form_result.items():
         if k.endswith('marker') and form_result.get(k):
@@ -190,23 +205,23 @@ def edit_post(builder, node, category, file):
 
     if support and support != support_file_old:
         try:
-            if not os.path.exists(f"data/{builder}/{folder}/{category}/support/"):
-                pathlib.Path(f"data/{builder}/{folder}/{category}/support/").mkdir(parents=True)
+            if not os.path.exists(f"{data_folder}/{builder}/{folder}/{category}/support/"):
+                pathlib.Path(f"{data_folder}/{builder}/{folder}/{category}/support/").mkdir(parents=True)
 
-            if form_result.get('support') in os.listdir(f"data/{builder}/{folder}/{category}/support/"):
+            if form_result.get('support') in os.listdir(f"{data_folder}/{builder}/{folder}/{category}/support/"):
                 return f"""
                 There is an issue with the support file, he gots the same name than another file in "data/{builder}/{folder}/{category}/support/"
                 """
             else:
                 shutil.move(
-                    f"data/{builder}/uploaded/{support}",
-                    f"data/{builder}/{folder}/{category}/support/")
-                print(f"data/{builder}/uploaded/{support} moved to "
-                      f"data/{builder}/{folder}/{category}/support !")
+                    f"{data_folder}/{builder}/uploaded/{support}",
+                    f"{data_folder}/{builder}/{folder}/{category}/support/")
+                print(f"{data_folder}/{builder}/uploaded/{support} moved to "
+                      f"{data_folder}/{builder}/{folder}/{category}/support !")
         except Exception as e:
             print(e)
-
-    with open(f"data/{builder}/{json_path}", "w") as outfile:
+    conf_path = f"{data_folder}/{builder}/configuration/{json_path.replace('.', '/', json_path.count('.') - 1)}"
+    with open(conf_path, "w") as outfile:
         json.dump(json_file, outfile, indent=4)
 
     return redirect(url_for("edit_file_bp.edit", builder=builder, node=node, category=category, file=file))
@@ -214,8 +229,12 @@ def edit_post(builder, node, category, file):
 
 @edit_file_bp.route('/send/<builder>/<folder>/<category>/<file_name>/', methods=['GET', 'POST'])
 def send(builder, folder, category, file_name):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
     try:
-        mesh = tm.load(f"data/{builder}/{folder}/{category}/{file_name}")
+        mesh = tm.load(f"{data_folder}/{builder}/{folder}/{category}/{file_name}")
     except Exception as e:
         print(e)
         return ""
@@ -224,9 +243,16 @@ def send(builder, folder, category, file_name):
 
 @edit_file_bp.route('/addbitz/<builder>/<node>/<category>/<file>/', methods=["POST"])
 def addbitz(builder, node, category, file):
-    graph = read_node_link_json(f'data/{builder}/conf.json')
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
     for conf_json in graph.nodes.get(node).get('files'):
-        files_conf = load_json(f"data/{builder}/{conf_json}")
+        path_conf = f"{data_folder}/{builder}/configuration/{conf_json}"
+        files_conf = load_json(path_conf)
 
         if category in files_conf:
             if file in files_conf.get(category).get('stl'):
@@ -250,13 +276,13 @@ def addbitz(builder, node, category, file):
         if li:
             file_name = files_conf.get(category).get('stl').get(file).get('file')
             folder = graph.nodes[node].get('folder')
-            mesh = tm.load(f"data/{builder}/{folder}/{category}/{file_name}")
+            mesh = tm.load(f"{data_folder}/{builder}/{folder}/{category}/{file_name}")
 
             files_conf.get(category).get('stl').get(file)['bitzs'] = {}
             for bitz in li:
                 files_conf.get(category).get('stl').get(file)['bitzs'][bitz.get('name')] = find_vertices(mesh, *literal_eval(f"[[{bitz.get('marker')}]]"))
 
-            with open(f"data/{builder}/{conf_json}", "w") as outfile:
+            with open(f"{configuration_folder}/{conf_json}", "w") as outfile:
                 json.dump(files_conf, outfile, indent=4)
 
         # server-side validation

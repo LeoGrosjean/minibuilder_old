@@ -2,7 +2,8 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries Legs",
-            "path": "data/Wargame Humanoid/leg/Onos Industries/"
+            "path": "data/Wargame Humanoid/leg/Onos Industries/",
+            "nodes": ["leg"]
         },
         "stl": {
             "Enclave Trooper 01": {

@@ -2,7 +2,9 @@
     "Space Warrior": {
         "desc": {
             "display": "Space Warrior Heads",
-            "path": "data/Wargame Humanoid/head/Space Warrior/"
+            "path": "data/Wargame Humanoid/head/Space Warrior/",
+            "bitz": true,
+            "nodes": ["head"]
         },
         "stl": {
             "Helm 01": {

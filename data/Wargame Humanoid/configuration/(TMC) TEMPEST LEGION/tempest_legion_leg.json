@@ -2,7 +2,8 @@
     "Tempest Legion": {
         "desc": {
             "display": "Tempest Legion",
-            "path": "data/Wargame Humanoid/leg/Tempest Legion/"
+            "path": "data/Wargame Humanoid/leg/Tempest Legion/",
+            "nodes": ["leg"]
         },
         "stl": {
             "Default 1": {

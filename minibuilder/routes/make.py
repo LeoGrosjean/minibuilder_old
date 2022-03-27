@@ -1,5 +1,6 @@
 import json
 import os
+from configparser import ConfigParser
 from functools import reduce
 from math import radians
 from operator import add
@@ -17,6 +18,7 @@ from trimesh.transformations import euler_matrix, rotation_matrix
 from minibuilder.builder.build_info import make_info
 from minibuilder.builder.designer_box import load_meshes_find_designer
 from minibuilder.builder.node import read_node_link_json
+from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
 from minibuilder.forms.home import ChooseBuilderForm
 from minibuilder.forms.make import generateminidynamic_func, dynamic_FieldBitz
@@ -42,20 +44,26 @@ def builder(builder_name):
     form_header = ChooseBuilderForm()
     form_header.builder.data = builder_name
     form_result = request.form.to_dict()
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder_name}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
 
     infos = {}
     for node_name in graph.nbunch_iter():
         infos[node_name] = {}
         for json_path in graph.nodes.get(node_name).get('files'):
-            infos[node_name].update(load_json(f"data/{builder_name}/{json_path}"))
+            infos[node_name].update(load_json(f"{configuration_folder}/{json_path}"))
     designers = {}
     for file in graph.graph.get('designer_files', []):
-        designers.update(load_json(f"data/{builder_name}/{file}"))
+        designers.update(load_json(f"{configuration_folder}/{file}", occurence=0))
 
     bitzs = {}
     for file in graph.graph.get('bitz_files', []):
-        bitzs.update(load_json(f"data/{builder_name}/{file}"))
+        bitzs.update(load_json(f"{configuration_folder}/{file}"))
 
     di_form = {}
     li_position = []
@@ -597,15 +605,19 @@ def builder(builder_name):
 @make_bp.route('/selectform/<node>/<selection>/<builder>')
 def updateselect(node, selection, builder):
     builder_name = builder
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    graph = read_node_link_json(f'data/{builder_name}/configuration/conf.json')
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder_name}/configuration"
     infos = {}
     for node_name in graph.nbunch_iter():
         infos[node_name] = {}
         for json_path in graph.nodes.get(node_name).get('files'):
-            infos[node_name].update(load_json(f"data/{builder_name}/{json_path}"))
+            infos[node_name].update(load_json(f"{configuration_folder}/{json_path}"))
     designers = {}
     for file in graph.graph.get('designer_files', []):
-        designers.update(load_json(f"data/{builder_name}/{file}"))
+        designers.update(load_json(f"{configuration_folder}/{file}"))
 
     choices = list(infos[node.split('_')[0]][selection]['stl'].keys())
     choices = list(zip(choices, choices))
@@ -617,10 +629,15 @@ def updateselect(node, selection, builder):
 @make_bp.route('/selectformbitz/bitz/<selection>/<builder>')
 def updateselectbitz(selection, builder):
     builder_name = builder
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    graph = read_node_link_json(f'data/{builder_name}/configuration/conf.json')
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder_name}/configuration"
+
     bitz_infos = {}
     for bitz_file in graph.graph.get('bitz_files', []):
-        bitz_infos.update(load_json(f"data/{builder_name}/{bitz_file}"))
+        bitz_infos.update(load_json(f"{configuration_folder}/{bitz_file}"))
 
     choices = list(bitz_infos[selection]['stl'].keys())
     choices = list(zip(choices, choices))
@@ -704,15 +721,19 @@ jinja_string = """
 
 @make_bp.route('/selectformbitz/bitz/<builder>/<node>/<category>/<selection>/')
 def updatebitz(builder, node, category, selection):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
     builder_name = builder
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    graph = read_node_link_json(f'data/{builder_name}/configuration/conf.json')
     infos = {}
     for json_file in graph.nodes[node].get('files'):
-        infos.update(load_json(f"data/{builder_name}/{json_file}"))
+        infos.update(load_json(f"{configuration_folder}/{json_file}"))
 
     bitzs = {}
     for bitz_json_file in graph.graph.get('bitz_files', []):
-        bitzs.update(load_json(f"data/{builder_name}/{bitz_json_file}"))
+        bitzs.update(load_json(f"{configuration_folder}/{bitz_json_file}"))
 
     form = dynamic_FieldBitz(node=node, bitzs=bitzs)()
 

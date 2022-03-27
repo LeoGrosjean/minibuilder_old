@@ -2,7 +2,9 @@
     "Tempest Legion": {
         "desc": {
             "display": "Tempest Legion",
-            "path": "data/Wargame Humanoid/head/Tempest Legion/"
+            "path": "data/Wargame Humanoid/head/Tempest Legion/",
+            "bitz": true,
+            "nodes": ["head"]
         },
         "stl": {
             "Psychic 1": {

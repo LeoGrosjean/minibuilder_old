@@ -2,6 +2,7 @@ import json
 import os
 import pathlib
 import shutil
+from configparser import ConfigParser
 from uuid import uuid4
 
 from flask import Blueprint, render_template, request, url_for, redirect, make_response
@@ -10,6 +11,7 @@ from trimesh.exchange.load import mesh_formats
 from werkzeug.utils import secure_filename
 
 from minibuilder.builder.node import read_node_link_json
+from minibuilder.config import configpath
 from minibuilder.forms.configure import DynamicFormMakeMeshConf, FormUploadFile
 from minibuilder.forms.home import ChooseBuilderForm
 
@@ -21,13 +23,20 @@ mesh_suffixes = mesh_formats()
 configure_bp = Blueprint('configure_bp', __name__)
 
 
-@configure_bp.route('/builder/<builder_name>/configure', methods=['GET'])
-def builder(builder_name):
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
-    if not os.path.exists(f'data/{builder_name}/uploaded/'):
-        pathlib.Path(f'data/{builder_name}/uploaded/').mkdir(parents=True)
+@configure_bp.route('/builder/<builder>/configure', methods=['GET'])
+def builder_configure(builder):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
+    if not os.path.exists(f'{data_folder}/{builder}/uploaded/'):
+        pathlib.Path(f'{data_folder}/{builder}/uploaded/').mkdir(parents=True)
+
     form_header = ChooseBuilderForm()
-    form_header.builder.data = builder_name
+    form_header.builder.data = builder
     form = DynamicFormMakeMeshConf(graph)
 
     form_upload = FormUploadFile()
@@ -36,35 +45,41 @@ def builder(builder_name):
                            form=form,
                            nodes=list(graph.nodes) + is_bitz,
                            form_upload=form_upload,
-                           builder=builder_name,
+                           builder=builder,
                            form_header=form_header)
 
 
-@configure_bp.route('/builder/<builder_name>/configure', methods=['POST'])
-def builder_post(builder_name):
+@configure_bp.route('/builder/<builder>/configure', methods=['POST'])
+def builder_post(builder):
+
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
     form_upload = FormUploadFile()
     form_header = ChooseBuilderForm()
-    form_header.builder.data = builder_name
+    form_header.builder.data = builder
     if form_upload.validate_on_submit():
         files_filenames = []
         for file in form_upload.files.data:
             file_filename = secure_filename(file.filename)
-            file.save(f"data/{builder_name}/uploaded/{file_filename}")
+            file.save(f"{data_folder}/{builder}/uploaded/{file_filename}")
             # TODO check if compress and flatten them in uploaded
-            extract_nested_compress(builder_name, file_filename)
-            for file in os.listdir(f"data/{builder_name}/uploaded/"):
+            extract_nested_compress(builder, file_filename)
+            for file in os.listdir(f"{data_folder}/{builder}/uploaded/"):
                 try:
                     if not pathlib.Path(file).suffix[1:] in mesh_suffixes:
-                        os.remove(f"data/{builder_name}/uploaded/{file}")
+                        os.remove(f"{data_folder}/{builder}/uploaded/{file}")
                 except Exception as e:
                     print(e)
-        return redirect(url_for("configure_bp.builder", builder_name=builder_name))
+        return redirect(url_for("configure_bp.builder_post", builder=builder))
 
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
     form_result = request.form.to_dict()
 
     conf_json = form_result.get('file')
-    mesh = tm.load(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}")
+    mesh = tm.load(f"{data_folder}/{builder}/uploaded/{form_result.get('mesh_file')}")
 
     if form_result.get('url').startswith('http'):
         url = form_result.get('url')
@@ -75,20 +90,20 @@ def builder_post(builder_name):
         form_result.get('file_name'): {
             "file": form_result.get("mesh_file"),
             "designer": form_result.get('designer'),
-            "md5": tm.load(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}").identifier_md5,
+            "md5": tm.load(f"{data_folder}/{builder}/uploaded/{form_result.get('mesh_file')}").identifier_md5,
             "urls": [url]
         }
     }
     if form_result.get('support'):
         mesh_info[form_result.get('file_name')]['support'] = {
             "file": form_result.get('support'),
-            "md5": tm.load(f"data/{builder_name}/uploaded/{form_result.get('support')}").identifier_md5
+            "md5": tm.load(f"{data_folder}/{builder}/uploaded/{form_result.get('support')}").identifier_md5
         }
 
     mesh_info = find_mesh_connector(mesh, graph, form_result, mesh_info)
     del mesh
 
-    save_file_config_json(graph, builder_name, conf_json, form_result, mesh_info)
+    save_file_config_json(graph, data_folder, builder, conf_json, form_result, mesh_info)
 
     # file:
     # TODO if file_name already exist (and is different assuming check md5 has been done) it will add uuid in file_name not in file conf
@@ -99,44 +114,44 @@ def builder_post(builder_name):
         folder = graph.nodes[form_result.get('node')]['folder']
 
     try:
-        if not os.path.exists(f"data/{builder_name}/{folder}/{form_result.get('category')}/"):
-            pathlib.Path(f"data/{builder_name}/{folder}/{form_result.get('category')}/").mkdir(
+        if not os.path.exists(f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/"):
+            pathlib.Path(f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/").mkdir(
                 parents=True)
         if form_result.get('mesh_file') in os.listdir(
-                f"data/{builder_name}/{folder}/{form_result.get('category')}/"):
+                f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/"):
             shutil.move(
-                f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
-                f"data/{builder_name}/{folder}/{form_result.get('category')}/"
+                f"{data_folder}/{builder}/uploaded/{form_result.get('mesh_file')}",
+                f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/"
                 f"{uuid4()}_{form_result.get('mesh_file')}")
-            print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
-                  f"data/{builder_name}/{folder}/{form_result.get('category')} !")
+            print(f"{data_folder}/{builder}/uploaded/{form_result.get('mesh_file')} moved to "
+                  f"{data_folder}/{builder}/{folder}/{form_result.get('category')} !")
         else:
             shutil.move(
-                f"data/{builder_name}/uploaded/{form_result.get('mesh_file')}",
-                f"data/{builder_name}/{folder}/{form_result.get('category')}/")
-            print(f"data/{builder_name}/uploaded/{form_result.get('mesh_file')} moved to "
-                  f"data/{builder_name}/{folder}/{form_result.get('category')} !")
+                f"{data_folder}/{builder}/uploaded/{form_result.get('mesh_file')}",
+                f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/")
+            print(f"{data_folder}/{builder}/uploaded/{form_result.get('mesh_file')} moved to "
+                  f"{data_folder}/{builder}/{folder}/{form_result.get('category')} !")
     except FileExistsError as e:
         print(e)
     # support
     if form_result.get('support'):
         try:
-            if not os.path.exists(f"data/{builder_name}/{folder}/{form_result.get('category')}/support/"):
-                pathlib.Path(f"data/{builder_name}/{folder}/{form_result.get('category')}/support/").mkdir(parents=True)
+            if not os.path.exists(f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support/"):
+                pathlib.Path(f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support/").mkdir(parents=True)
             if form_result.get('support') in os.listdir(
-                    f"data/{builder_name}/{folder}/{form_result.get('category')}/support/"):
+                    f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support/"):
                 shutil.move(
-                    f"data/{builder_name}/uploaded/{form_result.get('support')}",
-                    f"data/{builder_name}/{folder}/{form_result.get('category')}/support/"
+                    f"{data_folder}/{builder}/uploaded/{form_result.get('support')}",
+                    f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support/"
                     f"{uuid4()}_{form_result.get('support')}")
-                print(f"data/{builder_name}/uploaded/{form_result.get('support')} moved to "
-                      f"data/{builder_name}/{folder}/{form_result.get('category')}/support !")
+                print(f"{data_folder}/{builder}/uploaded/{form_result.get('support')} moved to "
+                      f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support !")
             else:
                 shutil.move(
-                    f"data/{builder_name}/uploaded/{form_result.get('support')}",
-                    f"data/{builder_name}/{folder}/{form_result.get('category')}/support/")
-                print(f"data/{builder_name}/uploaded/{form_result.get('support')} moved to "
-                      f"data/{builder_name}/{folder}/{form_result.get('category')}/support !")
+                    f"{data_folder}/{builder}/uploaded/{form_result.get('support')}",
+                    f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support/")
+                print(f"{data_folder}/{builder}/uploaded/{form_result.get('support')} moved to "
+                      f"{data_folder}/{builder}/{folder}/{form_result.get('category')}/support !")
         except Exception as e:
             print(e)
 
@@ -146,15 +161,19 @@ def builder_post(builder_name):
                            form=form,
                            nodes=list(graph.nodes) + is_bitz,
                            form_upload=form_upload,
-                           builder=builder_name,
+                           builder=builder,
                            form_header=form_header
                            )
 
 
 @configure_bp.route('/send/<builder>/<file>/', methods=['GET', 'POST'])
 def send(builder, file):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
     try:
-        mesh = tm.load(f"data/{builder}/uploaded/{file}")
+        mesh = tm.load(f"{data_folder}/{builder}/uploaded/{file}")
     except Exception as e:
         print(e)
         return ""
@@ -163,7 +182,13 @@ def send(builder, file):
 
 @configure_bp.route('/configureformnode/<builder>/<node>/')
 def update_configure_node(builder, node):
-    graph = read_node_link_json(f'data/{builder}/conf.json')
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
     form = DynamicFormMakeMeshConf(graph, node=node)
     is_bitz = ['bitz'] if graph.graph.get('bitz_files') else []
     choices = {
@@ -180,8 +205,13 @@ def update_configure_node(builder, node):
 
 @configure_bp.route('/configureformfile/<builder>/<node>/<file>')
 def update_configure_file(builder, node, file):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
     try:
-        graph = read_node_link_json(f'data/{builder}/conf.json')
+        graph = read_node_link_json(f'{configuration_folder}/conf.json')
         form = DynamicFormMakeMeshConf(graph, node=node, file=file)
 
         choices = {
@@ -197,9 +227,14 @@ def update_configure_file(builder, node, file):
     return response
 
 
-@configure_bp.route('/checkmd5/<builder_name>/')
-def check_md5(builder_name):
-    graph = read_node_link_json(f'data/{builder_name}/conf.json')
+@configure_bp.route('/checkmd5/<builder>/')
+def check_md5(builder):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
     monset = set()
     id_folder = {}
     for k, v in graph.nodes.items():
@@ -209,7 +244,7 @@ def check_md5(builder_name):
 
     di = {}
     for json_file in list(monset):
-        with open(f"data/{builder_name}/{json_file}", "r") as f:
+        with open(f"{configuration_folder}/{json_file}", "r") as f:
             json_file = json.load(f)
             for v in json_file.values():
                 for mesh in v['stl'].values():
@@ -222,9 +257,9 @@ def check_md5(builder_name):
 
     # TODO file has md5 in conf, but name of file added is from another file
 
-    for file in os.listdir(f'data/{builder_name}/uploaded'):
+    for file in os.listdir(f'{data_folder}/{builder}/uploaded'):
         try:
-            hash = tm.load(f"data/{builder_name}/uploaded/{file}").identifier_md5
+            hash = tm.load(f"{data_folder}/{builder}/uploaded/{file}").identifier_md5
         except Exception as e:
             print(e)
             continue
@@ -235,12 +270,12 @@ def check_md5(builder_name):
             try:
 
                 shutil.move(
-                    f"data/{builder_name}/uploaded/{file}", di.get(hash))
-                print(f"data/{builder_name}/uploaded/{file} moved to {di.get(hash)} !")
+                    f"{data_folder}/{builder}/uploaded/{file}", di.get(hash))
+                print(f"{data_folder}/{builder}/uploaded/{file} moved to {di.get(hash)} !")
             except Exception as e:
                 print(e)
-                os.remove(f"data/{builder_name}/uploaded/{file}")
-                print(f'data/{builder_name}/uploaded/{file} has been removed')
+                os.remove(f"{data_folder}/{builder}/uploaded/{file}")
+                print(f'{data_folder}/{builder}/uploaded/{file} has been removed')
 
     response = make_response(json.dumps({}))
     response.content_type = 'application/jsons'

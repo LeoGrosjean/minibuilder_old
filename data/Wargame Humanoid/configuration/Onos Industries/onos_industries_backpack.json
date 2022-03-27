@@ -2,7 +2,8 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries Arms",
-            "path": "data/Wargame Humanoid/backpack/Onos Industries/"
+            "path": "data/Wargame Humanoid/backpack/Onos Industries/",
+            "nodes": ["backpack"]
         },
         "stl": {
             "Enclave Trooper": {

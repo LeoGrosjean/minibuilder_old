@@ -2,7 +2,8 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries Bodies",
-            "path": "data/Wargame Humanoid/body/Onos Industries/"
+            "path": "data/Wargame Humanoid/body/Onos Industries/",
+            "nodes": ["body"]
         },
         "stl": {
             "Farsight Trooper": {

@@ -1,5 +1,6 @@
 import json
 from ast import literal_eval
+from pathlib import Path
 
 import numpy as np
 
@@ -61,29 +62,29 @@ def find_mesh_connector(mesh, graph, form_result, mesh_info):
     return mesh_info
 
 
-def save_file_config_json(graph, builder_name, conf_json, form_result, mesh_info):
+def save_file_config_json(graph, data_folder, builder_name, conf_json, form_result, mesh_info):
     if form_result.get('marker_bitz'):
         folder = 'bitz'
     else:
         folder = graph.nodes[form_result.get('node')]['folder']
 
     try:
-        conf = load_json(f"data/{builder_name}/{conf_json}")
+        conf = load_json(f"{data_folder}/{builder_name}/configuration/{conf_json}")
         if conf.get(form_result.get('category')):
             if conf[form_result.get('category')]['stl'].get(form_result.get('file_name')):
                 conf[form_result.get('category')]['stl'][form_result.get('file_name')].update(mesh_info[form_result.get('file_name')])
             else:
                 conf[form_result.get('category')]['stl'].update(mesh_info)
-            print(f"data/{builder_name}/{conf_json} has been updated !")
+            print(f"{data_folder}/{builder_name}/configuration/{conf_json} has been updated !")
         else:
             conf[form_result.get('category')] = {
                 "desc": {
                     "display": form_result.get('category'),
-                    "path": f"data/{builder_name}/{folder}/{form_result.get('category')}/"
+                    "path": f"{data_folder}/{builder_name}/{folder}/{form_result.get('category')}/"
                 },
                 "stl": mesh_info
                 }
-            print(f"data/{builder_name}/{conf_json} has been updated with {form_result.get('category')}!")
+            print(f"{data_folder}/{builder_name}/configuration/{conf_json} has been updated with {form_result.get('category')}!")
 
     except Exception as e:
         print(e)
@@ -91,14 +92,14 @@ def save_file_config_json(graph, builder_name, conf_json, form_result, mesh_info
             form_result.get('category'): {
                 "desc": {
                     "display": form_result.get('category'),
-                    "path": f"data/{builder_name}/{folder}/{form_result.get('category')}/"
+                    "path": f"{data_folder}/{builder_name}/{folder}/{form_result.get('category')}/"
                 },
                 "stl": mesh_info
                 }
             }
-        print(f"data/{builder_name}/{conf_json} has been created with {form_result.get('category')}!")
+        print(f"{data_folder}/{builder_name}/configuration/{conf_json} has been created with {form_result.get('category')}!")
 
-        with open(f"data/{builder_name}/conf.json", "r+") as node_file:
+        with open(f"{data_folder}/{builder_name}/configuration/conf.json", "r+") as node_file:
 
             data = json.load(node_file)
             if folder == 'bitz':
@@ -117,6 +118,8 @@ def save_file_config_json(graph, builder_name, conf_json, form_result, mesh_info
 
             node_file.seek(0)
             json.dump(data, node_file, indent=4)
-
-    with open(f"data/{builder_name}/{conf_json}", "w") as outfile:
+    json_file_path = f"{data_folder}/{builder_name}/configuration/{conf_json}"
+    json_file_path = Path(json_file_path.replace('.', '/', json_file_path.count('.') - 1))
+    json_file_path.mkdir(parents=True, exist_ok=True)
+    with open(str(json_file_path), "w") as outfile:
         json.dump(conf, outfile, indent=4)

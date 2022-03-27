@@ -2,7 +2,9 @@
     "Purity Seals": {
         "desc": {
             "display": "Purity Seals",
-            "path": "data/Wargame Humanoid/bitz/Purity Seals/"
+            "path": "data/Wargame Humanoid/bitz/Purity Seals/",
+            "bitz": true,
+            "nodes": []
         },
         "stl": {
             "L5": {

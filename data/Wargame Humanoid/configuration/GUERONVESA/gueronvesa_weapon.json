@@ -2,7 +2,8 @@
     "Gueronvesa": {
         "desc": {
             "display": "Gue'ron'vesa Weapon",
-            "path": "data/Wargame Humanoid/weapon/Gueronvesa/"
+            "path": "data/Wargame Humanoid/weapon/Gueronvesa/",
+            "nodes": ["weapon"]
         },
         "stl": {
             "Bolter Drum NG G": {

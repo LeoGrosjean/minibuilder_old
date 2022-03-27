@@ -26,7 +26,7 @@ def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
 
         def get_designer_from_file(self, file="designer.json"):
             try:
-                designers = list(load_json(f"data/{self.graph.name}/{file}").keys())
+                designers = list(load_json(f"data/{self.graph.name}/configuration/{file}").keys())
             except Exception as e:
                 print(e)
                 designers = []

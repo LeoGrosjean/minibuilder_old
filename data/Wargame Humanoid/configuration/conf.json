@@ -8,9 +8,10 @@
         ],
         "bitz_files": [
             "empty.json",
-            "bitz.json",
-            "bases.json",
-            "onos_industries_bitz.json"
+            "free.bitz.json",
+            "Onos Industries.onos_industries_bitz.json",
+            "test.json",
+            "test.json"
         ]
     },
     "nodes": [
@@ -25,10 +26,10 @@
                 "bitz"
             ],
             "files": [
-                "body.json",
-                "gueronvesa_body.json",
-                "onos_industries_body.json",
-                "tempest_legion_body.json"
+                "free.body.json",
+                "GUERONVESA.gueronvesa_body.json",
+                "Onos Industries.onos_industries_body.json",
+                "(TMC) TEMPEST LEGION.tempest_legion_body.json"
             ]
         },
         {
@@ -50,10 +51,10 @@
                 "bitz"
             ],
             "files": [
-                "arm.json",
+                "free.arm.json",
                 "empty.json",
-                "onos_industries_arm.json",
-                "tempest_legion_arm.json"
+                "Onos Industries.onos_industries_arm.json",
+                "(TMC) TEMPEST LEGION.tempest_legion_arm.json"
             ]
         },
         {
@@ -75,10 +76,10 @@
                 "bitz"
             ],
             "files": [
-                "arm.json",
+                "free.arm.json",
                 "empty.json",
-                "onos_industries_arm.json",
-                "tempest_legion_arm.json"
+                "Onos Industries.onos_industries_arm.json",
+                "(TMC) TEMPEST LEGION.tempest_legion_arm.json"
             ]
         },
         {
@@ -99,10 +100,10 @@
                 "bitz"
             ],
             "files": [
-                "hand.json",
+                "free.hand.json",
                 "empty.json",
-                "gueronvesa_hand.json",
-                "onos_industries_weapon.json"
+                "GUERONVESA.gueronvesa_hand.json",
+                "Onos Industries.onos_industries_weapon.json"
             ]
         },
         {
@@ -123,10 +124,10 @@
                 "bitz"
             ],
             "files": [
-                "hand.json",
+                "free.hand.json",
                 "empty.json",
-                "gueronvesa_hand.json",
-                "onos_industries_weapon.json"
+                "GUERONVESA.gueronvesa_hand.json",
+                "Onos Industries.onos_industries_weapon.json"
             ]
         },
         {
@@ -148,7 +149,7 @@
             ],
             "files": [
                 "empty.json",
-                "gueronvesa_weapon.json"
+                "GUERONVESA.gueronvesa_weapon.json"
             ]
         },
         {
@@ -170,7 +171,7 @@
             ],
             "files": [
                 "empty.json",
-                "gueronvesa_weapon.json"
+                "GUERONVESA.gueronvesa_weapon.json"
             ]
         },
         {
@@ -190,11 +191,11 @@
                 "bitz"
             ],
             "files": [
-                "leg.json",
+                "free.leg.json",
                 "empty.json",
-                "gueronvesa_leg.json",
-                "onos_industries_leg.json",
-                "tempest_legion_leg.json"
+                "GUERONVESA.gueronvesa_leg.json",
+                "Onos Industries.onos_industries_leg.json",
+                "(TMC) TEMPEST LEGION.tempest_legion_leg.json"
             ]
         },
         {
@@ -214,11 +215,11 @@
                 "bitz"
             ],
             "files": [
-                "head.json",
+                "free.head.json",
                 "empty.json",
-                "gueronvesa_head.json",
-                "onos_industries_head.json",
-                "tempest_legion_head.json"
+                "GUERONVESA.gueronvesa_head.json",
+                "Onos Industries.onos_industries_head.json",
+                "(TMC) TEMPEST LEGION.tempest_legion_head.json"
             ]
         },
         {
@@ -238,11 +239,11 @@
                 "bitz"
             ],
             "files": [
-                "backpack.json",
+                "free.backpack.json",
                 "empty.json",
-                "gueronvesa_backpack.json",
-                "onos_industries_backpack.json",
-                "tempest_legion_backpack.json"
+                "GUERONVESA.gueronvesa_backpack.json",
+                "Onos Industries.onos_industries_backpack.json",
+                "(TMC) TEMPEST LEGION.tempest_legion_backpack.json"
             ]
         }
     ],

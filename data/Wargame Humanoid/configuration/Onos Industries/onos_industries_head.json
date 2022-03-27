@@ -2,7 +2,9 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries Heads",
-            "path": "data/Wargame Humanoid/head/Onos Industries/"
+            "path": "data/Wargame Humanoid/head/Onos Industries/",
+            "bitz": true,
+            "nodes": ["head"]
         },
         "stl": {
             "Enclave Trooper": {

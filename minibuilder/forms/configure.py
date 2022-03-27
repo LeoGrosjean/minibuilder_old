@@ -1,4 +1,5 @@
 import os
+from configparser import ConfigParser
 
 import wtforms
 from flask_wtf import FlaskForm
@@ -6,17 +7,22 @@ from werkzeug.datastructures import FileStorage
 from wtforms import SubmitField, SelectField, StringField
 from wtforms.validators import InputRequired, URL
 
+from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
 from wtforms import MultipleFileField
 
 
 def DynamicFormMakeMeshConf(graph, *args, **kwargs):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+
     class FormMakeMeshConf(FlaskForm):
         add = SubmitField('add mesh !')
-        mesh_file = SelectField(label='Mesh File', choices=os.listdir(f"data/{graph.name}/uploaded/"),
+        mesh_file = SelectField(label='Mesh File', choices=os.listdir(f"{data_folder}/{graph.name}/uploaded/"),
                                 validators=[InputRequired()], render_kw={'hidden': False, 'style': 'width: 181'})
         file_name = StringField(label='File Name', validators=[InputRequired()], render_kw={'hidden': False})
-        support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"data/{graph.name}/uploaded/"),
+        support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"{data_folder}/{graph.name}/uploaded/"),
                                 validators=[], render_kw={'hidden': False, 'style': 'width: 181'})
         url = StringField(label='Url to download/buy', validators=[InputRequired(), URL()], render_kw={'hidden': False})
         node = SelectField(label=f'Node', validators=[InputRequired()], render_kw={'hidden': False})
@@ -59,11 +65,11 @@ def DynamicFormMakeMeshConf(graph, *args, **kwargs):
             return self.graph.nodes[node].get('files')
 
         def get_category_from_file(self, file):
-            return list(load_json(f"data/{self.graph.name}/{file}").keys())
+            return list(load_json(f"{data_folder}/{self.graph.name}/configuration/{file}").keys())
 
         def get_designer_from_file(self, file="designer.json"):
             try:
-                designers = list(load_json(f"data/{self.graph.name}/{file}").keys())
+                designers = list(load_json(f"{data_folder}/{self.graph.name}/configuration/{file}", occurence=0).keys())
             except Exception as e:
                 print(e)
                 designers = []
