@@ -2,7 +2,7 @@
     "Sword": {
         "desc": {
             "display": "Sword",
-            "path": "data/Wargame Humanoid/hand/Sword/",
+            "path": "Wargame Humanoid/hand/Sword/",
             "nodes": ["hand"]
         },
         "stl": {
@@ -61,7 +61,7 @@
     "Rivet Gun": {
         "desc": {
             "display": "Rivet Gun",
-            "path": "data/Wargame Humanoid/hand/Rivet Gun/",
+            "path": "Wargame Humanoid/hand/Rivet Gun/",
             "nodes": ["hand"]
         },
         "stl": {
@@ -246,7 +246,7 @@
     "Heavy Weapon": {
         "desc": {
             "display": "Two Hands",
-            "path": "data/Wargame Humanoid/hand/Heavy Weapon/",
+            "path": "Wargame Humanoid/hand/Heavy Weapon/",
             "nodes": ["hand"]
         },
         "stl": {
@@ -319,7 +319,7 @@
     "Banner": {
         "desc": {
             "display": "Banner",
-            "path": "data/Wargame Humanoid/hand/Banner/",
+            "path": "Wargame Humanoid/hand/Banner/",
             "nodes": ["hand"]
         },
         "stl": {

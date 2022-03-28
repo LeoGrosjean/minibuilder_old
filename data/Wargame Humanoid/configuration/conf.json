@@ -7,6 +7,7 @@
       "designer.json"
     ],
     "bitz_files": [
+      "empty.json"
     ]
   },
   "nodes": [
@@ -42,6 +43,7 @@
         "bitz"
       ],
       "files": [
+        "empty.json"
       ]
     },
     {
@@ -63,6 +65,7 @@
         "bitz"
       ],
       "files": [
+        "empty.json"
       ]
     },
     {
@@ -103,6 +106,7 @@
         "bitz"
       ],
       "files": [
+        "empty.json"
       ]
     },
     {
@@ -123,6 +127,7 @@
         "bitz"
       ],
       "files": [
+        "empty.json"
       ]
     },
     {
@@ -143,6 +148,7 @@
         "bitz"
       ],
       "files": [
+              "empty.json"
       ]
     },
     {
@@ -162,6 +168,8 @@
         "bitz"
       ],
       "files": [
+              "empty.json"
+
       ]
     },
     {
@@ -181,6 +189,8 @@
         "bitz"
       ],
       "files": [
+              "empty.json"
+
       ]
     },
     {
@@ -200,6 +210,7 @@
         "bitz"
       ],
       "files": [
+              "empty.json"
       ]
     }
   ],

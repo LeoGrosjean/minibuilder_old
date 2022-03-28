@@ -2,7 +2,7 @@
     "Gueronvesa": {
         "desc": {
             "display": "Gue'ron'vesa Head",
-            "path": "data/Wargame Humanoid/head/Gueronvesa/",
+            "path": "Wargame Humanoid/head/Gueronvesa/",
             "bitz": true,
             "nodes": ["head"]
         },

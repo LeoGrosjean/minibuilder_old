@@ -2,7 +2,7 @@
     "Space Warrior Vanilla": {
         "desc": {
             "display": "Space Warrior Vanilla",
-            "path": "data/Wargame Humanoid/backpack/Space Warrior Vanilla/",
+            "path": "Wargame Humanoid/backpack/Space Warrior Vanilla/",
             "nodes": ["backpack"]
         },
         "stl": {
@@ -412,7 +412,7 @@
     "Space Warrior Jetpack": {
         "desc": {
             "display": "Space Warrior Jetpack",
-            "path": "data/Wargame Humanoid/backpack/Space Warrior Jetpack/",
+            "path": "Wargame Humanoid/backpack/Space Warrior Jetpack/",
             "nodes": ["backpack"]
         },
         "stl": {

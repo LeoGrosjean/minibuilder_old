@@ -2,7 +2,7 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries Legs",
-            "path": "data/Wargame Humanoid/leg/Onos Industries/",
+            "path": "Wargame Humanoid/leg/Onos Industries/",
             "nodes": ["leg"]
         },
         "stl": {

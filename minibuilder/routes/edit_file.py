@@ -13,7 +13,7 @@ from minibuilder.builder.node import read_node_link_json
 from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
 from minibuilder.forms.edit_file import DynamicFormEditMeshConf, BitzsForm
-from minibuilder.forms.home import ChooseBuilderForm
+from minibuilder.forms.home import ChooseBuilderForm, get_data_folder
 
 from minibuilder.utils.mesh import get_mesh_normal_position_edit
 from minibuilder.utils.mesh_config import find_vertices
@@ -35,6 +35,10 @@ def edit(builder, node, category, file):
         pathlib.Path(f'{data_folder}/{builder}/uploaded/').mkdir(parents=True)
 
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+    form_header.builder.choices = builders
     form_header.builder.data = builder
 
     infos = {}

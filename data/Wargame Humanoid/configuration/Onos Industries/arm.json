@@ -2,7 +2,7 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries Arms",
-            "path": "data/Wargame Humanoid/arm/Onos Industries/",
+            "path": "Wargame Humanoid/arm/Onos Industries/",
             "nodes": [
                 "arm"
             ]

@@ -2,7 +2,7 @@
     "Onos Industries": {
         "desc": {
             "display": "Onos Industries",
-            "path": "data/Wargame Humanoid/bitz/Onos Industries/",
+            "path": "Wargame Humanoid/bitz/Onos Industries/",
             "bitz": true,
             "nodes": []
         },

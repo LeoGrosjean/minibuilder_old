@@ -2,7 +2,7 @@
     "Space Warrior": {
         "desc": {
             "display": "Space Warrior Legs",
-            "path": "data/Wargame Humanoid/leg/Space Warrior/",
+            "path": "Wargame Humanoid/leg/Space Warrior/",
             "nodes": ["leg"]
         },
         "stl": {

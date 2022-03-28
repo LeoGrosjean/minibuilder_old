@@ -13,7 +13,7 @@ from werkzeug.utils import secure_filename
 from minibuilder.builder.node import read_node_link_json
 from minibuilder.config import configpath
 from minibuilder.forms.configure import DynamicFormMakeMeshConf, FormUploadFile
-from minibuilder.forms.home import ChooseBuilderForm
+from minibuilder.forms.home import ChooseBuilderForm, get_data_folder
 
 from minibuilder.utils.compressed import extract_nested_compress
 from minibuilder.utils.mesh_config import find_mesh_connector, save_file_config_json
@@ -25,6 +25,13 @@ configure_bp = Blueprint('configure_bp', __name__)
 
 @configure_bp.route('/builder/<builder>/configure', methods=['GET'])
 def builder_configure(builder):
+    form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+    form_header.builder.choices = builders
+    form_header.builder.data = builder
+
     config = ConfigParser()
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
@@ -35,9 +42,12 @@ def builder_configure(builder):
     if not os.path.exists(f'{data_folder}/{builder}/uploaded/'):
         pathlib.Path(f'{data_folder}/{builder}/uploaded/').mkdir(parents=True)
 
-    form_header = ChooseBuilderForm()
-    form_header.builder.data = builder
-    form = DynamicFormMakeMeshConf(graph)
+    try:
+        form = DynamicFormMakeMeshConf(graph)
+    except Exception as e:
+        print(e)
+        print('You should download configuration files')
+        return redirect(url_for('home_bp.list_builder_config'))
 
     form_upload = FormUploadFile()
     is_bitz = ['bitz'] if graph.graph.get('bitz_files') else []
@@ -59,6 +69,11 @@ def builder_post(builder):
 
     form_upload = FormUploadFile()
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+    form_header.builder.choices = builders
+
     form_header.builder.data = builder
     if form_upload.validate_on_submit():
         files_filenames = []

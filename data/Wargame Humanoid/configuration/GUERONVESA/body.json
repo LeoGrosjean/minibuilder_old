@@ -2,7 +2,7 @@
     "Gueronvesa": {
         "desc": {
             "display": "Gue'ron'vesa Body",
-            "path": "data/Wargame Humanoid/body/Gueronvesa/",
+            "path": "Wargame Humanoid/body/Gueronvesa/",
             "nodes": ["body"]
         },
         "stl": {

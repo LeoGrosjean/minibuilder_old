@@ -2,11 +2,11 @@ import json
 import os
 from configparser import ConfigParser
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 
 from minibuilder.config import configpath
 from minibuilder.forms.designers import FormAddDesigner
-from minibuilder.forms.home import ChooseBuilderForm
+from minibuilder.forms.home import ChooseBuilderForm, get_data_folder
 
 designer_bp = Blueprint('designer_bp', __name__)
 
@@ -15,6 +15,10 @@ designer_bp = Blueprint('designer_bp', __name__)
 def form_designer(builder_name):
     form_designer = FormAddDesigner()
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+    form_header.builder.choices = builders
     form_header.builder.data = builder_name
     return render_template("designers.html",
                            form_designer=form_designer,
@@ -31,6 +35,10 @@ def add_designer(builder):
 
     form_designer = FormAddDesigner()
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+    form_header.builder.choices = builders
     form_header.builder.data = builder
     form_result = request.form.to_dict()
 

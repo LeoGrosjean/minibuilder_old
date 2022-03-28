@@ -2,7 +2,7 @@
     "Gueronvesa": {
         "desc": {
             "display": "Gue'ron'vesa Hand",
-            "path": "data/Wargame Humanoid/hand/Gueronvesa/",
+            "path": "Wargame Humanoid/hand/Gueronvesa/",
             "nodes": ["hand"]
         },
         "stl": {

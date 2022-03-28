@@ -1,4 +1,5 @@
 import json
+import os
 from configparser import ConfigParser
 from pathlib import Path
 from flask import redirect, url_for
@@ -9,7 +10,7 @@ from slugify import slugify
 
 from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
-from minibuilder.forms.home import ChooseBuilderForm, EditConfForm, make_AddBuilderForm
+from minibuilder.forms.home import ChooseBuilderForm, EditConfForm, make_AddBuilderForm, get_data_folder
 from minibuilder.utils.dict import update
 
 home_bp = Blueprint('home_bp', __name__)
@@ -26,6 +27,9 @@ def choose_builder():
         json.dump(json.loads(r.content), fp)
 
     form = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    form.builder.choices = builders
+
     if request.method == 'POST':
         results = request.form.to_dict()
         if results.get('submit'):
@@ -41,11 +45,13 @@ def choose_builder():
 @home_bp.route("/make_data_folder", methods=['GET', 'POST'])
 def make_folder():
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    form_header.builder.choices = builders
     form = EditConfForm()
     try:
         config = ConfigParser()
         config.read(configpath + "/mbconfig.ini")
-        form.user_data_path.default = config['FOLDER']['data_path']
+        form.user_data_path.data = config['FOLDER']['data_path']
         form.port.data = config['SERVER']['port']
     except Exception:
         pass
@@ -64,6 +70,8 @@ def make_folder():
             config.write(configfile)
         Path(form_result.get('user_data_path')).mkdir(parents=True, exist_ok=True)
         message="Relaunch miniBuilder to validate change !"
+        builders = os.listdir(get_data_folder())
+        form_header.builder.choices = builders
 
     return render_template("make_folder_data.html", form=form, form_header=form_header, message=message)
 
@@ -74,6 +82,8 @@ def list_builder_config():
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    form_header.builder.choices = builders
 
     with open(f'{configpath}/config.json') as json_file:
         conf = json.load(json_file)
@@ -171,7 +181,7 @@ def dl_category_config(builder, category):
         folders = []
         got_bitz = False
         for cat in file_.keys():
-            folders.extend(file_[cat]['desc'].get("nodes"))
+            folders.extend(file_[cat]['desc'].get("nodes", []))
             if file_[cat]['desc'].get("bitz"):
                 got_bitz = True
         folders = list(set(folders))

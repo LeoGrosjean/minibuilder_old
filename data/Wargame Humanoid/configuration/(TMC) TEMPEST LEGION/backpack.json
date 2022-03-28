@@ -2,7 +2,7 @@
     "Tempest Legion": {
         "desc": {
             "display": "Tempest Legion",
-            "path": "data/Wargame Humanoid/backpack/Tempest Legion/",
+            "path": "Wargame Humanoid/backpack/Tempest Legion/",
             "nodes": [
                 "backpack"
             ]

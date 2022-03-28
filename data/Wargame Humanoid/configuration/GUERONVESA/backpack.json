@@ -2,7 +2,7 @@
     "Gueronvesa": {
         "desc": {
             "display": "Gue'ron'vesa Backpack",
-            "path": "data/Wargame Humanoid/backpack/Gueronvesa/",
+            "path": "Wargame Humanoid/backpack/Gueronvesa/",
             "nodes": ["backpack"]
         },
         "stl": {

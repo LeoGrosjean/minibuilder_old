@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 
 import numpy as np
 from flask import Blueprint, render_template, request, redirect, flash, send_file, make_response, \
-    render_template_string
+    render_template_string, url_for
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
 from trimesh import load
@@ -20,7 +20,7 @@ from minibuilder.builder.designer_box import load_meshes_find_designer
 from minibuilder.builder.node import read_node_link_json
 from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
-from minibuilder.forms.home import ChooseBuilderForm
+from minibuilder.forms.home import ChooseBuilderForm, get_data_folder
 from minibuilder.forms.make import generateminidynamic_func, dynamic_FieldBitz
 from minibuilder.utils.graph import get_successors
 from minibuilder.utils.render import scene_to_html
@@ -42,6 +42,11 @@ def utility_functions():
 @make_bp.route('/builder/<builder_name>', methods=['GET', 'POST'])
 def builder(builder_name):
     form_header = ChooseBuilderForm()
+    builders = os.listdir(get_data_folder())
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+    form_header.builder.choices = builders
+
     form_header.builder.data = builder_name
     form_result = request.form.to_dict()
 
@@ -60,6 +65,9 @@ def builder(builder_name):
     designers = {}
     for file in graph.graph.get('designer_files', []):
         designers.update(load_json(f"{configuration_folder}/{file}", occurence=0))
+
+    if not infos[list(graph.nodes)[0]]:
+        return redirect(url_for('home_bp.list_builder_config'))
 
     bitzs = {}
     for file in graph.graph.get('bitz_files', []):
@@ -83,18 +91,26 @@ def builder(builder_name):
 
     di_form = {}
     li_position = []
+    li_remove_node = []
+
     for node_name, v in graph.nodes.data():
         choices_values = list(infos[node_name].keys())
 
         di_form[node_name] = {
             'label': v.get('label'),
             'select':  infos[node_name].keys(),
-            'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys(),
+            'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys() if infos[node_name] else [],
             'bitz_select': bitzs.keys(),
             'bitz_choices': bitzs[list(bitzs.keys())[0]]['stl'].keys() if list(bitzs.keys()) else []
         }
+        if not infos[node_name]:
+            di_form.pop(node_name)
+            li_remove_node.append(node_name)
 
         li_position.append(v.get('position'))
+
+    for node_name in li_remove_node:
+        graph.remove_node(node_name)
 
     config_live_edit = {}
 
@@ -129,7 +145,7 @@ def builder(builder_name):
 
         # Build information dictionnary
         # Should be refactored as a class
-        di_file = make_info(graph, builder_name, form_result, infos, bitzs, li_removed)
+        di_file = make_info(graph, builder_name, form_result, infos, bitzs, li_removed, data_folder)
 
         for k, v in di_file.items():
             if v.get('bitzs'):

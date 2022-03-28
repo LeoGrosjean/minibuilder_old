@@ -1,7 +1,7 @@
 from networkx import topological_sort
 
 
-def make_info(graph, builder, form_result, infos, bitzs, li_removed):
+def make_info(graph, builder, form_result, infos, bitzs, li_removed, data_folder):
     di_file = {}
     for node in topological_sort(graph):
         select = form_result.get(f'{node}_select')
@@ -49,7 +49,7 @@ def make_info(graph, builder, form_result, infos, bitzs, li_removed):
 
                 di_file[node]['bitzs'].append(
                     {
-                        "path": category_path + file_path,
+                        "path": data_folder + '/' + category_path + file_path,
                         "label": bitz_name,
                         "mesh_marker": di_file[node]['info']['bitzs'].get(bitz_name),
                         "bitz_marker": bitz_marker,
@@ -75,6 +75,6 @@ def make_info(graph, builder, form_result, infos, bitzs, li_removed):
             else:
                 is_bitz = False
         di_file[node]['info']['mesh_path'] = \
-            f"data/{builder}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
+            f"{data_folder}/{builder}/{folder}/{select}/{infos.get(node).get(select).get('stl').get(list_select).get('file')}"
 
     return di_file

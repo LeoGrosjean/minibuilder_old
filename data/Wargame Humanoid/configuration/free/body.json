@@ -2,7 +2,7 @@
     "Space Warrior": {
         "desc": {
             "display": "SM Bodies",
-            "path": "data/Wargame Humanoid/body/Space Warrior/",
+            "path": "Wargame Humanoid/body/Space Warrior/",
             "nodes": ["body"]
         },
         "stl": {
@@ -338,7 +338,7 @@
     "JumpTroop": {
         "desc": {
             "display": "JumpTroop",
-            "path": "data/Wargame Humanoid/body/JumpTroop/"
+            "path": "Wargame Humanoid/body/JumpTroop/"
         },
         "stl": {
             "Torso A": {
