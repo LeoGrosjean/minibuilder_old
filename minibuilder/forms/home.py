@@ -7,8 +7,6 @@ from slugify import slugify
 from wtforms import SelectField, SubmitField, IntegerField, StringField, HiddenField, FieldList, FormField
 from wtforms.widgets import NumberInput
 
-from minibuilder.config import git_public_token
-
 
 class ChooseBuilderForm(FlaskForm):
     builder = SelectField(label="Builder", choices=os.listdir('data'))

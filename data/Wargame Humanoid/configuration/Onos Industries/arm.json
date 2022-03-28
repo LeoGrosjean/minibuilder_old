@@ -3,7 +3,9 @@
         "desc": {
             "display": "Onos Industries Arms",
             "path": "data/Wargame Humanoid/arm/Onos Industries/",
-            "nodes": ["arm"]
+            "nodes": [
+                "arm"
+            ]
         },
         "stl": {
             "Enclave Trooper 01": {
@@ -20,7 +22,7 @@
                     "vertex": 215671
                 },
                 "hand": {
-                    "vertex": 124535
+                    "face": 572622
                 },
                 "scale": 1.1,
                 "md5": "d5354a58441cef9b7f766f6468aff7a4",

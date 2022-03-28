@@ -111,9 +111,14 @@ def dl_builder(builder):
     if Path(f"{data_folder}/{builder}/configuration/conf.json").exists():
         conf_old = load_json(f"{data_folder}/{builder}/configuration/conf.json", occurence=0)
         if conf['graph'].get('bitz_files'):
-            conf['graph'].pop('bitz_files')
+            conf['graph']['bitz_files'] = list(set(conf['graph']['bitz_files'] + conf_old['graph'].get('bitz_files', [])))
+            conf_old['graph']['bitz_files'] = conf['graph']['bitz_files']
         for node in conf['nodes']:
-            node.pop('files')
+            for node_old in conf_old["nodes"]:
+                if node_old['id'] == node['id']:
+                    break
+            node['files'] = list(set(node['files'] + node_old['files']))
+            node_old['files'] = node['files']
         conf = update(conf, conf_old)
 
     Path(f"{data_folder}/{builder}/configuration/").mkdir(parents=True, exist_ok=True)

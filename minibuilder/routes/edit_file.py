@@ -45,6 +45,9 @@ def edit(builder, node, category, file):
     form.file_name.data = file
     form.hidden_file_name.data = file
 
+    if graph.nodes[node].get('dextral'):
+        form.dextral.default = graph.nodes[node].get('dextral')
+
     try:
         form.support.choices = form.support.choices + [infos.get(category).get('stl').get(file).get("support", {}).get('file', '')]
         form.support.data = infos.get(category).get('stl').get(file).get("support", {}).get('file', '')

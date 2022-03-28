@@ -3,7 +3,9 @@
         "desc": {
             "display": "Onos Industries Arms",
             "path": "data/Wargame Humanoid/hand/Onos Industries (weapon)/",
-            "nodes": ["hand"]
+            "nodes": [
+                "hand"
+            ]
         },
         "stl": {
             "Enclave Carbine": {
@@ -14,7 +16,7 @@
                     "file_id": 9776478
                 },
                 "designer": "onosindustries",
-                "dextral": "right",
+                "dextral": "left",
                 "hand": {
                     "facet": 2829
                 },

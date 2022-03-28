@@ -120,6 +120,6 @@ def save_file_config_json(graph, data_folder, builder_name, conf_json, form_resu
             json.dump(data, node_file, indent=4)
     json_file_path = f"{data_folder}/{builder_name}/configuration/{conf_json}"
     json_file_path = Path(json_file_path.replace('.', '/', json_file_path.count('.') - 1))
-    json_file_path.mkdir(parents=True, exist_ok=True)
+    json_file_path.parent.mkdir(parents=True, exist_ok=True)
     with open(str(json_file_path), "w") as outfile:
         json.dump(conf, outfile, indent=4)

@@ -3,7 +3,9 @@
         "desc": {
             "display": "Space Warrior Arms",
             "path": "data/Wargame Humanoid/arm/Space Warrior/",
-            "nodes": ["arm"]
+            "nodes": [
+                "arm"
+            ]
         },
         "stl": {
             "MK II v1": {

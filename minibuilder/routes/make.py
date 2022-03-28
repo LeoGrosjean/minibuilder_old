@@ -65,6 +65,22 @@ def builder(builder_name):
     for file in graph.graph.get('bitz_files', []):
         bitzs.update(load_json(f"{configuration_folder}/{file}"))
 
+    li = []
+    for cat in bitzs.keys():
+        for bitz in bitzs[cat]['stl'].keys():
+            if "bitz" not in bitzs[cat]['stl'][bitz] and cat != 'Empty':
+                li.append((cat, bitz))
+
+    set_cat = set()
+    for cat, bitz in li:
+        del bitzs[cat]["stl"][bitz]
+        set_cat.add(cat)
+
+    for cat in set_cat:
+        if len(bitzs[cat]["stl"]) == 0:
+            del bitzs[cat]
+
+
     di_form = {}
     li_position = []
     for node_name, v in graph.nodes.data():
@@ -639,6 +655,21 @@ def updateselectbitz(selection, builder):
     for bitz_file in graph.graph.get('bitz_files', []):
         bitz_infos.update(load_json(f"{configuration_folder}/{bitz_file}"))
 
+    li = []
+    for cat in bitz_infos.keys():
+        for bitz in bitz_infos[cat]['stl'].keys():
+            if "bitz" not in bitz_infos[cat]['stl'][bitz] and cat != 'Empty':
+                li.append((cat, bitz))
+
+    set_cat = set()
+    for cat, bitz in li:
+        del bitz_infos[cat]["stl"][bitz]
+        set_cat.add(cat)
+
+    for cat in set_cat:
+        if len(bitz_infos[cat]["stl"]) == 0:
+            del bitz_infos[cat]
+
     choices = list(bitz_infos[selection]['stl'].keys())
     choices = list(zip(choices, choices))
     response = make_response(json.dumps(choices))
@@ -734,6 +765,21 @@ def updatebitz(builder, node, category, selection):
     bitzs = {}
     for bitz_json_file in graph.graph.get('bitz_files', []):
         bitzs.update(load_json(f"{configuration_folder}/{bitz_json_file}"))
+
+    li = []
+    for cat in bitzs.keys():
+        for bitz in bitzs[cat]['stl'].keys():
+            if "bitz" not in bitzs[cat]['stl'][bitz] and cat != 'Empty':
+                li.append((cat, bitz))
+
+    set_cat = set()
+    for cat, bitz in li:
+        del bitzs[cat]["stl"][bitz]
+        set_cat.add(cat)
+
+    for cat in set_cat:
+        if len(bitzs[cat]["stl"]) == 0:
+            del bitzs[cat]
 
     form = dynamic_FieldBitz(node=node, bitzs=bitzs)()
 
