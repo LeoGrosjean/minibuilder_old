@@ -40,7 +40,7 @@ def choose_builder():
 
 @home_bp.route("/make_data_folder", methods=['GET', 'POST'])
 def make_folder():
-
+    form_header = ChooseBuilderForm()
     form = EditConfForm()
     try:
         config = ConfigParser()
@@ -64,7 +64,7 @@ def make_folder():
             config.write(configfile)
         Path(form_result.get('user_data_path')).mkdir(parents=True, exist_ok=True)
 
-    return render_template("make_folder_data.html", form=form)
+    return render_template("make_folder_data.html", form=form, form_header=form_header)
 
 
 @home_bp.route("/add_builder", methods=['GET'])
@@ -72,6 +72,7 @@ def list_builder_config():
     config = ConfigParser()
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
+    form_header = ChooseBuilderForm()
 
     with open(f'{configpath}/config.json') as json_file:
         conf = json.load(json_file)
@@ -96,7 +97,7 @@ def list_builder_config():
             else:
                 curr[builder]['dl'][category] = files
 
-    return render_template("git_config/add_files.html", dl=dl, update=update, slugify=slugify)
+    return render_template("git_config/add_files.html", dl=dl, update=update, slugify=slugify, form_header=form_header)
 
 
 @home_bp.route("/dl_builder/<builder>", methods=['GET'])

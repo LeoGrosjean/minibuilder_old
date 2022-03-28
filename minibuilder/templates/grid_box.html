@@ -108,7 +108,7 @@
     </div>
 {% endmacro %}
 <form method="post" id="builder">
-    <div class="h-100" style="position: absolute; z-index:2; top:0%; overflow-y: auto; overflow-x: hidden">
+    <div class="h-100" style="position: absolute; z-index:2; top:0%; overflow-y: auto; overflow-x: hidden; max-width: 30%">
         {% for row in grid %}
             <div class="list-group-item list-group-item-action bg-light">
                 {{ display_block(row) }}

@@ -4,23 +4,27 @@
 <nav class="navbar navbar-light bg-light" style="z-index: 1; position: relative">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{url_for('home_bp.choose_builder')}}">miniBuilder</a>
+        <div class="box-flex0">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
+                    Settings
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="{{ url_for('home_bp.make_folder')}}">App Configuration</a>
+                    <a class="dropdown-item" href="{{ url_for('home_bp.list_builder_config')}}">Builder Config</a>
+                    <a class="dropdown-item" href="{{ url_for('home_bp.choose_builder')}}">FAQ</a>
                 </div>
             </div>
-        <form action="{{ url_for('home_bp.choose_builder') }}" method="post">
+        </div>
+        <div class="box-flex0">
+            <form action="{{ url_for('home_bp.choose_builder') }}" method="post">
 
-            {{ form_header.add_designers }}
-            {{ form_header.add_files }}
-            {{ form_header.builder }}
-            {{ form_header.submit }}
-        </form>
+                {{ form_header.add_designers }}
+                {{ form_header.add_files }}
+                {{ form_header.builder }}
+                {{ form_header.submit }}
+            </form>
+        </div>
     </div>
 </nav>

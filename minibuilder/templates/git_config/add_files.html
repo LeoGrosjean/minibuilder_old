@@ -21,7 +21,8 @@
         crossorigin="anonymous"></script>
 </html>
 
-
+{% include "choose_builder.html" %}
+<body>
 <div id="accordion">
 
     {% for builder, categories in update.items() %}
@@ -29,12 +30,12 @@
         <div class="card-header" id="{{slugify(builder, separator='_')}}_header">
             <h5 class="mb-0">
 
-                <button class="btn btn-link" data-toggle="collapse"
+                <button class="btn btn-link dropdown-toggle" data-toggle="collapse"
                         data-target="#{{slugify(builder, separator='_')}}_collapse"
                         aria-expanded="false" aria-controls="{{slugify(builder, separator='_')}}_collapse">
                     {{builder}}
                 </button>
-                <a class="btn btn-light" type="submit" href="{{url_for('home_bp.dl_builder', builder=builder)}}">Overwrite</a>
+                <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_builder', builder=builder)}}">Overwrite</a>
             </h5>
         </div>
         <div id="{{slugify(builder, separator='_')}}_collapse" class="collapse"
@@ -46,7 +47,7 @@
                     <div class="card">
                         <div class="card-header" id="{{slugify(category + builder + 'update', separator='_')}}_header">
                             <h5 class="mb-0">
-                                    {{ category }} <a class="btn btn-light" type="submit" href="{{url_for('home_bp.dl_category_config', builder=builder, category=category)}}">Overwrite</a>
+                                    {{ category }} <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_category_config', builder=builder, category=category)}}">Overwrite</a>
                             </h5>
 
                         </div>
@@ -58,7 +59,7 @@
                             <div class="card-header"
                                  id="{{slugify(category + builder + 'download', separator='_')}}_header">
                                 <h5 class="mb-0">
-                                    {{ category }} <a class="btn btn-light" type="submit" href="{{url_for('home_bp.dl_category_config', builder=builder, category=category)}}">Download</a>
+                                    {{ category }} <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_category_config', builder=builder, category=category)}}">Download</a>
                                 </h5>
                             </div>
                         </div>
@@ -81,7 +82,7 @@
         <div class="card-header" id="{{slugify(builder, separator='_')}}_header">
             <h5 class="mb-0">
 
-                <button class="btn btn-link" data-toggle="collapse"
+                <button class="btn btn-secondary" data-toggle="collapse"
                         data-target="#{{slugify(builder, separator='_')}}_collapse"
                         aria-expanded="false" aria-controls="{{slugify(builder, separator='_')}}_collapse">
                     {{builder}}
@@ -114,3 +115,4 @@
 {% endfor %}
 
 </div>
+</body>
