@@ -22,7 +22,7 @@
 <body>
 {% include "choose_builder.html" %}
 
-<form action="{{ url_for('designer_bp.add_designer', builder_name=builder_name) }}" method="post">
+<form action="{{ url_for('designer_bp.add_designer', builder=builder_name) }}" method="post">
     {{ form_designer.designer_name.label }} {{ form_designer.designer_name }}<br>
     {{ form_designer.donation_url.label }} {{ form_designer.donation_url }}<br>
     {{ form_designer.add }}<br>
