@@ -1,4 +1,5 @@
 import os
+from configparser import ConfigParser
 from pathlib import Path
 
 from flask_wtf import FlaskForm
@@ -7,9 +8,18 @@ from slugify import slugify
 from wtforms import SelectField, SubmitField, IntegerField, StringField, HiddenField, FieldList, FormField
 from wtforms.widgets import NumberInput
 
+from minibuilder.config import configpath
+
+
+def get_data_folder():
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    return data_folder
+
 
 class ChooseBuilderForm(FlaskForm):
-    builder = SelectField(label="Builder", choices=os.listdir('data'))
+    builder = SelectField(label="Builder", choices=os.listdir(get_data_folder()))
     submit = SubmitField("Let's build !")
     add_files = SubmitField('Add files !')
     add_designers = SubmitField('Add designers !')

@@ -49,7 +49,7 @@ def make_folder():
         form.port.data = config['SERVER']['port']
     except Exception:
         pass
-
+    message = ""
     if request.method == 'POST':
         form_result = request.form.to_dict()
         config = ConfigParser()
@@ -63,8 +63,9 @@ def make_folder():
         with open(f'{configpath}/mbconfig.ini', 'w') as configfile:
             config.write(configfile)
         Path(form_result.get('user_data_path')).mkdir(parents=True, exist_ok=True)
+        message="Relaunch miniBuilder to validate change !"
 
-    return render_template("make_folder_data.html", form=form, form_header=form_header)
+    return render_template("make_folder_data.html", form=form, form_header=form_header, message=message)
 
 
 @home_bp.route("/add_builder", methods=['GET'])
