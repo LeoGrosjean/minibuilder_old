@@ -4,6 +4,7 @@ from configparser import ConfigParser
 from functools import reduce
 from math import radians
 from operator import add
+from pathlib import Path
 from urllib.parse import urlparse
 
 import numpy as np
@@ -343,8 +344,6 @@ def builder(builder_name):
                 if 'submit_preview' in form_result or 'dl_zip' in form_result:
                     bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                     node_normal, node_vertice = get_normal_vertice(di_file[node].get('mesh'), bitz.get('mesh_marker'))
-                    print(bitz_normal)
-                    print(node_normal)
                     bitz.get('mesh').apply_translation(bitz_normal * bitz.get('merge', 0))
 
                     normal_x = np.cross(bitz_normal, [1, 0, 0]) / np.linalg.norm(np.cross(bitz_normal, [1, 0, 0]))
@@ -455,7 +454,7 @@ def builder(builder_name):
                         di_file[dest]['mesh'] = di_file[dest]['mesh'] + di_file[source]['mesh']
 
                         # TODO MERGE AND BOOLEAN DIFF HERE
-                        tmp_path = f'tmp/dl/merged_{dest}_{source}.' + str(
+                        tmp_path = f'{configuration_folder}/tmp/dl/merged_{dest}_{source}.' + str(
                             (di_file[dest]['mesh']._kwargs.get('file_type') or 'stl'))
                         di_file[dest]['mesh'].export(tmp_path)
                         di_file[dest]['info']['mesh_path'] = tmp_path
@@ -577,18 +576,18 @@ def builder(builder_name):
                 merge_mesh.append([bitz.get('mesh')])
 
         scene = reduce(add, merge_mesh)
-
+        Path(f'{configuration_folder}/tmp/dl/').mkdir(parents=True, exist_ok=True)
         if 'dl_zip' in form_result:
             li_file_path = []
             for k, v in di_file.items():
-                tmp_path = f'tmp/dl/{k}.' + str(
+                tmp_path = f'{configuration_folder}/tmp/dl/{k}.' + str(
                     (di_file[k]['mesh']._kwargs.get('file_type') or 'stl'))
                 di_file[k]['mesh'].export(tmp_path)
                 li_file_path.append((tmp_path, k))
 
                 for bitz in di_file[k]['bitzs']:
                     if not bitz.get('fusion'):
-                        tmp_path = f'tmp/dl/{k}_{bitz.get("label")}.' + str(
+                        tmp_path = f'{configuration_folder}/tmp/dl/{k}_{bitz.get("label")}.' + str(
                             (bitz['mesh']._kwargs.get('file_type') or 'stl'))
                         bitz['mesh'] = bitz['mesh'].difference(di_file[k]['mesh'])
                         bitz['mesh'].export(tmp_path)
@@ -597,19 +596,22 @@ def builder(builder_name):
             for k, v in di_file.items():
                 # TODO what if merged, dont add merged files ? because we remove node from di_file when merge True
                 if v.get('info').get('support'):
-                    li_file_path.append(
-                        (
-                            v.get('info').get('mesh_path').replace(v.get('info').get('file'), f"support/{v.get('info').get('support').get('file')}"),
-                            k + "_support"
+                    cond1 = Path(v.get('info').get('mesh_path').replace(v.get('info').get('file'), f"support/{v.get('info').get('support').get('file')}")).exists()
+                    cond2 = v.get('info').get('file') in v.get('info').get('mesh_path')
+                    if cond1 and cond2:
+                        li_file_path.append(
+                            (
+                                v.get('info').get('mesh_path').replace(v.get('info').get('file'), f"support/{v.get('info').get('support').get('file')}"),
+                                k + "_support"
+                            )
                         )
-                    )
-            scene.export("tmp/dl/merged.stl")
-            li_file_path.append(('tmp/dl/merged.stl', 'merged'))
+            scene.export(f"{configuration_folder}/tmp/dl/merged.stl")
+            li_file_path.append((f'{configuration_folder}/tmp/dl/merged.stl', 'merged'))
             data = write_zip(li_file_path)
 
             # CLEAN
-            for file in os.listdir('tmp/dl'):
-                os.remove(f"tmp/dl/{file}")
+            for file in os.listdir(f'{configuration_folder}/tmp/dl'):
+                os.remove(f"{configuration_folder}/tmp/dl/{file}")
             return send_file(data,
                              mimetype='application/zip',
                              as_attachment=True,
@@ -637,11 +639,13 @@ def builder(builder_name):
 @make_bp.route('/selectform/<node>/<selection>/<builder>')
 def updateselect(node, selection, builder):
     builder_name = builder
-    graph = read_node_link_json(f'data/{builder_name}/configuration/conf.json')
     config = ConfigParser()
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
     configuration_folder = f"{data_folder}/{builder_name}/configuration"
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
     infos = {}
     for node_name in graph.nbunch_iter():
         infos[node_name] = {}
@@ -661,11 +665,11 @@ def updateselect(node, selection, builder):
 @make_bp.route('/selectformbitz/bitz/<selection>/<builder>')
 def updateselectbitz(selection, builder):
     builder_name = builder
-    graph = read_node_link_json(f'data/{builder_name}/configuration/conf.json')
     config = ConfigParser()
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
     configuration_folder = f"{data_folder}/{builder_name}/configuration"
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
 
     bitz_infos = {}
     for bitz_file in graph.graph.get('bitz_files', []):
@@ -773,7 +777,7 @@ def updatebitz(builder, node, category, selection):
     data_folder = config['FOLDER']['data_path']
     configuration_folder = f"{data_folder}/{builder}/configuration"
     builder_name = builder
-    graph = read_node_link_json(f'data/{builder_name}/configuration/conf.json')
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
     infos = {}
     for json_file in graph.nodes[node].get('files'):
         infos.update(load_json(f"{configuration_folder}/{json_file}"))

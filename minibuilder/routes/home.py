@@ -27,6 +27,8 @@ def choose_builder():
         json.dump(json.loads(r.content), fp)
 
     form = ChooseBuilderForm()
+    if not Path(get_data_folder()).is_dir():
+        return redirect(url_for("home_bp.make_folder"))
     builders = os.listdir(get_data_folder())
     form.builder.choices = builders
 
@@ -45,8 +47,11 @@ def choose_builder():
 @home_bp.route("/make_data_folder", methods=['GET', 'POST'])
 def make_folder():
     form_header = ChooseBuilderForm()
-    builders = os.listdir(get_data_folder())
-    form_header.builder.choices = builders
+    try:
+        builders = os.listdir(get_data_folder())
+        form_header.builder.choices = builders
+    except Exception as e:
+        print(e)
     form = EditConfForm()
     try:
         config = ConfigParser()
@@ -82,6 +87,8 @@ def list_builder_config():
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
     form_header = ChooseBuilderForm()
+    if not Path(get_data_folder()).is_dir():
+        return redirect(url_for("home_bp.make_folder"))
     builders = os.listdir(get_data_folder())
     form_header.builder.choices = builders
 

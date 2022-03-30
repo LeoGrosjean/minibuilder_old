@@ -15,7 +15,6 @@ def find_vertices(mesh, *args):
             for value in args:
                 check = np.array(value) - np.array([x, y, z])
                 if (-10e-04 < check).all() and (check < 10e-04).all():
-                    print(i)
                     li.append(i)
         if len(li) == 1:
             return {"vertex": li[0]}

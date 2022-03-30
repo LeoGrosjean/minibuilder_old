@@ -19,7 +19,7 @@ def get_data_folder():
 
 
 class ChooseBuilderForm(FlaskForm):
-    builder = SelectField(label="Builder", choices=os.listdir(get_data_folder()))
+    builder = SelectField(label="Builder")
     submit = SubmitField("Let's build !")
     add_files = SubmitField('Add files !')
     add_designers = SubmitField('Add designers !')

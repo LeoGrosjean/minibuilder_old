@@ -5,6 +5,7 @@ from wtforms import SubmitField, SelectField, HiddenField, StringField, validato
 from wtforms.validators import InputRequired
 
 from minibuilder.file_config.parts import load_json
+from minibuilder.forms.home import get_data_folder
 
 
 def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
@@ -12,7 +13,7 @@ def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
         add = SubmitField('Validate change !')
         file_name = StringField(label='File Name', validators=[InputRequired()], render_kw={'hidden': False})
         hidden_file_name = HiddenField()
-        support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"data/{graph.name}/uploaded/"),
+        support = SelectField(label='Support File (optionnal)', choices=[''] + os.listdir(f"{get_data_folder()}/{graph.name}/uploaded/"),
                                 validators=[], render_kw={'hidden': False, 'style': 'width: 181'})
         url = StringField(label='Url to download/buy', validators=[InputRequired()], render_kw={'hidden': False})
 

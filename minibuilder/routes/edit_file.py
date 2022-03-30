@@ -50,7 +50,7 @@ def edit(builder, node, category, file):
     form.hidden_file_name.data = file
 
     if graph.nodes[node].get('dextral'):
-        form.dextral.default = graph.nodes[node].get('dextral')
+        form.dextral.data = infos.get(category).get('stl').get(file).get("dextral")
 
     try:
         form.support.choices = form.support.choices + [infos.get(category).get('stl').get(file).get("support", {}).get('file', '')]
@@ -289,6 +289,7 @@ def addbitz(builder, node, category, file):
             for bitz in li:
                 files_conf.get(category).get('stl').get(file)['bitzs'][bitz.get('name')] = find_vertices(mesh, *literal_eval(f"[[{bitz.get('marker')}]]"))
 
+            conf_json = conf_json.replace('.', '/', conf_json.count('.') - 1)
             with open(f"{configuration_folder}/{conf_json}", "w") as outfile:
                 json.dump(files_conf, outfile, indent=4)
 

@@ -259,6 +259,7 @@ def check_md5(builder):
 
     di = {}
     for json_file in list(monset):
+        json_file = json_file.replace('.', '/', json_file.count('.') - 1)
         with open(f"{configuration_folder}/{json_file}", "r") as f:
             json_file = json.load(f)
             for v in json_file.values():
@@ -280,13 +281,13 @@ def check_md5(builder):
             continue
         if di.get(hash):
             if not os.path.exists(pathlib.Path(di.get(hash)).parent):
-                pathlib.Path(di.get(hash)).parent.mkdir(parents=True)
+                pathlib.Path(f"{data_folder}/{di.get(hash)}").parent.mkdir(parents=True, exist_ok=True)
             print(f"{file} already have a configuration ! {hash}")
             try:
 
                 shutil.move(
-                    f"{data_folder}/{builder}/uploaded/{file}", di.get(hash))
-                print(f"{data_folder}/{builder}/uploaded/{file} moved to {di.get(hash)} !")
+                    f"{data_folder}/{builder}/uploaded/{file}", f"{data_folder}/{di.get(hash)}")
+                print(f"{data_folder}/{builder}/uploaded/{file} moved to {data_folder}/{di.get(hash)} !")
             except Exception as e:
                 print(e)
                 os.remove(f"{data_folder}/{builder}/uploaded/{file}")
