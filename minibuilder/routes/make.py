@@ -411,7 +411,7 @@ def builder(builder_name):
                         v.get('mesh'),
                         bitz.get('mesh_marker')
                     )
-                    normal *= -1
+                    normal = normal * -1
 
                     bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), normal, vertice_bitz))
 

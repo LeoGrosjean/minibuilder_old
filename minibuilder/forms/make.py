@@ -34,7 +34,7 @@ def generateminidynamic_func(*args, **kwargs):
                 IntegerField(f'{v.get("label")} Shake', default=0, widget=NumberInput(min=-180, max=180, step=1),
                              validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_scale",
-                FloatField(f'{v.get("label")} Scale', default=1, widget=NumberInput(min=0.8, max=1.2, step=0.01),
+                FloatField(f'{v.get("label")} Scale', default=1, widget=NumberInput(min=0.5, max=1.5, step=0.01),
                              validators=[InputRequired()]))
         setattr(GenerateMiniDynamic, f"{k}_merge",
                 FloatField(f'{v.get("label")} Merge', default=0, widget=NumberInput(min=-4, max=3, step=0.01),
@@ -70,7 +70,7 @@ def dynamic_BitzDisplay(*args, **kwargs):
         bitz_list = SelectField(label='File', validators=[InputRequired()], choices=kwargs.get('bitz_choices'), render_kw={'hidden': False})
         bitz_rotate = IntegerField('Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1),
                      validators=[InputRequired()])
-        bitz_scale = FloatField('Scale', default=1, widget=NumberInput(min=0.8, max=1.2, step=0.01),
+        bitz_scale = FloatField('Scale', default=1, widget=NumberInput(min=0.5, max=1.5, step=0.01),
                              validators=[InputRequired()])
         bitz_merge = FloatField('Merge', default=0, widget=NumberInput(min=-4, max=3, step=0.01),
                    validators=[InputRequired()])
