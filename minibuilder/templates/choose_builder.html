@@ -17,14 +17,35 @@
                 </div>
             </div>
         </div>
-        <div class="box-flex0">
-            <form action="{{ url_for('home_bp.choose_builder') }}" method="post">
+        <form action="{{ url_for('home_bp.choose_builder') }}" method="post">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
 
-                {{ form_header.add_designers }}
-                {{ form_header.add_files }}
-                {{ form_header.builder }}
-                {{ form_header.submit }}
-            </form>
-        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Builder Settings
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                {{ form_header.add_designers( class="dropdown-item") }}
+                                {{ form_header.add_files( class="dropdown-item") }}
+                                <a class="dropdown-item"
+                                   href="{{ url_for('home_bp.select_category', builder=builder or builder_name)}}">Category
+                                    Settings</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        {{ form_header.builder(class='form-select') }}
+                    </div>
+                    <div class="col">
+                        {{ form_header.submit(class='btn btn-secondary') }}
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </nav>

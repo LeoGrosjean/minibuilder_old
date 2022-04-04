@@ -5,7 +5,7 @@ from pathlib import Path
 from flask_wtf import FlaskForm
 from github import Github
 from slugify import slugify
-from wtforms import SelectField, SubmitField, IntegerField, StringField, HiddenField, FieldList, FormField
+from wtforms import SelectField, SubmitField, IntegerField, StringField, HiddenField, FieldList, FormField, BooleanField
 from wtforms.widgets import NumberInput
 
 from minibuilder.config import configpath
@@ -61,4 +61,17 @@ class CategoryForm(FlaskForm):
     category = FieldList(FormField(FileForm))
 
 
+def dynamic_selectcategory(*args, **kwargs):
+    class SelectCategory(FlaskForm):
+        submit = SubmitField("Apply")
+
+    for k, v in kwargs.get('bitz_category').items():
+        bitz_cat = slugify(k)
+        setattr(SelectCategory, f"bitz_{bitz_cat}", BooleanField(label=k, default=v))
+
+    for k, v in kwargs.get('category').items():
+        cat = slugify(k)
+        setattr(SelectCategory, f"category_{cat}", BooleanField(label=k, default=v))
+
+    return SelectCategory
 

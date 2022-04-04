@@ -8,9 +8,11 @@ from github import Github
 from requests import get
 from slugify import slugify
 
+from minibuilder.builder.node import read_node_link_json
 from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
-from minibuilder.forms.home import ChooseBuilderForm, EditConfForm, make_AddBuilderForm, get_data_folder
+from minibuilder.forms.home import ChooseBuilderForm, EditConfForm, make_AddBuilderForm, get_data_folder, \
+    dynamic_selectcategory
 from minibuilder.utils.dict import update
 
 home_bp = Blueprint('home_bp', __name__)
@@ -41,7 +43,7 @@ def choose_builder():
         elif results.get('add_designers'):
             return redirect(f"/builder/{results.get('builder')}/designers")
 
-    return render_template("about.html", form_header=form)
+    return render_template("about.html", form_header=form, builder=builders[0] if builders else None)
 
 
 @home_bp.route("/make_data_folder", methods=['GET', 'POST'])
@@ -209,3 +211,90 @@ def dl_category_config(builder, category):
         json.dump(conf_, outfile, indent=4)
 
     return redirect(url_for('home_bp.list_builder_config'))
+
+
+@home_bp.route("/select_category/", methods=['GET'])
+def redirect_empty_category():
+    return redirect(url_for('home_bp.list_builder_config'))
+
+
+@home_bp.route("/select_category/<builder>", methods=['GET', 'POST'])
+def select_category(builder):
+    config = ConfigParser()
+    config.read(configpath + "/mbconfig.ini")
+    data_folder = config['FOLDER']['data_path']
+    configuration_folder = f"{data_folder}/{builder}/configuration"
+
+    form_header = ChooseBuilderForm()
+    if not Path(get_data_folder()).is_dir():
+        return redirect(url_for("home_bp.make_folder"))
+    builders = os.listdir(get_data_folder())
+
+    if not builders:
+        return redirect(url_for('home_bp.list_builder_config'))
+
+    form_header.builder.choices = builders
+
+    graph = read_node_link_json(f'{configuration_folder}/conf.json')
+
+    infos = {}
+    infos_node = {}
+    for node_name in graph.nbunch_iter():
+        infos_node[node_name] = {}
+        for json_path in graph.nodes.get(node_name).get('files'):
+            tmp = load_json(f"{configuration_folder}/{json_path}")
+            infos.update(tmp)
+            infos_node[node_name].update(tmp)
+    bitzs = {}
+    for file in graph.graph.get('bitz_files', []):
+        bitzs.update(load_json(f"{configuration_folder}/{file}"))
+
+    display_infos = {
+        "bitz_category": {},
+        "category": {}
+    }
+    if request.method == 'POST':
+        with open(f"{configuration_folder}/{slugify(builder, separator='_')}.json", 'w') as f:
+            for k, v in request.form.to_dict().items():
+                for cat in list(infos.keys()) + list(bitzs.keys()):
+                    if slugify(cat) == k.replace('category_', '', 1):
+                        display_infos['category'][cat] = True if v == 'y' else False
+                    elif slugify(cat) == k.replace('bitz_', '', 1):
+                        display_infos['bitz_category'][cat] = True if v == 'y' else False
+
+            for missing_cat in set(infos.keys()) ^ set(display_infos['category'].keys()):
+                display_infos['category'][missing_cat] = False
+            for missing_cat in set(bitzs.keys()) ^ set(display_infos['bitz_category'].keys()):
+                display_infos['bitz_category'][missing_cat] = False
+
+            json.dump(display_infos, f, indent=4)
+    else:
+        try:
+            display_infos = load_json(f"{configuration_folder}/{slugify(builder, separator='_')}.json")
+        except:
+            display_infos = {
+                "bitz_category": {},
+                "category": {}
+            }
+
+    display_bitz = {}
+    for k in bitzs.keys():
+        display_bitz[k] = display_infos['bitz_category'].get(k, True)
+
+    display_cat = {}
+    for k in infos.keys():
+        display_cat[k] = display_infos['category'].get(k, True)
+
+    display_node = {}
+    for k in infos.keys():
+        display_node[k] = []
+        for node, v2 in infos_node.items():
+            if k in v2.keys():
+                display_node[k].append(node)
+
+    form = dynamic_selectcategory(
+        bitz_category=dict(sorted(display_bitz.items())),
+        category=dict(sorted(display_cat.items()))
+    )()
+
+    return render_template("configuration/category_select.html", form_header=form_header, form=form, display_node=display_node, builder=builder)
