@@ -502,16 +502,31 @@ def builder(builder_name):
                 if successors and predecessor:
                     # TODO support dextral ?
                     marker = di_file.get(node_rotate).get('info')[di_file.get(node_rotate).get('on')]
-                    normal, vertice, normal_x, normal_y = get_mesh_normal_position(
-                        di_file.get(node_rotate).get('mesh'),
-                        marker)
+
+                    if 'dextral' in di_file.get(node_rotate).get('info'):
+                        marker_ = marker.get(di_file.get(node_rotate).get('info').get('dextral'))
+                        normal, vertice, normal_x, normal_y = get_mesh_normal_position(
+                            di_file.get(node_rotate).get('mesh'),
+                            marker_ or marker)
+                    else:
+                        normal, vertice, normal_x, normal_y = get_mesh_normal_position(
+                            di_file.get(node_rotate).get('mesh'),
+                            marker)
+
                 # TODO MOVE MARKER XY dans EDIT (soucis par ici, check aussi avant apres)
                 elif predecessor:
                     marker = di_file.get(predecessor).get('info')[di_file.get(node_rotate).get('on')]
-                    normal, vertice, normal_x, normal_y = get_mesh_normal_position(
-                        di_file.get(predecessor).get('mesh'),
-                        marker,
-                        inverse_norm=True)
+                    if 'dextral' in di_file.get(node_rotate).get('info'):
+                        marker_ = marker.get(di_file.get(node_rotate).get('info').get('dextral'))
+                        normal, vertice, normal_x, normal_y = get_mesh_normal_position(
+                            di_file.get(predecessor).get('mesh'),
+                            marker_ or marker,
+                            inverse_norm=True)
+                    else:
+                        normal, vertice, normal_x, normal_y = get_mesh_normal_position(
+                            di_file.get(predecessor).get('mesh'),
+                            marker,
+                            inverse_norm=True)
 
                 if successors:
                     for successor in successors:
