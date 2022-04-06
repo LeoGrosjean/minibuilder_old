@@ -173,7 +173,7 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "right",
+                "dextral": "left",
                 "arm": {
                     "vertex": 6433
                 },
@@ -196,7 +196,7 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "right",
+                "dextral": "left",
                 "arm": {
                     "vertex": 43929
                 },
@@ -219,7 +219,7 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "right",
+                "dextral": "left",
                 "arm": {
                     "vertex": 7067
                 },
@@ -242,7 +242,7 @@
                 },
                 "designer": "onosindustries",
                 "rotate": 0,
-                "dextral": "right",
+                "dextral": "left",
                 "arm": {
                     "vertex": 58341
                 },

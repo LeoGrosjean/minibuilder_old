@@ -8,56 +8,6 @@
             ]
         },
         "stl": {
-            "Psychic - Empty Hand Arm": {
-                "file": "TL - Right Arm - PSY 1.OBJ",
-                "designer": "Garin",
-                "md5": "add928b384b3e4809d2fb89d4963ea8d",
-                "dextral": "right",
-                "arm": {
-                    "facet": 38
-                },
-                "bitzs": {
-                    "purity seal": {
-                        "vertex": 186
-                    }
-                }
-            },
-            "Medic - Medihand": {
-                "file": "TL - Medic - Left Arm.OBJ",
-                "designer": "Garin",
-                "md5": "5654b21f5e0138155ab1258085d12751",
-                "dextral": "left",
-                "arm": {
-                    "facet": 4
-                }
-            },
-            "Medic - Pistol": {
-                "file": "TL - Right Arm - Pistol 3.OBJ",
-                "designer": "Garin",
-                "md5": "8e31997dd9de0dea2b541da3792607dd",
-                "dextral": "right",
-                "arm": {
-                    "facet": 26
-                }
-            },
-            "Captain - Helm in hand": {
-                "file": "TL - Cap 1 - Left Arm.OBJ",
-                "designer": "Garin",
-                "md5": "ab8023fa2bea15cf40029382caf1ea24",
-                "dextral": "left",
-                "arm": {
-                    "facet": 6
-                }
-            },
-            "Captain - Sword": {
-                "file": "TL - Cap 1 - Right Arm.OBJ",
-                "designer": "Garin",
-                "md5": "698687b695de6ea736b4cbae786f684a",
-                "dextral": "right",
-                "arm": {
-                    "facet": 6
-                }
-            },
             "Basic Troop - Chain Axe 3": {
                 "file": "TL - Left Arm - Chain Axe 3.OBJ",
                 "designer": "Garin",
@@ -882,6 +832,56 @@
                 "dextral": "left",
                 "arm": {
                     "facet": 28
+                }
+            },
+            "Psychic - Empty Hand Arm": {
+                "file": "TL - Right Arm - PSY 1.OBJ",
+                "designer": "Garin",
+                "md5": "add928b384b3e4809d2fb89d4963ea8d",
+                "dextral": "right",
+                "arm": {
+                    "facet": 38
+                },
+                "bitzs": {
+                    "purity seal": {
+                        "vertex": 186
+                    }
+                }
+            },
+            "Medic - Medihand": {
+                "file": "TL - Medic - Left Arm.OBJ",
+                "designer": "Garin",
+                "md5": "5654b21f5e0138155ab1258085d12751",
+                "dextral": "left",
+                "arm": {
+                    "facet": 4
+                }
+            },
+            "Medic - Pistol": {
+                "file": "TL - Right Arm - Pistol 3.OBJ",
+                "designer": "Garin",
+                "md5": "8e31997dd9de0dea2b541da3792607dd",
+                "dextral": "right",
+                "arm": {
+                    "facet": 26
+                }
+            },
+            "Captain - Helm in hand": {
+                "file": "TL - Cap 1 - Left Arm.OBJ",
+                "designer": "Garin",
+                "md5": "ab8023fa2bea15cf40029382caf1ea24",
+                "dextral": "left",
+                "arm": {
+                    "facet": 6
+                }
+            },
+            "Captain - Sword": {
+                "file": "TL - Cap 1 - Right Arm.OBJ",
+                "designer": "Garin",
+                "md5": "698687b695de6ea736b4cbae786f684a",
+                "dextral": "right",
+                "arm": {
+                    "facet": 6
                 }
             }
         }

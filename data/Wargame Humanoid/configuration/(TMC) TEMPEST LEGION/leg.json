@@ -8,7 +8,7 @@
             ]
         },
         "stl": {
-            "Default 1": {
+            "Basic Troops - Legs 1": {
                 "file": "TL - Legs 1m.OBJ",
                 "urls": [
                     "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
@@ -17,14 +17,6 @@
                 "md5": "37153be70e820977d4170f32291ec13f",
                 "leg": {
                     "vertex": 11591
-                }
-            },
-            "Medic 1": {
-                "file": "TL - Medic - Legs.OBJ",
-                "designer": "Garin",
-                "md5": "c68c539f33f915849c06e9f60fbab062",
-                "leg": {
-                    "vertex": 13821
                 }
             },
             "Basic Troops - At Ease": {
@@ -274,6 +266,30 @@
                 ],
                 "leg": {
                     "vertex": 22013
+                }
+            },
+            "Medic 1": {
+                "file": "TL - Medic - Legs.OBJ",
+                "designer": "Garin",
+                "md5": "c68c539f33f915849c06e9f60fbab062",
+                "leg": {
+                    "vertex": 13821
+                }
+            },
+            "Default 1": {
+                "file": "TL - Legs 1m.OBJ",
+                "urls": [
+                    "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
+                ],
+                "designer": "Garin",
+                "md5": "37153be70e820977d4170f32291ec13f",
+                "leg": {
+                    "vertex": 11591
+                },
+                "bitzs": {
+                    "base": {
+                        "face": 480
+                    }
                 }
             }
         }

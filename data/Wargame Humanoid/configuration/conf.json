@@ -1,259 +1,258 @@
 {
-  "directed": true,
-  "multigraph": true,
-  "graph": {
-    "name": "Wargame Humanoid",
-    "designer_files": [
-      "designer.json"
+    "directed": true,
+    "multigraph": true,
+    "graph": {
+        "name": "Wargame Humanoid",
+        "designer_files": [
+            "designer.json"
+        ],
+        "bitz_files": [
+            "empty.json"
+        ]
+    },
+    "nodes": [
+        {
+            "id": "body",
+            "label": "Body",
+            "folder": "body",
+            "permissions": [
+                "select",
+                "list",
+                "scale",
+                "bitz"
+            ],
+            "files": [
+            ]
+        },
+        {
+            "id": "larm",
+            "label": "Left Arm",
+            "folder": "arm",
+            "dextral": "left",
+            "dex_type": "arm",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "rarm",
+            "label": "Right Arm",
+            "folder": "arm",
+            "dextral": "right",
+            "dex_type": "arm",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "lhand",
+            "label": "Left Hand",
+            "folder": "hand",
+            "dextral": "left",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "rhand",
+            "label": "Right Hand",
+            "folder": "hand",
+            "dextral": "right",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "rweapon",
+            "label": "Right Weapon",
+            "folder": "weapon",
+            "dextral": "right",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "lweapon",
+            "label": "Left Weapon",
+            "folder": "weapon",
+            "dextral": "left",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "leg",
+            "label": "Leg",
+            "folder": "leg",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "head",
+            "label": "Head",
+            "folder": "head",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        },
+        {
+            "id": "backpack",
+            "label": "Backpack",
+            "folder": "backpack",
+            "permissions": [
+                "select",
+                "list",
+                "rotate",
+                "scale",
+                "merge",
+                "anklex",
+                "ankley",
+                "movex",
+                "movey",
+                "bitz"
+            ],
+            "files": [
+                "empty.json"
+            ]
+        }
     ],
-    "bitz_files": [
-      "empty.json"
+    "links": [
+        {
+            "source": "body",
+            "target": "head"
+        },
+        {
+            "source": "body",
+            "target": "rarm"
+        },
+        {
+            "source": "rarm",
+            "target": "rhand",
+            "merge": true
+        },
+        {
+            "source": "rhand",
+            "target": "rweapon",
+            "merge": true
+        },
+        {
+            "source": "body",
+            "target": "larm"
+        },
+        {
+            "source": "larm",
+            "target": "lhand",
+            "merge": true
+        },
+        {
+            "source": "lhand",
+            "target": "lweapon",
+            "merge": true
+        },
+        {
+            "source": "body",
+            "target": "leg"
+        },
+        {
+            "source": "body",
+            "target": "backpack"
+        }
     ]
-  },
-  "nodes": [
-    {
-      "id": "body",
-      "label": "Body",
-      "folder": "body",
-      "permissions": [
-        "select",
-        "list",
-        "scale",
-        "bitz"
-      ],
-      "files": [
-      ]
-    },
-    {
-      "id": "larm",
-      "label": "Left Arm",
-      "folder": "arm",
-      "dextral": "left",
-      "dex_type": "arm",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-        "empty.json"
-      ]
-    },
-    {
-      "id": "rarm",
-      "label": "Right Arm",
-      "folder": "arm",
-      "dextral": "right",
-      "dex_type": "arm",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-        "empty.json"
-      ]
-    },
-    {
-      "id": "lhand",
-      "label": "Left Hand",
-      "folder": "hand",
-      "dextral": "left",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-      ]
-    },
-    {
-      "id": "rhand",
-      "label": "Right Hand",
-      "folder": "hand",
-      "dextral": "right",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-        "empty.json"
-      ]
-    },
-    {
-      "id": "rweapon",
-      "label": "Right Weapon",
-      "folder": "weapon",
-      "dextral": "right",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-        "empty.json"
-      ]
-    },
-    {
-      "id": "lweapon",
-      "label": "Left Weapon",
-      "folder": "weapon",
-      "dextral": "left",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-              "empty.json"
-      ]
-    },
-    {
-      "id": "leg",
-      "label": "Leg",
-      "folder": "leg",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-              "empty.json"
-
-      ]
-    },
-    {
-      "id": "head",
-      "label": "Head",
-      "folder": "head",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-              "empty.json"
-
-      ]
-    },
-    {
-      "id": "backpack",
-      "label": "Backpack",
-      "folder": "backpack",
-      "permissions": [
-        "select",
-        "list",
-        "rotate",
-        "scale",
-        "merge",
-        "anklex",
-        "ankley",
-        "movex",
-        "movey",
-        "bitz"
-      ],
-      "files": [
-              "empty.json"
-      ]
-    }
-  ],
-  "links": [
-    {
-      "source": "body",
-      "target": "head"
-    },
-    {
-      "source": "body",
-      "target": "rarm"
-    },
-    {
-      "source": "rarm",
-      "target": "rhand",
-      "merge": true
-    },
-    {
-      "source": "rhand",
-      "target": "rweapon",
-      "merge": true
-    },
-    {
-      "source": "body",
-      "target": "larm"
-    },
-    {
-      "source": "larm",
-      "target": "lhand",
-      "merge": true
-    },
-    {
-      "source": "lhand",
-      "target": "lweapon",
-      "merge": true
-    },
-    {
-      "source": "body",
-      "target": "leg"
-    },
-    {
-      "source": "body",
-      "target": "backpack"
-    }
-  ]
 }

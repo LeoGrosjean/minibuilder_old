@@ -8,72 +8,6 @@
             ]
         },
         "stl": {
-            "Psychic 1": {
-                "file": "TL - Torso - PSY.OBJ",
-                "designer": "Garin",
-                "urls": [
-                    "https://comicsgamesandthings.com/"
-                ],
-                "md5": "ca94ca3eb7863dd9d10f0502eba0570f",
-                "arm": {
-                    "left": {
-                        "facet": 7
-                    },
-                    "right": {
-                        "facet": 100
-                    }
-                },
-                "leg": {
-                    "facet": 439
-                },
-                "backpack": {
-                    "vertex": 21300
-                },
-                "head": {
-                    "vertex": 20983
-                }
-            },
-            "Medic 1": {
-                "file": "TL - Medic - Torso.OBJ",
-                "designer": "Garin",
-                "md5": "18596f072bcde59e234ffa31fe8fac9d",
-                "arm": {
-                    "left": {
-                        "facet": 2
-                    },
-                    "right": {
-                        "facet": 3
-                    }
-                },
-                "backpack": {
-                    "vertex": 23476
-                },
-                "leg": {
-                    "facet": 0
-                },
-                "head": {
-                    "vertex": 6828
-                }
-            },
-            "Captain with legs": {
-                "file": "TL - Cap 1 - Body.obj",
-                "designer": "Garin",
-                "md5": "21e8cb5374ad00c142a18aca7b95988e",
-                "arm": {
-                    "left": {
-                        "facet": 0
-                    },
-                    "right": {
-                        "facet": 75
-                    }
-                },
-                "backpack": {
-                    "vertex": 6740
-                },
-                "head": {
-                    "vertex": 38393
-                }
-            },
             "Basic Troops - Torso 1": {
                 "file": "TL - Torso 1.OBJ",
                 "designer": "Garin",
@@ -213,6 +147,72 @@
                 },
                 "head": {
                     "vertex": 24618
+                }
+            },
+            "Psychic 1": {
+                "file": "TL - Torso - PSY.OBJ",
+                "designer": "Garin",
+                "urls": [
+                    "https://comicsgamesandthings.com/"
+                ],
+                "md5": "ca94ca3eb7863dd9d10f0502eba0570f",
+                "arm": {
+                    "left": {
+                        "facet": 7
+                    },
+                    "right": {
+                        "facet": 100
+                    }
+                },
+                "leg": {
+                    "facet": 439
+                },
+                "backpack": {
+                    "vertex": 21300
+                },
+                "head": {
+                    "vertex": 20983
+                }
+            },
+            "Medic 1": {
+                "file": "TL - Medic - Torso.OBJ",
+                "designer": "Garin",
+                "md5": "18596f072bcde59e234ffa31fe8fac9d",
+                "arm": {
+                    "left": {
+                        "facet": 2
+                    },
+                    "right": {
+                        "facet": 3
+                    }
+                },
+                "backpack": {
+                    "vertex": 23476
+                },
+                "leg": {
+                    "facet": 0
+                },
+                "head": {
+                    "vertex": 6828
+                }
+            },
+            "Captain with legs": {
+                "file": "TL - Cap 1 - Body.obj",
+                "designer": "Garin",
+                "md5": "21e8cb5374ad00c142a18aca7b95988e",
+                "arm": {
+                    "left": {
+                        "facet": 0
+                    },
+                    "right": {
+                        "facet": 75
+                    }
+                },
+                "backpack": {
+                    "vertex": 6740
+                },
+                "head": {
+                    "vertex": 38393
                 }
             }
         }

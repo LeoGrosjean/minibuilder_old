@@ -1,0 +1,252 @@
+{
+    "Base Magic Temple": {
+        "desc": {
+            "display": "base",
+            "path": "Wargame Humanoid/bitz/Base Magic Temple/"
+        },
+        "stl": {
+            "B Magic Tem 25 01": {
+                "file": "B_Magic_Tem_25_01.stl",
+                "designer": "Txarli Factory",
+                "md5": "623275e6c83819f12b932b8585ad7913",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 26
+                }
+            },
+            "B Magic Tem 25 02": {
+                "file": "B_Magic_Tem_25_02.stl",
+                "designer": "Txarli Factory",
+                "md5": "ed8182a81819e6063e77d8a70b49609b",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 17738
+                }
+            },
+            "B Magic Tem 25 03": {
+                "file": "B_Magic_Tem_25_03.stl",
+                "designer": "Txarli Factory",
+                "md5": "146db962e0fbbe6b5cb5c7df7d693e96",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 26826
+                }
+            },
+            "B Magic Tem 25 04": {
+                "file": "B_Magic_Tem_25_04.stl",
+                "designer": "Txarli Factory",
+                "md5": "a28e44737ddd4f6deb1567210fa5a731",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 8600
+                }
+            },
+            "B Magic Tem 25 05": {
+                "file": "B_Magic_Tem_25_05.stl",
+                "designer": "Txarli Factory",
+                "md5": "a696c13d91a1d3d9d9ffe1849e1b6679",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 28141
+                }
+            },
+            "B Magic Tem 32 01": {
+                "file": "B_Magic_Tem_32_01.stl",
+                "designer": "Txarli Factory",
+                "md5": "71dc6d29d1be924de59231ae94aeb49d",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 29575
+                }
+            },
+            "B Magic Tem 32 02": {
+                "file": "B_Magic_Tem_32_02.stl",
+                "designer": "Txarli Factory",
+                "md5": "23c02258f9dd2a9fa2b150fefaaed4c2",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 22436
+                }
+            },
+            "B Magic Tem 32 03": {
+                "file": "B_Magic_Tem_32_03.stl",
+                "designer": "Txarli Factory",
+                "md5": "1fc222b0adb94401830f97aa4abe8148",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 33689
+                }
+            },
+            "B Magic Tem 32 04": {
+                "file": "B_Magic_Tem_32_04.stl",
+                "designer": "Txarli Factory",
+                "md5": "94640e7d8bc503dbaae828bee1e16324",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 25113
+                }
+            },
+            "B Magic Tem 32 05": {
+                "file": "B_Magic_Tem_32_05.stl",
+                "designer": "Txarli Factory",
+                "md5": "fea8e7fd25c9ffddc9bbdcc4f8b80c53",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 925
+                }
+            },
+            "B Magic Tem 40 01": {
+                "file": "B_Magic_Tem_40_01.stl",
+                "designer": "Txarli Factory",
+                "md5": "ebdfdde95d08fc99bb60cb364fa42b01",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 8215
+                }
+            },
+            "B Magic Tem 40 02": {
+                "file": "B_Magic_Tem_40_02.stl",
+                "designer": "Txarli Factory",
+                "md5": "aa0e55ce40c05b21389dc44d6f334111",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 47060
+                }
+            },
+            "B Magic Tem 40 03": {
+                "file": "B_Magic_Tem_40_03.stl",
+                "designer": "Txarli Factory",
+                "md5": "f7f6d097a96c103447636d87c4664090",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 1933
+                }
+            },
+            "B Magic Tem 50 01": {
+                "file": "B_Magic_Tem_50_01.stl",
+                "designer": "Txarli Factory",
+                "md5": "3f207f66a21d2846a44e890e3287d22a",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 68168
+                }
+            },
+            "B Magic Tem 50 02": {
+                "file": "B_Magic_Tem_50_02.stl",
+                "designer": "Txarli Factory",
+                "md5": "16d8084e7c04243f2e2d814566df08f4",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 15239
+                }
+            },
+            "B Magic Tem 60": {
+                "file": "B_Magic_Tem_60.stl",
+                "designer": "Txarli Factory",
+                "md5": "b9c865e95c88ce2627e2afaa5263e735",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 80742
+                }
+            },
+            "B Magic Tem 80": {
+                "file": "B_Magic_Tem_80.stl",
+                "designer": "Txarli Factory",
+                "md5": "70a52381e51c388813d3086f73ab91ad",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 150106
+                }
+            },
+            "B Magic Tem Oval 01": {
+                "file": "B_Magic_Tem_Oval_01.stl",
+                "designer": "Txarli Factory",
+                "md5": "7182fb421146f07e80667d596445ba87",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 57270
+                }
+            },
+            "B Magic Tem Oval 02": {
+                "file": "B_Magic_Tem_Oval_02.stl",
+                "designer": "Txarli Factory",
+                "md5": "c5e9b46f0e063faf5d41d623fe8758c4",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 43288
+                }
+            },
+            "B Magic Tem Oval 03": {
+                "file": "B_Magic_Tem_Oval_03.stl",
+                "designer": "Txarli Factory",
+                "md5": "b3738e4452402178eb5311d869d00336",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 15
+                }
+            },
+            "B Magic Tem Oval Pri 01": {
+                "file": "B_Magic_Tem_Oval_Pri_01.stl",
+                "designer": "Txarli Factory",
+                "md5": "385acb9de13e58792202cc0c1ec5645d",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 10255
+                }
+            },
+            "B Magic Tem Oval Pri 02": {
+                "file": "B_Magic_Tem_Oval_Pri_02.stl",
+                "designer": "Txarli Factory",
+                "md5": "b2eb2746ef4164bccc41b20f03b9ca65",
+                "urls": [
+                    "https://txarlifactory.com/collections/round-bases/products/magic-temples-bases-round"
+                ],
+                "bitz": {
+                    "face": 46303
+                }
+            }
+        }
+    }
+}

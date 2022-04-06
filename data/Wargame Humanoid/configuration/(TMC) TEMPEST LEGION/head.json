@@ -9,30 +9,6 @@
             ]
         },
         "stl": {
-            "Psychic 1": {
-                "file": "TL - Head Psy 1.OBJ",
-                "designer": "Garin",
-                "md5": "9ebd4d541a94dc0b11a3205ff32a6df3",
-                "head": {
-                    "vertex": 9297
-                }
-            },
-            "Medic 1": {
-                "file": "TL - Medic - Head.OBJ",
-                "designer": "Garin",
-                "md5": "86b5c992b39bc802f3f67b43f4f7a4a9",
-                "head": {
-                    "vertex": 8700
-                }
-            },
-            "Captain 1": {
-                "file": "TL - Cap 1 - Head.OBJ",
-                "designer": "Garin",
-                "md5": "e88738a38b91067627d4de8792a3180f",
-                "head": {
-                    "vertex": 9952
-                }
-            },
             "Basic Trooper - No Topknot": {
                 "file": "TL - Head 1 - No Topknot.OBJ",
                 "designer": "Garin",
@@ -52,7 +28,7 @@
                     "https://comicsgamesandthings.com/shop/product/tempest-legion-basic-troops/"
                 ],
                 "head": {
-                    "vertex": 21124
+                    "vertex": 17729
                 }
             },
             "Basic Trooper - 1c": {
@@ -273,6 +249,30 @@
                 ],
                 "head": {
                     "vertex": 5282
+                }
+            },
+            "Psychic 1": {
+                "file": "TL - Head Psy 1.OBJ",
+                "designer": "Garin",
+                "md5": "9ebd4d541a94dc0b11a3205ff32a6df3",
+                "head": {
+                    "vertex": 9297
+                }
+            },
+            "Medic 1": {
+                "file": "TL - Medic - Head.OBJ",
+                "designer": "Garin",
+                "md5": "86b5c992b39bc802f3f67b43f4f7a4a9",
+                "head": {
+                    "vertex": 8700
+                }
+            },
+            "Captain 1": {
+                "file": "TL - Cap 1 - Head.OBJ",
+                "designer": "Garin",
+                "md5": "e88738a38b91067627d4de8792a3180f",
+                "head": {
+                    "vertex": 9952
                 }
             }
         }

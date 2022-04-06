@@ -71,5 +71,9 @@
     "BREXIT": {
         "name": "@BREXIT",
         "donation": "https://www.patreon.com/themakerscult"
+    },
+    "Txarli Factory": {
+        "name": "@Txarli Factory",
+        "donation": "https://txarlifactory.com/"
     }
 }
