@@ -12,6 +12,7 @@ from flask import Blueprint, render_template, request, redirect, flash, send_fil
     render_template_string, url_for
 from markupsafe import Markup
 from networkx import topological_sort, dfs_edges
+from slugify import slugify
 from trimesh import load
 from trimesh.geometry import align_vectors
 from trimesh.transformations import euler_matrix, rotation_matrix
@@ -58,11 +59,28 @@ def builder(builder_name):
 
     graph = read_node_link_json(f'{configuration_folder}/conf.json')
 
+    try:
+        display_infos = load_json(f"{configuration_folder}/{slugify(builder_name, separator='_')}.json")
+    except:
+        display_infos = {
+            "bitz_category": {},
+            "category": {}
+        }
+    bitz_cat_nok = [k for k, v in display_infos["bitz_category"].items() if not v]
+    cat_nok = [k for k, v in display_infos["category"].items() if not v]
+
     infos = {}
     for node_name in graph.nbunch_iter():
         infos[node_name] = {}
         for json_path in graph.nodes.get(node_name).get('files'):
-            infos[node_name].update(load_json(f"{configuration_folder}/{json_path}"))
+            tmp = load_json(f"{configuration_folder}/{json_path}")
+            for cat in cat_nok:
+                if cat in tmp:
+                    try:
+                        tmp.pop(cat)
+                    except:
+                        continue
+            infos[node_name].update(tmp)
     designers = {}
     for file in graph.graph.get('designer_files', []):
         designers.update(load_json(f"{configuration_folder}/{file}", occurence=0))
@@ -72,7 +90,14 @@ def builder(builder_name):
 
     bitzs = {}
     for file in graph.graph.get('bitz_files', []):
-        bitzs.update(load_json(f"{configuration_folder}/{file}"))
+        tmp = load_json(f"{configuration_folder}/{file}")
+        for cat in bitz_cat_nok:
+            if cat in tmp:
+                try:
+                    tmp.pop(cat)
+                except:
+                    continue
+        bitzs.update(tmp)
 
     li = []
     for cat in bitzs.keys():
@@ -782,9 +807,26 @@ def updatebitz(builder, node, category, selection):
     for json_file in graph.nodes[node].get('files'):
         infos.update(load_json(f"{configuration_folder}/{json_file}"))
 
+    try:
+        display_infos = load_json(f"{configuration_folder}/{slugify(builder_name, separator='_')}.json")
+    except:
+        display_infos = {
+            "bitz_category": {},
+            "category": {}
+        }
+    bitz_cat_nok = [k for k, v in display_infos["bitz_category"].items() if not v]
+    cat_nok = [k for k, v in display_infos["category"].items() if not v]
+
     bitzs = {}
-    for bitz_json_file in graph.graph.get('bitz_files', []):
-        bitzs.update(load_json(f"{configuration_folder}/{bitz_json_file}"))
+    for file in graph.graph.get('bitz_files', []):
+        tmp = load_json(f"{configuration_folder}/{file}")
+        for cat in bitz_cat_nok:
+            if cat in tmp:
+                try:
+                    tmp.pop(cat)
+                except:
+                    continue
+        bitzs.update(tmp)
 
     li = []
     for cat in bitzs.keys():

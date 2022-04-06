@@ -244,6 +244,7 @@ def update_configure_file(builder, node, file):
 
 @configure_bp.route('/checkmd5/<builder>/')
 def check_md5(builder):
+    print('starting MD5 check')
     config = ConfigParser()
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
@@ -295,4 +296,5 @@ def check_md5(builder):
 
     response = make_response(json.dumps({}))
     response.content_type = 'application/jsons'
+    print('ending MD5 check')
     return response
