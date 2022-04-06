@@ -499,7 +499,7 @@ def builder(builder_name):
                 if not di_file.get(node_rotate):
                     continue
 
-                if successors and predecessor:
+                if predecessor:
                     # TODO support dextral ?
                     marker = di_file.get(node_rotate).get('info')[di_file.get(node_rotate).get('on')]
 
@@ -521,7 +521,7 @@ def builder(builder_name):
                         normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                             di_file.get(predecessor).get('mesh'),
                             marker_ or marker,
-                            inverse_norm=True)
+                            inverse_norm=di_file.get(node_rotate).get('info').get('dextral') == graph.nodes[node_rotate]['dextral'])
                     else:
                         normal, vertice, normal_x, normal_y = get_mesh_normal_position(
                             di_file.get(predecessor).get('mesh'),
