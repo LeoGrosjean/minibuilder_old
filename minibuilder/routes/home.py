@@ -234,6 +234,7 @@ def select_category(builder):
         return redirect(url_for('home_bp.list_builder_config'))
 
     form_header.builder.choices = builders
+    form_header.builder.data = builder
 
     graph = read_node_link_json(f'{configuration_folder}/conf.json')
 

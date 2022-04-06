@@ -84,7 +84,7 @@ def builder_post(builder):
             extract_nested_compress(builder, file_filename)
             for file in os.listdir(f"{data_folder}/{builder}/uploaded/"):
                 try:
-                    if not pathlib.Path(file).suffix[1:] in mesh_suffixes:
+                    if not pathlib.Path(file).suffix[1:].lower() in mesh_suffixes:
                         os.remove(f"{data_folder}/{builder}/uploaded/{file}")
                 except Exception as e:
                     print(e)

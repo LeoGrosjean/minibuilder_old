@@ -9,3 +9,4 @@ networkx
 pyinstaller==4.5
 patool
 PyGithub
+python-slugify
