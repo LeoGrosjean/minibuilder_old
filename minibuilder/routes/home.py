@@ -130,7 +130,7 @@ def dl_builder(builder):
     config.read(configpath + "/mbconfig.ini")
     data_folder = config['FOLDER']['data_path']
 
-    conf = get(f"https://raw.githubusercontent.com/LeoGrosjean/minibuilder/main/data/{builder}/configuration/conf.json")
+    conf = get(f"https://raw.githubusercontent.com/LeoGrosjean/miniBuilder-Configuration/main/{builder}/configuration/conf.json")
     conf = json.loads(conf.content)
 
     if Path(f"{data_folder}/{builder}/configuration/conf.json").exists():
@@ -152,7 +152,7 @@ def dl_builder(builder):
 
     for designer in conf['graph'].get('designer_files'):
         designer_ = get(
-            f"https://raw.githubusercontent.com/LeoGrosjean/minibuilder/main/data/{builder}/configuration/{designer}")
+            f"https://raw.githubusercontent.com/LeoGrosjean/miniBuilder-Configuration/main/{builder}/configuration/{designer}")
         designer_ = json.loads(designer_.content)
 
         if Path(f"{data_folder}/{builder}/configuration/{designer}").exists():
@@ -163,7 +163,7 @@ def dl_builder(builder):
         with open(f"{data_folder}/{builder}/configuration/{designer}", "w") as outfile:
             json.dump(designer_, outfile, indent=4)
 
-    empty = get(f"https://raw.githubusercontent.com/LeoGrosjean/minibuilder/main/data/{builder}/configuration/empty.json")
+    empty = get(f"https://raw.githubusercontent.com/LeoGrosjean/miniBuilder-Configuration/main/{builder}/configuration/empty.json")
     empty = json.loads(empty.content)
 
     with open(f"{data_folder}/{builder}/configuration/empty.json", "w") as outfile:
@@ -184,7 +184,7 @@ def dl_category_config(builder, category):
     conf_ = load_json(f"{data_folder}/{builder}/configuration/conf.json", occurence=0)
 
     for file in conf[builder][category]:
-        file_ = get(f"https://raw.githubusercontent.com/LeoGrosjean/minibuilder/main/data/{builder}/configuration/{category}/{file}")
+        file_ = get(f"https://raw.githubusercontent.com/LeoGrosjean/miniBuilder-Configuration/main/{builder}/configuration/{category}/{file}")
         file_ = json.loads(file_.content)
 
         if Path(f"{data_folder}/{builder}/configuration/{category}/{file}").exists():
