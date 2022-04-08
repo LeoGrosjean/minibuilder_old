@@ -23,7 +23,7 @@ def choose_builder():
     if not Path(configpath).is_dir():
         return redirect(url_for("home_bp.make_folder"))
 
-    r = get('https://raw.githubusercontent.com/LeoGrosjean/minibuilder/main/configs.json')
+    r = get('https://raw.githubusercontent.com/LeoGrosjean/miniBuilder-Configuration/main/configs.json')
 
     with open(f'{configpath}/config.json', 'w') as fp:
         json.dump(json.loads(r.content), fp)
