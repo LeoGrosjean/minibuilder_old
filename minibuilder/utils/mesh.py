@@ -29,11 +29,11 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
+            for bitz in info.get(child).get('bitzs'):
+                bitz.get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
 
         for bitz in bitzs:
             bitz.get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(rotate), normal, vertice))
-            # TODO CHECK IF BITZ'S CHILD NEED A ROTATION
-            pass
 
     normal_x = np.cross(normal, [1, 0, 0]) / np.linalg.norm(np.cross(normal, [1, 0, 0]))
     if np.isnan(normal_x[0]):
@@ -47,7 +47,8 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
             bitz.get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
-            # TODO CHECK IF BITZ'S CHILD NEED A ROTATION
+            for bitz in info.get(child).get('bitzs'):
+                bitz.get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(anklex), normal_x, vertice))
 
     if ankley:
         mesh.apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
@@ -55,7 +56,8 @@ def rotate_mesh(mesh, mesh_info, on, monkey_rotate_child_fix=0, shake_rotate=Non
             bitz.get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
         for child in child_rotate:
             info.get(child).get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
-            # TODO CHECK IF BITZ'S CHILD NEED A ROTATION
+            for bitz in info.get(child).get('bitzs'):
+                bitz.get('mesh').apply_transform(tm.transformations.rotation_matrix(radians(ankley), normal_y, vertice))
 
 
 def scale_mesh(mesh, scale):
