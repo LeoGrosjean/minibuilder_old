@@ -35,7 +35,7 @@ def edit(builder, node, category, file):
         pathlib.Path(f'{data_folder}/{builder}/uploaded/').mkdir(parents=True)
 
     form_header = ChooseBuilderForm()
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
     if not builders:
         return redirect(url_for('home_bp.list_builder_config'))
     form_header.builder.choices = builders
@@ -49,8 +49,14 @@ def edit(builder, node, category, file):
     form.file_name.data = file
     form.hidden_file_name.data = file
 
-    if graph.nodes[node].get('dextral'):
-        form.dextral.data = infos.get(category).get('stl').get(file).get("dextral")
+    if not infos.get(category).get('stl').get(file):
+        return "you can close this page"
+
+    try:
+        if graph.nodes[node].get('dextral'):
+            form.dextral.data = infos.get(category).get('stl').get(file).get("dextral")
+    except Exception as e:
+        print(e)
 
     try:
         form.support.choices = form.support.choices + [infos.get(category).get('stl').get(file).get("support", {}).get('file', '')]

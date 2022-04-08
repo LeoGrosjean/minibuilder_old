@@ -26,7 +26,7 @@ configure_bp = Blueprint('configure_bp', __name__)
 @configure_bp.route('/builder/<builder>/configure', methods=['GET'])
 def builder_configure(builder):
     form_header = ChooseBuilderForm()
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
     if not builders:
         return redirect(url_for('home_bp.list_builder_config'))
     form_header.builder.choices = builders
@@ -69,7 +69,7 @@ def builder_post(builder):
 
     form_upload = FormUploadFile()
     form_header = ChooseBuilderForm()
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
     if not builders:
         return redirect(url_for('home_bp.list_builder_config'))
     form_header.builder.choices = builders

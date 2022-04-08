@@ -15,7 +15,7 @@ from networkx import topological_sort, dfs_edges
 from slugify import slugify
 from trimesh import load
 from trimesh.geometry import align_vectors
-from trimesh.transformations import euler_matrix, rotation_matrix
+from trimesh.transformations import euler_matrix, rotation_matrix, compose_matrix
 
 from minibuilder.builder.build_info import make_info
 from minibuilder.builder.designer_box import load_meshes_find_designer
@@ -44,7 +44,7 @@ def utility_functions():
 @make_bp.route('/builder/<builder_name>', methods=['GET', 'POST'])
 def builder(builder_name):
     form_header = ChooseBuilderForm()
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
     if not builders:
         return redirect(url_for('home_bp.list_builder_config'))
     form_header.builder.choices = builders
@@ -364,10 +364,17 @@ def builder(builder_name):
                 mesh_normal, mesh_vertice = get_normal_vertice(info.get('mesh'), bitz.get('mesh_marker'))
                 bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                 bitz.get('mesh').apply_translation(mesh_vertice - bitz_vertice)
-                bitz['bitz_normal'] = bitz_normal
+
 
                 if 'submit_preview' in form_result or 'dl_zip' in form_result:
                     bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
+                    bitz['bitz_vertice'] = bitz_vertice
+                    bitz['bitz_normal'] = bitz_normal
+                    # TODO wip here
+                    #bitz['grid'] = compose_matrix(translate=bitz_vertice).T
+                    #bitz['grid_inv'] = np.linalg.inv(compose_matrix(translate=bitz_vertice).T)
+
+                    # End wip
                     node_normal, node_vertice = get_normal_vertice(di_file[node].get('mesh'), bitz.get('mesh_marker'))
                     bitz.get('mesh').apply_translation(bitz_normal * bitz.get('merge', 0))
 
@@ -380,8 +387,21 @@ def builder(builder_name):
 
                     bitz.get('mesh').apply_translation(normal_x * bitz.get('movex', 0) + normal_y * bitz.get('movey', 0))
 
+                    ##
                     bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
-                    bitz['bitz_vertice'] = bitz_vertice
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), bitz_normal, bitz_vertice))
+
+                    normal_x = np.cross(bitz_normal, [1, 0, 0]) / np.linalg.norm(np.cross(bitz_normal, [1, 0, 0]))
+                    if np.isnan(normal_x[0]):
+                        normal_x = np.cross(bitz_normal, [0, 0, 1]) / np.linalg.norm(np.cross(bitz_normal, [0, 0, 1]))
+                    normal_x = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
+                    normal_y = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('anklex')), normal_x, bitz_vertice))
+
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('ankley')), normal_y, bitz_vertice))
+
+
 
 
 
@@ -426,7 +446,7 @@ def builder(builder_name):
 
 
         if 'submit_preview' in form_result or 'dl_zip' in form_result:
-            for k, v in di_file.items():
+            """for k, v in di_file.items():
                 for bitz in di_file.get(k).get('bitzs', []):
                     normal_bitz, vertice_bitz = get_normal_vertice(
                         bitz.get('mesh'),
@@ -438,9 +458,7 @@ def builder(builder_name):
                     )
                     normal = normal * -1
 
-                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), normal, vertice_bitz))
-
-                    bitz_normal = bitz['bitz_normal']
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('rotate')), bitz_normal))
 
                     normal_x = np.cross(bitz_normal, [1, 0, 0]) / np.linalg.norm(np.cross(bitz_normal, [1, 0, 0]))
                     if np.isnan(normal_x[0]):
@@ -448,10 +466,10 @@ def builder(builder_name):
                     normal_x = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
                     normal_y = np.cross(bitz_normal, normal_x) / np.linalg.norm(np.cross(bitz_normal, normal_x))
 
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('anklex')), normal_x))
 
-                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('anklex')), normal_x, vertice_bitz))
-
-                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('ankley')), normal_y, vertice_bitz))
+                    bitz.get('mesh').apply_transform(rotation_matrix(radians(bitz.get('ankley')), normal_y))
+                    pass"""
 
 
         #for k, v in di_file.items():
@@ -486,9 +504,9 @@ def builder(builder_name):
                         del di_file[source]
 
         for k, v in di_file.items():
-            v.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
+            v.get('mesh').apply_transform(euler_matrix(radians(0), 0, 0))
             for bitz in v.get('bitzs'):
-                bitz.get('mesh').apply_transform(euler_matrix(radians(-90), 0, 0))
+                bitz.get('mesh').apply_transform(euler_matrix(radians(0), 0, 0))
 
         if 'live_edit' in form_result:
             node_dict_rotate = {}
@@ -499,7 +517,7 @@ def builder(builder_name):
                 if not di_file.get(node_rotate):
                     continue
 
-                if predecessor:
+                if predecessor and successors:
                     # TODO support dextral ?
                     marker = di_file.get(node_rotate).get('info')[di_file.get(node_rotate).get('on')]
 
@@ -547,7 +565,6 @@ def builder(builder_name):
                             bitz.get('mesh'),
                             bitz.get('bitz_marker')
                         )
-                        print(normal, normal_x, normal_y)
 
                         node_dict_rotate[node_rotate]['bitzs'].append(
                             {

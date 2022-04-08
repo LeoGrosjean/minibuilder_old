@@ -79,7 +79,7 @@ def save_file_config_json(graph, data_folder, builder_name, conf_json, form_resu
             conf[form_result.get('category')] = {
                 "desc": {
                     "display": form_result.get('category'),
-                    "path": f"{data_folder}/{builder_name}/{folder}/{form_result.get('category')}/"
+                    "path": f"{builder_name}/{folder}/{form_result.get('category')}/"
                 },
                 "stl": mesh_info
                 }
@@ -91,7 +91,7 @@ def save_file_config_json(graph, data_folder, builder_name, conf_json, form_resu
             form_result.get('category'): {
                 "desc": {
                     "display": form_result.get('category'),
-                    "path": f"{data_folder}/{builder_name}/{folder}/{form_result.get('category')}/"
+                    "path": f"{builder_name}/{folder}/{form_result.get('category')}/"
                 },
                 "stl": mesh_info
                 }

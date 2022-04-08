@@ -31,7 +31,7 @@ def choose_builder():
     form = ChooseBuilderForm()
     if not Path(get_data_folder()).is_dir():
         return redirect(url_for("home_bp.make_folder"))
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
     form.builder.choices = builders
 
     if request.method == 'POST':
@@ -50,7 +50,7 @@ def choose_builder():
 def make_folder():
     form_header = ChooseBuilderForm()
     try:
-        builders = os.listdir(get_data_folder())
+        builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
         form_header.builder.choices = builders
     except Exception as e:
         print(e)
@@ -91,8 +91,12 @@ def list_builder_config():
     form_header = ChooseBuilderForm()
     if not Path(get_data_folder()).is_dir():
         return redirect(url_for("home_bp.make_folder"))
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
     form_header.builder.choices = builders
+    try:
+        builder = builders[0]
+    except:
+        builder = None
 
     with open(f'{configpath}/config.json') as json_file:
         conf = json.load(json_file)
@@ -117,7 +121,7 @@ def list_builder_config():
             else:
                 curr[builder]['dl'][category] = files
 
-    return render_template("git_config/add_files.html", dl=dl, update=update, slugify=slugify, form_header=form_header)
+    return render_template("git_config/add_files.html", dl=dl, update=update, slugify=slugify, form_header=form_header, builder=builder)
 
 
 @home_bp.route("/dl_builder/<builder>", methods=['GET'])
@@ -228,7 +232,7 @@ def select_category(builder):
     form_header = ChooseBuilderForm()
     if not Path(get_data_folder()).is_dir():
         return redirect(url_for("home_bp.make_folder"))
-    builders = os.listdir(get_data_folder())
+    builders = [folder for folder in os.listdir(get_data_folder()) if not folder.startswith('.')]
 
     if not builders:
         return redirect(url_for('home_bp.list_builder_config'))
