@@ -14,3 +14,17 @@ def update(d, u):
         else:
             d[k] = v
     return d
+
+
+import collections
+def update2(d, u):
+    for k, v in u.items():
+        if isinstance(d, collections.Mapping):
+            if isinstance(v, collections.Mapping):
+                r = update(d.get(k, {}), v)
+                d[k] = r
+            else:
+                d[k] = u[k]
+        else:
+            d = {k: u[k]}
+    return d

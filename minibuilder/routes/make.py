@@ -24,6 +24,7 @@ from minibuilder.config import configpath
 from minibuilder.file_config.parts import load_json
 from minibuilder.forms.home import ChooseBuilderForm, get_data_folder
 from minibuilder.forms.make import generateminidynamic_func, dynamic_FieldBitz
+from minibuilder.utils.dict import update, update2
 from minibuilder.utils.graph import get_successors
 from minibuilder.utils.render import scene_to_html
 from minibuilder.utils.mesh import connect_mesh, get_mesh_normal_position, rotate_mesh, scale_mesh, get_normal_vertice
@@ -97,7 +98,7 @@ def builder(builder_name):
                     tmp.pop(cat)
                 except:
                     continue
-        bitzs.update(tmp)
+        bitzs = update2(bitzs, tmp)
 
     li = []
     for cat in bitzs.keys():
@@ -730,7 +731,7 @@ def updateselectbitz(selection, builder):
 
     bitz_infos = {}
     for bitz_file in graph.graph.get('bitz_files', []):
-        bitz_infos.update(load_json(f"{configuration_folder}/{bitz_file}"))
+        bitz_infos = update(bitz_infos, load_json(f"{configuration_folder}/{bitz_file}"))
 
     li = []
     for cat in bitz_infos.keys():
@@ -858,7 +859,7 @@ def updatebitz(builder, node, category, selection):
                     tmp.pop(cat)
                 except:
                     continue
-        bitzs.update(tmp)
+        bitzs = update(bitzs, tmp)
 
     li = []
     for cat in bitzs.keys():
