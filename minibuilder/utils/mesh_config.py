@@ -87,6 +87,8 @@ def save_file_config_json(graph, data_folder, builder_name, conf_json, form_resu
             print(f"{data_folder}/{builder_name}/configuration/{conf_json} has been updated with {form_result.get('category')}!")
             if folder == 'bitz':
                 conf[form_result.get('category')]["desc"]['bitz'] = True
+            else:
+                conf[form_result.get('category')]["desc"]["nodes"] = [folder]
 
     except Exception as e:
         print(e)
@@ -101,6 +103,8 @@ def save_file_config_json(graph, data_folder, builder_name, conf_json, form_resu
             }
         if folder == 'bitz':
             conf[form_result.get('category')]["desc"]['bitz'] = True
+        else:
+            conf[form_result.get('category')]["desc"]["nodes"] = [folder]
         print(f"{data_folder}/{builder_name}/configuration/{conf_json} has been created with {form_result.get('category')}!")
 
         with open(f"{data_folder}/{builder_name}/configuration/conf.json", "r+") as node_file:

@@ -65,3 +65,5 @@ Working on it, but in the futur I want to monetize my work on the project. Howev
 So you can't copy my work without asking me, the code of miniBuilder is the propriety of Leopold Grosjean (lol) !
 
 The configuration files can be shared and are not included in the license (all the data folder)
+
+pyinstaller --name miniBuilder --add-data "minibuilder;minibuilder/" app.py

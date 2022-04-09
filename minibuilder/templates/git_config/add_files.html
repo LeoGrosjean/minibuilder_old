@@ -23,85 +23,87 @@
 
 {% include "choose_builder.html" %}
 <body>
-<div id="accordion">
+{% for builder_, categories in update.items() %}
+<div id="accordion{{slugify(builder_, separator='_')}}">
 
-    {% for builder, categories in update.items() %}
     <div class="card">
-        <div class="card-header" id="{{slugify(builder, separator='_')}}_header">
+        <div class="card-header" id="{{slugify(builder_, separator='_')}}_header">
             <h5 class="mb-0">
 
                 <button class="btn btn-link dropdown-toggle" data-toggle="collapse"
-                        data-target="#{{slugify(builder, separator='_')}}_collapse"
-                        aria-expanded="false" aria-controls="{{slugify(builder, separator='_')}}_collapse">
-                    {{builder}}
+                        data-target="#{{slugify(builder_, separator='_')}}_collapse"
+                        aria-expanded="false" aria-controls="{{slugify(builder_, separator='_')}}_collapse">
+                    {{builder_}}
                 </button>
-                <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_builder', builder=builder)}}">Overwrite</a>
+                <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_builder', builder=builder_)}}">Overwrite</a>
             </h5>
         </div>
-        <div id="{{slugify(builder, separator='_')}}_collapse" class="collapse"
-             aria-labelledby="{{slugify(builder, separator='_')}}_header"
-             data-parent="#accordion">
-            <div class="card-body" id="{{slugify(builder, separator='_')}}_header">
-                <div id="accordion_file">
+        <div id="{{slugify(builder_, separator='_')}}_collapse" class="collapse"
+             aria-labelledby="{{slugify(builder_, separator='_')}}_header"
+             data-parent="#accordion{{slugify(builder_, separator='_')}}">
+            <div class="card-body" id="{{slugify(builder_, separator='_')}}_header">
+                <div id="accordion_file{{slugify(builder_, separator='_')}}">
                     {% for category, files in categories['update'].items() %}
                     <div class="card">
-                        <div class="card-header" id="{{slugify(category + builder + 'update', separator='_')}}_header">
+                        <div class="card-header" id="{{slugify(category + builder_ + 'update', separator='_')}}_header">
                             <h5 class="mb-0">
-                                    {{ category }} <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_category_config', builder=builder, category=category)}}">Overwrite</a>
+                                {{ category }} <a class="btn btn-secondary" type="submit"
+                                                  href="{{url_for('home_bp.dl_category_config', builder=builder_, category=category)}}">Overwrite</a>
                             </h5>
 
                         </div>
-
-                        {% endfor %}
-
-                        {% for category, files in categories['dl'].items() %}
-                        <div class="card">
-                            <div class="card-header"
-                                 id="{{slugify(category + builder + 'download', separator='_')}}_header">
-                                <h5 class="mb-0">
-                                    {{ category }} <a class="btn btn-secondary" type="submit" href="{{url_for('home_bp.dl_category_config', builder=builder, category=category)}}">Download</a>
-                                </h5>
-                            </div>
-                        </div>
-
-                        {% endfor %}
                     </div>
+
+                    {% endfor %}
+
+                    {% for category, files in categories['dl'].items() %}
+                    <div class="card">
+                        <div class="card-header"
+                             id="{{slugify(category + builder_ + 'download', separator='_')}}_header">
+                            <h5 class="mb-0">
+                                {{ category }} <a class="btn btn-secondary" type="submit"
+                                                  href="{{url_for('home_bp.dl_category_config', builder=builder_, category=category)}}">Download</a>
+                            </h5>
+                        </div>
+                    </div>
+
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-
-    {% endfor %}
-
 </div>
 
-<div id="accordion_dl">
 
-    {% for builder, categories in dl.items() %}
+{% endfor %}
+
+{% for builder_, categories in dl.items() %}
+<div id="accordion_dl{{slugify(builder_, separator='_')}}">
+
     <div class="card">
-        <div class="card-header" id="{{slugify(builder, separator='_')}}_header">
+        <div class="card-header" id="{{slugify(builder_, separator='_')}}_header">
             <h5 class="mb-0">
 
                 <button class="btn btn-secondary" data-toggle="collapse"
-                        data-target="#{{slugify(builder, separator='_')}}_collapse"
-                        aria-expanded="false" aria-controls="{{slugify(builder, separator='_')}}_collapse">
-                    {{builder}}
+                        data-target="#{{slugify(builder_, separator='_')}}_collapse"
+                        aria-expanded="false" aria-controls="{{slugify(builder_, separator='_')}}_collapse">
+                    {{builder_}}
                 </button>
-                <a class="btn btn-light" type="submit" href="{{url_for('home_bp.dl_builder', builder=builder)}}">Download</a>
+                <a class="btn btn-light" type="submit" href="{{url_for('home_bp.dl_builder', builder=builder_)}}">Download</a>
             </h5>
         </div>
-        <div id="{{slugify(builder, separator='_')}}_collapse" class="collapse"
-             aria-labelledby="{{slugify(builder, separator='_')}}_header"
-             data-parent="#accordion_dl">
-            <div class="card-body" id="{{slugify(builder, separator='_' + 'download')}}_header">
+        <div id="{{slugify(builder_, separator='_')}}_collapse" class="collapse"
+             aria-labelledby="{{slugify(builder_, separator='_')}}_header"
+             data-parent="#accordion_dl{{slugify(builder_, separator='_')}}">
+            <div class="card-body" id="{{slugify(builder_, separator='_' + 'download')}}_header">
                 <div id="accordion_dl_file">
 
                     {% for category, files in categories['dl'].items() %}
                     <div class="card">
                         <h6 class="card-header"
-                             id="{{slugify(category + builder + 'download', separator='_')}}_header">
+                            id="{{slugify(category + builder_ + 'download', separator='_')}}_header">
                             <h5 class="mb-0">
-                                    {{ category }}
+                                {{ category }}
                             </h5>
                         </h6>
                     </div>
@@ -114,5 +116,4 @@
 
 {% endfor %}
 
-</div>
 </body>
