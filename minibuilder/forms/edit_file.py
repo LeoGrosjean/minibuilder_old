@@ -8,7 +8,7 @@ from minibuilder.file_config.parts import load_json
 from minibuilder.forms.home import get_data_folder
 
 
-def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
+def DynamicFormEditMeshConf(graph, node, configuration_folder, *args, **kwargs):
     class FormMakeMeshConf(FlaskForm):
         add = SubmitField('Validate change !')
         file_name = StringField(label='File Name', validators=[InputRequired()], render_kw={'hidden': False})
@@ -27,7 +27,7 @@ def DynamicFormEditMeshConf(graph, node, *args, **kwargs):
 
         def get_designer_from_file(self, file="designer.json"):
             try:
-                designers = list(load_json(f"data/{self.graph.name}/configuration/{file}").keys())
+                designers = list(load_json(f"{configuration_folder}/{file}").keys())
             except Exception as e:
                 print(e)
                 designers = []

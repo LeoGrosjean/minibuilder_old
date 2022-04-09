@@ -45,7 +45,7 @@ def edit(builder, node, category, file):
     for json_path in graph.nodes.get(node).get('files'):
         infos.update(load_json(f"{configuration_folder}/{json_path}"))
 
-    form = DynamicFormEditMeshConf(graph, node)
+    form = DynamicFormEditMeshConf(graph, node, configuration_folder)
     form.file_name.data = file
     form.hidden_file_name.data = file
 
