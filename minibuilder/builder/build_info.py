@@ -47,9 +47,12 @@ def make_info(graph, builder, form_result, infos, bitzs, li_removed, data_folder
 
                 bitz_designer = bitzs.get(category).get('stl').get(bitz_file_name).get('designer')
 
+                support_file = bitzs.get(category).get('stl').get(bitz_file_name).get('support', {}).get('file')
+
                 di_file[node]['bitzs'].append(
                     {
                         "path": data_folder + '/' + category_path + file_path,
+                        "support_path": data_folder + '/' + category_path + 'support/' + support_file,
                         "label": bitz_name,
                         "mesh_marker": di_file[node]['info']['bitzs'].get(bitz_name),
                         "bitz_marker": bitz_marker,

@@ -37,6 +37,7 @@ def find_vertices(mesh, *args):
 
 
 def find_mesh_connector(mesh, graph, form_result, mesh_info):
+    # TODO dextral when not needed (ex: node larm)
     if form_result.get('marker_bitz'):
         mesh_info[form_result.get('file_name')]['bitz'] = find_vertices(mesh, *literal_eval(f"[[{form_result.get('marker_bitz')}]]"))
     else:
@@ -51,10 +52,10 @@ def find_mesh_connector(mesh, graph, form_result, mesh_info):
                     mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
                 else:
                     folder = node['folder']
-                    if node.get('dextral'):
+                    if node.get('dex_type'):
                         if not mesh_info[form_result.get('file_name')].get(folder):
                             mesh_info[form_result.get('file_name')][folder] = {}
-                        mesh_info[form_result.get('file_name')][folder].update({ node.get('dextral'): find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]")) })
+                        mesh_info[form_result.get('file_name')][folder].update({node.get('dextral'): find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))})
                     else:
                         mesh_info[form_result.get('file_name')][folder] = find_vertices(mesh, *literal_eval(f"[[{form_result.get(k)}]]"))
 

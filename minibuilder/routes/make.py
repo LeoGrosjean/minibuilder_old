@@ -366,7 +366,6 @@ def builder(builder_name):
                 bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                 bitz.get('mesh').apply_translation(mesh_vertice - bitz_vertice)
 
-
                 if 'submit_preview' in form_result or 'dl_zip' in form_result:
                     bitz_normal, bitz_vertice = get_normal_vertice(bitz.get('mesh'), bitz.get('bitz_marker'))
                     bitz['bitz_vertice'] = bitz_vertice
@@ -490,7 +489,8 @@ def builder(builder_name):
                     for bitz in v.get('bitzs'):
                         if bitz.get('fusion'):
                             v['mesh'] = v['mesh'] + bitz.get('mesh')
-                            v['bitzs'].remove(bitz)
+                            #v['bitzs'].remove(bitz)
+                            bitz['removed'] = True
 
 
                 for k, v in graph.get_edge_data(dest, source).items():
@@ -650,6 +650,9 @@ def builder(builder_name):
                         bitz['mesh'] = bitz['mesh'].difference(di_file[k]['mesh'])
                         bitz['mesh'].export(tmp_path)
                         li_file_path.append((tmp_path, f"{k}_{bitz.get('label')}"))
+                    if bitz.get('support_path') and Path(bitz.get('support_path')).exists():
+                        li_file_path.append((bitz.get('support_path'), f"{k}_{bitz.get('label')}_support"))
+
 
             for k, v in di_file.items():
                 # TODO what if merged, dont add merged files ? because we remove node from di_file when merge True

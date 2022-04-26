@@ -145,7 +145,12 @@ def get_mesh_normal_position(mesh, marker, inverse_norm=False):
 
 def get_mesh_normal_position_edit(mesh, info, on, dextral=None, inverse_norm=False):
     if dextral:
-        normal, vertice = get_normal_vertice(mesh, info[on][dextral])
+        try:
+            normal, vertice = get_normal_vertice(mesh, info[on][dextral])
+        except Exception as e:
+            print(e)
+            return '', '', '', ''
+
     else:
         normal, vertice = get_normal_vertice(mesh, info[on])
 
