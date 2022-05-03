@@ -123,12 +123,22 @@ def builder(builder_name):
     for node_name, v in graph.nodes.data():
         choices_values = list(infos[node_name].keys())
 
+        if 'Empty' in bitzs:
+            bitzs_keys = list(bitzs.keys())
+            bitzs_keys.insert(0, bitzs_keys.pop(bitzs_keys.index('Empty')))
+
+        if 'Empty' in infos[node_name]:
+            infos_keys = list(infos[node_name].keys())
+            infos_keys.insert(0, infos_keys.pop(infos_keys.index('Empty')))
+        else:
+            infos_keys = list(infos[node_name].keys())
+
         di_form[node_name] = {
             'label': v.get('label'),
-            'select':  infos[node_name].keys(),
-            'choices': infos[node_name][form_result.get(f"{node_name}_select") or choices_values[0]]['stl'].keys() if infos[node_name] else [],
-            'bitz_select': bitzs.keys(),
-            'bitz_choices': bitzs[list(bitzs.keys())[0]]['stl'].keys() if list(bitzs.keys()) else []
+            'select':  infos_keys,
+            'choices': infos[node_name][form_result.get(f"{node_name}_select") or infos_keys[0]]['stl'].keys() if infos[node_name] else [],
+            'bitz_select': bitzs_keys,
+            'bitz_choices': bitzs[bitzs_keys[0]]['stl'].keys() if list(bitzs_keys) else []
         }
         if not infos[node_name]:
             di_form.pop(node_name)

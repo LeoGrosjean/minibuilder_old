@@ -65,7 +65,7 @@ def dynamic_BitzDisplay(*args, **kwargs):
 
     class BitzDisplay(FlaskForm):
         bitz_label = StringField(label='placeholder_bitzname', render_kw={'hidden': True})
-        bitz_fusion = BooleanField(label='Fusion', default=True)
+        bitz_fusion = BooleanField(label='Fusion', default=False)
         bitz_select = SelectField(label=f'Category', validators=[InputRequired()], choices=kwargs.get('bitz_select'), render_kw={'hidden': False})
         bitz_list = SelectField(label='File', validators=[InputRequired()], choices=kwargs.get('bitz_choices'), render_kw={'hidden': False})
         bitz_rotate = IntegerField('Rotation', default=0, widget=NumberInput(min=-180, max=180, step=1),
@@ -98,6 +98,11 @@ def dynamic_FieldBitz(*args, **kwargs):
     else:
         bitz_select = []
         bitz_choices = None
+
+    if 'Empty' in kwargs.get('bitzs'):
+        bitz_select = list(kwargs.get('bitzs').keys())
+        bitz_select.insert(0, bitz_select.pop(bitz_select.index('Empty')))
+        bitz_choices = kwargs.get('bitzs')[list(kwargs.get('bitzs').keys())[0]]['stl'].keys()
 
     setattr(FieldBitz, f"{kwargs.get('node')}_bitz",
             FieldList(

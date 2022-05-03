@@ -39,7 +39,13 @@ def make_info(graph, builder, form_result, infos, bitzs, li_removed, data_folder
                 bitz_name = form_result.get(f"{node}_bitz-{i}-bitz_label")
 
                 category_path = bitzs.get(category).get('desc').get('path')
-                file_path = bitzs.get(category).get('stl').get(bitz_file_name).get('file')
+                try:
+                    file_path = bitzs.get(category).get('stl').get(bitz_file_name).get('file')
+                except Exception as e:
+                    print(e)
+                    print("Bitz is set to Empty")
+                    i += 1
+                    continue
 
                 bitz_marker = bitzs.get(category).get('stl').get(bitz_file_name).get('bitz')
 
@@ -47,7 +53,7 @@ def make_info(graph, builder, form_result, infos, bitzs, li_removed, data_folder
 
                 bitz_designer = bitzs.get(category).get('stl').get(bitz_file_name).get('designer')
 
-                support_file = bitzs.get(category).get('stl').get(bitz_file_name).get('support', {}).get('file')
+                support_file = bitzs.get(category).get('stl').get(bitz_file_name).get('support', {}).get('file', '')
 
                 di_file[node]['bitzs'].append(
                     {
